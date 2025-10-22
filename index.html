@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coiffure Melimelo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background:
+                linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #141414 50%, #0a0a0a 75%, #000000 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Diagonal stripes overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(212, 175, 55, 0.02) 2px,
+                    rgba(212, 175, 55, 0.02) 4px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animated grid pattern */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Ensure all content is above background effects */
+        nav, section, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+            border: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.7);
+            }
+            100% {
+                box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        .whatsapp-float svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        /* WhatsApp Menu */
+        .whatsapp-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #25d366;
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: none;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+            min-width: 280px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .whatsapp-menu.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .whatsapp-menu h4 {
+            color: #25d366;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp-option {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid #25d366;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .whatsapp-option:hover {
+            background: #25d366;
+            transform: translateX(-5px);
+        }
+
+        .whatsapp-option strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #25d366;
+        }
+
+        .whatsapp-option:hover strong {
+            color: #000;
+        }
+
+        .whatsapp-option span {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .whatsapp-option:hover span {
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 26px;
+            }
+
+            .whatsapp-float svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .whatsapp-menu {
+                right: 20px;
+                bottom: 85px;
+                min-width: 260px;
+                padding: 1.2rem;
+            }
+
+            .whatsapp-option {
+                padding: 0.8rem;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.98);
+            padding: 1.2rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.3rem 0.6rem;
+            border-radius: 12px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn.active {
+            background: #d4af37;
+            color: #000;
+        }
+
+        .lang-btn:hover {
+            color: #d4af37;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .logo svg {
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 120px 5% 80px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-split {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-left {
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: 2px;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .cta-button.primary {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%);
+            color: #000000;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+            border: none;
+            font-size: 0.9rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .cta-button.secondary {
+            display: inline-block;
+            padding: 1.2rem 2.5rem;
+            background: transparent;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-right {
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .card-1 {
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            bottom: 10%;
+            right: -10%;
+            animation-delay: 1.5s;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 6rem 5%;
+            background: #000000;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img,
+        .gallery-item svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover svg {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 200;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #000000;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: #ffffff;
+            transition: left 0.4s;
+        }
+
+        .service-card:hover::before {
+            left: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .service-card p {
+            color: #aaaaaa;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: #ffffff;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 6rem 5%;
+            background: #000000;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #333, #111);
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .team-member p {
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 5%;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 200;
+        }
+
+        .about-text p {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.9;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #ffffff, #999);
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5%;
+            background: #000000;
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 900px;
+            margin: 3rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-item span {
+            color: #cccccc;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000000;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #666;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            nav {
+                padding: 1rem 3%;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .logo svg {
+                width: 40px;
+                height: 47px;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+                font-size: 0.7rem;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 100px 5% 60px;
+                min-height: auto;
+            }
+
+            .hero-split {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-right {
+                order: -1;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 1px;
+                line-height: 1.2;
+            }
+
+            .hero-description {
+                font-size: 0.95rem;
+            }
+
+            .hero-image-container img {
+                height: 350px;
+            }
+
+            .floating-card {
+                padding: 1rem 1.2rem;
+                font-size: 0.8rem;
+            }
+
+            .card-icon {
+                font-size: 1.5rem;
+            }
+
+            .card-text {
+                font-size: 0.75rem;
+            }
+
+            .card-1 {
+                left: 5%;
+                top: 5%;
+            }
+
+            .card-2 {
+                right: 5%;
+                bottom: 5%;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: center;
+            }
+
+            .stat {
+                text-align: center;
+                min-width: 120px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-button.primary,
+            .cta-button.secondary {
+                width: 100%;
+                text-align: center;
+                padding: 1rem 2rem;
+            }
+
+            /* Gallery */
+            .gallery {
+                padding: 4rem 5%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            /* Services */
+            .services {
+                padding: 4rem 5%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+
+            /* Team */
+            .team {
+                padding: 4rem 5%;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* About */
+            .about {
+                padding: 4rem 5%;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            /* Contact */
+            .contact {
+                padding: 4rem 5%;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-item {
+                padding: 1.5rem;
+            }
+
+            /* Appointment Form - Mobile Optimized */
+            .contact form > div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Section Titles */
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 2rem 5%;
+            }
+
+            footer p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="60" height="70" style="fill: none; stroke: #d4af37; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;">
+                    <!-- Shield/Diamond border -->
+                    <path d="M100,10 L170,50 L170,130 L100,180 L30,130 L30,50 Z" stroke-width="3"/>
+
+                    <!-- Top text: COIFFURE MELIMELO -->
+                    <text x="100" y="35" font-size="7" fill="#d4af37" text-anchor="middle" font-weight="600" letter-spacing="1">COIFFURE</text>
+                    <text x="100" y="45" font-size="7" fill="#d4af37" text-anchor="middle" font-weight="600" letter-spacing="1">MELIMELO</text>
+
+                    <!-- Central scissors with wings (X shape) -->
+                    <circle cx="85" cy="75" r="12" stroke-width="2.5"/>
+                    <circle cx="115" cy="75" r="12" stroke-width="2.5"/>
+                    <line x1="85" y1="87" x2="115" y2="125" stroke-width="3.5"/>
+                    <line x1="115" y1="87" x2="85" y2="125" stroke-width="3.5"/>
+
+                    <!-- Left wing lines -->
+                    <line x1="73" y1="80" x2="45" y2="80" stroke-width="2.5"/>
+                    <line x1="73" y1="87" x2="47" y2="87" stroke-width="2.5"/>
+                    <line x1="73" y1="94" x2="45" y2="94" stroke-width="2.5"/>
+                    <line x1="73" y1="101" x2="47" y2="101" stroke-width="2.5"/>
+
+                    <!-- Right wing lines -->
+                    <line x1="127" y1="80" x2="155" y2="80" stroke-width="2.5"/>
+                    <line x1="127" y1="87" x2="153" y2="87" stroke-width="2.5"/>
+                    <line x1="127" y1="94" x2="155" y2="94" stroke-width="2.5"/>
+                    <line x1="127" y1="101" x2="153" y2="101" stroke-width="2.5"/>
+
+                    <!-- Bottom crossed razors -->
+                    <line x1="70" y1="145" x2="92" y2="170" stroke-width="4"/>
+                    <line x1="130" y1="145" x2="108" y2="170" stroke-width="4"/>
+                    <rect x="68" y="143" width="6" height="30" fill="#d4af37" transform="rotate(35 70 145)"/>
+                    <rect x="126" y="143" width="6" height="30" fill="#d4af37" transform="rotate(-35 130 145)"/>
+
+                    <!-- Bottom text: BARBER SHOP -->
+                    <text x="100" y="195" font-size="13" fill="#d4af37" text-anchor="middle" font-weight="bold" letter-spacing="2">BARBER</text>
+                    <text x="100" y="210" font-size="13" fill="#d4af37" text-anchor="middle" font-weight="bold" letter-spacing="2">SHOP</text>
+
+                    <!-- Bottom text: MELIMELO -->
+                    <text x="100" y="230" font-size="16" fill="#d4af37" text-anchor="middle" font-weight="bold" letter-spacing="3">MELIMELO</text>
+                </svg>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Équipe</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-split">
+            <div class="hero-left">
+                <h1>COIFFURE<br><span class="highlight">MELIMELO</span></h1>
+                <p class="hero-description">Votre style, notre expertise • Précision et excellence</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button primary">Prendre Rendez-vous</a>
+                    <a href="#services" class="cta-button secondary">Nos Services</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Clients Satisfaits</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Années d'Expérience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Note Moyenne</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=800&h=1000&fit=crop" alt="Professional Barber at Work">
+                    <div class="floating-card card-1">
+                        <div class="card-icon">✂️</div>
+                        <div class="card-text">Coupe Premium</div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <div class="card-icon">⭐</div>
+                        <div class="card-text">Service 5 Étoiles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Notre Travail</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/rxenbFP.jpeg" alt="Coupe Professionnelle">
+                <div class="gallery-overlay">
+                    <h3>Dégradé Professionnel</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/iETAKC2.jpeg" alt="Style Moderne">
+                <div class="gallery-overlay">
+                    <h3>Coupe + Barbe</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/vLnUegJ.jpeg" alt="Taille de Barbe">
+                <div class="gallery-overlay">
+                    <h3>Taille Précise</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/Io8SQSN.jpeg" alt="Coupe Stylée">
+                <div class="gallery-overlay">
+                    <h3>Style Moderne</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Nos Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂️</div>
+                <h3>La Coupe</h3>
+                <p>Coupe sur mesure adaptée à votre style et morphologie. Consultation personnalisée incluse.</p>
+                <div class="price">25 CHF</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🪒</div>
+                <h3>La Barbe</h3>
+                <p>Taille et modelage professionnel de la barbe. Finitions précises au rasoir.</p>
+                <div class="price">17 CHF</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💈</div>
+                <h3>Coupe + Barbe</h3>
+                <p>Forfait complet : coupe de cheveux et taille de barbe. Le combo parfait.</p>
+                <div class="price">40 CHF</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>La Coloration</h3>
+                <p>Coloration professionnelle. Produits de qualité pour un résultat impeccable.</p>
+                <div class="price">30 CHF</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👶</div>
+                <h3>Enfants</h3>
+                <p>Coupe spéciale pour les enfants dans une ambiance conviviale et rassurante.</p>
+                <div class="price">20 CHF</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🧴</div>
+                <h3>Shampooing & Séchage</h3>
+                <p>Lavage professionnel et séchage soigné pour un résultat parfait.</p>
+                <div class="price">10 CHF</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Épilation au Fil</h3>
+                <p>Épilation précise au fil traditionnel. Technique douce et efficace.</p>
+                <div class="price">10 CHF</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <h2 class="section-title">Notre Équipe</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-photo" style="background: none; padding: 0;">
+                    <img src="https://i.imgur.com/Bn6KMCd.jpeg" alt="Kamo Coiffure" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3>Kamaran (Kamo)</h3>
+                <p>20 ans d'expérience</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="tel:+41788700244" style="color: #d4af37; font-weight: 600; text-decoration: none; transition: all 0.3s;">
+                        +41 78 870 02 44
+                    </a>
+                </p>
+            </div>
+            <div class="team-member">
+                <div class="team-photo" style="background: none; padding: 0;">
+                    <img src="https://i.imgur.com/O1l7ccG.jpeg" alt="Hassan Duske" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3>Hassan Duske</h3>
+                <p>25 ans d'expérience</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="tel:+41765320878" style="color: #d4af37; font-weight: 600; text-decoration: none; transition: all 0.3s;">
+                        +41 76 532 08 78
+                    </a>
+                </p>
+            </div>
+            <div class="team-member">
+                <div class="team-photo" style="background: none; padding: 0;">
+                    <img src="https://i.imgur.com/GmEHC3F.jpeg" alt="Shuana Arif" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <h3>Shuana Arif</h3>
+                <p>5 ans d'expérience</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="tel:+41765971395" style="color: #d4af37; font-weight: 600; text-decoration: none; transition: all 0.3s;">
+                        +41 76 597 13 95
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>À Propos</h2>
+                <p>Coiffure Melimelo est bien plus qu'un simple salon de coiffure. C'est un sanctuaire dédié à l'art ancestral de la coiffure masculine, où tradition et modernité se rencontrent.</p>
+                <p>Nos maîtres barbiers, formés aux techniques les plus pointues, possèdent une expertise incomparable dans l'art du rasage traditionnel, des coupes contemporaines et du styling sur-mesure.</p>
+                <p>Chaque visite chez Melimelo est une expérience unique, alliant savoir-faire artisanal, produits premium et attention personnalisée. Nous ne créons pas simplement des coupes, nous sculptons des œuvres d'art.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=800&h=1000&fit=crop" alt="Barber Shop Interior" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Nous Contacter</h2>
+
+        <!-- Appointment Booking Form -->
+        <div style="max-width: 800px; margin: 0 auto 4rem; background: rgba(10, 10, 10, 0.7); padding: 3rem; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3);">
+            <h3 style="text-align: center; color: #d4af37; font-size: 1.8rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 2px;">Prendre Rendez-vous</h3>
+            <form id="appointmentForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <input type="text" id="nom" name="nom" placeholder="Votre Nom *" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                    <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                </div>
+
+                <select id="barber" name="barber" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                    <option value="" disabled selected>Choisir votre barbier *</option>
+                    <option value="Kamaran|9647701540481">Kamaran (Kamo)</option>
+                    <option value="Hassan|41765320878">Hassan Duske</option>
+                    <option value="Shuana|41765971395">Shuana Arif</option>
+                </select>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <input type="date" id="date" name="date" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                    <input type="time" id="heure" name="heure" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                </div>
+
+                <select id="service" name="service" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                    <option value="" disabled selected>Choisir un service *</option>
+                    <option value="La Coupe - 25 CHF">La Coupe - 25 CHF</option>
+                    <option value="La Barbe - 17 CHF">La Barbe - 17 CHF</option>
+                    <option value="Coupe + Barbe - 40 CHF">Coupe + Barbe - 40 CHF</option>
+                    <option value="La Coloration - 30 CHF">La Coloration - 30 CHF</option>
+                    <option value="Enfants - 20 CHF">Enfants - 20 CHF</option>
+                    <option value="Shampooing & Séchage - 10 CHF">Shampooing & Séchage - 10 CHF</option>
+                    <option value="Épilation au Fil - 10 CHF">Épilation au Fil - 10 CHF</option>
+                </select>
+
+                <textarea id="message" name="message" rows="4" placeholder="Message (optionnel)" style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem; resize: vertical;"></textarea>
+
+                <button type="submit" style="padding: 1.2rem 2rem; background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); color: #000; border: none; border-radius: 5px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s;">
+                    Envoyer sur WhatsApp
+                </button>
+            </form>
+
+            <script>
+                document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Get form values
+                    const nom = document.getElementById('nom').value;
+                    const telephone = document.getElementById('telephone').value;
+                    const barberData = document.getElementById('barber').value.split('|');
+                    const barberName = barberData[0];
+                    const barberNumber = barberData[1];
+                    const date = document.getElementById('date').value;
+                    const heure = document.getElementById('heure').value;
+                    const service = document.getElementById('service').value;
+                    const message = document.getElementById('message').value;
+
+                    // Format the WhatsApp message
+                    let whatsappMessage = `🔔 *Nouvelle Demande de Rendez-vous*%0A%0A`;
+                    whatsappMessage += `👤 *Nom:* ${nom}%0A`;
+                    whatsappMessage += `📞 *Téléphone:* ${telephone}%0A`;
+                    whatsappMessage += `💈 *Barbier demandé:* ${barberName}%0A`;
+                    whatsappMessage += `📅 *Date:* ${date}%0A`;
+                    whatsappMessage += `⏰ *Heure:* ${heure}%0A`;
+                    whatsappMessage += `✂️ *Service:* ${service}%0A`;
+                    if (message) {
+                        whatsappMessage += `💬 *Message:* ${message}%0A`;
+                    }
+
+                    // Open WhatsApp to selected barber
+                    window.open(`https://wa.me/${barberNumber}?text=${whatsappMessage}`, '_blank');
+
+                    // Reset form
+                    this.reset();
+                });
+            </script>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <strong>Adresse</strong>
+                <span>Rue des Draizes 61<br>2000 Neuchâtel<br>Switzerland</span>
+            </div>
+            <div class="contact-item">
+                <strong>Horaires</strong>
+                <span>
+                    Lundi: Fermé<br>
+                    Mardi: De 09:00 à 19:00<br>
+                    Mercredi: De 09:00 à 19:00<br>
+                    Jeudi: De 09:00 à 19:00<br>
+                    Vendredi: De 09:00 à 19:00<br>
+                    Samedi: De 08:30 à 18:00<br>
+                    Dimanche: Fermé
+                </span>
+            </div>
+            <div class="contact-item">
+                <strong>Contact</strong>
+                <span>
+                    Tel 1: +41 76 597 13 95<br>
+                    Tel 2: +41 76 532 08 78<br>
+                    rahimshuana@gmail.com
+                </span>
+            </div>
+        </div>
+        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+            <a href="tel:+41765971395" class="cta-button primary">Appeler: +41 76 597 13 95</a>
+            <a href="tel:+41765320878" class="cta-button primary">Appeler: +41 76 532 08 78</a>
+        </div>
+
+        <!-- Google Maps -->
+        <div style="max-width: 1200px; margin: 4rem auto 0; border: 2px solid rgba(212, 175, 55, 0.3); border-radius: 10px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2712.8947204427554!2d6.935847176531892!3d47.035729371253096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e09c7f3e8c8e3%3A0x7c0b3e0f0e0e0e0e!2sRue%20des%20Draizes%2061%2C%202000%20Neuch%C3%A2tel%2C%20Switzerland!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s"
+                width="100%"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 COIFFURE MELIMELO - Tous droits réservés</p>
+        <p style="margin-top: 0.5rem; color: #666; font-size: 0.85rem;">Designed by <span style="color: #d4af37; font-weight: 600;">Jaff Creative</span></p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <button class="whatsapp-float" id="whatsappBtn" onclick="toggleWhatsAppMenu()" title="Contactez-nous sur WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </button>
+
+    <!-- WhatsApp Menu -->
+    <div class="whatsapp-menu" id="whatsappMenu">
+        <h4>Choisir votre barbier</h4>
+        <a href="https://wa.me/9647701540481?text=Bonjour%20Kamaran!%20Je%20voudrais%20prendre%20un%20rendez-vous." class="whatsapp-option" target="_blank">
+            <strong>Kamaran (Kamo)</strong>
+            <span>20 ans d'expérience</span>
+        </a>
+        <a href="https://wa.me/41765320878?text=Bonjour%20Hassan!%20Je%20voudrais%20prendre%20un%20rendez-vous." class="whatsapp-option" target="_blank">
+            <strong>Hassan Duske</strong>
+            <span>25 ans d'expérience</span>
+        </a>
+        <a href="https://wa.me/41765971395?text=Bonjour%20Shuana!%20Je%20voudrais%20prendre%20un%20rendez-vous." class="whatsapp-option" target="_blank">
+            <strong>Shuana Arif</strong>
+            <span>5 ans d'expérience</span>
+        </a>
+    </div>
+
+    <script>
+        function toggleWhatsAppMenu() {
+            const menu = document.getElementById('whatsappMenu');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const menu = document.getElementById('whatsappMenu');
+            const btn = document.getElementById('whatsappBtn');
+
+            if (!menu.contains(event.target) && !btn.contains(event.target)) {
+                menu.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
