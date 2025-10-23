@@ -1308,8 +1308,10 @@
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                     <input type="text" id="nom" name="nom" placeholder="Votre Nom *" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
-                    <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
+                    <input type="email" id="email" name="email" placeholder="Votre Email *" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
                 </div>
+
+                <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
 
                 <select id="barber" name="barber" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
                     <option value="" disabled selected>Choisir votre barbier *</option>
@@ -1347,6 +1349,7 @@
 
                     // Get form values
                     const nom = document.getElementById('nom').value;
+                    const email = document.getElementById('email').value;
                     const telephone = document.getElementById('telephone').value;
                     const barberData = document.getElementById('barber').value.split('|');
                     const barberName = barberData[0];
@@ -1361,6 +1364,7 @@
                     let body = encodeURIComponent(
                         `Nouvelle Demande de Rendez-vous\n\n` +
                         `Nom: ${nom}\n` +
+                        `Email: ${email}\n` +
                         `Téléphone: ${telephone}\n` +
                         `Barbier demandé: ${barberName}\n` +
                         `Date: ${date}\n` +
