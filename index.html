@@ -1282,9 +1282,9 @@
 
                 <select id="barber" name="barber" required style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem;">
                     <option value="" disabled selected>Choisir votre barbier *</option>
-                    <option value="Kamaran|9647701540481">Kamaran (Kamo)</option>
-                    <option value="Hassan|41765320878">Hassan Duske</option>
-                    <option value="Shuana|41765971395">Shuana Arif</option>
+                    <option value="Kamaran|rahimshuana@gmail.com">Kamaran (Kamo)</option>
+                    <option value="Hassan|rahimshuana@gmail.com">Hassan Duske</option>
+                    <option value="Shuana|rahimshuana@gmail.com">Shuana Arif</option>
                 </select>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
@@ -1306,7 +1306,7 @@
                 <textarea id="message" name="message" rows="4" placeholder="Message (optionnel)" style="padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: #fff; border-radius: 5px; font-size: 1rem; resize: vertical;"></textarea>
 
                 <button type="submit" style="padding: 1.2rem 2rem; background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 50%, #d4af37 100%); color: #000; border: none; border-radius: 5px; font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s;">
-                    Envoyer sur WhatsApp
+                    Envoyer par Email
                 </button>
             </form>
 
@@ -1319,29 +1319,32 @@
                     const telephone = document.getElementById('telephone').value;
                     const barberData = document.getElementById('barber').value.split('|');
                     const barberName = barberData[0];
-                    const barberNumber = barberData[1];
+                    const barberEmail = barberData[1];
                     const date = document.getElementById('date').value;
                     const heure = document.getElementById('heure').value;
                     const service = document.getElementById('service').value;
                     const message = document.getElementById('message').value;
 
-                    // Format the WhatsApp message
-                    let whatsappMessage = `🔔 *Nouvelle Demande de Rendez-vous*%0A%0A`;
-                    whatsappMessage += `👤 *Nom:* ${nom}%0A`;
-                    whatsappMessage += `📞 *Téléphone:* ${telephone}%0A`;
-                    whatsappMessage += `💈 *Barbier demandé:* ${barberName}%0A`;
-                    whatsappMessage += `📅 *Date:* ${date}%0A`;
-                    whatsappMessage += `⏰ *Heure:* ${heure}%0A`;
-                    whatsappMessage += `✂️ *Service:* ${service}%0A`;
-                    if (message) {
-                        whatsappMessage += `💬 *Message:* ${message}%0A`;
-                    }
+                    // Format the email subject and body
+                    const subject = encodeURIComponent('Nouvelle Demande de Rendez-vous - Coiffure Melimelo');
+                    let body = encodeURIComponent(
+                        `Nouvelle Demande de Rendez-vous\n\n` +
+                        `Nom: ${nom}\n` +
+                        `Téléphone: ${telephone}\n` +
+                        `Barbier demandé: ${barberName}\n` +
+                        `Date: ${date}\n` +
+                        `Heure: ${heure}\n` +
+                        `Service: ${service}\n` +
+                        (message ? `Message: ${message}\n` : '')
+                    );
 
-                    // Open WhatsApp to selected barber
-                    window.open(`https://wa.me/${barberNumber}?text=${whatsappMessage}`, '_blank');
+                    // Open email client with pre-filled information
+                    window.location.href = `mailto:${barberEmail}?subject=${subject}&body=${body}`;
 
-                    // Reset form
-                    this.reset();
+                    // Reset form after a short delay
+                    setTimeout(() => {
+                        this.reset();
+                    }, 500);
                 });
             </script>
         </div>
