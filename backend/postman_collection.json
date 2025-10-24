@@ -1,0 +1,489 @@
+{
+  "info": {
+    "name": "Coiffure Melimelo API",
+    "description": "Complete API collection for Coiffure Melimelo backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/health",
+          "host": ["{{base_url}}"],
+          "path": ["api", "health"]
+        }
+      }
+    },
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Create Appointment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerName\": \"John Doe\",\n  \"customerPhone\": \"+41 76 123 45 67\",\n  \"customerEmail\": \"john@example.com\",\n  \"barber\": {\n    \"name\": \"Kamaran\",\n    \"phone\": \"+41788700244\"\n  },\n  \"appointmentDate\": \"2025-11-01\",\n  \"appointmentTime\": \"14:30\",\n  \"service\": \"Coupe + Barbe - 40 CHF\",\n  \"message\": \"Looking forward to my appointment\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/appointments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "appointments"]
+            }
+          }
+        },
+        {
+          "name": "Get All Appointments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/appointments?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "appointments"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "barber",
+                  "value": "Kamaran",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Appointment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/appointments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "appointments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "appointment_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Appointment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"confirmed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/appointments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "appointments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "appointment_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Appointment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/appointments/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "appointments", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "appointment_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Available Slots",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/appointments/availability/:barber/:date",
+              "host": ["{{base_url}}"],
+              "path": ["api", "appointments", "availability", ":barber", ":date"],
+              "variable": [
+                {
+                  "key": "barber",
+                  "value": "Kamaran"
+                },
+                {
+                  "key": "date",
+                  "value": "2025-11-01"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Get All Services",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services"]
+            }
+          }
+        },
+        {
+          "name": "Get Single Service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Premium Cut\",\n  \"description\": \"Luxury haircut service\",\n  \"price\": 50,\n  \"currency\": \"CHF\",\n  \"duration\": 60,\n  \"icon\": \"✂️\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services"]
+            }
+          }
+        },
+        {
+          "name": "Update Service",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 55\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/services/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Service",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/services/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "services", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "service_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Team",
+      "item": [
+        {
+          "name": "Get All Team Members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/team",
+              "host": ["{{base_url}}"],
+              "path": ["api", "team"]
+            }
+          }
+        },
+        {
+          "name": "Get Single Team Member",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/team/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "team", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "member_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Team Member",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Smith\",\n  \"experience\": 10,\n  \"phone\": \"+41 76 123 45 67\",\n  \"whatsappNumber\": \"41761234567\",\n  \"email\": \"john@example.com\",\n  \"photoUrl\": \"https://example.com/photo.jpg\",\n  \"specialties\": [\"Fade\", \"Beard Trim\"],\n  \"bio\": \"Experienced barber\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/team",
+              "host": ["{{base_url}}"],
+              "path": ["api", "team"]
+            }
+          }
+        },
+        {
+          "name": "Update Team Member",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"experience\": 11\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/team/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "team", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "member_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Team Member",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/team/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "team", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "member_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contact",
+      "item": [
+        {
+          "name": "Create Contact Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"+41 76 123 45 67\",\n  \"subject\": \"Question about services\",\n  \"message\": \"I would like to know more about your coloring services.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/contact",
+              "host": ["{{base_url}}"],
+              "path": ["api", "contact"]
+            }
+          }
+        },
+        {
+          "name": "Get All Contact Messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/contact?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "contact"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "status",
+                  "value": "new",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Contact Message",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/contact/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "contact", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "contact_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Contact Message",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"replied\",\n  \"reply\": \"Thank you for your message. We will get back to you soon.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/contact/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "contact", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "contact_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Contact Message",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/contact/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "contact", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "contact_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ]
+}

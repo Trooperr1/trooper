@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:latest
+    container_name: coiffure-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: coiffure-melimelo
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - coiffure-network
+
+  # Backend API
+  api:
+    build: .
+    container_name: coiffure-api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - MONGODB_URI=mongodb://mongodb:27017/coiffure-melimelo
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - coiffure-network
+    command: npm start
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  coiffure-network:
+    driver: bridge
