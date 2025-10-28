@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nystrom Plumbing - Professional Plumbing Services in Charlotte, NC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        .active-link {
+            color: #1e40af;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" onclick="showPage('home')" class="flex items-center">
+                    <div class="text-2xl font-bold text-blue-800">Nystrom Plumbing</div>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" onclick="showPage('home')" class="nav-link text-gray-700 hover:text-blue-800 font-medium transition-colors">Home</a>
+                    <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 hover:text-blue-800 font-medium transition-colors">About</a>
+                    <a href="#" onclick="showPage('services')" class="nav-link text-gray-700 hover:text-blue-800 font-medium transition-colors">Services</a>
+                    <a href="#" onclick="showPage('contact')" class="nav-link text-gray-700 hover:text-blue-800 font-medium transition-colors">Contact</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#" onclick="showPage('contact')" class="bg-blue-800 text-white px-6 py-2 rounded-lg hover:bg-blue-900 transition-colors">Get a Quote</a>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 focus:outline-none" id="mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#" onclick="showPage('home')" class="block py-2 text-gray-700 hover:text-blue-800 font-medium">Home</a>
+                <a href="#" onclick="showPage('about')" class="block py-2 text-gray-700 hover:text-blue-800 font-medium">About</a>
+                <a href="#" onclick="showPage('services')" class="block py-2 text-gray-700 hover:text-blue-800 font-medium">Services</a>
+                <a href="#" onclick="showPage('contact')" class="block py-2 text-gray-700 hover:text-blue-800 font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16 min-h-screen">
+        <!-- HOME PAGE -->
+        <div id="home" class="page-section active">
+            <!-- Hero Section -->
+            <section class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                                Professional Plumbing Services in Charlotte
+                            </h1>
+                            <p class="text-xl md:text-2xl mb-8 text-blue-100">
+                                Licensed, insured, and trusted by homeowners across Charlotte. Available 24/7 for emergencies.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="#" onclick="showPage('contact')" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors text-center">
+                                    Get Free Quote
+                                </a>
+                                <a href="tel:7045550100" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-500 transition-colors text-center">
+                                    Call (704) 555-0100
+                                </a>
+                            </div>
+                            <div class="mt-8 flex flex-wrap items-center gap-8 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-2xl">✓</span>
+                                    <span>Licensed & Insured</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-2xl">✓</span>
+                                    <span>24/7 Emergency</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-2xl">✓</span>
+                                    <span>Free Estimates</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden md:block">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-lg p-8 text-center">
+                                <div class="text-6xl mb-4">🔧</div>
+                                <h3 class="text-2xl font-bold mb-2">Why Choose Us?</h3>
+                                <ul class="text-left space-y-2 text-blue-100">
+                                    <li>✓ 20+ Years Experience</li>
+                                    <li>✓ Upfront Pricing</li>
+                                    <li>✓ Quality Workmanship</li>
+                                    <li>✓ Customer Satisfaction Guaranteed</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Overview -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                            Comprehensive plumbing solutions for your home and business
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🚨</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Emergency Repairs</h3>
+                            <p class="text-gray-600 mb-4">24/7 emergency plumbing services for urgent issues. Fast response time guaranteed.</p>
+                            <a href="#" onclick="showPage('services')" class="text-blue-800 font-semibold hover:text-blue-600 transition-colors">Learn More →</a>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🚿</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Drain Cleaning</h3>
+                            <p class="text-gray-600 mb-4">Professional drain cleaning and unclogging services for all types of blockages.</p>
+                            <a href="#" onclick="showPage('services')" class="text-blue-800 font-semibold hover:text-blue-600 transition-colors">Learn More →</a>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">💧</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Water Heaters</h3>
+                            <p class="text-gray-600 mb-4">Installation, repair, and maintenance of all water heater types and brands.</p>
+                            <a href="#" onclick="showPage('services')" class="text-blue-800 font-semibold hover:text-blue-600 transition-colors">Learn More →</a>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🔧</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Pipe Installation</h3>
+                            <p class="text-gray-600 mb-4">Expert pipe installation and replacement for residential and commercial properties.</p>
+                            <a href="#" onclick="showPage('services')" class="text-blue-800 font-semibold hover:text-blue-600 transition-colors">Learn More →</a>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">💦</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Leak Detection</h3>
+                            <p class="text-gray-600 mb-4">Advanced leak detection technology to find and fix hidden water leaks.</p>
+                            <a href="#" onclick="showPage('services')" class="text-blue-800 font-semibold hover:text-blue-600 transition-colors">Learn More →</a>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🚰</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Fixture Installation</h3>
+                            <p class="text-gray-600 mb-4">Professional installation of faucets, sinks, toilets, and other fixtures.</p>
+                            <a href="#" onclick="showPage('services')" class="text-blue-800 font-semibold hover:text-blue-600 transition-colors">Learn More →</a>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <a href="#" onclick="showPage('services')" class="inline-block bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-900 transition-colors">
+                            View All Services
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+                        <p class="text-xl text-gray-600">Trusted by hundreds of satisfied customers in Charlotte</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                            <div class="flex mb-4">
+                                <span class="text-yellow-400 text-xl">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700 mb-6 italic">"Nystrom Plumbing saved the day! Had a pipe burst at 2am and they were here within an hour. Professional, efficient, and reasonably priced."</p>
+                            <div>
+                                <p class="font-bold text-gray-900">Sarah Johnson</p>
+                                <p class="text-gray-600 text-sm">Charlotte, NC</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                            <div class="flex mb-4">
+                                <span class="text-yellow-400 text-xl">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700 mb-6 italic">"Best plumber in Charlotte! They installed a new water heater for us and the service was impeccable. Highly recommend!"</p>
+                            <div>
+                                <p class="font-bold text-gray-900">Michael Chen</p>
+                                <p class="text-gray-600 text-sm">Charlotte, NC</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-8 rounded-lg shadow-md">
+                            <div class="flex mb-4">
+                                <span class="text-yellow-400 text-xl">★★★★★</span>
+                            </div>
+                            <p class="text-gray-700 mb-6 italic">"Very professional and knowledgeable. Fixed our drainage issues quickly and explained everything clearly. Will definitely use again!"</p>
+                            <div>
+                                <p class="font-bold text-gray-900">Emily Davis</p>
+                                <p class="text-gray-600 text-sm">Charlotte, NC</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 bg-blue-800 text-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Need a Plumber? We're Here to Help!</h2>
+                    <p class="text-xl mb-8 text-blue-100">Get a free estimate today. Fast, reliable, and professional service guaranteed.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#" onclick="showPage('contact')" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">
+                            Request Service
+                        </a>
+                        <a href="tel:7045550100" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-500 transition-colors border-2 border-white">
+                            Call Now: (704) 555-0100
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page-section">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">About Nystrom Plumbing</h1>
+                    <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">Serving Charlotte with excellence since 2000</p>
+                </div>
+            </section>
+
+            <!-- Company Story -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Story</h2>
+                            <div class="space-y-4 text-gray-700 text-lg">
+                                <p>Nystrom Plumbing was founded in 2000 by Erik Nystrom, a master plumber with a vision to provide Charlotte with honest, reliable, and professional plumbing services. What started as a one-man operation has grown into a trusted team of skilled professionals.</p>
+                                <p>Over the past two decades, we've built our reputation on quality workmanship, transparent pricing, and exceptional customer service. We're not just plumbers – we're your neighbors, committed to keeping Charlotte's homes and businesses running smoothly.</p>
+                                <p>Today, Nystrom Plumbing is proud to be one of Charlotte's most trusted plumbing companies, serving thousands of satisfied customers throughout the region. Our commitment to excellence remains as strong as it was on day one.</p>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-8">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Why Charlotte Trusts Us</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <span class="text-blue-800 font-bold text-xl mr-3">✓</span>
+                                    <div>
+                                        <strong class="text-gray-900">20+ Years in Business</strong>
+                                        <p class="text-gray-600">Two decades of trusted service in Charlotte</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-800 font-bold text-xl mr-3">✓</span>
+                                    <div>
+                                        <strong class="text-gray-900">Licensed & Insured</strong>
+                                        <p class="text-gray-600">Fully licensed master plumbers and comprehensive insurance</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-800 font-bold text-xl mr-3">✓</span>
+                                    <div>
+                                        <strong class="text-gray-900">5,000+ Happy Customers</strong>
+                                        <p class="text-gray-600">Thousands of satisfied customers across Charlotte</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-800 font-bold text-xl mr-3">✓</span>
+                                    <div>
+                                        <strong class="text-gray-900">24/7 Emergency Service</strong>
+                                        <p class="text-gray-600">Always available when you need us most</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto">The principles that guide everything we do</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">⭐</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Quality Workmanship</h3>
+                            <p class="text-gray-600">We take pride in every job, ensuring the highest standards of quality and craftsmanship.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">💎</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Honest Pricing</h3>
+                            <p class="text-gray-600">Transparent, upfront pricing with no hidden fees or surprises.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🤝</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Customer First</h3>
+                            <p class="text-gray-600">Your satisfaction is our priority. We go above and beyond to exceed expectations.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">⏰</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Reliability</h3>
+                            <p class="text-gray-600">On-time service and dependable solutions you can count on.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🎓</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Expertise</h3>
+                            <p class="text-gray-600">Licensed, insured, and continuously trained in the latest plumbing technologies.</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <div class="text-5xl mb-4">🏘️</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Community Focused</h3>
+                            <p class="text-gray-600">Proud to serve Charlotte and contribute to our local community.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
+                        <p class="text-xl text-gray-600">Experienced professionals dedicated to your satisfaction</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 rounded-lg p-8 text-center">
+                            <div class="w-32 h-32 bg-blue-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-bold">EN</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Erik Nystrom</h3>
+                            <p class="text-blue-800 font-semibold mb-2">Owner & Master Plumber</p>
+                            <p class="text-gray-600 text-sm mb-4">25+ years experience</p>
+                            <p class="text-gray-700">Licensed master plumber with a passion for quality workmanship and customer satisfaction.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-8 text-center">
+                            <div class="w-32 h-32 bg-blue-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-bold">DM</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">David Martinez</h3>
+                            <p class="text-blue-800 font-semibold mb-2">Lead Technician</p>
+                            <p class="text-gray-600 text-sm mb-4">15+ years experience</p>
+                            <p class="text-gray-700">Specializes in emergency repairs and complex plumbing installations.</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-8 text-center">
+                            <div class="w-32 h-32 bg-blue-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-bold">JW</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Jennifer Walsh</h3>
+                            <p class="text-blue-800 font-semibold mb-2">Service Manager</p>
+                            <p class="text-gray-600 text-sm mb-4">10+ years experience</p>
+                            <p class="text-gray-700">Ensures every customer receives exceptional service and support.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 bg-blue-800 text-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Experience the Nystrom Difference</h2>
+                    <p class="text-xl mb-8 text-blue-100">Join thousands of satisfied customers who trust Nystrom Plumbing for all their plumbing needs.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#" onclick="showPage('contact')" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">Get in Touch</a>
+                        <a href="#" onclick="showPage('services')" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-500 transition-colors border-2 border-white">View Our Services</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SERVICES PAGE -->
+        <div id="services" class="page-section">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Our Plumbing Services</h1>
+                    <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">Comprehensive plumbing solutions for homes and businesses in Charlotte</p>
+                </div>
+            </section>
+
+            <!-- Services Grid -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="space-y-12">
+                        <!-- Service 1 -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="grid md:grid-cols-3 gap-8 p-8">
+                                <div class="md:col-span-1">
+                                    <div class="text-6xl mb-4">🚨</div>
+                                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Emergency Plumbing Services</h3>
+                                    <p class="text-gray-700 text-lg">Plumbing emergencies can happen at any time. We offer 24/7 emergency services to address urgent issues quickly and efficiently.</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-4">What We Offer:</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Available 24 hours a day, 7 days a week</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Fast response time - typically within 1 hour</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Burst pipe repairs</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Severe leak repairs</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Blocked drain emergencies</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Water heater failures</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Sewer line backups</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 2 -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="grid md:grid-cols-3 gap-8 p-8">
+                                <div class="md:col-span-1">
+                                    <div class="text-6xl mb-4">🚿</div>
+                                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Drain Cleaning & Unclogging</h3>
+                                    <p class="text-gray-700 text-lg">Professional drain cleaning services to clear blockages and restore proper water flow throughout your home or business.</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-4">What We Offer:</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Kitchen sink drain cleaning</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Bathroom drain clearing</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Main line cleaning</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Video camera inspection</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Hydro jetting services</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Root removal</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Preventive maintenance</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 3 -->
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                            <div class="grid md:grid-cols-3 gap-8 p-8">
+                                <div class="md:col-span-1">
+                                    <div class="text-6xl mb-4">💧</div>
+                                    <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Water Heater Services</h3>
+                                    <p class="text-gray-700 text-lg">Complete water heater services including installation, repair, and maintenance for all types and brands.</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <h4 class="text-xl font-bold text-gray-900 mb-4">What We Offer:</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Tank water heater installation</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Tankless water heater installation</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Water heater repairs</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Routine maintenance</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Energy-efficient upgrades</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">Same-day service available</span></li>
+                                        <li class="flex items-start"><span class="text-blue-800 font-bold text-lg mr-2">✓</span><span class="text-gray-700">All major brands serviced</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- More services available in the full Next.js app -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Choose Us -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Nystrom Plumbing?</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">⏱️</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Fast Response</h3>
+                            <p class="text-gray-600">Quick arrival times for emergency services</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">💰</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Upfront Pricing</h3>
+                            <p class="text-gray-600">No hidden fees or surprise charges</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">✅</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Quality Work</h3>
+                            <p class="text-gray-600">Guaranteed workmanship on all services</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-5xl mb-4">🎓</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Licensed Experts</h3>
+                            <p class="text-gray-600">Fully licensed and insured professionals</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 bg-blue-800 text-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
+                    <p class="text-xl mb-8 text-blue-100">Contact us today for a free estimate on any of our plumbing services.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#" onclick="showPage('contact')" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">Request a Quote</a>
+                        <a href="tel:7045550100" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-500 transition-colors border-2 border-white">Call (704) 555-0100</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page-section">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+                    <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">Get in touch for a free estimate or emergency service</p>
+                </div>
+            </section>
+
+            <!-- Contact Info Cards -->
+            <section class="py-12 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                            <div class="text-5xl mb-4">📞</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Call Us</h3>
+                            <a href="tel:7045550100" class="text-blue-800 text-2xl font-semibold hover:text-blue-600">(704) 555-0100</a>
+                            <p class="text-gray-600 mt-2">24/7 Emergency Service</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                            <div class="text-5xl mb-4">✉️</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Email Us</h3>
+                            <a href="mailto:info@nystromplumbing.com" class="text-blue-800 text-lg font-semibold hover:text-blue-600">info@nystromplumbing.com</a>
+                            <p class="text-gray-600 mt-2">We reply within 24 hours</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                            <div class="text-5xl mb-4">📍</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Visit Us</h3>
+                            <p class="text-gray-700">Serving Charlotte, NC<br>and surrounding areas</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Form & Info -->
+            <section class="py-20 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- Contact Form -->
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+                            <form id="contactForm" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                                    <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                                    <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                                    <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label for="service" class="block text-sm font-medium text-gray-700 mb-2">Service Needed</label>
+                                    <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent">
+                                        <option value="">Select a service</option>
+                                        <option>Emergency Repairs</option>
+                                        <option>Drain Cleaning</option>
+                                        <option>Water Heater Services</option>
+                                        <option>Pipe Installation</option>
+                                        <option>Leak Detection</option>
+                                        <option>Fixture Installation</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                                    <textarea id="message" rows="6" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-800 focus:border-transparent"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-900 transition-colors">Send Message</button>
+                            </form>
+                        </div>
+
+                        <!-- Business Hours & Map -->
+                        <div class="space-y-8">
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Business Hours</h2>
+                                <div class="bg-gray-50 rounded-lg p-6 space-y-4">
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                        <span class="font-semibold text-gray-900">Monday - Friday</span>
+                                        <span class="text-gray-700">7:00 AM - 6:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                        <span class="font-semibold text-gray-900">Saturday</span>
+                                        <span class="text-gray-700">8:00 AM - 4:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                        <span class="font-semibold text-gray-900">Sunday</span>
+                                        <span class="text-gray-700">9:00 AM - 2:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="font-semibold text-gray-900">Emergency Service</span>
+                                        <span class="text-gray-700">24/7 Available</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                    <p class="text-blue-900 font-semibold text-center">🚨 Emergency Service Available 24/7</p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Location</h2>
+                                <div id="map" class="rounded-lg overflow-hidden shadow-lg"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="py-20 bg-blue-800 text-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Need Immediate Assistance?</h2>
+                    <p class="text-xl mb-8 text-blue-100">For emergency plumbing services, call us now!</p>
+                    <a href="tel:7045550100" class="inline-block bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors">Call Now: (704) 555-0100</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Nystrom Plumbing</h3>
+                    <p class="text-gray-400">Professional plumbing services in Charlotte, NC. Licensed, insured, and trusted by homeowners and businesses.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="showPage('home')" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Emergency Repairs</li>
+                        <li>Drain Cleaning</li>
+                        <li>Water Heaters</li>
+                        <li>Pipe Installation</li>
+                        <li>Leak Detection</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Charlotte, NC</li>
+                        <li>Phone: (704) 555-0100</li>
+                        <li>Email: info@nystromplumbing.com</li>
+                        <li class="pt-2"><strong class="text-white">24/7 Emergency Service</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Nystrom Plumbing. All rights reserved. Licensed & Insured.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+
+            // Close mobile menu
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+
+            // Initialize map if showing contact page
+            if (pageId === 'contact') {
+                setTimeout(initMap, 100);
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.\n\n(Note: This is a demo. Form submission is not functional in this HTML version. The full Next.js app includes working form submission via API.)');
+                    form.reset();
+                });
+            }
+        });
+
+        // Initialize map
+        let map = null;
+        function initMap() {
+            if (map) return; // Map already initialized
+
+            const charlotteCoords = [35.2271, -80.8431];
+
+            map = L.map('map').setView(charlotteCoords, 13);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19,
+            }).addTo(map);
+
+            const marker = L.marker(charlotteCoords).addTo(map);
+            marker.bindPopup('<strong>Nystrom Plumbing</strong><br>Serving Charlotte, NC');
+        }
+    </script>
+</body>
+</html>
