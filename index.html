@@ -1106,6 +1106,32 @@
             display: none !important;
         }
 
+        /* Service Features List */
+        .service-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-features li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         /* ========================================
            ANIMATIONS
            ======================================== */
@@ -1620,6 +1646,558 @@
         </div>
     </section>
 
+    <!-- All Products Section -->
+    <section class="section" id="all-products">
+        <div class="container">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Shop</p>
+                <h2>Alle Produkte</h2>
+                <p class="text-large opacity-70">Entdecke unsere vollständige Kollektion an Premium Shapewear</p>
+            </div>
+
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <span class="collection-badge">Bestseller</span>
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&h=1000&fit=crop&q=80" alt="Seamless Bodysuit" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Seamless Bodysuit</h3>
+                        <p class="collection-price">CHF 115</p>
+                        <p class="opacity-70">Unsichtbare Formgebung für jeden Tag</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=1000&fit=crop&q=80" alt="High-Waist Shaper" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>High-Waist Shaper</h3>
+                        <p class="collection-price">CHF 88</p>
+                        <p class="opacity-70">Perfekte Silhouette in Sekunden</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1583846112557-17539f6e395b?w=800&h=1000&fit=crop&q=80" alt="Everyday Comfort" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Everyday Comfort</h3>
+                        <p class="collection-price">CHF 78</p>
+                        <p class="opacity-70">Ganztägiger Komfort ohne Kompromisse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bodysuits Section -->
+    <section class="section" id="bodysuits" style="background: var(--color-surface);">
+        <div class="container">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Signature Collection</p>
+                <h2>Bodysuits</h2>
+                <p class="text-large opacity-70">Nahtlose Bodysuits, die deine natürliche Schönheit betonen</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4v40M4 24h40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Nahtlose Konstruktion</h4>
+                    <p class="text-small opacity-70">Absolut unsichtbar unter jeder Kleidung</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Atmungsaktiv</h4>
+                    <p class="text-small opacity-70">Premium italienische Mikrofaser</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M12 24L24 36L36 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Perfekte Passform</h4>
+                    <p class="text-small opacity-70">Grössen XS-3XL verfügbar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shapers Section -->
+    <section class="section" id="shapers">
+        <div class="container">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Gezielte Formgebung</p>
+                <h2>Shapers</h2>
+                <p class="text-large opacity-70">Hochwertige Shaper für perfekte Kurven</p>
+            </div>
+
+            <div class="story-grid">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=600&fit=crop&q=80" alt="Shaper Collection" loading="lazy">
+                </div>
+                <div>
+                    <h3 class="mb-md">High-Waist Shaper</h3>
+                    <p class="text-large mb-md">Unsere Shapers bieten gezielte Unterstützung genau dort, wo du sie brauchst.</p>
+                    <ul class="service-features">
+                        <li>Hohe Taille für optimale Bauchkontrolle</li>
+                        <li>Keine Abdrücke oder Rolleffekte</li>
+                        <li>Bequemer Ganztag-Tragekomfort</li>
+                        <li>Verstärkte Po-Formung</li>
+                    </ul>
+                    <a href="#all-products" class="btn btn-primary mt-lg">Jetzt Shoppen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Everyday Section -->
+    <section class="section" id="everyday" style="background: var(--color-surface);">
+        <div class="container">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Daily Essentials</p>
+                <h2>Everyday Collection</h2>
+                <p class="text-large opacity-70">Komfort trifft Eleganz – perfekt für den Alltag</p>
+            </div>
+
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1583846112557-17539f6e395b?w=800&h=1000&fit=crop&q=80" alt="Comfort Brief" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Comfort Brief</h3>
+                        <p class="collection-price">CHF 45</p>
+                        <p class="opacity-70">Leichte Formgebung für jeden Tag</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&h=1000&fit=crop&q=80" alt="Camisole" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Shapewear Camisole</h3>
+                        <p class="collection-price">CHF 68</p>
+                        <p class="opacity-70">Glatte Silhouette unter Blusen</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=1000&fit=crop&q=80" alt="Shaping Leggings" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Shaping Leggings</h3>
+                        <p class="collection-price">CHF 92</p>
+                        <p class="opacity-70">Perfekte Beinlinie</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Novelties Section -->
+    <section class="section" id="new">
+        <div class="container">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Neu eingetroffen</p>
+                <h2>Neuheiten</h2>
+                <p class="text-large opacity-70">Entdecke unsere neuesten Designs und Innovationen</p>
+            </div>
+
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <span class="collection-badge">Neu</span>
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&h=1000&fit=crop&q=80" alt="New Bodysuit" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Ultra Seamless Bodysuit</h3>
+                        <p class="collection-price">CHF 125</p>
+                        <p class="opacity-70">Unsere neueste Innovation</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <span class="collection-badge">Neu</span>
+                        <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=1000&fit=crop&q=80" alt="New Shaper" loading="lazy">
+                    </div>
+                    <div class="collection-info">
+                        <h3>Sculpting Short</h3>
+                        <p class="collection-price">CHF 95</p>
+                        <p class="opacity-70">Revolutionäre Passform</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping & Returns Section -->
+    <section class="section" id="versand" style="background: var(--color-surface);">
+        <div class="container-narrow">
+            <div class="section-header">
+                <h2>Versand & Retouren</h2>
+                <p class="text-large opacity-70">Schneller Versand, einfache Rücksendung</p>
+            </div>
+
+            <div class="story-grid" style="grid-template-columns: 1fr;">
+                <div>
+                    <h3 class="mb-md">📦 Versand</h3>
+                    <p class="mb-lg">Wir versenden alle Bestellungen innerhalb von 1-2 Werktagen. Kostenloser Versand ab CHF 150.</p>
+
+                    <h4 class="mb-sm">Versandzeiten:</h4>
+                    <ul class="service-features mb-lg">
+                        <li>Schweiz: 1-3 Werktage</li>
+                        <li>Europa: 3-5 Werktage</li>
+                        <li>Express-Versand verfügbar</li>
+                    </ul>
+
+                    <h3 class="mb-md">🔄 Rücksendungen</h3>
+                    <p class="mb-lg">60 Tage Rückgaberecht. Kostenlose Rücksendung in der Schweiz.</p>
+
+                    <h4 class="mb-sm">So einfach geht's:</h4>
+                    <ul class="service-features">
+                        <li>Kontaktiere unseren Kundenservice</li>
+                        <li>Erhalte ein Rücksendeetikett</li>
+                        <li>Sende das Paket zurück</li>
+                        <li>Rückerstattung innerhalb von 5-7 Werktagen</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="kontakt">
+        <div class="container-narrow">
+            <div class="section-header">
+                <h2>Kontakt</h2>
+                <p class="text-large opacity-70">Wir sind für dich da</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <h4 class="mb-md">📧 E-Mail</h4>
+                    <p><a href="mailto:info@valder.ch" style="color: var(--color-accent);">info@valder.ch</a></p>
+                    <p class="text-small opacity-70 mt-sm">Antwort innerhalb von 24 Stunden</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h4 class="mb-md">📞 Telefon</h4>
+                    <p><a href="tel:+41445555555" style="color: var(--color-accent);">+41 44 555 55 55</a></p>
+                    <p class="text-small opacity-70 mt-sm">Mo-Fr: 9:00-18:00 Uhr</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h4 class="mb-md">💬 Live Chat</h4>
+                    <p>Verfügbar auf unserer Website</p>
+                    <p class="text-small opacity-70 mt-sm">Mo-Fr: 9:00-18:00 Uhr</p>
+                </div>
+            </div>
+
+            <div class="mt-lg text-center">
+                <h3 class="mb-md">Besuche uns</h3>
+                <p class="text-large opacity-70">
+                    VALDÉR Showroom<br>
+                    Bahnhofstrasse 100<br>
+                    8001 Zürich<br>
+                    Schweiz
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" id="faq" style="background: var(--color-surface);">
+        <div class="container-narrow">
+            <div class="section-header">
+                <h2>Häufig gestellte Fragen</h2>
+                <p class="text-large opacity-70">Antworten auf deine Fragen</p>
+            </div>
+
+            <div class="sizing-tips" style="max-width: 100%;">
+                <h4>Wie finde ich meine richtige Grösse?</h4>
+                <p class="mb-lg">Verwende unsere <a href="#size-guide" onclick="openSizeGuide(); return false;" style="color: var(--color-accent); text-decoration: underline;">Grössentabelle</a> und miss dich ohne Kleidung. Zwischen zwei Grössen? Wähle die grössere für mehr Komfort.</p>
+
+                <h4>Wie pflege ich meine Shapewear?</h4>
+                <p class="mb-lg">Handwäsche in kaltem Wasser empfohlen. Nicht bleichen, nicht im Trockner trocknen. Flach zum Trocknen auslegen.</p>
+
+                <h4>Kann ich meine Bestellung ändern?</h4>
+                <p class="mb-lg">Ja, kontaktiere uns innerhalb von 24 Stunden nach der Bestellung. Wir tun unser Bestes, um Änderungen vorzunehmen.</p>
+
+                <h4>Bietet ihr internationale Lieferung an?</h4>
+                <p class="mb-lg">Ja, wir versenden in die gesamte EU. Versandkosten und Lieferzeiten variieren je nach Zielland.</p>
+
+                <h4>Was ist euer Rückgaberecht?</h4>
+                <p class="mb-lg">60 Tage Rückgaberecht ab Erhalt der Ware. Produkte müssen ungetragen und mit Originaletiketten sein.</p>
+
+                <h4>Sind eure Produkte nachhaltig?</h4>
+                <p>Ja! Lies mehr über unsere <a href="#nachhaltigkeit" style="color: var(--color-accent); text-decoration: underline;">Nachhaltigkeitsbemühungen</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Care Instructions Section -->
+    <section class="section" id="pflege">
+        <div class="container-narrow">
+            <div class="section-header">
+                <h2>Pflegehinweise</h2>
+                <p class="text-large opacity-70">So bleibt deine Shapewear wie neu</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M8 12h32M12 24h24M16 36h16" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Waschen</h4>
+                    <p class="text-small opacity-70">Handwäsche in kaltem Wasser oder Schonwaschgang bei max. 30°C</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="16" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 16v8l6 6" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Trocknen</h4>
+                    <p class="text-small opacity-70">Flach liegend trocknen. Nicht im Trockner, nicht in direkter Sonne</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M12 24l12-12 12 12M12 36l12-12 12 12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Aufbewahrung</h4>
+                    <p class="text-small opacity-70">Gefaltet aufbewahren, nicht hängen. Vor Hitze schützen</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 8L16 24h16L24 40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Vermeiden</h4>
+                    <p class="text-small opacity-70">Kein Bleichmittel, kein Bügeln, keine chemische Reinigung</p>
+                </div>
+            </div>
+
+            <div class="sizing-tips mt-lg">
+                <h4>Pro-Tipps für lange Lebensdauer</h4>
+                <ul>
+                    <li>Verwende ein Wäschenetz beim Maschinenwaschen</li>
+                    <li>Wechsle zwischen mehreren Teilen ab</li>
+                    <li>Trage keine Schmuckstücke, die den Stoff beschädigen könnten</li>
+                    <li>Entferne Make-up vor dem Anziehen</li>
+                    <li>Lagere an einem kühlen, trockenen Ort</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About VALDÉR Section -->
+    <section class="section" id="about" style="background: var(--color-surface);">
+        <div class="container">
+            <div class="story-grid">
+                <div>
+                    <p class="text-uppercase opacity-70 mb-md">Unsere Mission</p>
+                    <h2 class="mb-md">Über VALDÉR</h2>
+                    <p class="text-large mb-md">VALDÉR wurde 2020 in Zürich gegründet mit einer klaren Mission: Shapewear zu kreieren, die Frauen ermächtigt, nicht einschränkt.</p>
+                    <p class="opacity-70 mb-lg">Wir glauben, dass jede Frau das Recht hat, sich in ihrer Haut wohl und selbstbewusst zu fühlen. Unsere Produkte werden mit den feinsten italienischen Stoffen gefertigt und mit Schweizer Präzision designed.</p>
+
+                    <div class="story-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2020</div>
+                            <div class="stat-label">Gegründet</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Glückliche Kundinnen</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.9★</div>
+                            <div class="stat-label">Durchschnittsbewertung</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&h=600&fit=crop&q=80" alt="About VALDÉR" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Section -->
+    <section class="section" id="nachhaltigkeit">
+        <div class="container-narrow">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Verantwortung</p>
+                <h2>Nachhaltigkeit</h2>
+                <p class="text-large opacity-70">Schönheit sollte nicht auf Kosten unseres Planeten gehen</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 12v12l8 8" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Nachhaltige Materialien</h4>
+                    <p class="text-small opacity-70">85% recycelte Stoffe in unserer Produktion</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M12 24c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 24c0 6.627 5.373 12 12 12s12-5.373 12-12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Klimaneutrale Produktion</h4>
+                    <p class="text-small opacity-70">CO2-Ausgleich für alle unsere Prozesse</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M8 16h32v24H8z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 16V8M32 16V8" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Recycelbare Verpackung</h4>
+                    <p class="text-small opacity-70">100% plastikfreie, kompostierbare Verpackung</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4L8 12v12c0 10 8 16 16 20 8-4 16-10 16-20V12L24 4z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h4>Faire Arbeitsbedingungen</h4>
+                    <p class="text-small opacity-70">Zertifizierte Fairtrade-Produktion</p>
+                </div>
+            </div>
+
+            <div class="mt-lg text-center">
+                <p class="text-large opacity-70">Unser Ziel: 100% Kreislaufwirtschaft bis 2030</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Section -->
+    <section class="section" id="karriere" style="background: var(--color-surface);">
+        <div class="container-narrow">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Werde Teil unseres Teams</p>
+                <h2>Karriere</h2>
+                <p class="text-large opacity-70">Arbeite mit uns an der Zukunft der Shapewear</p>
+            </div>
+
+            <div class="text-center mb-lg">
+                <h3 class="mb-md">Warum VALDÉR?</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h4>💼 Flexible Arbeit</h4>
+                        <p class="text-small opacity-70">Hybrides Arbeiten, flexible Zeiten</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📈 Entwicklung</h4>
+                        <p class="text-small opacity-70">Weiterbildungsbudget & Karrierepfade</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🎉 Team Culture</h4>
+                        <p class="text-small opacity-70">Diverse, inklusive Unternehmenskultur</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🌟 Benefits</h4>
+                        <p class="text-small opacity-70">Wettbewerbsfähiges Gehalt & Zusatzleistungen</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sizing-tips">
+                <h4>Offene Positionen</h4>
+                <ul>
+                    <li>Senior E-Commerce Manager (Zürich)</li>
+                    <li>Product Designer (Remote möglich)</li>
+                    <li>Customer Success Specialist (Zürich)</li>
+                    <li>Marketing Manager (Zürich/Remote)</li>
+                    <li>Sustainability Coordinator (Zürich)</li>
+                </ul>
+                <p class="mt-md text-center">
+                    <a href="mailto:karriere@valder.ch" class="btn btn-primary">Bewirb dich jetzt</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press Section -->
+    <section class="section" id="presse">
+        <div class="container-narrow">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Medien</p>
+                <h2>Presse</h2>
+                <p class="text-large opacity-70">VALDÉR in den Medien</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <h4 class="mb-sm">Vogue Schweiz</h4>
+                    <p class="text-small opacity-70 mb-md">März 2024</p>
+                    <p class="mb-md">"VALDÉR revolutioniert den Shapewear-Markt mit ihrer Kombination aus Luxus und Nachhaltigkeit."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h4 class="mb-sm">NZZ Bellevue</h4>
+                    <p class="text-small opacity-70 mb-md">Januar 2024</p>
+                    <p class="mb-md">"Die Schweizer Marke, die Komfort und Stil perfekt vereint."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <h4 class="mb-sm">Elle Switzerland</h4>
+                    <p class="text-small opacity-70 mb-md">Dezember 2023</p>
+                    <p class="mb-md">"VALDÉR beweist, dass Shapewear sowohl schön als auch funktional sein kann."</p>
+                </div>
+            </div>
+
+            <div class="mt-lg text-center sizing-tips" style="padding: var(--space-lg);">
+                <h4>Presseanfragen</h4>
+                <p class="mb-md">Für Medienanfragen, Produktsamples oder Interviews kontaktieren Sie uns:</p>
+                <p>
+                    <a href="mailto:presse@valder.ch" style="color: var(--color-accent); text-decoration: underline;">presse@valder.ch</a><br>
+                    <span class="text-small opacity-70">Tel: +41 44 555 55 55</span>
+                </p>
+                <p class="mt-md">
+                    <a href="#" class="btn btn-secondary">Press Kit herunterladen</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container">
@@ -1655,7 +2233,7 @@
                 <div class="footer-column">
                     <h4>Shop</h4>
                     <ul>
-                        <li><a href="#shop">Alle Produkte</a></li>
+                        <li><a href="#all-products">Alle Produkte</a></li>
                         <li><a href="#bodysuits">Bodysuits</a></li>
                         <li><a href="#shapers">Shapers</a></li>
                         <li><a href="#everyday">Everyday</a></li>
@@ -1679,7 +2257,7 @@
                 <div class="footer-column">
                     <h4>Unternehmen</h4>
                     <ul>
-                        <li><a href="#story">Über VALDÉR</a></li>
+                        <li><a href="#about">Über VALDÉR</a></li>
                         <li><a href="#nachhaltigkeit">Nachhaltigkeit</a></li>
                         <li><a href="#testimonials">Bewertungen</a></li>
                         <li><a href="#karriere">Karriere</a></li>
