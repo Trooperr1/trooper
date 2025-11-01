@@ -1152,23 +1152,23 @@
             </p>
             <div class="stats-container">
                 <div class="stat">
-                    <div class="stat-number" data-number="50">50+</div>
+                    <div class="stat-number">50+</div>
                     <p class="stat-label">PROJECTS DELIVERED</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" data-number="4.8">4.8x</div>
+                    <div class="stat-number">4.8x</div>
                     <p class="stat-label">AVERAGE CLIENT ROI</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" data-static="true">24/7</div>
+                    <div class="stat-number">24/7</div>
                     <p class="stat-label">AI-POWERED SUPPORT</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" data-number="100">100%</div>
+                    <div class="stat-number">100%</div>
                     <p class="stat-label">CLIENT OWNERSHIP</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number" data-static="true">48H</div>
+                    <div class="stat-number">48H</div>
                     <p class="stat-label">RESPONSE TIME</p>
                 </div>
             </div>
@@ -1742,34 +1742,7 @@
             });
         });
 
-        gsap.utils.toArray('.stat-number').forEach(stat => {
-            // Skip animation for static stats (like "24/7" and "48H")
-            if (stat.getAttribute('data-static') === 'true') {
-                return;
-            }
-
-            const targetNumber = parseFloat(stat.getAttribute('data-number'));
-            const originalText = stat.textContent;
-
-            gsap.from(stat, {
-                scrollTrigger: { trigger: stat, start: 'top 80%' },
-                textContent: 0,
-                duration: 2,
-                snap: { textContent: targetNumber > 10 ? 1 : 0.1 },
-                onUpdate: function() {
-                    const current = parseFloat(this.targets()[0].textContent);
-                    if (originalText.includes('x')) {
-                        stat.textContent = current.toFixed(1) + 'x';
-                    } else if (originalText.includes('%')) {
-                        stat.textContent = Math.ceil(current) + '%';
-                    } else if (originalText.includes('+')) {
-                        stat.textContent = Math.ceil(current) + '+';
-                    } else {
-                        stat.textContent = Math.ceil(current);
-                    }
-                }
-            });
-        });
+        // Stats animation removed - displaying values directly to avoid NaN issues
     </script>
 </body>
 </html>
