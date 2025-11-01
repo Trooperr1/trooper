@@ -1971,38 +1971,39 @@
         // GOOGLE TRANSLATE INTEGRATION
         // ========================================
 
-        let googleTranslateReady = false;
+        // Set Google Translate cookie
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+        }
 
-        // Wait for Google Translate to be fully loaded
-        function waitForGoogleTranslate(callback) {
-            let attempts = 0;
-            const maxAttempts = 50;
+        // Get cookie value
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
 
-            const checkInterval = setInterval(function() {
-                attempts++;
-                const selectElement = document.querySelector('.goog-te-combo');
-
-                if (selectElement && selectElement.options.length > 1) {
-                    clearInterval(checkInterval);
-                    googleTranslateReady = true;
-                    console.log('✅ Google Translate is ready!');
-                    if (callback) callback();
-                } else if (attempts >= maxAttempts) {
-                    clearInterval(checkInterval);
-                    console.warn('⚠️ Google Translate initialization timeout');
-                }
-            }, 100);
+        // Delete cookie
+        function deleteCookie(name) {
+            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
         }
 
         // Translate to specific language
         function translateTo(lang, flag, label, element) {
-            console.log('🌍 Translating to:', lang);
+            console.log('🌍 Switching to language:', lang);
 
             // Update button display
             document.getElementById('currentFlag').textContent = flag;
             document.getElementById('currentLang').textContent = label;
 
-            // Update active state
+            // Update active state in dropdown
             document.querySelectorAll('.language-option').forEach(opt => {
                 opt.classList.remove('active');
             });
@@ -2013,90 +2014,76 @@
             // Close dropdown
             document.getElementById('languageDropdown').classList.remove('active');
 
-            // Store preference
+            // Store preference in localStorage
             localStorage.setItem('preferredLanguage', lang);
             localStorage.setItem('preferredFlag', flag);
             localStorage.setItem('preferredLangLabel', label);
 
-            // Trigger Google Translate
+            // Set Google Translate cookie and reload
             if (lang === 'de') {
-                // Reset to original German - reload page
-                console.log('🔄 Resetting to German');
-                localStorage.removeItem('googtrans');
+                // Reset to German (original language)
+                console.log('🔄 Resetting to original German');
+                deleteCookie('googtrans');
+                setCookie('googtrans', '/de/de', 365);
                 window.location.reload();
             } else {
                 // Translate to selected language
-                if (googleTranslateReady) {
-                    triggerTranslation(lang);
-                } else {
-                    console.log('⏳ Waiting for Google Translate...');
-                    waitForGoogleTranslate(function() {
-                        triggerTranslation(lang);
-                    });
-                }
+                console.log('✨ Translating from German to:', lang);
+                deleteCookie('googtrans');
+                setCookie('googtrans', '/de/' + lang, 365);
+                window.location.reload();
             }
         }
 
-        // Actually trigger the translation
-        function triggerTranslation(lang) {
-            const selectElement = document.querySelector('.goog-te-combo');
-            if (selectElement) {
-                console.log('✨ Triggering translation to:', lang);
-                selectElement.value = lang;
-                selectElement.dispatchEvent(new Event('change'));
-
-                // Force reload after a moment to ensure translation applies
-                setTimeout(() => {
-                    if (!document.body.classList.contains('translated-ltr') &&
-                        !document.body.classList.contains('translated-rtl')) {
-                        console.log('🔄 Reloading to apply translation...');
-                        window.location.reload();
-                    }
-                }, 500);
-            } else {
-                console.error('❌ Google Translate selector not found');
-            }
-        }
-
-        // Load saved language on page load
+        // Initialize on page load
         window.addEventListener('load', function() {
-            console.log('📄 Page loaded, initializing language system...');
+            console.log('📄 Page loaded - Language system ready');
 
-            // Wait for Google Translate to initialize
-            waitForGoogleTranslate(function() {
-                const savedLang = localStorage.getItem('preferredLanguage');
-                const savedFlag = localStorage.getItem('preferredFlag');
-                const savedLabel = localStorage.getItem('preferredLangLabel');
+            // Restore saved language preference
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const savedFlag = localStorage.getItem('preferredFlag');
+            const savedLabel = localStorage.getItem('preferredLangLabel');
 
-                if (savedLang && savedFlag && savedLabel) {
-                    console.log('💾 Restoring saved language:', savedLang);
+            if (savedLang && savedFlag && savedLabel) {
+                console.log('💾 Saved language found:', savedLang);
 
-                    document.getElementById('currentFlag').textContent = savedFlag;
-                    document.getElementById('currentLang').textContent = savedLabel;
+                // Update button display
+                document.getElementById('currentFlag').textContent = savedFlag;
+                document.getElementById('currentLang').textContent = savedLabel;
 
-                    // Update active option
-                    document.querySelectorAll('.language-option').forEach(opt => {
-                        opt.classList.remove('active');
-                        if (opt.getAttribute('data-lang') === savedLang) {
-                            opt.classList.add('active');
-                        }
-                    });
-
-                    // Apply translation if not German
-                    if (savedLang !== 'de') {
-                        triggerTranslation(savedLang);
+                // Update active state in dropdown
+                document.querySelectorAll('.language-option').forEach(opt => {
+                    opt.classList.remove('active');
+                    if (opt.getAttribute('data-lang') === savedLang) {
+                        opt.classList.add('active');
                     }
-                } else {
-                    console.log('🇨🇭 Default language: German');
+                });
+
+                // Ensure Google Translate cookie matches
+                const currentCookie = getCookie('googtrans');
+                const expectedCookie = savedLang === 'de' ? '/de/de' : '/de/' + savedLang;
+
+                if (currentCookie !== expectedCookie) {
+                    console.log('🔧 Fixing cookie mismatch');
+                    setCookie('googtrans', expectedCookie, 365);
                 }
-            });
+            } else {
+                console.log('🇨🇭 Using default language: German');
+            }
+
+            // Hide Google Translate widget after initialization
+            setTimeout(function() {
+                const gtElement = document.getElementById('google_translate_element');
+                if (gtElement) {
+                    gtElement.style.display = 'none';
+                }
+            }, 500);
         });
 
         // Toggle language dropdown
         function toggleLanguageDropdown() {
             const dropdown = document.getElementById('languageDropdown');
             dropdown.classList.toggle('active');
-            console.log('🎯 Language dropdown toggled:', dropdown.classList.contains('active') ? 'OPEN' : 'CLOSED');
         }
 
         // Close dropdown when clicking outside
@@ -2104,9 +2091,8 @@
             const languageSwitcher = document.querySelector('.language-switcher');
             if (languageSwitcher && !languageSwitcher.contains(event.target)) {
                 const dropdown = document.getElementById('languageDropdown');
-                if (dropdown.classList.contains('active')) {
+                if (dropdown && dropdown.classList.contains('active')) {
                     dropdown.classList.remove('active');
-                    console.log('🔒 Dropdown closed (clicked outside)');
                 }
             }
         });
