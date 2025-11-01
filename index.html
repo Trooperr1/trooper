@@ -121,34 +121,27 @@
             overflow-x: hidden;
         }
 
-        /* Hide Google Translate bar and default widget */
+        /* Keep body position fixed */
         body {
             top: 0 !important;
         }
 
-        .skiptranslate iframe,
-        body > .skiptranslate {
-            display: none !important;
-            visibility: hidden !important;
-        }
-
-        #google_translate_element {
-            display: none !important;
-        }
-
-        /* Hide Google Translate top bar */
+        /* Hide Google Translate top banner */
         .goog-te-banner-frame.skiptranslate {
             display: none !important;
         }
 
-        /* Style Google Translate dropdown when visible */
+        /* Style Google Translate widget */
+        #google_translate_element {
+            display: inline-block;
+        }
+
         .goog-te-gadget {
             font-family: var(--font-body) !important;
-            font-size: 0 !important;
+            color: var(--color-text) !important;
         }
 
         .goog-te-gadget .goog-te-combo {
-            margin: 0 !important;
             padding: 0.5rem !important;
             border: 1px solid var(--color-border) !important;
             border-radius: 4px !important;
@@ -379,79 +372,6 @@
             justify-content: center;
         }
 
-        /* Language Switcher */
-        .language-switcher {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .language-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            font-size: 0.875rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-weight: 500;
-            background: var(--color-surface);
-            cursor: pointer;
-        }
-
-        .language-btn:hover {
-            border-color: var(--color-primary);
-            opacity: 1;
-        }
-
-        .language-dropdown {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            right: 0;
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            box-shadow: var(--shadow-md);
-            min-width: 160px;
-            display: none;
-            z-index: 1001;
-        }
-
-        .language-dropdown.active {
-            display: block;
-        }
-
-        .language-option {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.875rem;
-            transition: var(--transition);
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .language-option:last-child {
-            border-bottom: none;
-        }
-
-        .language-option:hover {
-            background: var(--color-background);
-        }
-
-        .language-option.active {
-            background: var(--color-background);
-            font-weight: 500;
-        }
-
-        .flag-icon {
-            font-size: 1.5rem;
-            line-height: 1;
-        }
-
         .mobile-menu-toggle {
             display: none;
         }
@@ -501,44 +421,6 @@
             font-size: 1.25rem;
             font-family: var(--font-heading);
             letter-spacing: 0.05em;
-        }
-
-        .mobile-lang-grid {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 1rem;
-        }
-
-        .mobile-lang-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .mobile-lang-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-        }
-
-        .mobile-lang-btn {
-            padding: 0.75rem;
-            border: 1px solid var(--color-border);
-            background: var(--color-surface);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-
-        .mobile-lang-btn:hover {
-            border-color: var(--color-primary);
-            background: var(--color-background);
         }
 
         /* ========================================
@@ -1276,10 +1158,6 @@
                 justify-self: center;
             }
 
-            .language-switcher {
-                display: none;
-            }
-
             .hero {
                 grid-template-columns: 1fr;
                 min-height: auto;
@@ -1353,9 +1231,6 @@
 </head>
 <body>
 
-    <!-- Hidden Google Translate Element -->
-    <div id="google_translate_element"></div>
-
     <!-- Announcement Bar -->
     <div class="announcement-bar" id="announcement">
         <div class="container">
@@ -1396,34 +1271,8 @@
 
                 <!-- Header Icons -->
                 <div class="header-icons">
-                    <!-- Language Switcher -->
-                    <div class="language-switcher">
-                        <button class="language-btn" onclick="toggleLanguageDropdown()" aria-label="Sprache wählen">
-                            <span class="flag-icon" id="currentFlag">🇨🇭</span>
-                            <span id="currentLang">DE</span>
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                        <div class="language-dropdown" id="languageDropdown">
-                            <div class="language-option active" data-lang="de" onclick="translateTo('de', '🇨🇭', 'DE', this)">
-                                <span class="flag-icon">🇨🇭</span>
-                                <span>Deutsch</span>
-                            </div>
-                            <div class="language-option" data-lang="fr" onclick="translateTo('fr', '🇫🇷', 'FR', this)">
-                                <span class="flag-icon">🇫🇷</span>
-                                <span>Français</span>
-                            </div>
-                            <div class="language-option" data-lang="en" onclick="translateTo('en', '🇬🇧', 'EN', this)">
-                                <span class="flag-icon">🇬🇧</span>
-                                <span>English</span>
-                            </div>
-                            <div class="language-option" data-lang="it" onclick="translateTo('it', '🇮🇹', 'IT', this)">
-                                <span class="flag-icon">🇮🇹</span>
-                                <span>Italiano</span>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Google Translate Widget -->
+                    <div id="google_translate_element"></div>
 
                     <a href="#search" aria-label="Suche">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -1457,25 +1306,6 @@
                 <h1>VALDÉR</h1>
             </div>
             <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Menü schliessen">&times;</button>
-        </div>
-
-        <!-- Mobile Language Switcher -->
-        <div class="mobile-lang-grid">
-            <p class="mobile-lang-title">Sprache / Language</p>
-            <div class="mobile-lang-buttons">
-                <button class="mobile-lang-btn" onclick="translateTo('de', '🇨🇭', 'DE'); toggleMobileMenu();">
-                    <span>🇨🇭</span> <span>Deutsch</span>
-                </button>
-                <button class="mobile-lang-btn" onclick="translateTo('fr', '🇫🇷', 'FR'); toggleMobileMenu();">
-                    <span>🇫🇷</span> <span>Français</span>
-                </button>
-                <button class="mobile-lang-btn" onclick="translateTo('en', '🇬🇧', 'EN'); toggleMobileMenu();">
-                    <span>🇬🇧</span> <span>English</span>
-                </button>
-                <button class="mobile-lang-btn" onclick="translateTo('it', '🇮🇹', 'IT'); toggleMobileMenu();">
-                    <span>🇮🇹</span> <span>Italiano</span>
-                </button>
-            </div>
         </div>
 
         <nav>
@@ -1968,137 +1798,7 @@
 
     <script>
         // ========================================
-        // GOOGLE TRANSLATE INTEGRATION
-        // ========================================
-
-        // Set Google Translate cookie
-        function setCookie(name, value, days) {
-            const expires = new Date();
-            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
-        }
-
-        // Get cookie value
-        function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
-        // Delete cookie
-        function deleteCookie(name) {
-            document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
-        }
-
-        // Translate to specific language
-        function translateTo(lang, flag, label, element) {
-            console.log('🌍 Switching to language:', lang);
-
-            // Update button display
-            document.getElementById('currentFlag').textContent = flag;
-            document.getElementById('currentLang').textContent = label;
-
-            // Update active state in dropdown
-            document.querySelectorAll('.language-option').forEach(opt => {
-                opt.classList.remove('active');
-            });
-            if (element) {
-                element.classList.add('active');
-            }
-
-            // Close dropdown
-            document.getElementById('languageDropdown').classList.remove('active');
-
-            // Store preference in localStorage
-            localStorage.setItem('preferredLanguage', lang);
-            localStorage.setItem('preferredFlag', flag);
-            localStorage.setItem('preferredLangLabel', label);
-
-            // Set Google Translate cookie and reload
-            if (lang === 'de') {
-                // Reset to German (original language)
-                console.log('🔄 Resetting to original German');
-                deleteCookie('googtrans');
-                setCookie('googtrans', '/de/de', 365);
-                window.location.reload();
-            } else {
-                // Translate to selected language
-                console.log('✨ Translating from German to:', lang);
-                deleteCookie('googtrans');
-                setCookie('googtrans', '/de/' + lang, 365);
-                window.location.reload();
-            }
-        }
-
-        // Initialize on page load
-        window.addEventListener('load', function() {
-            console.log('📄 Page loaded - Language system ready');
-
-            // Restore saved language preference
-            const savedLang = localStorage.getItem('preferredLanguage');
-            const savedFlag = localStorage.getItem('preferredFlag');
-            const savedLabel = localStorage.getItem('preferredLangLabel');
-
-            if (savedLang && savedFlag && savedLabel) {
-                console.log('💾 Saved language found:', savedLang);
-
-                // Update button display
-                document.getElementById('currentFlag').textContent = savedFlag;
-                document.getElementById('currentLang').textContent = savedLabel;
-
-                // Update active state in dropdown
-                document.querySelectorAll('.language-option').forEach(opt => {
-                    opt.classList.remove('active');
-                    if (opt.getAttribute('data-lang') === savedLang) {
-                        opt.classList.add('active');
-                    }
-                });
-
-                // Ensure Google Translate cookie matches
-                const currentCookie = getCookie('googtrans');
-                const expectedCookie = savedLang === 'de' ? '/de/de' : '/de/' + savedLang;
-
-                if (currentCookie !== expectedCookie) {
-                    console.log('🔧 Fixing cookie mismatch');
-                    setCookie('googtrans', expectedCookie, 365);
-                }
-            } else {
-                console.log('🇨🇭 Using default language: German');
-            }
-
-            // Hide Google Translate widget after initialization
-            setTimeout(function() {
-                const gtElement = document.getElementById('google_translate_element');
-                if (gtElement) {
-                    gtElement.style.display = 'none';
-                }
-            }, 500);
-        });
-
-        // Toggle language dropdown
-        function toggleLanguageDropdown() {
-            const dropdown = document.getElementById('languageDropdown');
-            dropdown.classList.toggle('active');
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(event) {
-            const languageSwitcher = document.querySelector('.language-switcher');
-            if (languageSwitcher && !languageSwitcher.contains(event.target)) {
-                const dropdown = document.getElementById('languageDropdown');
-                if (dropdown && dropdown.classList.contains('active')) {
-                    dropdown.classList.remove('active');
-                }
-            }
-        });
-
-        // ========================================
-        // OTHER FUNCTIONALITY
+        // SITE FUNCTIONALITY
         // ========================================
 
         // Mobile Menu Toggle
