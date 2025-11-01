@@ -640,7 +640,7 @@
         /* Stats */
         .stats-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 50px;
             margin-top: 100px;
         }
@@ -1084,11 +1084,16 @@
             }
 
             .stats-container {
-                grid-template-columns: 1fr 1fr !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
             }
 
             .stat-number {
                 font-size: 2.5rem !important;
+            }
+
+            .stat-label {
+                font-size: 0.75rem !important;
             }
         }
     </style>
@@ -1141,26 +1146,34 @@
         <!-- About Section -->
         <section id="about" class="full-width full-width-white">
             <p class="section-eyebrow">WHO WE ARE</p>
-            <h2 class="section-title">We Create Legendary Experiences</h2>
+            <h2 class="section-title">We Build Businesses That Scale</h2>
             <p class="section-subtitle">
-                JAFF CREATIVE is a world-class creative agency, crafting extraordinary brand experiences that transcend expectations.
+                JAFF CREATIVE combines AI automation, web development, and performance marketing to deliver measurable growth for ambitious businesses.
             </p>
             <div class="stats-container">
                 <div class="stat">
-                    <div class="stat-number">1000+</div>
-                    <p class="stat-label">PROJECTS</p>
+                    <div class="stat-number">50+</div>
+                    <p class="stat-label">PROJECTS DELIVERED</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">500+</div>
-                    <p class="stat-label">CLIENTS</p>
+                    <div class="stat-number">4.8x</div>
+                    <p class="stat-label">AVERAGE CLIENT ROI</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">25+</div>
-                    <p class="stat-label">AWARDS</p>
+                    <div class="stat-number">24/7</div>
+                    <p class="stat-label">AI-POWERED SUPPORT</p>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">10+</div>
-                    <p class="stat-label">YEARS</p>
+                    <div class="stat-number">100%</div>
+                    <p class="stat-label">CLIENT OWNERSHIP</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">48H</div>
+                    <p class="stat-label">RESPONSE TIME</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5+</div>
+                    <p class="stat-label">COUNTRIES SERVED</p>
                 </div>
             </div>
         </section>
