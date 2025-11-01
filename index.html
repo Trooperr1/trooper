@@ -1,1305 +1,2157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de-CH">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Plumbing Pro | 24/7 Emergency Plumbing Services</title>
+
+    <!-- SEO Meta Tags -->
+    <title>VALDÉR - Premium Shapewear für die moderne Frau | Luxuriöse Bodysuits & Shaper</title>
+    <meta name="description" content="Entdecken Sie VALDÉR - Premium Shapewear aus Italien. Nahtlose Bodysuits, hochwertige Shaper und Everyday-Essentials für selbstbewusste Frauen. Kostenloser Versand ab CHF 150.">
+    <meta name="keywords" content="shapewear schweiz, premium shapewear, bodysuits damen, luxus shapewear, qualitäts shapewear, seamless bodysuit, shapewear zürich, shapewear genf">
+    <meta name="author" content="VALDÉR">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.valder.ch">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.valder.ch">
+    <meta property="og:title" content="VALDÉR - Premium Shapewear für Selbstbewusstsein">
+    <meta property="og:description" content="Luxuriöse Shapewear aus Italien. Sculpt. Smooth. Celebrate. Jetzt entdecken!">
+    <meta property="og:image" content="https://www.valder.ch/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.valder.ch">
+    <meta property="twitter:title" content="VALDÉR - Premium Shapewear">
+    <meta property="twitter:description" content="Luxuriöse Shapewear aus Italien für die moderne Frau">
+    <meta property="twitter:image" content="https://www.valder.ch/twitter-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+
+    <!-- Luxury Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'de',
+                includedLanguages: 'de,fr,en,it',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "VALDÉR",
+      "description": "Premium Shapewear für die moderne Frau",
+      "url": "https://www.valder.ch",
+      "logo": "https://www.valder.ch/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "CH",
+        "addressLocality": "Zürich"
+      },
+      "priceRange": "CHF 80-150",
+      "paymentAccepted": "Visa, Mastercard, American Express, PayPal, Twint",
+      "currenciesAccepted": "CHF, EUR"
+    }
+    </script>
+
     <style>
+        /* ========================================
+           CSS VARIABLES & RESET
+           ======================================== */
+
+        :root {
+            --color-primary: #1a1a1a;
+            --color-secondary: #d4c5b9;
+            --color-accent: #a8927d;
+            --color-background: #fafaf8;
+            --color-surface: #ffffff;
+            --color-text: #2a2a2a;
+            --color-text-light: #666666;
+            --color-border: #e8e8e6;
+            --color-success: #4a7c59;
+            --color-error: #c74141;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 6rem;
+
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0d1b2e 100%);
-            color: #ffffff;
-            line-height: 1.6;
+            font-family: var(--font-body);
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-background);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
         }
 
-        /* Animated background pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                radial-gradient(circle at 20% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(70, 130, 180, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-            animation: bgPulse 15s ease-in-out infinite;
+        /* Hide Google Translate bar and default widget */
+        body {
+            top: 0 !important;
         }
 
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        .skiptranslate iframe,
+        body > .skiptranslate {
+            display: none !important;
+            visibility: hidden !important;
         }
 
-        nav, section, footer {
-            position: relative;
-            z-index: 1;
+        #google_translate_element {
+            display: none !important;
         }
 
-        /* Emergency Banner */
-        .emergency-banner {
-            background: linear-gradient(90deg, #ff4444 0%, #cc0000 100%);
-            padding: 0.8rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+        /* Hide Google Translate top bar */
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
+        /* Style Google Translate dropdown when visible */
+        .goog-te-gadget {
+            font-family: var(--font-body) !important;
+            font-size: 0 !important;
         }
 
-        .emergency-banner a {
-            color: #ffffff;
+        .goog-te-gadget .goog-te-combo {
+            margin: 0 !important;
+            padding: 0.5rem !important;
+            border: 1px solid var(--color-border) !important;
+            border-radius: 4px !important;
+            background: var(--color-surface) !important;
+            color: var(--color-text) !important;
+            font-family: var(--font-body) !important;
+            font-size: 0.875rem !important;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
             text-decoration: none;
-            margin-left: 1rem;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
-        .emergency-banner a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+        a:hover {
+            opacity: 0.7;
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(10, 22, 40, 0.95);
-            padding: 1.2rem 5%;
+        button {
+            font-family: inherit;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* ========================================
+           TYPOGRAPHY
+           ======================================== */
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            line-height: 1.2;
+            letter-spacing: 0.02em;
+            color: var(--color-primary);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 0.03em;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
+        }
+
+        h4 {
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+
+        .text-large {
+            font-size: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .text-small {
+            font-size: 0.875rem;
+            letter-spacing: 0.02em;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* ========================================
+           LAYOUT
+           ======================================== */
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .container-narrow {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .section {
+            padding: var(--space-xl) 0;
+        }
+
+        .section-sm {
+            padding: var(--space-lg) 0;
+        }
+
+        /* ========================================
+           ANNOUNCEMENT BAR
+           ======================================== */
+
+        .announcement-bar {
+            background: var(--color-primary);
+            color: var(--color-surface);
+            padding: 0.75rem 0;
+            text-align: center;
+            font-size: 0.8125rem;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .announcement-close {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-surface);
+            font-size: 1.5rem;
+            line-height: 1;
+            opacity: 0.7;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .announcement-close:hover {
+            opacity: 1;
+        }
+
+        /* ========================================
+           HEADER
+           ======================================== */
+
+        .site-header {
+            background: var(--color-surface);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(30, 144, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-sm);
         }
 
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
+        .header-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
+            gap: var(--space-md);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .logo h1 {
+            font-size: 1.75rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            margin: 0;
+        }
+
+        .main-nav {
+            justify-self: center;
+        }
+
+        .main-nav ul {
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .logo-icon {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.6));
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
+            gap: var(--space-md);
             list-style: none;
         }
 
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            position: relative;
+        .main-nav a {
+            font-size: 0.875rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-weight: 400;
+            position: relative;
         }
 
-        .nav-links a::after {
+        .main-nav a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: -4px;
+            left: 0;
             width: 0;
-            height: 2px;
-            background: #1e90ff;
-            transition: width 0.3s;
+            height: 1px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: #1e90ff;
-        }
-
-        .nav-links a:hover::after {
+        .main-nav a:hover::after {
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 90vh;
-            padding: 100px 5% 80px;
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            justify-self: end;
+            align-items: center;
+        }
+
+        .header-icons a {
+            position: relative;
             display: flex;
             align-items: center;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--color-primary);
+            color: var(--color-surface);
+            font-size: 0.625rem;
+            font-weight: 500;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
             position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 500;
+            background: var(--color-surface);
+            cursor: pointer;
+        }
+
+        .language-btn:hover {
+            border-color: var(--color-primary);
+            opacity: 1;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+            min-width: 160px;
+            display: none;
+            z-index: 1001;
+        }
+
+        .language-dropdown.active {
+            display: block;
+        }
+
+        .language-option {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .language-option:hover {
+            background: var(--color-background);
+        }
+
+        .language-option.active {
+            background: var(--color-background);
+            font-weight: 500;
+        }
+
+        .flag-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-surface);
+            z-index: 2000;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: var(--space-md);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .mobile-menu-close {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .mobile-menu nav ul {
+            list-style: none;
+        }
+
+        .mobile-menu nav li {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .mobile-menu nav a {
+            display: block;
+            padding: 1.25rem 0;
+            font-size: 1.25rem;
+            font-family: var(--font-heading);
+            letter-spacing: 0.05em;
+        }
+
+        .mobile-lang-grid {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 1rem;
+        }
+
+        .mobile-lang-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .mobile-lang-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .mobile-lang-btn {
+            padding: 0.75rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .mobile-lang-btn:hover {
+            border-color: var(--color-primary);
+            background: var(--color-background);
+        }
+
+        /* ========================================
+           BUTTONS
+           ======================================== */
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-align: center;
+            border: 1px solid;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-surface);
+            border-color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-text);
+            border-color: var(--color-text);
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: var(--color-surface);
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           HERO
+           ======================================== */
+
+        .hero {
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: var(--space-xl);
+            background: linear-gradient(135deg, #faf9f7 0%, #f5f3f0 100%);
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-left {
-            animation: fadeInLeft 1s ease;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: rgba(30, 144, 255, 0.2);
-            border: 2px solid rgba(30, 144, 255, 0.4);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #00bfff;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1px;
-        }
-
-        .hero .highlight {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #4682b4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: #b0c4de;
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 2.5rem;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
-
-        .cta-button.primary {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
-        }
-
-        .cta-button.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.6);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(30, 144, 255, 0.5);
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(30, 144, 255, 0.1);
-            border-color: #1e90ff;
-            transform: translateY(-3px);
-        }
-
-        .trust-indicators {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .trust-icon {
-            font-size: 2rem;
-            color: #1e90ff;
-        }
-
-        .trust-text {
-            font-size: 0.9rem;
-            color: #b0c4de;
-        }
-
-        .trust-text strong {
-            display: block;
-            color: #ffffff;
-            font-size: 1.1rem;
-        }
-
-        .hero-right {
-            position: relative;
-            animation: fadeInRight 1s ease;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            padding: var(--space-lg);
+            max-width: 600px;
+            justify-self: end;
         }
 
         .hero-image {
             position: relative;
-            border-radius: 20px;
+            height: 90vh;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(30, 144, 255, 0.3);
         }
 
         .hero-image img {
             width: 100%;
-            height: 500px;
+            height: 100%;
             object-fit: cover;
-            display: block;
+            object-position: center;
         }
 
-        .floating-badge {
-            position: absolute;
-            background: rgba(10, 22, 40, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .badge-1 {
-            top: 10%;
-            left: -5%;
-        }
-
-        .badge-2 {
-            bottom: 10%;
-            right: -5%;
-        }
-
-        .badge-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .badge-text {
-            font-weight: 700;
-            font-size: 1rem;
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-surface);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: var(--space-md);
         }
 
-        /* Section Styling */
-        .section {
-            padding: 6rem 5%;
+        /* ========================================
+           TRUST BAR
+           ======================================== */
+
+        .trust-bar {
+            background: var(--color-surface);
+            padding: var(--space-md) 0;
+            border-bottom: 1px solid var(--color-border);
         }
 
-        .section-title {
+        .trust-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            letter-spacing: -1px;
         }
 
-        .section-subtitle {
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trust-item svg {
+            color: var(--color-accent);
+        }
+
+        /* ========================================
+           COLLECTIONS
+           ======================================== */
+
+        .section-header {
             text-align: center;
-            font-size: 1.1rem;
-            color: #b0c4de;
-            margin-bottom: 4rem;
-            max-width: 700px;
+            margin-bottom: var(--space-lg);
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Services Section */
-        .services {
-            background: rgba(10, 22, 40, 0.5);
-        }
-
-        .services-grid {
+        .collection-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            gap: var(--space-md);
         }
 
-        .service-card {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 3rem 2.5rem;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            border-radius: 15px;
-            transition: all 0.4s;
+        .collection-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .collection-image {
+            margin-bottom: var(--space-sm);
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .collection-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .collection-card:hover .collection-image img {
+            transform: scale(1.08);
+        }
+
+        .collection-badge {
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-sm);
+            background: var(--color-surface);
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .collection-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+        }
+
+        .collection-price {
+            font-weight: 500;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========================================
+           BRAND STORY
+           ======================================== */
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .story-image {
             position: relative;
             overflow: hidden;
+            border-radius: 4px;
         }
 
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .story-image img {
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #1e90ff, transparent);
-            transition: left 0.5s;
+            height: 600px;
+            object-fit: cover;
         }
 
-        .service-card:hover::before {
-            left: 100%;
+        .story-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--color-border);
         }
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.6);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.2);
-            background: rgba(26, 41, 66, 0.8);
+        .stat-item {
+            text-align: center;
         }
 
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--color-accent);
+            margin-bottom: 0.25rem;
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--color-text-light);
         }
 
-        .service-card p {
-            color: #b0c4de;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
+        /* ========================================
+           FEATURES
+           ======================================== */
 
-        .service-features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            color: #b0c4de;
-            font-size: 0.9rem;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: #1e90ff;
-            font-weight: 700;
-            margin-right: 0.8rem;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose {
-            background: rgba(10, 22, 40, 0.3);
+        .features {
+            background: var(--color-surface);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: var(--space-lg);
         }
 
-        .feature-box {
+        .feature-item {
             text-align: center;
-            padding: 2.5rem 2rem;
-            background: rgba(26, 41, 66, 0.4);
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            transition: all 0.3s;
+            padding: var(--space-md);
+            transition: var(--transition);
         }
 
-        .feature-box:hover {
-            transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.5);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.15);
+        .feature-item:hover {
+            transform: translateY(-4px);
         }
 
         .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
+            margin-bottom: var(--space-sm);
+            color: var(--color-accent);
         }
 
-        .feature-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .feature-item h4 {
+            margin-bottom: 0.75rem;
         }
 
-        .feature-box p {
-            color: #b0c4de;
-            line-height: 1.7;
+        /* ========================================
+           SIZE GUIDE CTA
+           ======================================== */
+
+        .size-guide-cta {
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+            color: var(--color-primary);
+            padding: var(--space-xl);
+            text-align: center;
+            border-radius: 4px;
         }
 
-        /* Testimonials Section */
+        .size-guide-cta h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        /* ========================================
+           TESTIMONIALS
+           ======================================== */
+
         .testimonials {
-            background: rgba(10, 22, 40, 0.5);
+            background: var(--color-background);
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
         }
 
         .testimonial-card {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            position: relative;
+            padding: var(--space-lg);
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            border-radius: 4px;
+            transition: var(--transition);
         }
 
-        .testimonial-quote {
-            font-size: 3rem;
-            color: rgba(30, 144, 255, 0.3);
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
         }
 
-        .testimonial-text {
-            color: #b0c4de;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
-            font-style: italic;
+        .stars {
+            color: var(--color-accent);
+            font-size: 1.25rem;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-top: var(--space-md);
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #1e90ff, #4682b4);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
+            background: var(--color-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--color-surface);
         }
 
-        .author-info h4 {
-            color: #ffffff;
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
+        /* ========================================
+           NEWSLETTER
+           ======================================== */
+
+        .newsletter {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            color: var(--color-surface);
+            position: relative;
+            overflow: hidden;
         }
 
-        .author-info p {
-            color: #b0c4de;
-            font-size: 0.85rem;
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(168, 146, 125, 0.1) 100%);
         }
 
-        .rating {
-            color: #ffd700;
-            font-size: 1rem;
-            margin-top: 1rem;
+        .newsletter-content {
+            position: relative;
+            z-index: 1;
         }
 
-        /* Contact Section */
-        .contact {
-            background: rgba(10, 22, 40, 0.3);
+        .newsletter h2 {
+            color: var(--color-surface);
         }
 
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1e90ff;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: rgba(26, 41, 66, 0.4);
-            border-radius: 10px;
-            border: 1px solid rgba(30, 144, 255, 0.2);
-        }
-
-        .contact-icon {
-            font-size: 2rem;
-            color: #1e90ff;
-            flex-shrink: 0;
-        }
-
-        .contact-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .contact-details p {
-            color: #b0c4de;
-            font-size: 1rem;
-        }
-
-        .contact-details a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-details a:hover {
-            color: #00bfff;
-        }
-
-        .contact-form {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 3rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.3);
-        }
-
-        .contact-form h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1e90ff;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(10, 22, 40, 0.5);
-            border: 2px solid rgba(30, 144, 255, 0.3);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #1e90ff;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(10, 22, 40, 0.8);
-            padding: 3rem 5%;
-            border-top: 2px solid rgba(30, 144, 255, 0.3);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-content p {
-            color: #b0c4de;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links {
+        .newsletter-benefits {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
+            gap: var(--space-md);
+            margin: var(--space-md) 0;
             flex-wrap: wrap;
         }
 
-        .footer-links a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: color 0.3s;
+        .newsletter-benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            opacity: 0.9;
         }
 
-        .footer-links a:hover {
-            color: #00bfff;
+        .newsletter-input-group {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Floating Call Button */
-        .floating-call {
+        .newsletter-input-group input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--color-surface);
+            font-family: var(--font-body);
+            border-radius: 4px;
+        }
+
+        .newsletter-input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-input-group input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .success-message {
+            display: none;
+            padding: 1rem;
+            background: var(--color-success);
+            color: var(--color-surface);
+            border-radius: 4px;
+            margin-top: var(--space-sm);
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+
+        .site-footer {
+            background: var(--color-primary);
+            color: var(--color-surface);
+            padding: var(--space-xl) 0 var(--space-md);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            margin-bottom: var(--space-sm);
+            color: var(--color-surface);
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-column h4 {
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+            font-weight: 500;
+            color: var(--color-surface);
+            font-family: var(--font-body);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--color-surface);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: var(--space-sm);
+        }
+
+        .social-links a {
+            color: var(--color-surface);
+            opacity: 0.7;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+        }
+
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-legal a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        /* ========================================
+           MODAL
+           ======================================== */
+
+        .modal {
+            display: none;
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #ff4444, #cc0000);
-            color: #ffffff;
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--color-surface);
+            padding: var(--space-lg);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--space-sm);
+            right: var(--space-sm);
+            font-size: 2rem;
+            color: var(--color-text-light);
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.5);
-            z-index: 999;
-            cursor: pointer;
-            transition: all 0.3s;
-            animation: bounce 2s infinite;
-            text-decoration: none;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+        .modal-close:hover {
+            color: var(--color-primary);
+        }
+
+        .size-chart {
+            overflow-x: auto;
+            margin: var(--space-md) 0;
+        }
+
+        .size-chart table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .size-chart th,
+        .size-chart td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .size-chart th {
+            background: var(--color-background);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+        }
+
+        .size-chart td {
+            font-size: 0.9375rem;
+        }
+
+        .size-chart tbody tr:hover {
+            background: var(--color-background);
+        }
+
+        .sizing-tips {
+            background: var(--color-background);
+            padding: var(--space-md);
+            border-radius: 4px;
+            margin-top: var(--space-md);
+        }
+
+        .sizing-tips h4 {
+            margin-bottom: var(--space-sm);
+        }
+
+        .sizing-tips ul {
+            list-style: none;
+        }
+
+        .sizing-tips li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .sizing-tips li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-success);
+            font-weight: bold;
+        }
+
+        /* ========================================
+           UTILITY CLASSES
+           ======================================== */
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-sm {
+            margin-bottom: var(--space-sm);
+        }
+
+        .mb-md {
+            margin-bottom: var(--space-md);
+        }
+
+        .mb-lg {
+            margin-bottom: var(--space-lg);
+        }
+
+        .mt-sm {
+            margin-top: var(--space-sm);
+        }
+
+        .mt-md {
+            margin-top: var(--space-md);
+        }
+
+        .mt-lg {
+            margin-top: var(--space-lg);
+        }
+
+        .opacity-70 {
+            opacity: 0.7;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* ========================================
+           ANIMATIONS
+           ======================================== */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
                 transform: translateY(0);
             }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
         }
 
-        .floating-call:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 68, 68, 0.7);
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+
+        @media (max-width: 968px) {
+            .main-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                width: 24px;
+                height: 24px;
+                justify-self: start;
+            }
+
+            .mobile-menu-toggle span {
+                width: 100%;
+                height: 2px;
+                background: var(--color-primary);
+                transition: var(--transition);
+            }
+
+            .header-grid {
+                grid-template-columns: auto 1fr auto;
+            }
+
+            .logo {
+                justify-self: center;
+            }
+
+            .language-switcher {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
             .hero-content {
+                justify-self: center;
+                order: 2;
+            }
+
+            .hero-image {
+                height: 60vh;
+                order: 1;
+            }
+
+            .story-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: var(--space-md);
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .story-image img {
+                height: 400px;
             }
 
-            .hero-right {
-                order: -1;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .services-grid,
-            .features-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .trust-indicators {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .hero-buttons {
+            .newsletter-input-group {
                 flex-direction: column;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
             }
 
-            .emergency-banner {
-                font-size: 0.8rem;
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --space-lg: 3rem;
+                --space-xl: 4rem;
             }
 
-            .emergency-banner a {
-                display: block;
-                margin-top: 0.5rem;
-                margin-left: 0;
+            .hero-image {
+                height: 50vh;
             }
 
-            .floating-badge {
-                display: none;
+            .collection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-icons {
+                gap: 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+
+            .trust-items {
+                grid-template-columns: 1fr;
+            }
+
+            .story-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Emergency Banner -->
-    <div class="emergency-banner">
-        🚨 24/7 EMERGENCY PLUMBING SERVICES AVAILABLE
-        <a href="tel:+1234567890">CALL NOW: (123) 456-7890</a>
+
+    <!-- Hidden Google Translate Element -->
+    <div id="google_translate_element"></div>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcement">
+        <div class="container">
+            <p>🎉 Neu: Kostenloser Versand ab CHF 150 | 60 Tage Rückgaberecht</p>
+        </div>
+        <button class="announcement-close" onclick="closeAnnouncement()" aria-label="Schliessen">&times;</button>
     </div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-grid">
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Menü öffnen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="#home">
+                        <h1>VALDÉR</h1>
+                    </a>
+                </div>
+
+                <!-- Main Navigation -->
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#collections">Kollektion</a></li>
+                        <li><a href="#story">Über Uns</a></li>
+                        <li><a href="#size-guide" onclick="openSizeGuide(); return false;">Grössentabelle</a></li>
+                        <li><a href="#testimonials">Bewertungen</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Header Icons -->
+                <div class="header-icons">
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="language-btn" onclick="toggleLanguageDropdown()" aria-label="Sprache wählen">
+                            <span class="flag-icon" id="currentFlag">🇨🇭</span>
+                            <span id="currentLang">DE</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <div class="language-dropdown" id="languageDropdown">
+                            <div class="language-option active" data-lang="de" onclick="translateTo('de', '🇨🇭', 'DE', this)">
+                                <span class="flag-icon">🇨🇭</span>
+                                <span>Deutsch</span>
+                            </div>
+                            <div class="language-option" data-lang="fr" onclick="translateTo('fr', '🇫🇷', 'FR', this)">
+                                <span class="flag-icon">🇫🇷</span>
+                                <span>Français</span>
+                            </div>
+                            <div class="language-option" data-lang="en" onclick="translateTo('en', '🇬🇧', 'EN', this)">
+                                <span class="flag-icon">🇬🇧</span>
+                                <span>English</span>
+                            </div>
+                            <div class="language-option" data-lang="it" onclick="translateTo('it', '🇮🇹', 'IT', this)">
+                                <span class="flag-icon">🇮🇹</span>
+                                <span>Italiano</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#search" aria-label="Suche">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M13 13L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="#account" aria-label="Konto">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M3 18C3 14.134 6.134 11 10 11C13.866 11 17 14.134 17 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="#cart" aria-label="Warenkorb">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M2 2H3.5L5.5 14H16.5L18.5 6H5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="7" cy="18" r="1" fill="currentColor"/>
+                            <circle cx="15" cy="18" r="1" fill="currentColor"/>
+                        </svg>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Why Choose Us</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
         </div>
-    </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <h1>VALDÉR</h1>
+            </div>
+            <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Menü schliessen">&times;</button>
+        </div>
+
+        <!-- Mobile Language Switcher -->
+        <div class="mobile-lang-grid">
+            <p class="mobile-lang-title">Sprache / Language</p>
+            <div class="mobile-lang-buttons">
+                <button class="mobile-lang-btn" onclick="translateTo('de', '🇨🇭', 'DE'); toggleMobileMenu();">
+                    <span>🇨🇭</span> <span>Deutsch</span>
+                </button>
+                <button class="mobile-lang-btn" onclick="translateTo('fr', '🇫🇷', 'FR'); toggleMobileMenu();">
+                    <span>🇫🇷</span> <span>Français</span>
+                </button>
+                <button class="mobile-lang-btn" onclick="translateTo('en', '🇬🇧', 'EN'); toggleMobileMenu();">
+                    <span>🇬🇧</span> <span>English</span>
+                </button>
+                <button class="mobile-lang-btn" onclick="translateTo('it', '🇮🇹', 'IT'); toggleMobileMenu();">
+                    <span>🇮🇹</span> <span>Italiano</span>
+                </button>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#shop" onclick="toggleMobileMenu()">Shop</a></li>
+                <li><a href="#collections" onclick="toggleMobileMenu()">Kollektion</a></li>
+                <li><a href="#story" onclick="toggleMobileMenu()">Über Uns</a></li>
+                <li><a href="#size-guide" onclick="openSizeGuide(); toggleMobileMenu()">Grössentabelle</a></li>
+                <li><a href="#testimonials" onclick="toggleMobileMenu()">Bewertungen</a></li>
+                <li><a href="#newsletter" onclick="toggleMobileMenu()">Newsletter</a></li>
+            </ul>
+        </nav>
+    </div>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-left">
-                <div class="hero-badge">⭐ Certified & Licensed Plumbers</div>
-                <h1>Your <span class="highlight">Elite</span><br>Plumbing Partner</h1>
-                <p class="hero-description">
-                    Professional plumbing services available 24/7. From emergency repairs to complete installations,
-                    we deliver excellence with every job. Licensed, insured, and trusted by thousands.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="cta-button primary">Request Service</a>
-                    <a href="tel:+1234567890" class="cta-button secondary">Call Emergency</a>
+    <section class="hero" id="home">
+        <div class="hero-content fade-in-up">
+            <span class="hero-badge">Neu in der Schweiz</span>
+            <p class="text-uppercase opacity-70 mb-md">Sculpt. Smooth. Celebrate.</p>
+            <h1>Selbstbewusstsein<br>in jeder Kurve</h1>
+            <p class="text-large mt-md mb-lg opacity-70">Premium Shapewear für die moderne Frau. Mit italienischen Stoffen gefertigt, mit Präzision designed. Erlebe Komfort ohne Kompromisse.</p>
+            <a href="#collections" class="btn btn-primary">Kollektion Entdecken</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=1200&h=1600&fit=crop&q=80" alt="VALDÉR Premium Shapewear" loading="eager">
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-items">
+                <div class="trust-item">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 4L20 14H28L22 20L24 30L16 24L8 30L10 20L4 14H12L16 4Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <p class="text-small"><strong>Premium Qualität</strong><br>Italienische Stoffe</p>
                 </div>
-                <div class="trust-indicators">
-                    <div class="trust-item">
-                        <span class="trust-icon">✓</span>
-                        <div class="trust-text">
-                            <strong>Licensed</strong>
-                            Fully Certified
+                <div class="trust-item">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M4 16L12 24L28 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p class="text-small"><strong>60 Tage Rückgabe</strong><br>Risikofrei testen</p>
+                </div>
+                <div class="trust-item">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="4" y="8" width="24" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M4 12h24M10 18h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <p class="text-small"><strong>Sichere Zahlung</strong><br>Twint, Kreditkarte, PayPal</p>
+                </div>
+                <div class="trust-item">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 4v24M28 16l-6 6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p class="text-small"><strong>Kostenloser Versand</strong><br>Ab CHF 150</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="section" id="collections">
+        <div class="container">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Entdecke</p>
+                <h2>Unsere Signature Kollektion</h2>
+                <p class="text-large opacity-70">Jedes Stück wurde mit Liebe zum Detail entwickelt, um deinen Körper zu feiern und dein Selbstbewusstsein zu stärken.</p>
+            </div>
+
+            <div class="collection-grid" id="shop">
+
+                <!-- Bodysuits -->
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <span class="collection-badge">Bestseller</span>
+                        <a href="#bodysuits">
+                            <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&h=1000&fit=crop&q=80" alt="Bodysuits Kollektion" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="collection-info">
+                        <h3><a href="#bodysuits">Bodysuits</a></h3>
+                        <p class="collection-price">Ab CHF 115</p>
+                        <p class="opacity-70">Nahtlose Silhouetten für jeden Anlass</p>
+                        <a href="#bodysuits" class="text-uppercase text-small mt-sm" style="display: inline-block;">Jetzt Shoppen →</a>
+                    </div>
+                </div>
+
+                <!-- Shapers -->
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <span class="collection-badge">Neu</span>
+                        <a href="#shapers">
+                            <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?w=800&h=1000&fit=crop&q=80" alt="Shapers Kollektion" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="collection-info">
+                        <h3><a href="#shapers">Shapers</a></h3>
+                        <p class="collection-price">Ab CHF 88</p>
+                        <p class="opacity-70">Gezielte Formgebung mit maximalem Komfort</p>
+                        <a href="#shapers" class="text-uppercase text-small mt-sm" style="display: inline-block;">Jetzt Shoppen →</a>
+                    </div>
+                </div>
+
+                <!-- Everyday -->
+                <div class="collection-card">
+                    <div class="collection-image">
+                        <a href="#everyday">
+                            <img src="https://images.unsplash.com/photo-1583846112557-17539f6e395b?w=800&h=1000&fit=crop&q=80" alt="Everyday Kollektion" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="collection-info">
+                        <h3><a href="#everyday">Everyday</a></h3>
+                        <p class="collection-price">Ab CHF 78</p>
+                        <p class="opacity-70">Komfort trifft Eleganz im Alltag</p>
+                        <a href="#everyday" class="text-uppercase text-small mt-sm" style="display: inline-block;">Jetzt Shoppen →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story -->
+    <section class="section" id="story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-image">
+                    <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=800&h=800&fit=crop&q=80" alt="VALDÉR Brand Story" loading="lazy">
+                </div>
+                <div class="story-content">
+                    <p class="text-uppercase opacity-70 mb-md">Unsere Philosophie</p>
+                    <h2>Shapewear neu<br>gedacht</h2>
+                    <p class="text-large mt-md mb-md">Bei VALDÉR glauben wir, dass Shapewear deine natürliche Form feiern sollte, nicht einschränken. Jedes Stück wird sorgfältig aus Premium-Materialien gefertigt, um dir das Selbstbewusstsein und den Komfort zu geben, den du verdienst.</p>
+                    <p class="opacity-70 mb-lg">Von italienischen Stoffen bis zu unsichtbaren Nähten – jedes Detail zählt. Wir kreieren nicht nur Shapewear, wir formen Selbstbewusstsein.</p>
+
+                    <div class="story-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Zufriedenheit</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10K+</div>
+                            <div class="stat-label">Kundinnen</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">4.9★</div>
+                            <div class="stat-label">Bewertung</div>
                         </div>
                     </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⚡</span>
-                        <div class="trust-text">
-                            <strong>24/7</strong>
-                            Emergency Service
+
+                    <a href="#story" class="btn btn-secondary mt-lg">Mehr Erfahren</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="section-sm features">
+        <div class="container">
+            <div class="section-header mb-lg">
+                <h2>Warum VALDÉR?</h2>
+            </div>
+            <div class="features-grid">
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M24 4L31 18H41L33 28L37 42L24 34L11 42L15 28L7 18H17L24 4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h4>Premium Italienische Stoffe</h4>
+                    <p class="text-small opacity-70">Wir verwenden ausschliesslich hochwertige Materialien aus Italien für unvergleichlichen Komfort und Langlebigkeit.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="12" y="12" width="24" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 24L22 26L28 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h4>Unsichtbare Konstruktion</h4>
+                    <p class="text-small opacity-70">Nahtloses Design, das unter jedem Outfit verschwindet. Niemand wird es bemerken – ausser dir.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 16V24L28 28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h4>Ganztägiger Komfort</h4>
+                    <p class="text-small opacity-70">Entwickelt für 12+ Stunden müheloses Tragen. Von morgens bis abends perfekt.</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M8 24H40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M24 8L40 24L24 40" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h4>60 Tage Rückgaberecht</h4>
+                    <p class="text-small opacity-70">Teste unsere Produkte risikofrei. Nicht zufrieden? Vollständige Rückerstattung.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Size Guide CTA -->
+    <section class="section-sm">
+        <div class="container-narrow">
+            <div class="size-guide-cta">
+                <h2 class="mb-sm">Unsicher bei der Grösse?</h2>
+                <p class="text-large mb-lg opacity-70">Unsere detaillierte Grössentabelle hilft dir, die perfekte Passform zu finden.</p>
+                <button onclick="openSizeGuide()" class="btn btn-secondary">Grössentabelle Öffnen</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container-narrow">
+            <div class="section-header">
+                <p class="text-uppercase opacity-70">Bewertungen</p>
+                <h2>Von Tausenden geliebt</h2>
+                <p class="text-large opacity-70">Unsere Kundinnen sprechen für uns</p>
+            </div>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card">
+                    <div class="stars mb-sm">★★★★★</div>
+                    <p class="mb-md">"Endlich Shapewear, die sich nicht wie eine Strafe anfühlt. Die Qualität ist aussergewöhnlich und es bleibt den ganzen Tag an Ort und Stelle. Jeden Franken wert!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div>
+                            <p class="text-small"><strong>Sarah M.</strong></p>
+                            <p class="text-small opacity-70">Zürich · Verifizierter Kauf</p>
                         </div>
                     </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⭐</span>
-                        <div class="trust-text">
-                            <strong>5.0 Rating</strong>
-                            1000+ Reviews
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars mb-sm">★★★★★</div>
+                    <p class="mb-md">"Ich habe alles von Spanx bis zu günstigeren Alternativen ausprobiert. VALDÉR ist in einer eigenen Liga. Der Stoff ist luxuriös und die Passform perfekt."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JK</div>
+                        <div>
+                            <p class="text-small"><strong>Jennifer K.</strong></p>
+                            <p class="text-small opacity-70">Genf · Verifizierter Kauf</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hero-right">
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop" alt="Professional Plumber">
-                    <div class="floating-badge badge-1">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-text">Fully Insured</div>
-                    </div>
-                    <div class="floating-badge badge-2">
-                        <div class="badge-icon">⏰</div>
-                        <div class="badge-text">Same Day Service</div>
+
+                <div class="testimonial-card">
+                    <div class="stars mb-sm">★★★★★</div>
+                    <p class="mb-md">"Hat mein Leben verändert. Ich fühle mich selbstbewusst in jedem Outfit. Die Investition war es wert – diese Teile halten und behalten ihre Form wunderschön."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MT</div>
+                        <div>
+                            <p class="text-small"><strong>Michelle T.</strong></p>
+                            <p class="text-small opacity-70">Luzern · Verifizierter Kauf</p>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section services">
-        <h2 class="section-title">Our <span class="highlight">Premium</span> Services</h2>
-        <p class="section-subtitle">
-            Comprehensive plumbing solutions for residential and commercial properties.
-            No job too big or small.
-        </p>
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">🚰</span>
-                <h3>Emergency Repairs</h3>
-                <p>24/7 emergency plumbing services for urgent issues. Fast response times, expert solutions.</p>
-                <ul class="service-features">
-                    <li>Burst pipe repairs</li>
-                    <li>Water heater failures</li>
-                    <li>Severe drain clogs</li>
-                    <li>Gas leak detection</li>
-                </ul>
-            </div>
+    <!-- Newsletter -->
+    <section class="section-sm newsletter" id="newsletter">
+        <div class="container-narrow text-center newsletter-content">
+            <h2 class="mb-md">Werde Teil des VALDÉR Circle</h2>
+            <p class="text-large opacity-70 mb-md">Erhalte exklusiven Zugang zu neuen Kollektionen, Styling-Tipps und 15% Rabatt auf deine erste Bestellung.</p>
 
-            <div class="service-card">
-                <span class="service-icon">🚿</span>
-                <h3>Bathroom Plumbing</h3>
-                <p>Complete bathroom plumbing services from installations to renovations.</p>
-                <ul class="service-features">
-                    <li>Toilet installation & repair</li>
-                    <li>Shower/tub services</li>
-                    <li>Sink & faucet work</li>
-                    <li>Full bathroom remodels</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🍽️</span>
-                <h3>Kitchen Plumbing</h3>
-                <p>Professional kitchen plumbing for functionality and efficiency.</p>
-                <ul class="service-features">
-                    <li>Garbage disposal services</li>
-                    <li>Dishwasher installation</li>
-                    <li>Kitchen sink repair</li>
-                    <li>Water line installation</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">♨️</span>
-                <h3>Water Heaters</h3>
-                <p>Expert water heater installation, repair, and maintenance services.</p>
-                <ul class="service-features">
-                    <li>Tank & tankless heaters</li>
-                    <li>Repair & replacement</li>
-                    <li>Energy-efficient options</li>
-                    <li>Regular maintenance</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🌊</span>
-                <h3>Drain Cleaning</h3>
-                <p>Advanced drain cleaning and hydro-jetting for stubborn clogs.</p>
-                <ul class="service-features">
-                    <li>Video camera inspection</li>
-                    <li>Hydro-jetting services</li>
-                    <li>Root removal</li>
-                    <li>Preventive maintenance</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏠</span>
-                <h3>Pipe Services</h3>
-                <p>Complete pipe installation, repair, and replacement services.</p>
-                <ul class="service-features">
-                    <li>Leak detection & repair</li>
-                    <li>Pipe replacement</li>
-                    <li>Re-piping services</li>
-                    <li>Sewer line repair</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">💧</span>
-                <h3>Water Filtration</h3>
-                <p>Clean, safe water with our advanced filtration systems.</p>
-                <ul class="service-features">
-                    <li>Whole-house filters</li>
-                    <li>Water softeners</li>
-                    <li>Reverse osmosis systems</li>
-                    <li>Water quality testing</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏢</span>
-                <h3>Commercial Plumbing</h3>
-                <p>Professional plumbing services for businesses and commercial properties.</p>
-                <ul class="service-features">
-                    <li>Restaurant plumbing</li>
-                    <li>Office buildings</li>
-                    <li>Retail spaces</li>
-                    <li>Maintenance contracts</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="section why-choose">
-        <h2 class="section-title">Why Choose <span class="highlight">Elite Plumbing</span></h2>
-        <p class="section-subtitle">
-            We're not just another plumbing company. We're your trusted partner for all plumbing needs.
-        </p>
-        <div class="features-grid">
-            <div class="feature-box">
-                <span class="feature-icon">⚡</span>
-                <h3>Fast Response</h3>
-                <p>Same-day service available. We arrive on time, every time, ready to solve your plumbing issues quickly.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🎓</span>
-                <h3>Expert Team</h3>
-                <p>Licensed, certified, and highly trained plumbers with years of experience in all aspects of plumbing.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">💯</span>
-                <h3>Quality Guarantee</h3>
-                <p>100% satisfaction guaranteed. We stand behind our work with comprehensive warranties.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">💰</span>
-                <h3>Fair Pricing</h3>
-                <p>Transparent, upfront pricing with no hidden fees. Free estimates on all major work.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🛠️</span>
-                <h3>Modern Equipment</h3>
-                <p>State-of-the-art tools and technology for efficient, precise, and lasting solutions.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🌟</span>
-                <h3>Customer First</h3>
-                <p>Exceptional customer service is our priority. Your satisfaction is our success.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials">
-        <h2 class="section-title">What Our <span class="highlight">Customers Say</span></h2>
-        <p class="section-subtitle">
-            Don't just take our word for it. See what our satisfied customers have to say.
-        </p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    Elite Plumbing saved the day! Had a burst pipe at 2 AM and they were here within 30 minutes.
-                    Professional, fast, and fixed everything perfectly. Highly recommend!
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">JD</div>
-                    <div class="author-info">
-                        <h4>John Davis</h4>
-                        <p>Homeowner</p>
-                    </div>
+            <div class="newsletter-benefits">
+                <div class="newsletter-benefit">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Exklusive Angebote</span>
+                </div>
+                <div class="newsletter-benefit">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Styling Tipps</span>
+                </div>
+                <div class="newsletter-benefit">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 10L8 14L16 6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Early Access</span>
                 </div>
             </div>
 
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    Best plumbing company I've ever worked with. They completely renovated our bathroom plumbing
-                    and the quality is outstanding. Fair prices and excellent workmanship.
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SM</div>
-                    <div class="author-info">
-                        <h4>Sarah Martinez</h4>
-                        <p>Property Manager</p>
-                    </div>
+            <form class="newsletter-form" id="newsletterForm" onsubmit="submitNewsletter(event)">
+                <div class="newsletter-input-group">
+                    <input type="email" id="emailInput" placeholder="Deine E-Mail-Adresse" required>
+                    <button type="submit" class="btn btn-primary">Anmelden</button>
                 </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    We use Elite Plumbing for all our commercial properties. Always reliable, professional,
-                    and their emergency service is truly 24/7. Worth every penny!
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">RW</div>
-                    <div class="author-info">
-                        <h4>Robert Williams</h4>
-                        <p>Business Owner</p>
-                    </div>
+                <div class="success-message" id="successMessage">
+                    ✓ Danke! Du erhältst in Kürze eine Bestätigungs-E-Mail.
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
-        <p class="section-subtitle">
-            Ready to solve your plumbing issues? Contact us today for a free estimate.
-        </p>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-
-                <div class="contact-item">
-                    <span class="contact-icon">📞</span>
-                    <div class="contact-details">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+1234567890">(123) 456-7890</a></p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">24/7 Emergency Line</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <div class="contact-details">
-                        <h4>Email</h4>
-                        <p><a href="mailto:info@eliteplumbing.com">info@eliteplumbing.com</a></p>
-                        <p><a href="mailto:emergency@eliteplumbing.com">emergency@eliteplumbing.com</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>123 Main Street</p>
-                        <p>Your City, ST 12345</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">⏰</span>
-                    <div class="contact-details">
-                        <h4>Business Hours</h4>
-                        <p>Monday - Friday: 7:00 AM - 7:00 PM</p>
-                        <p>Saturday: 8:00 AM - 5:00 PM</p>
-                        <p>Sunday: Emergency Only</p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">Emergency Service: 24/7</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3>Request Service</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service">Service Type *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="emergency">Emergency Repair</option>
-                            <option value="bathroom">Bathroom Plumbing</option>
-                            <option value="kitchen">Kitchen Plumbing</option>
-                            <option value="water-heater">Water Heater</option>
-                            <option value="drain-cleaning">Drain Cleaning</option>
-                            <option value="pipe-services">Pipe Services</option>
-                            <option value="water-filtration">Water Filtration</option>
-                            <option value="commercial">Commercial Plumbing</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Describe Your Issue *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Request Service Now</button>
-                </form>
-            </div>
+            </form>
+            <p class="text-small mt-sm opacity-70">Mit der Anmeldung stimmst du unseren <a href="#datenschutz" style="text-decoration: underline;">Datenschutzbestimmungen</a> zu.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+
+                <!-- Column 1: Brand -->
+                <div class="footer-column">
+                    <h3 class="footer-logo">VALDÉR</h3>
+                    <p class="footer-tagline">Formen Selbstbewusstsein,<br>Feiern Kurven.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="https://pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M8 16c1-4 4-6 6-6 2 0 3 1 3 3s-1 4-3 4c-1 0-2-1-2-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Shop -->
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#shop">Alle Produkte</a></li>
+                        <li><a href="#bodysuits">Bodysuits</a></li>
+                        <li><a href="#shapers">Shapers</a></li>
+                        <li><a href="#everyday">Everyday</a></li>
+                        <li><a href="#new">Neuheiten</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Support -->
+                <div class="footer-column">
+                    <h4>Kundenservice</h4>
+                    <ul>
+                        <li><a href="#" onclick="openSizeGuide(); return false;">Grössentabelle</a></li>
+                        <li><a href="#versand">Versand & Retouren</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#pflege">Pflegehinweise</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Company -->
+                <div class="footer-column">
+                    <h4>Unternehmen</h4>
+                    <ul>
+                        <li><a href="#story">Über VALDÉR</a></li>
+                        <li><a href="#nachhaltigkeit">Nachhaltigkeit</a></li>
+                        <li><a href="#testimonials">Bewertungen</a></li>
+                        <li><a href="#karriere">Karriere</a></li>
+                        <li><a href="#presse">Presse</a></li>
+                    </ul>
+                </div>
+
             </div>
-            <p>&copy; 2025 Elite Plumbing Pro. All Rights Reserved.</p>
-            <p style="margin-top: 0.5rem;">Licensed & Insured | Serving Your Area Since 2005</p>
-            <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#why-us">Why Choose Us</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2025 VALDÉR Schweiz GmbH. Alle Rechte vorbehalten.</p>
+                    <div class="footer-legal">
+                        <a href="#agb">AGB</a>
+                        <span>|</span>
+                        <a href="#datenschutz">Datenschutz</a>
+                        <span>|</span>
+                        <a href="#impressum">Impressum</a>
+                        <span>|</span>
+                        <a href="#widerruf">Widerrufsrecht</a>
+                        <span>|</span>
+                        <span>UID: CHE-XXX.XXX.XXX</span>
+                    </div>
+                </div>
+                <div class="payment-icons">
+                    <span style="opacity: 0.7; font-size: 0.875rem;">Zahlung via:</span>
+                    <span style="opacity: 0.6;">💳 Visa · Mastercard · Amex · PayPal · Twint</span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Call Button -->
-    <a href="tel:+1234567890" class="floating-call" title="Call Now for Emergency Service">📞</a>
+    <!-- Size Guide Modal -->
+    <div class="modal" id="sizeGuideModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSizeGuide()" aria-label="Schliessen">&times;</button>
+            <h2 class="mb-md">Grössentabelle</h2>
+            <p class="opacity-70 mb-lg">Finde deine perfekte Grösse. Alle Masse in Zentimetern.</p>
+
+            <div class="size-chart">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Grösse</th>
+                            <th>Brust (cm)</th>
+                            <th>Taille (cm)</th>
+                            <th>Hüfte (cm)</th>
+                            <th>Gewicht (kg)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>XS</strong></td>
+                            <td>81-86</td>
+                            <td>61-66</td>
+                            <td>86-91</td>
+                            <td>45-54</td>
+                        </tr>
+                        <tr>
+                            <td><strong>S</strong></td>
+                            <td>86-91</td>
+                            <td>66-71</td>
+                            <td>91-96</td>
+                            <td>54-63</td>
+                        </tr>
+                        <tr>
+                            <td><strong>M</strong></td>
+                            <td>91-96</td>
+                            <td>71-76</td>
+                            <td>96-101</td>
+                            <td>63-72</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L</strong></td>
+                            <td>96-101</td>
+                            <td>76-81</td>
+                            <td>101-106</td>
+                            <td>72-81</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XL</strong></td>
+                            <td>101-106</td>
+                            <td>81-86</td>
+                            <td>106-111</td>
+                            <td>81-90</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2XL</strong></td>
+                            <td>106-111</td>
+                            <td>86-91</td>
+                            <td>111-116</td>
+                            <td>90-99</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sizing-tips">
+                <h4>Tipps zur Grössenwahl</h4>
+                <ul>
+                    <li>Zwischen zwei Grössen? Wähle die grössere für mehr Komfort</li>
+                    <li>Miss dich ohne Kleidung für die genauesten Ergebnisse</li>
+                    <li>Alle Masse sind Richtwerte</li>
+                    <li>Bei Fragen kontaktiere unseren Kundenservice für persönliche Beratung</li>
+                    <li>Unsere Produkte sind atmungsaktiv und bieten natürliche Dehnbarkeit</li>
+                </ul>
+            </div>
+
+            <div class="text-center mt-lg">
+                <p class="mb-md">Noch unsicher? Unser Team hilft gerne!</p>
+                <a href="#kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // ========================================
+        // GOOGLE TRANSLATE INTEGRATION
+        // ========================================
 
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
+        function translateTo(lang, flag, label, element) {
+            // Update button display
+            document.getElementById('currentFlag').textContent = flag;
+            document.getElementById('currentLang').textContent = label;
 
-            // Create mailto link
-            const subject = encodeURIComponent('Plumbing Service Request from ' + formData.name);
-            const body = encodeURIComponent(
-                `Name: ${formData.name}\n` +
-                `Email: ${formData.email}\n` +
-                `Phone: ${formData.phone}\n` +
-                `Service Type: ${formData.service}\n\n` +
-                `Message:\n${formData.message}`
-            );
+            // Update active state
+            document.querySelectorAll('.language-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            if (element) {
+                element.classList.add('active');
+            }
 
-            window.location.href = `mailto:info@eliteplumbing.com?subject=${subject}&body=${body}`;
+            // Close dropdown
+            document.getElementById('languageDropdown').classList.remove('active');
 
-            // Reset form
-            setTimeout(() => {
-                this.reset();
-                alert('Thank you! Your request has been sent. We will contact you shortly.');
-            }, 500);
+            // Store preference
+            localStorage.setItem('preferredLanguage', lang);
+            localStorage.setItem('preferredFlag', flag);
+            localStorage.setItem('preferredLangLabel', label);
+
+            // Trigger Google Translate
+            if (lang === 'de') {
+                // Reset to original German
+                var selectElement = document.querySelector('.goog-te-combo');
+                if (selectElement) {
+                    selectElement.value = '';
+                    selectElement.dispatchEvent(new Event('change'));
+                }
+                // Reload page to original language
+                setTimeout(() => {
+                    window.location.href = window.location.pathname;
+                }, 100);
+            } else {
+                // Wait for Google Translate to be ready
+                var checkExist = setInterval(function() {
+                    var selectElement = document.querySelector('.goog-te-combo');
+                    if (selectElement) {
+                        clearInterval(checkExist);
+                        selectElement.value = lang;
+                        selectElement.dispatchEvent(new Event('change'));
+                    }
+                }, 100);
+            }
+        }
+
+        // Load saved language on page load
+        window.addEventListener('load', function() {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            const savedFlag = localStorage.getItem('preferredFlag');
+            const savedLabel = localStorage.getItem('preferredLangLabel');
+
+            if (savedLang && savedFlag && savedLabel) {
+                document.getElementById('currentFlag').textContent = savedFlag;
+                document.getElementById('currentLang').textContent = savedLabel;
+
+                // Update active option
+                document.querySelectorAll('.language-option').forEach(opt => {
+                    opt.classList.remove('active');
+                    if (opt.getAttribute('data-lang') === savedLang) {
+                        opt.classList.add('active');
+                    }
+                });
+
+                // Apply translation if not German
+                if (savedLang !== 'de') {
+                    var checkExist = setInterval(function() {
+                        var selectElement = document.querySelector('.goog-te-combo');
+                        if (selectElement) {
+                            clearInterval(checkExist);
+                            selectElement.value = savedLang;
+                            selectElement.dispatchEvent(new Event('change'));
+                        }
+                    }, 100);
+                }
+            }
         });
 
-        // Smooth scrolling
+        // Toggle language dropdown
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageSwitcher = document.querySelector('.language-switcher');
+            if (languageSwitcher && !languageSwitcher.contains(event.target)) {
+                document.getElementById('languageDropdown').classList.remove('active');
+            }
+        });
+
+        // ========================================
+        // OTHER FUNCTIONALITY
+        // ========================================
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Close Announcement Bar
+        function closeAnnouncement() {
+            document.getElementById('announcement').style.display = 'none';
+        }
+
+        // Size Guide Modal
+        function openSizeGuide() {
+            const modal = document.getElementById('sizeGuideModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSizeGuide() {
+            const modal = document.getElementById('sizeGuideModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on outside click
+        document.getElementById('sizeGuideModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSizeGuide();
+            }
+        });
+
+        // Newsletter Form Submission
+        function submitNewsletter(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            const successMsg = document.getElementById('successMessage');
+            const form = document.getElementById('newsletterForm');
+
+            // Simulate API call
+            setTimeout(() => {
+                successMsg.classList.add('show');
+                form.reset();
+
+                // Update cart count as bonus interaction
+                document.getElementById('cartCount').textContent = '1';
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                }, 5000);
+            }, 500);
+        }
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
+                const href = this.getAttribute('href');
+                if (href !== '#' && href !== '#size-guide' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
                 }
             });
         });
+
+        // Keyboard Navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeSizeGuide();
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+                document.getElementById('languageDropdown').classList.remove('active');
+            }
+        });
+
+        // Console Easter Egg
+        console.log('%cVALDÉR', 'font-size: 48px; font-weight: bold; color: #a8927d; font-family: "Cormorant Garamond", serif;');
+        console.log('%cLooking for a job? We\'re hiring! 🚀', 'font-size: 16px; color: #666;');
+        console.log('Send your application to: karriere@valder.ch');
     </script>
+
 </body>
 </html>
