@@ -792,27 +792,43 @@
         /* Pricing */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 50px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
             margin-top: 100px;
+            align-items: center;
         }
 
         .pricing-card {
-            padding: 60px 50px;
+            padding: 50px 40px;
             background: rgba(255,255,255,0.03);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
-            text-align: center;
             transition: all 0.5s;
             position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
         }
 
         .pricing-card.featured {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
             border: 2px solid rgba(255,255,255,0.3);
-            transform: scale(1.05);
-            box-shadow: 0 30px 80px rgba(255,255,255,0.2);
+            transform: scale(1.08);
+            box-shadow: 0 40px 100px rgba(255,255,255,0.25);
+            padding: 60px 40px;
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-8px);
+            box-shadow: 0 50px 120px rgba(255,255,255,0.35);
         }
 
         .pricing-badge {
@@ -820,23 +836,168 @@
             top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 8px 25px;
+            padding: 10px 30px;
             background: #fff;
             color: #000;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255,255,255,0.4);
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .pricing-tier-name {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .pricing-price-container {
+            margin-bottom: 30px;
+        }
+
+        .pricing-original-price {
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.4);
+            text-decoration: line-through;
+            font-weight: 600;
+            margin-bottom: 5px;
         }
 
         .pricing-price {
             font-size: 4rem;
             font-weight: 900;
             letter-spacing: -2px;
-            margin-bottom: 10px;
             color: #fff;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .pricing-contact {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .pricing-save-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .pricing-section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 25px 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            margin-right: 12px;
+            color: #fff;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pricing-bonus {
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid rgba(255,255,255,0.5);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .pricing-bonus p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .pricing-bonus strong {
+            color: #fff;
+        }
+
+        .pricing-bottom-text {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 18px 30px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .pricing-card:not(.featured) .pricing-cta {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .pricing-card:not(.featured) .pricing-cta:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
         }
 
         /* Mobile Responsive */
@@ -898,11 +1059,24 @@
             }
 
             .pricing-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
 
             .pricing-card.featured {
-                transform: none;
+                transform: none !important;
+                padding: 50px 30px !important;
+            }
+
+            .pricing-card {
+                padding: 40px 25px !important;
+            }
+
+            .pricing-price {
+                font-size: 3rem !important;
+            }
+
+            .pricing-original-price {
+                font-size: 1.2rem !important;
             }
 
             .floating-orb {
@@ -1141,47 +1315,105 @@
         <section id="pricing">
             <p class="section-eyebrow" style="color: #666;">INVESTMENT</p>
             <h2 class="section-title">Pricing Plans</h2>
-            <p class="section-subtitle">Transparent pricing designed for your success</p>
+            <p class="section-subtitle">Premium packages designed to transform your business</p>
+
             <div class="pricing-grid">
-                <div class="pricing-card glass-card">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Starter</h3>
-                    <div class="pricing-price"><sup style="font-size: 1.5rem;">$</sup>5K</div>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px;">Starting Price</p>
-                    <ul style="list-style: none; margin-bottom: 40px;">
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Brand Identity Package</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">5-Page Website</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Basic SEO</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Social Templates</li>
-                        <li style="padding: 15px 0; color: rgba(255,255,255,0.8);">1 Month Support</li>
-                    </ul>
-                    <a href="#contact" class="btn-secondary" style="width: 100%; text-align: center;">Get Started</a>
+                <!-- TIER 1: STARTER -->
+                <div class="pricing-card">
+                    <p class="pricing-tier-name">Starter</p>
+
+                    <div class="pricing-price-container">
+                        <div class="pricing-original-price">$4,997</div>
+                        <div class="pricing-price">$3,497</div>
+                        <div class="pricing-save-badge">Save $1,500</div>
+                    </div>
+
+                    <div class="pricing-features">
+                        <p class="pricing-section-title">Pick 1:</p>
+                        <ul>
+                            <li>Website (10 pages, mobile responsive, SEO ready)</li>
+                            <li>AI Chatbot (handles customer service, 1000 conversations/month)</li>
+                            <li>Social Media Setup + 3 Months Management (2 platforms, 12 posts/month)</li>
+                            <li>Ad Campaign Setup + 2 Months Management ($2K ad spend managed)</li>
+                        </ul>
+
+                        <p class="pricing-section-title">Support:</p>
+                        <ul>
+                            <li>Email support</li>
+                            <li>Basic training</li>
+                        </ul>
+                    </div>
+
+                    <p class="pricing-bottom-text">Limited: Only 3 spots left this month</p>
+                    <a href="#contact" class="pricing-cta">Get Started</a>
                 </div>
-                <div class="pricing-card featured glass-card">
-                    <div class="pricing-badge">Most Popular</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Professional</h3>
-                    <div class="pricing-price"><sup style="font-size: 1.5rem;">$</sup>15K</div>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px;">Starting Price</p>
-                    <ul style="list-style: none; margin-bottom: 40px;">
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Complete Brand Strategy</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Custom Website Design</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">E-Commerce Integration</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Content Marketing</li>
-                        <li style="padding: 15px 0; color: rgba(255,255,255,0.8);">3 Months Support</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+
+                <!-- TIER 2: PROFESSIONAL (FEATURED) -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">⭐ MOST POPULAR</div>
+                    <p class="pricing-tier-name">Professional</p>
+
+                    <div class="pricing-price-container">
+                        <div class="pricing-original-price">$15,997</div>
+                        <div class="pricing-price">$9,997</div>
+                        <div class="pricing-save-badge">Save $6,000</div>
+                    </div>
+
+                    <div class="pricing-features">
+                        <p class="pricing-section-title">Pick 2:</p>
+                        <ul>
+                            <li>Custom Website (15 pages) OR E-Commerce (100 products)</li>
+                            <li>AI Chatbot + Voice Agent (unlimited conversations, CRM integration)</li>
+                            <li>Social Media Management - 6 Months (3 platforms, 20 posts/month)</li>
+                            <li>Ad Campaigns - 6 Months ($3K/month ad spend managed)</li>
+                        </ul>
+
+                        <p class="pricing-section-title">Plus:</p>
+                        <ul>
+                            <li>Monthly strategy calls</li>
+                            <li>Performance reports</li>
+                            <li>Priority support</li>
+                        </ul>
+
+                        <div class="pricing-bonus">
+                            <p><strong>BONUS:</strong> Free brand strategy session ($1,500 value)</p>
+                        </div>
+                    </div>
+
+                    <p class="pricing-bottom-text">87% of our clients choose this package</p>
+                    <a href="#contact" class="pricing-cta">Scale Now</a>
                 </div>
-                <div class="pricing-card glass-card">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Enterprise</h3>
-                    <div class="pricing-price"><sup style="font-size: 1.5rem;">$</sup>50K</div>
-                    <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px;">Starting Price</p>
-                    <ul style="list-style: none; margin-bottom: 40px;">
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Digital Transformation</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Custom Platform</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Advanced Analytics</li>
-                        <li style="padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);">Dedicated Team</li>
-                        <li style="padding: 15px 0; color: rgba(255,255,255,0.8);">12 Months Support</li>
-                    </ul>
-                    <a href="#contact" class="btn-secondary" style="width: 100%; text-align: center;">Get Started</a>
+
+                <!-- TIER 3: ENTERPRISE -->
+                <div class="pricing-card">
+                    <div class="pricing-badge" style="background: linear-gradient(135deg, #FFD700, #FFA500); color: #000;">👑 ENTERPRISE</div>
+                    <p class="pricing-tier-name">Enterprise</p>
+
+                    <div class="pricing-price-container">
+                        <div class="pricing-contact">Contact Us</div>
+                    </div>
+
+                    <div class="pricing-features">
+                        <p class="pricing-section-title">Get Everything:</p>
+                        <ul>
+                            <li>Advanced Website + E-Commerce Platform</li>
+                            <li>Full AI Suite (Multiple bots + voice agents + automation)</li>
+                            <li>Social Media Management - 12 Months (5 platforms, 40 posts/month)</li>
+                            <li>Major Ad Campaigns - 12 Months ($8K+/month ad spend managed)</li>
+                        </ul>
+
+                        <p class="pricing-section-title">Plus:</p>
+                        <ul>
+                            <li>Dedicated team</li>
+                            <li>Weekly calls</li>
+                            <li>24/7 support</li>
+                            <li>Custom solutions</li>
+                            <li>Unlimited revisions</li>
+                        </ul>
+                    </div>
+
+                    <p class="pricing-bottom-text">EXCLUSIVE: Only 2 enterprise clients accepted per quarter</p>
+                    <a href="#contact" class="pricing-cta">Let's Build Your Empire</a>
                 </div>
             </div>
         </section>
