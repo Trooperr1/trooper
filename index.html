@@ -1971,7 +1971,33 @@
         // GOOGLE TRANSLATE INTEGRATION
         // ========================================
 
+        let googleTranslateReady = false;
+
+        // Wait for Google Translate to be fully loaded
+        function waitForGoogleTranslate(callback) {
+            let attempts = 0;
+            const maxAttempts = 50;
+
+            const checkInterval = setInterval(function() {
+                attempts++;
+                const selectElement = document.querySelector('.goog-te-combo');
+
+                if (selectElement && selectElement.options.length > 1) {
+                    clearInterval(checkInterval);
+                    googleTranslateReady = true;
+                    console.log('✅ Google Translate is ready!');
+                    if (callback) callback();
+                } else if (attempts >= maxAttempts) {
+                    clearInterval(checkInterval);
+                    console.warn('⚠️ Google Translate initialization timeout');
+                }
+            }, 100);
+        }
+
+        // Translate to specific language
         function translateTo(lang, flag, label, element) {
+            console.log('🌍 Translating to:', lang);
+
             // Update button display
             document.getElementById('currentFlag').textContent = flag;
             document.getElementById('currentLang').textContent = label;
@@ -1994,72 +2020,94 @@
 
             // Trigger Google Translate
             if (lang === 'de') {
-                // Reset to original German
-                var selectElement = document.querySelector('.goog-te-combo');
-                if (selectElement) {
-                    selectElement.value = '';
-                    selectElement.dispatchEvent(new Event('change'));
-                }
-                // Reload page to original language
-                setTimeout(() => {
-                    window.location.href = window.location.pathname;
-                }, 100);
+                // Reset to original German - reload page
+                console.log('🔄 Resetting to German');
+                localStorage.removeItem('googtrans');
+                window.location.reload();
             } else {
-                // Wait for Google Translate to be ready
-                var checkExist = setInterval(function() {
-                    var selectElement = document.querySelector('.goog-te-combo');
-                    if (selectElement) {
-                        clearInterval(checkExist);
-                        selectElement.value = lang;
-                        selectElement.dispatchEvent(new Event('change'));
+                // Translate to selected language
+                if (googleTranslateReady) {
+                    triggerTranslation(lang);
+                } else {
+                    console.log('⏳ Waiting for Google Translate...');
+                    waitForGoogleTranslate(function() {
+                        triggerTranslation(lang);
+                    });
+                }
+            }
+        }
+
+        // Actually trigger the translation
+        function triggerTranslation(lang) {
+            const selectElement = document.querySelector('.goog-te-combo');
+            if (selectElement) {
+                console.log('✨ Triggering translation to:', lang);
+                selectElement.value = lang;
+                selectElement.dispatchEvent(new Event('change'));
+
+                // Force reload after a moment to ensure translation applies
+                setTimeout(() => {
+                    if (!document.body.classList.contains('translated-ltr') &&
+                        !document.body.classList.contains('translated-rtl')) {
+                        console.log('🔄 Reloading to apply translation...');
+                        window.location.reload();
                     }
-                }, 100);
+                }, 500);
+            } else {
+                console.error('❌ Google Translate selector not found');
             }
         }
 
         // Load saved language on page load
         window.addEventListener('load', function() {
-            const savedLang = localStorage.getItem('preferredLanguage');
-            const savedFlag = localStorage.getItem('preferredFlag');
-            const savedLabel = localStorage.getItem('preferredLangLabel');
+            console.log('📄 Page loaded, initializing language system...');
 
-            if (savedLang && savedFlag && savedLabel) {
-                document.getElementById('currentFlag').textContent = savedFlag;
-                document.getElementById('currentLang').textContent = savedLabel;
+            // Wait for Google Translate to initialize
+            waitForGoogleTranslate(function() {
+                const savedLang = localStorage.getItem('preferredLanguage');
+                const savedFlag = localStorage.getItem('preferredFlag');
+                const savedLabel = localStorage.getItem('preferredLangLabel');
 
-                // Update active option
-                document.querySelectorAll('.language-option').forEach(opt => {
-                    opt.classList.remove('active');
-                    if (opt.getAttribute('data-lang') === savedLang) {
-                        opt.classList.add('active');
-                    }
-                });
+                if (savedLang && savedFlag && savedLabel) {
+                    console.log('💾 Restoring saved language:', savedLang);
 
-                // Apply translation if not German
-                if (savedLang !== 'de') {
-                    var checkExist = setInterval(function() {
-                        var selectElement = document.querySelector('.goog-te-combo');
-                        if (selectElement) {
-                            clearInterval(checkExist);
-                            selectElement.value = savedLang;
-                            selectElement.dispatchEvent(new Event('change'));
+                    document.getElementById('currentFlag').textContent = savedFlag;
+                    document.getElementById('currentLang').textContent = savedLabel;
+
+                    // Update active option
+                    document.querySelectorAll('.language-option').forEach(opt => {
+                        opt.classList.remove('active');
+                        if (opt.getAttribute('data-lang') === savedLang) {
+                            opt.classList.add('active');
                         }
-                    }, 100);
+                    });
+
+                    // Apply translation if not German
+                    if (savedLang !== 'de') {
+                        triggerTranslation(savedLang);
+                    }
+                } else {
+                    console.log('🇨🇭 Default language: German');
                 }
-            }
+            });
         });
 
         // Toggle language dropdown
         function toggleLanguageDropdown() {
             const dropdown = document.getElementById('languageDropdown');
             dropdown.classList.toggle('active');
+            console.log('🎯 Language dropdown toggled:', dropdown.classList.contains('active') ? 'OPEN' : 'CLOSED');
         }
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const languageSwitcher = document.querySelector('.language-switcher');
             if (languageSwitcher && !languageSwitcher.contains(event.target)) {
-                document.getElementById('languageDropdown').classList.remove('active');
+                const dropdown = document.getElementById('languageDropdown');
+                if (dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                    console.log('🔒 Dropdown closed (clicked outside)');
+                }
             }
         });
 
