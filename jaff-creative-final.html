@@ -404,15 +404,17 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: rgba(0,0,0,0.05);
+            gap: 40px;
             margin-top: 100px;
         }
 
         .service-card {
-            background: #000;
-            color: #fff;
-            padding: 80px 50px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
             transition: all 0.5s;
             position: relative;
             overflow: hidden;
@@ -425,7 +427,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
             opacity: 0;
             transition: opacity 0.5s;
         }
@@ -436,33 +438,106 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255,255,255,0.3);
         }
 
         .service-number {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: rgba(255,255,255,0.1);
             font-weight: 900;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            line-height: 1;
         }
 
         .service-icon {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            opacity: 0.8;
+            font-size: 3rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            display: block;
+        }
+
+        .service-category {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .service-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
             color: #fff;
+            line-height: 1.2;
         }
 
         .service-description {
             font-size: 0.95rem;
-            line-height: 1.8;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 30px;
+        }
+
+        .service-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .service-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        .service-list li:before {
+            content: '→';
+            margin-right: 12px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-list li:hover {
+            color: #fff;
+            padding-left: 10px;
+        }
+
+        .service-list li:hover:before {
+            color: #fff;
+        }
+
+        .service-cta {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.2);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .service-cta:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
         }
 
         /* Portfolio */
@@ -767,7 +842,10 @@
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             section, .full-width { padding: 80px 40px; }
-            .services-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .services-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
             .portfolio-item { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
 
@@ -778,15 +856,23 @@
 
             .services-grid {
                 grid-template-columns: 1fr !important;
-                gap: 20px !important;
-                background: transparent !important;
+                gap: 30px !important;
             }
 
             .service-card {
-                max-width: 500px;
-                margin: 0 auto;
-                border-radius: 20px;
-                padding: 60px 30px !important;
+                padding: 40px 30px !important;
+            }
+
+            .service-number {
+                font-size: 2.5rem !important;
+            }
+
+            .service-title {
+                font-size: 1.5rem !important;
+            }
+
+            .service-list li {
+                font-size: 0.85rem !important;
             }
 
             .portfolio-item {
@@ -906,46 +992,60 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="full-width full-width-light">
-            <p class="section-eyebrow">WHAT WE DO</p>
+        <section id="services">
+            <p class="section-eyebrow" style="color: #666;">WHAT WE DO</p>
             <h2 class="section-title">Our Premium Services</h2>
-            <p class="section-subtitle">Comprehensive creative solutions that drive real business results</p>
+            <p class="section-subtitle">Cutting-edge solutions powered by innovation and creativity</p>
             <div class="services-grid">
+                <!-- AI Solutions -->
                 <div class="service-card">
                     <div class="service-number">01</div>
-                    <div class="service-icon">✦</div>
-                    <h3 class="service-title">Brand & Strategy</h3>
-                    <p class="service-description">Brand Strategy • Positioning • Messaging • Market Research</p>
+                    <div class="service-icon">🤖</div>
+                    <p class="service-category">INTELLIGENT AUTOMATION</p>
+                    <h3 class="service-title">AI Solutions</h3>
+                    <p class="service-description">Transform your business with cutting-edge artificial intelligence and automation</p>
+                    <ul class="service-list">
+                        <li>Custom AI Chatbots for customer service automation and lead generation</li>
+                        <li>Voice Agents for phone automation and intelligent voice assistants</li>
+                        <li>Business Process Automation for workflow optimization</li>
+                        <li>AI-powered data processing and analysis</li>
+                        <li>24/7 automated customer support systems</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
                 </div>
+
+                <!-- Website Development -->
                 <div class="service-card">
                     <div class="service-number">02</div>
-                    <div class="service-icon">◆</div>
-                    <h3 class="service-title">Design & Identity</h3>
-                    <p class="service-description">Logo Design • Visual Identity • Brand Guidelines • Packaging</p>
+                    <div class="service-icon">💻</div>
+                    <p class="service-category">DIGITAL PRESENCE</p>
+                    <h3 class="service-title">Website Development</h3>
+                    <p class="service-description">Premium websites and web applications built for performance and conversion</p>
+                    <ul class="service-list">
+                        <li>E-commerce websites with payment integration and inventory management</li>
+                        <li>Business websites, corporate sites, and landing pages</li>
+                        <li>Portfolio sites and personal branding websites</li>
+                        <li>Custom web applications tailored to your needs</li>
+                        <li>Responsive design for all devices and platforms</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
                 </div>
+
+                <!-- Social Media Management -->
                 <div class="service-card">
                     <div class="service-number">03</div>
-                    <div class="service-icon">●</div>
-                    <h3 class="service-title">Content & Production</h3>
-                    <p class="service-description">Video Production • Photography • Animation • Copywriting</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-number">04</div>
-                    <div class="service-icon">✶</div>
-                    <h3 class="service-title">Digital & Web</h3>
-                    <p class="service-description">Website Design • Landing Pages • Email Design • Digital Assets</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-number">05</div>
-                    <div class="service-icon">◈</div>
-                    <h3 class="service-title">Social & Campaigns</h3>
-                    <p class="service-description">Social Content • Management • Paid Ads • Influencer Direction</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-number">06</div>
-                    <div class="service-icon">◉</div>
-                    <h3 class="service-title">Performance & Growth</h3>
-                    <p class="service-description">Creative Testing • Conversion Optimization • Analytics</p>
+                    <div class="service-icon">📱</div>
+                    <p class="service-category">BRAND GROWTH</p>
+                    <h3 class="service-title">Social Media Management</h3>
+                    <p class="service-description">Strategic social media solutions that drive engagement and revenue</p>
+                    <ul class="service-list">
+                        <li>Professional content creation and scheduling</li>
+                        <li>Data-driven social media strategy and planning</li>
+                        <li>Paid advertising campaigns (Facebook, Instagram, Google Ads)</li>
+                        <li>Comprehensive analytics and performance reporting</li>
+                        <li>Community management and engagement optimization</li>
+                    </ul>
+                    <a href="#contact" class="service-cta">Learn More</a>
                 </div>
             </div>
         </section>
