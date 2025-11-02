@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Plumbing Pro | 24/7 Emergency Plumbing Services</title>
+    <title>Bella Vista Restaurant | Fine Dining Experience</title>
     <style>
         * {
             margin: 0;
@@ -12,14 +12,14 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0d1b2e 100%);
-            color: #ffffff;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Animated background pattern */
+        /* Animated background */
         body::before {
             content: '';
             position: fixed;
@@ -27,18 +27,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                radial-gradient(circle at 20% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(70, 130, 180, 0.05) 0%, transparent 50%);
+            background:
+                radial-gradient(circle at 20% 50%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.08) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
-            animation: bgPulse 15s ease-in-out infinite;
+            animation: bgPulse 20s ease-in-out infinite;
         }
 
         @keyframes bgPulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.6; }
         }
 
         nav, section, footer {
@@ -46,48 +45,16 @@
             z-index: 1;
         }
 
-        /* Emergency Banner */
-        .emergency-banner {
-            background: linear-gradient(90deg, #ff4444 0%, #cc0000 100%);
-            padding: 0.8rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
-
-        .emergency-banner a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 1rem;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            transition: all 0.3s;
-        }
-
-        .emergency-banner a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
         /* Navigation */
         nav {
-            background: rgba(10, 22, 40, 0.95);
-            padding: 1.2rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1.5rem 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(30, 144, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(184, 134, 11, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .nav-content {
@@ -99,19 +66,20 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #1e90ff;
-            text-transform: uppercase;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #d4af37;
+            font-family: 'Georgia', serif;
             letter-spacing: 2px;
+            text-transform: uppercase;
             display: flex;
             align-items: center;
             gap: 0.8rem;
         }
 
         .logo-icon {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.6));
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
         }
 
         .nav-links {
@@ -121,14 +89,15 @@
         }
 
         .nav-links a {
-            color: #ffffff;
+            color: #f5f5f5;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.3s;
             position: relative;
+            font-family: 'Arial', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
         .nav-links a::after {
@@ -139,12 +108,12 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: #1e90ff;
+            background: #d4af37;
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: #1e90ff;
+            color: #d4af37;
         }
 
         .nav-links a:hover::after {
@@ -153,210 +122,144 @@
 
         /* Hero Section */
         .hero {
-            min-height: 90vh;
+            min-height: 100vh;
             padding: 100px 5% 80px;
             display: flex;
             align-items: center;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1600&h=900&fit=crop') center/cover;
             position: relative;
         }
 
         .hero-content {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            width: 100%;
+            text-align: center;
+            animation: fadeInUp 1s ease;
         }
 
-        .hero-left {
-            animation: fadeInLeft 1s ease;
-        }
-
-        @keyframes fadeInLeft {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateX(-50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
         .hero-badge {
             display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: rgba(30, 144, 255, 0.2);
-            border: 2px solid rgba(30, 144, 255, 0.4);
+            padding: 0.7rem 2rem;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.5);
             border-radius: 50px;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
             margin-bottom: 2rem;
-            font-weight: 700;
+            font-weight: 600;
             text-transform: uppercase;
-            color: #00bfff;
+            color: #d4af37;
+            font-family: 'Arial', sans-serif;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             margin-bottom: 1.5rem;
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.1;
-            letter-spacing: -1px;
+            letter-spacing: 3px;
+            color: #fff;
         }
 
         .hero .highlight {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #4682b4 100%);
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 50%, #d4af37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-description {
-            font-size: 1.2rem;
-            color: #b0c4de;
-            margin-bottom: 2.5rem;
+            font-size: 1.4rem;
+            color: #e0e0e0;
+            margin-bottom: 3rem;
             line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: 'Georgia', serif;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 4rem;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 1.2rem 2.5rem;
+            padding: 1.3rem 3rem;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Arial', sans-serif;
         }
 
         .cta-button.primary {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #0a0a0a;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4);
         }
 
         .cta-button.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
         }
 
         .cta-button.secondary {
             background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(30, 144, 255, 0.5);
+            color: #f5f5f5;
+            border: 2px solid rgba(212, 175, 55, 0.7);
         }
 
         .cta-button.secondary:hover {
-            background: rgba(30, 144, 255, 0.1);
-            border-color: #1e90ff;
-            transform: translateY(-3px);
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            transform: translateY(-5px);
         }
 
-        .trust-indicators {
+        .hero-stats {
             display: flex;
-            gap: 3rem;
+            gap: 4rem;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .stat-item {
+            text-align: center;
         }
 
-        .trust-icon {
-            font-size: 2rem;
-            color: #1e90ff;
-        }
-
-        .trust-text {
-            font-size: 0.9rem;
-            color: #b0c4de;
-        }
-
-        .trust-text strong {
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #d4af37;
             display: block;
-            color: #ffffff;
-            font-size: 1.1rem;
-        }
-
-        .hero-right {
-            position: relative;
-            animation: fadeInRight 1s ease;
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-image {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(30, 144, 255, 0.3);
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .floating-badge {
-            position: absolute;
-            background: rgba(10, 22, 40, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .badge-1 {
-            top: 10%;
-            left: -5%;
-        }
-
-        .badge-2 {
-            bottom: 10%;
-            right: -5%;
-        }
-
-        .badge-icon {
-            font-size: 2rem;
             margin-bottom: 0.5rem;
         }
 
-        .badge-text {
-            font-weight: 700;
+        .stat-label {
             font-size: 1rem;
+            color: #e0e0e0;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-family: 'Arial', sans-serif;
         }
 
         /* Section Styling */
@@ -366,296 +269,272 @@
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            letter-spacing: -1px;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #b0c4de;
+            font-size: 1.2rem;
+            color: #b0b0b0;
             margin-bottom: 4rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-        }
-
-        /* Services Section */
-        .services {
-            background: rgba(10, 22, 40, 0.5);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 3rem 2.5rem;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            border-radius: 15px;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #1e90ff, transparent);
-            transition: left 0.5s;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.6);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.2);
-            background: rgba(26, 41, 66, 0.8);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .service-card p {
-            color: #b0c4de;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            color: #b0c4de;
-            font-size: 0.9rem;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: #1e90ff;
-            font-weight: 700;
-            margin-right: 0.8rem;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose {
-            background: rgba(10, 22, 40, 0.3);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-box {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: rgba(26, 41, 66, 0.4);
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            transition: all 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.5);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .feature-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .feature-box p {
-            color: #b0c4de;
-            line-height: 1.7;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: rgba(10, 22, 40, 0.5);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 3rem;
-            color: rgba(30, 144, 255, 0.3);
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-        }
-
-        .testimonial-text {
-            color: #b0c4de;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
             font-style: italic;
         }
 
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        /* About Section */
+        .about {
+            background: rgba(10, 10, 10, 0.6);
         }
 
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #1e90ff, #4682b4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .author-info h4 {
-            color: #ffffff;
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            color: #b0c4de;
-            font-size: 0.85rem;
-        }
-
-        .rating {
-            color: #ffd700;
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: rgba(10, 22, 40, 0.3);
-        }
-
-        .contact-container {
-            max-width: 1200px;
+        .about-content {
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
+            align-items: center;
         }
 
-        .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1e90ff;
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 3px solid rgba(212, 175, 55, 0.3);
         }
 
-        .contact-item {
+        .about-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #d4af37;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #d0d0d0;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
             display: flex;
             align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: rgba(26, 41, 66, 0.4);
-            border-radius: 10px;
-            border: 1px solid rgba(30, 144, 255, 0.2);
+            gap: 1rem;
         }
 
-        .contact-icon {
+        .feature-icon {
             font-size: 2rem;
-            color: #1e90ff;
-            flex-shrink: 0;
+            color: #d4af37;
         }
 
-        .contact-details h4 {
-            font-size: 1.1rem;
+        .feature-text h4 {
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: #ffffff;
+            color: #d4af37;
+            font-family: 'Arial', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .contact-details p {
-            color: #b0c4de;
-            font-size: 1rem;
+        .feature-text p {
+            font-size: 0.95rem;
+            color: #b0b0b0;
         }
 
-        .contact-details a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: color 0.3s;
+        /* Menu Section */
+        .menu {
+            background: rgba(15, 15, 15, 0.8);
         }
 
-        .contact-details a:hover {
-            color: #00bfff;
+        .menu-categories {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .contact-form {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 3rem;
+        .menu-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 2rem;
             border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.3);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .contact-form h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1e90ff;
+        .menu-item:hover {
+            border-color: rgba(212, 175, 55, 0.6);
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 1.5rem;
+            color: #f5f5f5;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .item-description {
+            font-size: 1rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .item-price {
+            font-size: 1.8rem;
+            color: #d4af37;
+            font-weight: 700;
+            margin-left: 2rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: rgba(10, 10, 10, 0.6);
+        }
+
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .overlay-title {
+            font-size: 1.3rem;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-description {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+        }
+
+        /* Reservations Section */
+        .reservations {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+                url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&h=900&fit=crop') center/cover;
+        }
+
+        .reservation-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 4rem;
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -664,33 +543,35 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
+            margin-bottom: 0.7rem;
+            color: #d4af37;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 1rem;
-            background: rgba(10, 22, 40, 0.5);
-            border: 2px solid rgba(30, 144, 255, 0.3);
-            border-radius: 8px;
-            color: #ffffff;
+            background: rgba(10, 10, 10, 0.7);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            color: #f5f5f5;
             font-size: 1rem;
+            font-family: 'Arial', sans-serif;
             transition: all 0.3s;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: #1e90ff;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
 
         .form-group textarea {
@@ -700,132 +581,231 @@
 
         .submit-btn {
             width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
-            color: #ffffff;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #0a0a0a;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            font-family: 'Arial', sans-serif;
         }
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: rgba(10, 10, 10, 0.6);
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 15px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .contact-card p {
+            color: #d0d0d0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .contact-card a {
+            color: #d4af37;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: #f4d03f;
         }
 
         /* Footer */
         footer {
-            background: rgba(10, 22, 40, 0.8);
-            padding: 3rem 5%;
-            border-top: 2px solid rgba(30, 144, 255, 0.3);
+            background: rgba(5, 5, 5, 0.95);
+            padding: 4rem 5% 2rem;
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
         }
 
         .footer-content {
             max-width: 1400px;
             margin: 0 auto;
-            text-align: center;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        .footer-content p {
-            color: #b0c4de;
-            margin-bottom: 0.5rem;
+        .footer-about h3 {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
         }
 
-        .footer-links {
+        .footer-about p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .footer-links a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #00bfff;
-        }
-
-        /* Floating Call Button */
-        .floating-call {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #ff4444, #cc0000);
-            color: #ffffff;
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid rgba(212, 175, 55, 0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.5);
-            z-index: 999;
-            cursor: pointer;
-            transition: all 0.3s;
-            animation: bounce 2s infinite;
+            font-size: 1.3rem;
+            color: #d4af37;
             text-decoration: none;
+            transition: all 0.3s;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+        .social-icon:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-5px);
         }
 
-        .floating-call:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 68, 68, 0.7);
+        .footer-section h4 {
+            font-size: 1.3rem;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: #808080;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Floating Reserve Button */
+        .floating-reserve {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #0a0a0a;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+            z-index: 999;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .floating-reserve:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.7);
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
-            .hero-right {
-                order: -1;
-            }
-
-            .contact-container {
+            .about-content {
                 grid-template-columns: 1fr;
                 gap: 3rem;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
             }
 
             .nav-links {
                 display: none;
-            }
-
-            .services-grid,
-            .features-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .trust-indicators {
-                flex-direction: column;
-                gap: 1.5rem;
             }
 
             .hero-buttons {
@@ -833,44 +813,36 @@
             }
 
             .section-title {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
-            .emergency-banner {
-                font-size: 0.8rem;
+            .reservation-container {
+                padding: 2rem;
             }
 
-            .emergency-banner a {
-                display: block;
-                margin-top: 0.5rem;
-                margin-left: 0;
-            }
-
-            .floating-badge {
-                display: none;
+            .floating-reserve {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Emergency Banner -->
-    <div class="emergency-banner">
-        🚨 24/7 EMERGENCY PLUMBING SERVICES AVAILABLE
-        <a href="tel:+1234567890">CALL NOW: (123) 456-7890</a>
-    </div>
-
     <!-- Navigation -->
     <nav>
         <div class="nav-content">
             <div class="logo">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
+                <span class="logo-icon">🍽️</span>
+                Bella Vista
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Why Choose Us</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#reservations">Reservations</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -879,355 +851,356 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="hero-left">
-                <div class="hero-badge">⭐ Certified & Licensed Plumbers</div>
-                <h1>Your <span class="highlight">Elite</span><br>Plumbing Partner</h1>
-                <p class="hero-description">
-                    Professional plumbing services available 24/7. From emergency repairs to complete installations,
-                    we deliver excellence with every job. Licensed, insured, and trusted by thousands.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="cta-button primary">Request Service</a>
-                    <a href="tel:+1234567890" class="cta-button secondary">Call Emergency</a>
+            <div class="hero-badge">⭐ Fine Dining Excellence Since 2010</div>
+            <h1><span class="highlight">Bella Vista</span><br>Restaurant</h1>
+            <p class="hero-description">
+                Experience culinary artistry in an atmosphere of refined elegance.
+                Where tradition meets innovation, and every meal becomes a memorable celebration.
+            </p>
+            <div class="hero-buttons">
+                <a href="#reservations" class="cta-button primary">Reserve a Table</a>
+                <a href="#menu" class="cta-button secondary">View Menu</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Experience</span>
                 </div>
-                <div class="trust-indicators">
-                    <div class="trust-item">
-                        <span class="trust-icon">✓</span>
-                        <div class="trust-text">
-                            <strong>Licensed</strong>
-                            Fully Certified
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⚡</span>
-                        <div class="trust-text">
-                            <strong>24/7</strong>
-                            Emergency Service
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⭐</span>
-                        <div class="trust-text">
-                            <strong>5.0 Rating</strong>
-                            1000+ Reviews
-                        </div>
-                    </div>
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Happy Guests</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5★</span>
+                    <span class="stat-label">Average Rating</span>
                 </div>
             </div>
-            <div class="hero-right">
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop" alt="Professional Plumber">
-                    <div class="floating-badge badge-1">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-text">Fully Insured</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&h=900&fit=crop" alt="Restaurant Interior">
+            </div>
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>
+                    Welcome to Bella Vista, where passion for food meets the art of hospitality.
+                    Since 2010, we have been crafting exceptional dining experiences that celebrate
+                    the finest ingredients, masterful techniques, and warm Italian traditions.
+                </p>
+                <p>
+                    Our award-winning chef brings decades of culinary expertise, creating dishes
+                    that honor authentic flavors while embracing contemporary innovation. Every plate
+                    tells a story, every ingredient is carefully sourced, and every guest becomes
+                    part of our family.
+                </p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">👨‍🍳</span>
+                        <div class="feature-text">
+                            <h4>Expert Chefs</h4>
+                            <p>Award-winning culinary team with international experience</p>
+                        </div>
                     </div>
-                    <div class="floating-badge badge-2">
-                        <div class="badge-icon">⏰</div>
-                        <div class="badge-text">Same Day Service</div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🌿</span>
+                        <div class="feature-text">
+                            <h4>Fresh Ingredients</h4>
+                            <p>Locally sourced, organic produce delivered daily</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🍷</span>
+                        <div class="feature-text">
+                            <h4>Fine Wines</h4>
+                            <p>Curated selection from renowned vineyards worldwide</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✨</span>
+                        <div class="feature-text">
+                            <h4>Elegant Ambiance</h4>
+                            <p>Sophisticated atmosphere perfect for any occasion</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section services">
-        <h2 class="section-title">Our <span class="highlight">Premium</span> Services</h2>
-        <p class="section-subtitle">
-            Comprehensive plumbing solutions for residential and commercial properties.
-            No job too big or small.
-        </p>
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">🚰</span>
-                <h3>Emergency Repairs</h3>
-                <p>24/7 emergency plumbing services for urgent issues. Fast response times, expert solutions.</p>
-                <ul class="service-features">
-                    <li>Burst pipe repairs</li>
-                    <li>Water heater failures</li>
-                    <li>Severe drain clogs</li>
-                    <li>Gas leak detection</li>
-                </ul>
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <h2 class="section-title">Our <span class="highlight">Signature Menu</span></h2>
+        <p class="section-subtitle">A curated selection of our most beloved dishes, crafted with passion and precision</p>
+
+        <div class="menu-categories">
+            <!-- Appetizers -->
+            <div class="menu-category">
+                <h3 class="category-title">Appetizers</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Burrata Caprese</div>
+                            <div class="item-description">Fresh burrata, heirloom tomatoes, basil, aged balsamic, extra virgin olive oil</div>
+                        </div>
+                        <div class="item-price">$18</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Seared Scallops</div>
+                            <div class="item-description">Pan-seared scallops, cauliflower puree, crispy pancetta, microgreens</div>
+                        </div>
+                        <div class="item-price">$24</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Truffle Arancini</div>
+                            <div class="item-description">Crispy risotto balls, black truffle, parmesan, aioli</div>
+                        </div>
+                        <div class="item-price">$16</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="service-card">
-                <span class="service-icon">🚿</span>
-                <h3>Bathroom Plumbing</h3>
-                <p>Complete bathroom plumbing services from installations to renovations.</p>
-                <ul class="service-features">
-                    <li>Toilet installation & repair</li>
-                    <li>Shower/tub services</li>
-                    <li>Sink & faucet work</li>
-                    <li>Full bathroom remodels</li>
-                </ul>
+            <!-- Main Courses -->
+            <div class="menu-category">
+                <h3 class="category-title">Main Courses</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Osso Buco alla Milanese</div>
+                            <div class="item-description">Braised veal shank, saffron risotto, gremolata, seasonal vegetables</div>
+                        </div>
+                        <div class="item-price">$48</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Lobster Ravioli</div>
+                            <div class="item-description">House-made ravioli, butter sauce, cherry tomatoes, fresh herbs</div>
+                        </div>
+                        <div class="item-price">$42</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Filet Mignon</div>
+                            <div class="item-description">8oz prime beef, truffle mashed potatoes, asparagus, red wine reduction</div>
+                        </div>
+                        <div class="item-price">$52</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Branzino al Forno</div>
+                            <div class="item-description">Oven-roasted Mediterranean sea bass, lemon butter, roasted vegetables</div>
+                        </div>
+                        <div class="item-price">$38</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="service-card">
-                <span class="service-icon">🍽️</span>
-                <h3>Kitchen Plumbing</h3>
-                <p>Professional kitchen plumbing for functionality and efficiency.</p>
-                <ul class="service-features">
-                    <li>Garbage disposal services</li>
-                    <li>Dishwasher installation</li>
-                    <li>Kitchen sink repair</li>
-                    <li>Water line installation</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">♨️</span>
-                <h3>Water Heaters</h3>
-                <p>Expert water heater installation, repair, and maintenance services.</p>
-                <ul class="service-features">
-                    <li>Tank & tankless heaters</li>
-                    <li>Repair & replacement</li>
-                    <li>Energy-efficient options</li>
-                    <li>Regular maintenance</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🌊</span>
-                <h3>Drain Cleaning</h3>
-                <p>Advanced drain cleaning and hydro-jetting for stubborn clogs.</p>
-                <ul class="service-features">
-                    <li>Video camera inspection</li>
-                    <li>Hydro-jetting services</li>
-                    <li>Root removal</li>
-                    <li>Preventive maintenance</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏠</span>
-                <h3>Pipe Services</h3>
-                <p>Complete pipe installation, repair, and replacement services.</p>
-                <ul class="service-features">
-                    <li>Leak detection & repair</li>
-                    <li>Pipe replacement</li>
-                    <li>Re-piping services</li>
-                    <li>Sewer line repair</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">💧</span>
-                <h3>Water Filtration</h3>
-                <p>Clean, safe water with our advanced filtration systems.</p>
-                <ul class="service-features">
-                    <li>Whole-house filters</li>
-                    <li>Water softeners</li>
-                    <li>Reverse osmosis systems</li>
-                    <li>Water quality testing</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏢</span>
-                <h3>Commercial Plumbing</h3>
-                <p>Professional plumbing services for businesses and commercial properties.</p>
-                <ul class="service-features">
-                    <li>Restaurant plumbing</li>
-                    <li>Office buildings</li>
-                    <li>Retail spaces</li>
-                    <li>Maintenance contracts</li>
-                </ul>
+            <!-- Desserts -->
+            <div class="menu-category">
+                <h3 class="category-title">Desserts</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Tiramisu Classico</div>
+                            <div class="item-description">Traditional Italian tiramisu, espresso-soaked ladyfingers, mascarpone cream</div>
+                        </div>
+                        <div class="item-price">$14</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Panna Cotta</div>
+                            <div class="item-description">Vanilla bean panna cotta, mixed berry compote, mint</div>
+                        </div>
+                        <div class="item-price">$12</div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Chocolate Fondant</div>
+                            <div class="item-description">Molten chocolate cake, vanilla gelato, raspberry coulis</div>
+                        </div>
+                        <div class="item-price">$15</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="section why-choose">
-        <h2 class="section-title">Why Choose <span class="highlight">Elite Plumbing</span></h2>
-        <p class="section-subtitle">
-            We're not just another plumbing company. We're your trusted partner for all plumbing needs.
-        </p>
-        <div class="features-grid">
-            <div class="feature-box">
-                <span class="feature-icon">⚡</span>
-                <h3>Fast Response</h3>
-                <p>Same-day service available. We arrive on time, every time, ready to solve your plumbing issues quickly.</p>
-            </div>
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <h2 class="section-title">Culinary <span class="highlight">Gallery</span></h2>
+        <p class="section-subtitle">A visual journey through our exquisite dishes and elegant atmosphere</p>
 
-            <div class="feature-box">
-                <span class="feature-icon">🎓</span>
-                <h3>Expert Team</h3>
-                <p>Licensed, certified, and highly trained plumbers with years of experience in all aspects of plumbing.</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=600&h=600&fit=crop" alt="Gourmet Dish">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Artisan Creations</div>
+                    <div class="overlay-description">Every dish is a masterpiece</div>
+                </div>
             </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">💯</span>
-                <h3>Quality Guarantee</h3>
-                <p>100% satisfaction guaranteed. We stand behind our work with comprehensive warranties.</p>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&h=600&fit=crop" alt="Fine Dining">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Elegant Presentation</div>
+                    <div class="overlay-description">Beauty meets flavor</div>
+                </div>
             </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">💰</span>
-                <h3>Fair Pricing</h3>
-                <p>Transparent, upfront pricing with no hidden fees. Free estimates on all major work.</p>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=600&fit=crop" alt="Desserts">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Sweet Endings</div>
+                    <div class="overlay-description">Desserts to remember</div>
+                </div>
             </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🛠️</span>
-                <h3>Modern Equipment</h3>
-                <p>State-of-the-art tools and technology for efficient, precise, and lasting solutions.</p>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1560053218-938a4a979a2c?w=600&h=600&fit=crop" alt="Wine Selection">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Wine Pairings</div>
+                    <div class="overlay-description">Curated selections</div>
+                </div>
             </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🌟</span>
-                <h3>Customer First</h3>
-                <p>Exceptional customer service is our priority. Your satisfaction is our success.</p>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1562158147-c2850d895a80?w=600&h=600&fit=crop" alt="Chef at Work">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Culinary Excellence</div>
+                    <div class="overlay-description">Passion in every plate</div>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600&h=600&fit=crop" alt="Restaurant Ambiance">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Sophisticated Setting</div>
+                    <div class="overlay-description">Perfect atmosphere</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials">
-        <h2 class="section-title">What Our <span class="highlight">Customers Say</span></h2>
-        <p class="section-subtitle">
-            Don't just take our word for it. See what our satisfied customers have to say.
-        </p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    Elite Plumbing saved the day! Had a burst pipe at 2 AM and they were here within 30 minutes.
-                    Professional, fast, and fixed everything perfectly. Highly recommend!
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">JD</div>
-                    <div class="author-info">
-                        <h4>John Davis</h4>
-                        <p>Homeowner</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Reservations Section -->
+    <section id="reservations" class="section reservations">
+        <h2 class="section-title">Make a <span class="highlight">Reservation</span></h2>
+        <p class="section-subtitle">Reserve your table for an unforgettable dining experience</p>
 
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    Best plumbing company I've ever worked with. They completely renovated our bathroom plumbing
-                    and the quality is outstanding. Fair prices and excellent workmanship.
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SM</div>
-                    <div class="author-info">
-                        <h4>Sarah Martinez</h4>
-                        <p>Property Manager</p>
+        <div class="reservation-container">
+            <form id="reservationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
                     </div>
                 </div>
-            </div>
 
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    We use Elite Plumbing for all our commercial properties. Always reliable, professional,
-                    and their emergency service is truly 24/7. Worth every penny!
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">RW</div>
-                    <div class="author-info">
-                        <h4>Robert Williams</h4>
-                        <p>Business Owner</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" name="phone" required>
                     </div>
                 </div>
-            </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time *</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guests">Number of Guests *</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="7">7+ Guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="occasion">Occasion</label>
+                        <select id="occasion" name="occasion">
+                            <option value="">Select occasion</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="business">Business Dinner</option>
+                            <option value="date">Date Night</option>
+                            <option value="celebration">Celebration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="requests">Special Requests</label>
+                    <textarea id="requests" name="requests" placeholder="Dietary restrictions, seating preferences, etc."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Confirm Reservation</button>
+            </form>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section contact">
-        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
-        <p class="section-subtitle">
-            Ready to solve your plumbing issues? Contact us today for a free estimate.
-        </p>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
+        <h2 class="section-title">Visit <span class="highlight">Us</span></h2>
+        <p class="section-subtitle">We look forward to welcoming you to Bella Vista</p>
 
-                <div class="contact-item">
-                    <span class="contact-icon">📞</span>
-                    <div class="contact-details">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+1234567890">(123) 456-7890</a></p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">24/7 Emergency Line</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <div class="contact-details">
-                        <h4>Email</h4>
-                        <p><a href="mailto:info@eliteplumbing.com">info@eliteplumbing.com</a></p>
-                        <p><a href="mailto:emergency@eliteplumbing.com">emergency@eliteplumbing.com</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>123 Main Street</p>
-                        <p>Your City, ST 12345</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">⏰</span>
-                    <div class="contact-details">
-                        <h4>Business Hours</h4>
-                        <p>Monday - Friday: 7:00 AM - 7:00 PM</p>
-                        <p>Saturday: 8:00 AM - 5:00 PM</p>
-                        <p>Sunday: Emergency Only</p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">Emergency Service: 24/7</p>
-                    </div>
-                </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <span class="contact-icon">📍</span>
+                <h3>Location</h3>
+                <p>
+                    123 Gourmet Avenue<br>
+                    Downtown District<br>
+                    New York, NY 10001
+                </p>
             </div>
 
-            <div class="contact-form">
-                <h3>Request Service</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
+            <div class="contact-card">
+                <span class="contact-icon">📞</span>
+                <h3>Phone</h3>
+                <p>
+                    <a href="tel:+12125551234">(212) 555-1234</a><br>
+                    Mon-Sun: 5:00 PM - 11:00 PM
+                </p>
+            </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+            <div class="contact-card">
+                <span class="contact-icon">✉️</span>
+                <h3>Email</h3>
+                <p>
+                    <a href="mailto:info@bellavista.com">info@bellavista.com</a><br>
+                    <a href="mailto:reservations@bellavista.com">reservations@bellavista.com</a>
+                </p>
+            </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service">Service Type *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="emergency">Emergency Repair</option>
-                            <option value="bathroom">Bathroom Plumbing</option>
-                            <option value="kitchen">Kitchen Plumbing</option>
-                            <option value="water-heater">Water Heater</option>
-                            <option value="drain-cleaning">Drain Cleaning</option>
-                            <option value="pipe-services">Pipe Services</option>
-                            <option value="water-filtration">Water Filtration</option>
-                            <option value="commercial">Commercial Plumbing</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Describe Your Issue *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Request Service Now</button>
-                </form>
+            <div class="contact-card">
+                <span class="contact-icon">⏰</span>
+                <h3>Hours</h3>
+                <p>
+                    Dinner: 5:00 PM - 11:00 PM<br>
+                    Monday - Sunday<br>
+                    Closed Major Holidays
+                </p>
             </div>
         </div>
     </section>
@@ -1235,58 +1208,60 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
+            <div class="footer-about">
+                <h3>Bella Vista</h3>
+                <p>
+                    Experience the finest in contemporary Italian cuisine. Our commitment to
+                    quality, authenticity, and exceptional service makes every visit memorable.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📌</a>
+                </div>
             </div>
-            <p>&copy; 2025 Elite Plumbing Pro. All Rights Reserved.</p>
-            <p style="margin-top: 0.5rem;">Licensed & Insured | Serving Your Area Since 2005</p>
-            <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#why-us">Why Choose Us</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#reservations">Reservations</a></li>
+                </ul>
             </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Private Events</a></li>
+                    <li><a href="#">Catering</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Wine Club</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Information</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bella Vista Restaurant. All Rights Reserved. | Crafted with passion and precision</p>
         </div>
     </footer>
 
-    <!-- Floating Call Button -->
-    <a href="tel:+1234567890" class="floating-call" title="Call Now for Emergency Service">📞</a>
+    <!-- Floating Reserve Button -->
+    <a href="#reservations" class="floating-reserve">Reserve Now</a>
 
     <script>
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-
-            // Create mailto link
-            const subject = encodeURIComponent('Plumbing Service Request from ' + formData.name);
-            const body = encodeURIComponent(
-                `Name: ${formData.name}\n` +
-                `Email: ${formData.email}\n` +
-                `Phone: ${formData.phone}\n` +
-                `Service Type: ${formData.service}\n\n` +
-                `Message:\n${formData.message}`
-            );
-
-            window.location.href = `mailto:info@eliteplumbing.com?subject=${subject}&body=${body}`;
-
-            // Reset form
-            setTimeout(() => {
-                this.reset();
-                alert('Thank you! Your request has been sent. We will contact you shortly.');
-            }, 500);
-        });
-
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1299,6 +1274,72 @@
                     });
                 }
             });
+        });
+
+        // Form submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value,
+                occasion: document.getElementById('occasion').value,
+                requests: document.getElementById('requests').value
+            };
+
+            // Create mailto link
+            const subject = encodeURIComponent(`Reservation Request - ${formData.firstName} ${formData.lastName}`);
+            const body = encodeURIComponent(
+                `Reservation Details:\n\n` +
+                `Name: ${formData.firstName} ${formData.lastName}\n` +
+                `Email: ${formData.email}\n` +
+                `Phone: ${formData.phone}\n` +
+                `Date: ${formData.date}\n` +
+                `Time: ${formData.time}\n` +
+                `Number of Guests: ${formData.guests}\n` +
+                `Occasion: ${formData.occasion}\n\n` +
+                `Special Requests:\n${formData.requests}`
+            );
+
+            window.location.href = `mailto:reservations@bellavista.com?subject=${subject}&body=${body}`;
+
+            // Reset form and show confirmation
+            setTimeout(() => {
+                this.reset();
+                alert('Thank you for your reservation request! We will contact you shortly to confirm.');
+            }, 500);
+        });
+
+        // Set minimum date for reservation to today
+        const dateInput = document.getElementById('date');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.menu-item, .gallery-item, .contact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
