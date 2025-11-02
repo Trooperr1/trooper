@@ -2301,201 +2301,85 @@
         }
 
         /* ========================================
-           iPad & iPhone OPTIMIZATIONS
+           COMPREHENSIVE iPhone & iPad OPTIMIZATIONS
         ======================================== */
 
-        /* iPad Pro 12.9" Landscape - 1366px */
-        @media only screen
-        and (min-device-width: 1024px)
-        and (max-device-width: 1366px)
-        and (orientation: landscape)
-        and (-webkit-min-device-pixel-ratio: 2) {
-            .hero {
-                height: 100vh;
-                grid-template-columns: 1fr 1fr;
+        /* All iOS devices - Base optimizations */
+        @supports (-webkit-touch-callout: none) {
+            /* Fix iOS Safari input zoom */
+            input, select, textarea {
+                font-size: 16px !important;
             }
 
-            .hero-right {
-                display: block;
+            /* Fix 100vh issue on iOS */
+            .hero {
+                min-height: -webkit-fill-available;
+            }
+
+            /* Smooth scrolling */
+            body {
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        /* iPad Landscape (all models) - 1024px to 1366px */
+        @media only screen and (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+            .hero {
+                height: 100vh;
             }
 
             .hero-title {
-                font-size: 78px;
+                font-size: 70px;
             }
 
             .section-title {
-                font-size: 68px;
+                font-size: 60px;
+            }
+
+            .container {
+                padding: 0 70px;
             }
 
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .container {
-                padding: 0 80px;
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
 
-            /* Better touch targets */
-            .lang-btn, .nav-links a {
+            .stats-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            /* Touch-friendly */
+            button, a, .lang-btn, .nav-links a {
                 min-height: 48px;
                 min-width: 48px;
             }
         }
 
-        /* iPad Pro 12.9" Portrait - 1024px */
-        @media only screen
-        and (min-device-width: 1024px)
-        and (max-device-width: 1024px)
-        and (orientation: portrait)
-        and (-webkit-min-device-pixel-ratio: 2) {
+        /* iPad Portrait (all models) - 768px to 1024px */
+        @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
             .hero {
                 height: auto;
-                min-height: 90vh;
-                padding: 120px 0 80px;
+                padding: 140px 0 80px;
             }
 
             .hero-title {
-                font-size: 72px;
-            }
-
-            .section-title {
-                font-size: 62px;
-            }
-
-            .about-section, .services, .gallery, .booking, .contact {
-                padding: 120px 0;
-            }
-
-            .container {
-                padding: 0 60px;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            /* Optimize form for iPad */
-            .booking-form {
-                padding: 60px 50px;
-            }
-
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                font-size: 17px;
-                padding: 18px;
-                min-height: 56px;
-            }
-
-            .submit-button {
-                min-height: 60px;
-                font-size: 14px;
-            }
-        }
-
-        /* iPad (all models) Landscape - 1024px and 1112px */
-        @media only screen
-        and (min-device-width: 768px)
-        and (max-device-width: 1024px)
-        and (orientation: landscape) {
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                height: 100vh;
-            }
-
-            .hero-right {
-                display: block;
-            }
-
-            .hero-left {
-                padding: 0 60px 0 80px;
-            }
-
-            .hero-title {
-                font-size: 68px;
-            }
-
-            .section-title {
                 font-size: 58px;
             }
 
-            .stats-container {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 40px;
-            }
-
-            .stat-item::after {
-                display: block;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr 1.2fr;
-                gap: 80px;
-            }
-
-            .credentials {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .contact-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .map-info {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            /* Touch-friendly buttons */
-            .btn-primary, .btn-secondary {
-                min-height: 56px;
-                font-size: 14px;
-                padding: 20px 50px;
-            }
-
-            .lang-btn {
-                min-height: 46px;
-                min-width: 46px;
-                padding: 12px 20px;
-            }
-        }
-
-        /* iPad Portrait - 768px */
-        @media only screen
-        and (min-device-width: 768px)
-        and (max-device-width: 834px)
-        and (orientation: portrait) {
-            .hero {
-                height: auto;
-                min-height: 85vh;
-                padding: 120px 0 60px;
-            }
-
-            .hero-title {
-                font-size: 64px;
-            }
-
             .section-title {
-                font-size: 54px;
+                font-size: 50px;
             }
 
             .container {
                 padding: 0 50px;
             }
 
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
+            .nav-container {
+                padding: 0 40px;
             }
 
             .services-grid {
@@ -2503,124 +2387,108 @@
             }
 
             .service-card {
-                padding: 50px 40px;
+                padding: 45px 35px;
             }
 
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            /* Better spacing for touch */
-            .nav-links {
-                gap: 20px;
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .nav-links a {
-                min-height: 48px;
-                padding: 12px 8px;
-            }
-
-            .lang-btn {
-                min-height: 48px;
-                min-width: 48px;
-                padding: 12px 20px;
-                font-size: 14px;
+            .booking-form {
+                padding: 55px 45px;
             }
 
             .form-group input,
             .form-group select,
             .form-group textarea {
                 font-size: 17px;
-                padding: 18px;
-                min-height: 56px;
+                padding: 16px;
+                min-height: 54px;
+            }
+
+            button, a, .lang-btn {
+                min-height: 48px;
+                min-width: 48px;
             }
         }
 
-        /* iPhone 14 Pro Max, 13 Pro Max, 12 Pro Max - 428px */
-        @media only screen
-        and (min-device-width: 414px)
-        and (max-device-width: 428px)
-        and (-webkit-min-device-pixel-ratio: 3) {
+        /* iPhone 15 Pro Max, 14 Pro Max, Plus models - 430px */
+        @media only screen and (min-width: 414px) and (max-width: 430px) {
             .hero {
-                min-height: 90vh;
-                padding: 100px 0 60px;
+                padding: 110px 0 70px;
             }
 
             .hero-title {
-                font-size: 52px;
+                font-size: 50px;
+                line-height: 1.15;
             }
 
             .section-title {
-                font-size: 44px;
+                font-size: 42px;
             }
 
-            .container {
-                padding: 0 25px;
+            .container, .nav-container {
+                padding: 0 24px;
             }
 
-            .nav-container {
-                padding: 0 25px;
-            }
-
-            /* Optimize font sizes for larger iPhones */
             .hero-description {
                 font-size: 16px;
-                line-height: 1.8;
+                line-height: 1.75;
+            }
+
+            .stat-number {
+                font-size: 50px;
+            }
+
+            .service-name {
+                font-size: 21px;
+            }
+
+            .service-price {
+                font-size: 33px;
+            }
+
+            .service-card {
+                padding: 42px 32px;
             }
 
             .about-text {
                 font-size: 16px;
             }
 
-            .service-name {
-                font-size: 22px;
-            }
-
-            .service-price {
-                font-size: 34px;
-            }
-
-            /* Better touch targets */
             .btn-primary, .btn-secondary {
-                min-height: 58px;
-                font-size: 14px;
+                padding: 19px 35px;
+                font-size: 13px;
+                min-height: 56px;
             }
 
-            .lang-btn {
-                min-height: 48px;
-                min-width: 48px;
-                font-size: 14px;
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 16px;
+                min-height: 54px;
             }
 
-            .whatsapp-float {
-                width: 62px;
-                height: 62px;
-                font-size: 30px;
+            .booking-form {
+                padding: 45px 28px;
             }
         }
 
-        /* iPhone 14, 13, 12 Pro - 390px */
-        @media only screen
-        and (min-device-width: 375px)
-        and (max-device-width: 390px)
-        and (-webkit-min-device-pixel-ratio: 3) {
-            .hero {
-                min-height: 88vh;
-            }
-
+        /* iPhone 15, 14 Pro, 13 Pro, 12 Pro - 393px */
+        @media only screen and (min-width: 390px) and (max-width: 393px) {
             .hero-title {
-                font-size: 46px;
+                font-size: 47px;
             }
 
             .section-title {
                 font-size: 40px;
             }
 
-            .container {
-                padding: 0 22px;
-            }
-
-            .stats-container {
+            .container, .nav-container {
                 padding: 0 22px;
             }
 
@@ -2629,39 +2497,7 @@
             }
 
             .service-card {
-                padding: 38px 28px;
-            }
-
-            /* iOS Safari specific fixes */
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                font-size: 16px; /* Prevents zoom on iOS */
-                -webkit-appearance: none;
-                -webkit-border-radius: 0;
-            }
-
-            .submit-button {
-                -webkit-appearance: none;
-                border-radius: 0;
-            }
-        }
-
-        /* iPhone SE (2nd/3rd gen), 8, 7 - 375px */
-        @media only screen
-        and (min-device-width: 375px)
-        and (max-device-width: 375px)
-        and (-webkit-min-device-pixel-ratio: 2) {
-            .hero-title {
-                font-size: 44px;
-            }
-
-            .section-title {
-                font-size: 38px;
-            }
-
-            .stat-number {
-                font-size: 46px;
+                padding: 40px 30px;
             }
 
             .service-name {
@@ -2669,21 +2505,41 @@
             }
 
             .service-price {
-                font-size: 30px;
-            }
-
-            .booking-form {
-                padding: 40px 25px;
+                font-size: 32px;
             }
         }
 
-        /* iPhone 13 mini, 12 mini - 360px */
-        @media only screen
-        and (min-device-width: 360px)
-        and (max-device-width: 360px)
-        and (-webkit-min-device-pixel-ratio: 3) {
+        /* iPhone 15 Plus, 14, 13, 12, 11, XR - 390px */
+        @media only screen and (min-width: 375px) and (max-width: 390px) {
             .hero-title {
-                font-size: 42px;
+                font-size: 45px;
+            }
+
+            .section-title {
+                font-size: 38px;
+            }
+
+            .container, .nav-container {
+                padding: 0 20px;
+            }
+
+            .stat-number {
+                font-size: 46px;
+            }
+
+            .service-card {
+                padding: 38px 28px;
+            }
+
+            .booking-form {
+                padding: 42px 26px;
+            }
+        }
+
+        /* iPhone SE 3rd/2nd gen, 8, 7, 6s - 375px */
+        @media only screen and (min-width: 360px) and (max-width: 375px) {
+            .hero-title {
+                font-size: 43px;
             }
 
             .section-title {
@@ -2694,32 +2550,86 @@
                 padding: 0 20px;
             }
 
+            .nav-container {
+                padding: 0 18px;
+            }
+
+            .stat-number {
+                font-size: 44px;
+            }
+
+            .service-name {
+                font-size: 19px;
+            }
+
+            .service-price {
+                font-size: 30px;
+            }
+
             .service-card {
-                padding: 35px 25px;
+                padding: 36px 26px;
+            }
+
+            .booking-form {
+                padding: 40px 24px;
+            }
+
+            .hero-description {
+                font-size: 15px;
             }
         }
 
-        /* iPhone SE 1st gen, 5/5S - 320px */
-        @media only screen
-        and (max-device-width: 320px) {
+        /* iPhone 13 mini, 12 mini - 360px */
+        @media only screen and (min-width: 340px) and (max-width: 360px) {
             .hero-title {
-                font-size: 38px;
+                font-size: 41px;
             }
 
             .section-title {
-                font-size: 32px;
+                font-size: 34px;
             }
 
             .container, .nav-container {
                 padding: 0 18px;
             }
 
+            .stat-number {
+                font-size: 42px;
+            }
+
+            .service-card {
+                padding: 34px 24px;
+            }
+
+            .service-name {
+                font-size: 18px;
+            }
+
+            .booking-form {
+                padding: 38px 22px;
+            }
+        }
+
+        /* iPhone SE 1st gen, 5/5S - 320px */
+        @media only screen and (max-width: 340px) {
+            .hero-title {
+                font-size: 37px;
+            }
+
+            .section-title {
+                font-size: 31px;
+            }
+
+            .container, .nav-container {
+                padding: 0 16px;
+            }
+
             .logo {
-                font-size: 20px;
+                font-size: 19px;
             }
 
             .nav-links {
-                gap: 10px;
+                gap: 8px;
                 font-size: 10px;
             }
 
@@ -2728,12 +2638,20 @@
                 font-size: 11px;
             }
 
+            .stat-number {
+                font-size: 40px;
+            }
+
             .service-card {
-                padding: 30px 20px;
+                padding: 32px 22px;
             }
 
             .service-name {
-                font-size: 18px;
+                font-size: 17px;
+            }
+
+            .service-price {
+                font-size: 28px;
             }
 
             .booking-form {
@@ -2741,91 +2659,67 @@
             }
         }
 
-        /* iOS-specific fixes for Safari */
-        @supports (-webkit-touch-callout: none) {
-            /* Fix iOS input zoom */
-            select,
-            textarea,
-            input[type="text"],
-            input[type="email"],
-            input[type="tel"],
-            input[type="date"] {
-                font-size: 16px !important;
-            }
-
-            /* Fix position fixed elements on iOS */
-            .whatsapp-float,
-            .scroll-indicator {
-                position: -webkit-sticky;
-                position: sticky;
-            }
-
-            /* Better scroll performance */
-            * {
-                -webkit-overflow-scrolling: touch;
-            }
-
-            /* Fix 100vh on iOS */
+        /* All iPhones Landscape mode */
+        @media only screen and (max-width: 932px) and (orientation: landscape) {
             .hero {
-                min-height: -webkit-fill-available;
-            }
-        }
-
-        /* Landscape mode for all iPhones */
-        @media only screen
-        and (max-device-width: 932px)
-        and (orientation: landscape) {
-            .hero {
-                min-height: auto;
-                padding: 100px 0 60px;
+                height: auto;
+                padding: 90px 0 50px;
             }
 
             .hero-title {
-                font-size: 44px;
+                font-size: 40px;
             }
 
             .section-title {
-                font-size: 38px;
+                font-size: 36px;
+            }
+
+            .about-section, .services, .gallery, .booking, .contact {
+                padding: 90px 0;
             }
 
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 30px;
             }
-
-            .about-section, .services, .gallery, .booking, .contact {
-                padding: 100px 0;
-            }
-
-            .nav-container {
-                padding: 0 25px;
-            }
         }
 
-        /* Better tap highlighting for iOS */
-        @media (hover: none) {
-            * {
-                -webkit-tap-highlight-color: rgba(201, 169, 97, 0.15);
-            }
-
-            button,
-            a,
-            input,
-            select,
-            textarea {
-                -webkit-tap-highlight-color: rgba(201, 169, 97, 0.2);
-            }
-
-            /* Ensure minimum touch target size (Apple HIG) */
+        /* Universal iOS touch optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            /* Better tap targets - Apple HIG minimum 44x44 */
             .lang-btn,
             .nav-links a,
             .btn-primary,
             .btn-secondary,
-            .whatsapp-float,
-            .scroll-indicator,
             .submit-button {
-                min-height: 44px;
-                min-width: 44px;
+                min-height: 48px;
+                min-width: 48px;
+                padding: 14px 28px;
+            }
+
+            .whatsapp-float,
+            .scroll-indicator {
+                min-height: 56px;
+                min-width: 56px;
+            }
+
+            /* Better tap highlighting */
+            * {
+                -webkit-tap-highlight-color: rgba(201, 169, 97, 0.2);
+            }
+
+            /* Remove hover effects on touch */
+            .service-card:hover,
+            .contact-item:hover,
+            .gallery-item:hover {
+                transform: none;
+            }
+
+            /* Add active states instead */
+            .btn-primary:active,
+            .btn-secondary:active,
+            .submit-button:active {
+                transform: scale(0.98);
             }
         }
     </style>
