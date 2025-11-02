@@ -1544,16 +1544,18 @@
             display: block;
         }
 
-        /* Responsive Design - Optimized for ALL Devices */
+        /* ========================================
+           RESPONSIVE DESIGN - ALL DEVICES
+        ======================================== */
 
-        /* Large Tablets and Small Desktops - 1400px */
+        /* Desktop & Large Tablets - Above 1200px */
         @media (max-width: 1400px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Tablets - 1200px */
+        /* Tablets - 1200px and below */
         @media (max-width: 1200px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -1567,14 +1569,6 @@
                 padding: 0 60px;
             }
 
-            .hero-title {
-                font-size: 72px;
-            }
-
-            .section-title {
-                font-size: 64px;
-            }
-
             .services-grid {
                 grid-template-columns: 1fr;
             }
@@ -1584,10 +1578,6 @@
                 gap: 60px;
             }
 
-            .about-right {
-                padding-left: 0;
-            }
-
             .credentials {
                 grid-template-columns: 1fr;
             }
@@ -1595,10 +1585,6 @@
             .vip-info-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
-            }
-
-            .vip-title {
-                font-size: 42px;
             }
 
             .gallery-grid {
@@ -1619,666 +1605,9 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .stat-item::after {
-                display: none;
-            }
-
-            .language-switcher {
-                padding-left: 30px;
-                gap: 10px;
-            }
-
             .booking-info {
                 padding-right: 0;
-            }
-
-            .map-container {
-                height: 500px;
-            }
-        }
-
-        /* Tablets Portrait - 992px */
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 62px;
-            }
-
-            .section-title {
-                font-size: 56px;
-            }
-
-            .vip-info-content {
-                flex-direction: column;
-            }
-
-            .deposit-requirement-top {
-                flex-direction: column;
-                gap: 20px;
-                padding: 25px;
-            }
-
-            .deposit-req-icon {
-                font-size: 36px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Mobile Landscape and Large Phones - 768px */
-        @media (max-width: 768px) {
-            /* Navigation */
-            .nav-container {
-                padding: 0 30px;
-                flex-wrap: wrap;
-                gap: 20px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                font-size: 11px;
-            }
-
-            .nav-links a {
-                padding: 12px 4px;
-                min-height: 44px;
-                display: flex;
-                align-items: center;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            .language-switcher {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                padding: 20px 0 0 0;
-                border: none;
-                border-top: 1px solid rgba(201, 169, 97, 0.2);
-            }
-
-            .lang-btn {
-                padding: 10px 18px;
-                font-size: 13px;
-                min-height: 44px;
-                min-width: 44px;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-            }
-
-            /* Hero Section */
-            .hero-left {
-                padding: 0 30px;
-            }
-
-            .hero-title {
-                font-size: 48px;
-                line-height: 1.1;
-            }
-
-            .hero-name {
-                font-size: 48px;
-            }
-
-            .hero-description {
-                font-size: 15px;
-                line-height: 1.8;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: 100%;
-                text-align: center;
-                padding: 20px 30px;
-                font-size: 13px;
-                min-height: 56px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            /* Stats */
-            .stats-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .stat-number {
-                font-size: 52px;
-            }
-
-            .stat-label {
-                font-size: 14px;
-            }
-
-            /* Sections */
-            .container {
-                padding: 0 30px;
-            }
-
-            .section-title {
-                font-size: 42px;
-            }
-
-            .section-description {
-                font-size: 15px;
-                line-height: 1.8;
-            }
-
-            .section-badge span {
-                font-size: 10px;
-                padding: 10px 20px;
-            }
-
-            /* About */
-            .about-title {
-                font-size: 48px !important;
-            }
-
-            .about-text {
-                font-size: 15px;
-            }
-
-            .credential-item {
-                padding: 20px;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .credential-icon {
-                font-size: 32px;
-            }
-
-            .credential-content h4 {
-                font-size: 16px;
-            }
-
-            .credential-content p {
-                font-size: 13px;
-            }
-
-            .about-quote {
-                padding: 30px 20px;
-            }
-
-            .about-quote p {
-                font-size: 16px;
-            }
-
-            /* Services */
-            .service-card {
-                padding: 40px 30px;
-            }
-
-            .service-name {
-                font-size: 20px;
-            }
-
-            .service-price {
-                font-size: 32px;
-            }
-
-            /* VIP Section */
-            .vip-title {
-                font-size: 36px;
-            }
-
-            .vip-description {
-                font-size: 15px;
-                line-height: 1.8;
-            }
-
-            .vip-benefits {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .vip-cta-btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            /* Map */
-            .map-container {
-                height: 400px;
-                margin-top: 60px;
-            }
-
-            .map-info-item {
-                padding: 40px 25px;
-            }
-
-            .map-info-icon {
-                font-size: 32px;
-            }
-
-            .map-info-title {
-                font-size: 16px;
-            }
-
-            .map-info-detail {
-                font-size: 13px;
-            }
-
-            /* Booking */
-            .booking-info h3 {
-                font-size: 42px !important;
-            }
-
-            .booking-form {
-                padding: 50px 30px;
-            }
-
-            .deposit-notice {
-                flex-direction: column;
-                gap: 15px;
-                padding: 25px 20px;
-            }
-
-            .deposit-method-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-                font-size: 13px;
-            }
-
-            .deposit-requirement-top {
-                padding: 20px;
-            }
-
-            .deposit-req-title {
-                font-size: 15px;
-                letter-spacing: 2px;
-            }
-
-            .deposit-req-text {
-                font-size: 14px;
-            }
-
-            .deposit-confirmation-group {
-                padding: 20px;
-            }
-
-            .deposit-confirmation-label {
-                font-size: 14px;
-            }
-
-            .form-group {
-                margin-bottom: 20px;
-            }
-
-            .form-group label {
-                font-size: 13px;
-            }
-
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                font-size: 16px;
-                padding: 16px;
-                min-height: 52px;
-                -webkit-appearance: none;
-                border-radius: 0;
-            }
-
-            .form-group textarea {
-                min-height: 120px;
-            }
-
-            .submit-button {
-                font-size: 13px;
-                padding: 22px 20px;
-                min-height: 64px;
-                letter-spacing: 3px;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            .success-message {
-                font-size: 14px;
-                padding: 20px;
-            }
-
-            .payment-badges {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .payment-badge {
-                width: 100%;
-            }
-
-            /* Contact */
-            .contact-grid {
-                gap: 40px;
-            }
-
-            .contact-item {
-                padding: 40px 25px;
-            }
-
-            .contact-icon {
-                font-size: 36px;
-            }
-
-            .contact-title {
-                font-size: 16px;
-            }
-
-            .contact-detail {
-                font-size: 14px;
-            }
-
-            /* Footer */
-            .footer-logo {
-                font-size: 28px;
-            }
-
-            .footer-text {
-                font-size: 12px;
-                padding: 0 20px;
-            }
-
-            /* Floating Buttons */
-            .whatsapp-float {
-                bottom: 90px;
-                right: 20px;
-                width: 64px;
-                height: 64px;
-                font-size: 28px;
-                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            .scroll-indicator {
-                bottom: 20px;
-                right: 20px;
-                width: 56px;
-                height: 56px;
-                font-size: 24px;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            /* Page Loader */
-            .page-loader {
-                padding: 0 30px;
-            }
-
-            .loader-logo {
-                font-size: 48px;
-            }
-        }
-
-        /* Mobile Phones Portrait - 480px */
-        @media (max-width: 480px) {
-            /* Typography */
-            .hero-title, .hero-name {
-                font-size: 38px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .hero-badge-text {
-                font-size: 11px;
-                letter-spacing: 1px;
-            }
-
-            .section-badge span {
-                font-size: 10px;
-                padding: 8px 18px;
-            }
-
-            /* Stats */
-            .stat-number {
-                font-size: 42px;
-            }
-
-            .stat-label {
-                font-size: 13px;
-            }
-
-            /* Services */
-            .service-name {
-                font-size: 18px;
-            }
-
-            .service-price {
-                font-size: 28px;
-            }
-
-            .service-card {
-                padding: 35px 25px;
-            }
-
-            /* VIP */
-            .vip-title {
-                font-size: 28px;
-            }
-
-            /* Booking */
-            .booking-info h3 {
-                font-size: 36px !important;
-            }
-
-            .deposit-req-title {
-                font-size: 14px;
-            }
-
-            .deposit-confirmation-label {
-                font-size: 13px;
-            }
-
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                font-size: 14px;
-            }
-
-            /* Contact */
-            .contact-icon {
-                font-size: 32px;
-            }
-
-            .contact-title {
-                font-size: 15px;
-            }
-
-            .contact-detail {
-                font-size: 13px;
-            }
-
-            .map-info-item {
-                padding: 30px 20px;
-            }
-
-            /* About */
-            .credential-content h4 {
-                font-size: 15px;
-            }
-
-            .credential-content p {
-                font-size: 12px;
-            }
-
-            .about-quote p {
-                font-size: 15px;
-            }
-
-            /* Buttons */
-            .payment-badge {
-                font-size: 11px;
-                padding: 10px 15px;
-            }
-
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 24px;
-            }
-
-            .scroll-indicator {
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
-            }
-        }
-
-        /* Extra Small Phones - 360px */
-        @media (max-width: 360px) {
-            .container, .hero-left {
-                padding: 0 20px;
-            }
-
-            .hero-title, .hero-name {
-                font-size: 32px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .nav-links {
-                font-size: 10px;
-                gap: 12px;
-            }
-
-            .lang-btn {
-                padding: 8px 14px;
-                font-size: 12px;
-                min-width: 40px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-
-            .logo-icon {
-                width: 35px;
-                height: 35px;
-            }
-
-            .booking-form {
-                padding: 40px 20px;
-            }
-
-            .deposit-requirement-top,
-            .deposit-confirmation-group,
-            .deposit-notice {
-                padding: 15px;
-            }
-
-            .btn-primary, .btn-secondary {
-                padding: 18px 25px;
-                font-size: 12px;
-            }
-
-            .service-card, .contact-item {
-                padding: 30px 20px;
-            }
-
-            .whatsapp-float {
-                width: 56px;
-                height: 56px;
-                font-size: 24px;
-                right: 15px;
-                bottom: 80px;
-            }
-
-            .scroll-indicator {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-                right: 15px;
-            }
-        }
-
-        /* Mobile-specific optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            /* Remove hover effects on touch devices */
-            .btn-primary:hover,
-            .btn-secondary:hover,
-            .service-card:hover,
-            .contact-item:hover {
-                transform: none;
-            }
-
-            /* Add active/touch states instead */
-            .btn-primary:active {
-                transform: scale(0.98);
-                transition: transform 0.1s;
-            }
-
-            .btn-secondary:active {
-                transform: scale(0.98);
-                transition: transform 0.1s;
-            }
-
-            .service-card:active {
-                transform: translateY(-5px);
-                transition: transform 0.2s;
-            }
-
-            .whatsapp-float:active,
-            .scroll-indicator:active {
-                transform: scale(0.9);
-                transition: transform 0.1s;
-            }
-
-            /* Better touch feedback */
-            .lang-btn:active {
-                background: var(--gold);
-                color: var(--black);
-            }
-
-            .nav-links a:active {
-                color: var(--gold-light);
-            }
-        }
-
-        /* Landscape orientation on mobile */
-        @media (max-width: 900px) and (orientation: landscape) {
-            .hero {
-                min-height: auto;
-                padding: 80px 0 60px;
-            }
-
-            .hero-title {
-                font-size: 42px;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 30px;
-            }
-
-            .section {
-                padding: 100px 0;
-            }
-        }
-
-        /* High resolution mobile screens */
-        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-            body {
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-            }
-
-            img {
-                image-rendering: -webkit-optimize-contrast;
+                position: static;
             }
         }
 
@@ -2720,6 +2049,196 @@
             .btn-secondary:active,
             .submit-button:active {
                 transform: scale(0.98);
+            }
+        }
+
+        /* ========================================
+           UNIVERSAL MOBILE OPTIMIZATIONS (ALL PHONES)
+        ======================================== */
+
+        /* All Mobile Devices - 768px and below */
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-container {
+                padding: 0 25px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+            }
+
+            .nav-links {
+                gap: 12px;
+                font-size: 11px;
+            }
+
+            .nav-links a {
+                padding: 10px 5px;
+                min-height: 44px;
+            }
+
+            .language-switcher {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding: 15px 0 0 0;
+                border: none;
+                border-top: 1px solid rgba(201, 169, 97, 0.2);
+            }
+
+            .lang-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-left {
+                padding: 0 25px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                padding: 18px 30px;
+                min-height: 54px;
+            }
+
+            /* Sections */
+            .container {
+                padding: 0 25px;
+            }
+
+            .stats-container {
+                padding: 0 25px;
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .stat-item::after {
+                display: none;
+            }
+
+            /* About */
+            .about-right {
+                padding-left: 0;
+            }
+
+            /* Services */
+            .service-card {
+                padding: 38px 28px;
+            }
+
+            /* VIP */
+            .vip-benefits {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .vip-cta-btn {
+                width: 100%;
+                text-align: center;
+                padding: 16px 35px;
+            }
+
+            /* Gallery */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Map */
+            .map-container {
+                height: 380px;
+                margin-top: 60px;
+            }
+
+            /* Booking */
+            .booking-form {
+                padding: 45px 25px;
+            }
+
+            .deposit-requirement-top {
+                padding: 22px;
+                flex-direction: column;
+            }
+
+            .deposit-notice {
+                padding: 22px;
+                flex-direction: column;
+            }
+
+            .deposit-method-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+
+            .form-group {
+                margin-bottom: 22px;
+            }
+
+            .form-group label {
+                font-size: 12px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 15px;
+                min-height: 50px;
+            }
+
+            .submit-button {
+                padding: 20px;
+                min-height: 58px;
+            }
+
+            /* Contact */
+            .contact-item {
+                padding: 38px 25px;
+            }
+
+            /* Floating buttons */
+            .whatsapp-float {
+                width: 58px;
+                height: 58px;
+                font-size: 28px;
+                bottom: 100px;
+                right: 22px;
+            }
+
+            .scroll-indicator {
+                width: 52px;
+                height: 52px;
+                font-size: 22px;
+                bottom: 22px;
+                right: 22px;
+            }
+
+            /* Footer */
+            .footer-logo {
+                font-size: 26px;
+            }
+
+            .footer-text {
+                font-size: 11px;
+                padding: 0 15px;
             }
         }
     </style>
