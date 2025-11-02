@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations | LUMIÈRE ROYALE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .reservation-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(10, 14, 39, 0.8);
+            padding: 6rem 5rem;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--royal-gold);
+            font-weight: 300;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(5, 8, 20, 0.6);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            color: var(--platinum);
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.4s;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 30px rgba(212, 165, 116, 0.2);
+            background: rgba(5, 8, 20, 0.8);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--royal-gold) 0%, #C89968 100%);
+            color: var(--midnight);
+            border: 1px solid var(--royal-gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.5s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(212, 165, 116, 0.4);
+        }
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            .reservation-container { padding: 3rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="mainNav">
+        <div class="nav-content">
+            <div class="logo"><span class="logo-icon">◆</span> LUMIÈRE ROYALE</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="experience.html">Experience</a></li>
+                <li><a href="about.html">Our Story</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="wine.html">Wine</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="reservations.html" class="active">Reserve</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div>
+            <h1>SECURE YOUR <span class="highlight">TABLE</span></h1>
+            <p>Reservations are highly sought after and must be made in advance</p>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <div class="reservation-container">
+            <form id="reservationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time *</label>
+                        <input type="time" id="time" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="guests">Guests *</label>
+                        <select id="guests" required>
+                            <option value="">Select</option>
+                            <option value="2">2 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="8+">Private Dining (8+)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="occasion">Occasion</label>
+                        <select id="occasion">
+                            <option value="">Select</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="business">Business</option>
+                            <option value="proposal">Proposal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="requests">Special Requests</label>
+                    <textarea id="requests" placeholder="Dietary restrictions, seating preferences..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">CONFIRM RESERVATION</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>LUMIÈRE ROYALE</h3>
+                <p>The world's most prestigious dining destination</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="wine.html">Wine</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Visit</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>More</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LUMIÈRE ROYALE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value,
+                occasion: document.getElementById('occasion').value,
+                requests: document.getElementById('requests').value
+            };
+            const subject = encodeURIComponent(`Reservation - ${formData.firstName} ${formData.lastName}`);
+            const body = encodeURIComponent(`Name: ${formData.firstName} ${formData.lastName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nDate: ${formData.date}\nTime: ${formData.time}\nGuests: ${formData.guests}\nOccasion: ${formData.occasion}\n\nRequests:\n${formData.requests}`);
+            window.location.href = `mailto:reservations@lumiereroyale.com?subject=${subject}&body=${body}`;
+            setTimeout(() => {
+                this.reset();
+                alert('Thank you! Our concierge team will contact you within 24 hours.');
+            }, 500);
+        });
+        const dateInput = document.getElementById('date');
+        const today = new Date();
+        today.setDate(today.getDate() + 3);
+        dateInput.setAttribute('min', today.toISOString().split('T')[0]);
+    </script>
+</body>
+</html>
