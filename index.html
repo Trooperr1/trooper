@@ -1104,203 +1104,318 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
+        /* Booking Steps */
+        .booking-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 80px 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .booking-step {
+            position: relative;
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(201, 169, 97, 0.03);
+            border: 1px solid rgba(201, 169, 97, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .booking-step:hover {
+            background: rgba(201, 169, 97, 0.08);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 35px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .step-icon {
+            font-size: 48px;
+            margin: 20px 0;
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Booking Grid */
         .booking-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 120px;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
             align-items: start;
+            margin-top: 60px;
         }
 
-        .booking-info {
-            padding-right: 50px;
-        }
-
-        /* Deposit Requirement Top Notice */
-        .deposit-requirement-top {
-            margin-top: 40px;
-            padding: 30px;
-            background: linear-gradient(135deg, rgba(201, 169, 97, 0.15), rgba(201, 169, 97, 0.05));
-            border: 3px solid var(--gold);
-            border-left: 8px solid var(--gold);
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .deposit-req-icon {
-            font-size: 40px;
-            line-height: 1;
-            animation: pulse-deposit 2s infinite;
-        }
-
-        @keyframes pulse-deposit {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .deposit-req-content {
-            flex: 1;
-        }
-
-        .deposit-req-title {
-            font-size: 18px;
-            color: var(--gold);
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .deposit-req-text {
-            font-size: 15px;
-            color: var(--white);
-            line-height: 1.8;
-            font-weight: 400;
-        }
-
-        .booking-info {
+        /* Info Card */
+        .booking-info-card {
+            background: var(--black);
+            padding: 50px;
+            border: 1px solid rgba(201, 169, 97, 0.15);
             position: sticky;
             top: 120px;
         }
 
-        .payment-methods {
-            margin-top: 60px;
-        }
-
-        .payment-title {
-            font-size: 14px;
-            letter-spacing: 3px;
-            color: var(--gold);
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        .payment-badges {
+        .info-card-header {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
         }
 
-        .payment-badge {
-            background: rgba(201, 169, 97, 0.05);
-            border: 1px solid rgba(201, 169, 97, 0.2);
-            padding: 20px 30px;
-            font-size: 14px;
+        .info-card-icon {
+            font-size: 42px;
+        }
+
+        .info-card-title {
+            font-size: 24px;
+            font-weight: 600;
             color: var(--gold);
             letter-spacing: 2px;
-            font-weight: 400;
-            transition: all 0.3s ease;
+        }
+
+        /* Deposit Alert */
+        .deposit-alert {
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.12), rgba(201, 169, 97, 0.04));
+            border: 2px solid var(--gold);
+            border-left: 6px solid var(--gold);
+            padding: 30px;
+            margin-bottom: 35px;
+        }
+
+        .alert-header {
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 12px;
         }
 
-        .payment-badge:hover {
-            background: rgba(201, 169, 97, 0.1);
-            border-color: var(--gold);
-            transform: translateX(10px);
+        .alert-icon {
+            font-size: 28px;
+            animation: pulse-alert 2s infinite;
         }
 
-        /* Deposit Notice */
-        .deposit-notice {
-            margin-top: 40px;
-            padding: 30px;
-            background: rgba(201, 169, 97, 0.05);
-            border: 2px solid var(--gold);
-            border-left: 5px solid var(--gold);
+        @keyframes pulse-alert {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0.9; }
+        }
+
+        .alert-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .alert-text {
+            font-size: 14px;
+            color: var(--white);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Payment Card */
+        .payment-card {
+            margin-bottom: 35px;
+        }
+
+        .payment-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .payment-option {
+            background: rgba(201, 169, 97, 0.03);
+            border: 1px solid rgba(201, 169, 97, 0.15);
+            padding: 25px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            background: rgba(201, 169, 97, 0.06);
+            border-color: rgba(201, 169, 97, 0.3);
+        }
+
+        .payment-option-header {
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
         }
 
-        .deposit-icon {
-            font-size: 32px;
-            line-height: 1;
+        .payment-icon {
+            font-size: 24px;
         }
 
-        .deposit-content {
+        .payment-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
             flex: 1;
         }
 
-        .deposit-title {
-            font-size: 16px;
-            color: var(--gold);
+        .payment-recommended {
+            background: var(--gold);
+            color: var(--black);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: 600;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .deposit-text {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .deposit-methods {
-            background: var(--black);
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .deposit-method-title {
-            font-size: 13px;
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
-        .deposit-method-item {
+        .payment-details {
+            padding-top: 15px;
+            border-top: 1px solid rgba(201, 169, 97, 0.1);
+        }
+
+        .payment-detail-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(201, 169, 97, 0.1);
-            font-size: 14px;
+        }
+
+        .payment-detail-label {
+            font-size: 13px;
             color: var(--gray);
         }
 
-        .deposit-method-item:last-child {
+        .payment-detail-value {
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .payment-detail-note {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Service Features */
+        .service-features {
+            padding: 30px;
+            background: rgba(201, 169, 97, 0.03);
+            border-top: 2px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+        }
+
+        .feature-item:last-child {
             border-bottom: none;
         }
 
-        .deposit-method-item strong {
-            color: var(--white);
-            font-weight: 600;
+        .feature-icon {
+            font-size: 24px;
         }
 
-        .booking-form {
+        .feature-text {
+            font-size: 14px;
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Booking Form Card */
+        .booking-form-card {
             background: var(--black);
-            padding: 80px 70px;
+            padding: 60px 50px;
             border: 1px solid rgba(201, 169, 97, 0.15);
         }
 
+        /* Form Sections */
+        .form-section {
+            margin-bottom: 50px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .form-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Form Groups */
         .form-group {
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
             font-size: 11px;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: var(--gold);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             font-weight: 500;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 18px 0;
+            padding: 16px 0;
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
             color: var(--white);
-            font-size: 16px;
+            font-size: 15px;
             font-family: 'Raleway', sans-serif;
             font-weight: 300;
             transition: all 0.3s ease;
@@ -1312,7 +1427,7 @@
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A961' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
             background-position: right 0 center;
-            background-size: 24px;
+            background-size: 20px;
             padding-right: 30px;
         }
 
@@ -1338,50 +1453,74 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            min-height: 100px;
         }
 
-        /* Deposit Confirmation Field */
-        .deposit-confirmation-group {
-            background: rgba(201, 169, 97, 0.05);
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        /* Deposit Checkbox Card */
+        .deposit-checkbox-card {
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(201, 169, 97, 0.03));
             border: 2px solid var(--gold);
-            padding: 25px;
-            border-radius: 5px;
+            padding: 30px;
             margin: 30px 0;
         }
 
-        .deposit-confirmation-label {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
+        .deposit-checkbox-label {
+            display: block;
             cursor: pointer;
-            font-size: 16px;
-            color: var(--white);
-            font-weight: 500;
         }
 
-        .deposit-confirmation-label input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
-            min-width: 24px;
+        .deposit-checkbox-label input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
             cursor: pointer;
             accent-color: var(--gold);
-            margin-top: 2px;
         }
 
-        .deposit-confirm-text {
-            line-height: 1.6;
+        .checkbox-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
         }
 
-        .deposit-info-small {
-            margin-top: 15px;
-            padding-top: 15px;
+        .checkbox-icon {
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .checkbox-text-wrapper {
+            flex: 1;
+        }
+
+        .checkbox-title {
+            display: block;
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .checkbox-desc {
+            display: block;
+            font-size: 14px;
+            color: var(--white);
+            line-height: 1.7;
+        }
+
+        .deposit-note {
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid rgba(201, 169, 97, 0.2);
             font-size: 13px;
             color: var(--gray);
-            font-style: italic;
+            line-height: 1.6;
         }
 
         .submit-button {
@@ -1409,11 +1548,27 @@
             display: none;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: var(--black);
-            padding: 25px;
+            padding: 35px;
             margin-bottom: 40px;
             font-weight: 500;
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            line-height: 1.7;
+            border: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .success-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--black);
+            color: var(--gold);
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
         }
 
         .success-message.show {
@@ -2128,68 +2283,150 @@
             }
 
             /* Booking Section */
-            .booking-form {
-                padding: 40px 20px;
+            .booking-steps {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin: 50px 0;
             }
 
-            .deposit-requirement-top {
-                padding: 20px;
-                flex-direction: column;
-                gap: 15px;
-                margin-top: 30px;
+            .booking-step {
+                padding: 30px 20px;
             }
 
-            .deposit-req-icon {
-                font-size: 32px;
+            .step-number {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+                top: -12px;
             }
 
-            .deposit-req-title {
-                font-size: 13px;
-                margin-bottom: 10px;
+            .step-icon {
+                font-size: 40px;
+                margin: 15px 0;
             }
 
-            .deposit-req-text {
+            .step-title {
+                font-size: 16px;
+            }
+
+            .step-desc {
                 font-size: 12px;
             }
 
-            .payment-methods {
-                margin-top: 40px;
+            .booking-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
-            .payment-title {
+            .booking-info-card {
+                padding: 30px 20px;
+                position: static;
+            }
+
+            .info-card-header {
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+
+            .info-card-icon {
+                font-size: 36px;
+            }
+
+            .info-card-title {
+                font-size: 20px;
+            }
+
+            .deposit-alert {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+            .alert-icon {
+                font-size: 24px;
+            }
+
+            .alert-title {
+                font-size: 13px;
+            }
+
+            .alert-text {
+                font-size: 13px;
+            }
+
+            .payment-card {
+                margin-bottom: 25px;
+            }
+
+            .payment-card-title {
                 font-size: 12px;
                 margin-bottom: 20px;
             }
 
-            .payment-badges {
-                flex-direction: column;
+            .payment-option {
+                padding: 20px;
+                margin-bottom: 12px;
+            }
+
+            .payment-option-header {
+                flex-wrap: wrap;
                 gap: 10px;
             }
 
-            .payment-badge {
-                padding: 16px 20px;
+            .payment-icon {
+                font-size: 22px;
+            }
+
+            .payment-name {
+                font-size: 15px;
+            }
+
+            .payment-recommended {
+                font-size: 10px;
+                padding: 3px 10px;
+            }
+
+            .payment-detail-label,
+            .payment-detail-note {
                 font-size: 12px;
             }
 
-            .deposit-notice {
-                padding: 20px;
-                flex-direction: column;
-                gap: 12px;
+            .payment-detail-value {
+                font-size: 14px;
             }
 
-            .deposit-icon {
-                font-size: 28px;
+            .service-features {
+                padding: 25px 20px;
             }
 
-            .deposit-notice-text {
-                font-size: 12px;
+            .feature-item {
+                padding: 12px 0;
             }
 
-            .deposit-method-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-                font-size: 11px;
+            .feature-icon {
+                font-size: 22px;
+            }
+
+            .feature-text {
+                font-size: 13px;
+            }
+
+            .booking-form-card {
+                padding: 40px 20px;
+            }
+
+            .form-section {
+                margin-bottom: 40px;
+                padding-bottom: 30px;
+            }
+
+            .form-section-title {
+                font-size: 15px;
+                margin-bottom: 25px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
 
             .form-group {
@@ -2197,40 +2434,72 @@
             }
 
             .form-group label {
-                font-size: 11px;
-                margin-bottom: 8px;
+                font-size: 10px;
+                margin-bottom: 10px;
             }
 
             .form-group input,
             .form-group select,
             .form-group textarea {
-                padding: 14px;
+                padding: 14px 0;
                 font-size: 16px;
                 min-height: 48px;
             }
 
             .form-group textarea {
-                min-height: 120px;
+                min-height: 100px;
+                padding: 14px;
             }
 
-            .deposit-confirmation-group {
-                padding: 18px;
+            .deposit-checkbox-card {
+                padding: 20px;
+                margin: 25px 0;
             }
 
-            .deposit-confirmation-label {
+            .checkbox-content {
+                gap: 12px;
+            }
+
+            .checkbox-icon {
+                font-size: 28px;
+            }
+
+            .checkbox-title {
+                font-size: 13px;
+            }
+
+            .checkbox-desc {
+                font-size: 13px;
+            }
+
+            .deposit-note {
                 font-size: 12px;
+                margin-top: 15px;
+                padding-top: 15px;
             }
 
-            input[type="checkbox"] {
-                width: 18px;
-                height: 18px;
+            .deposit-checkbox-label input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
             }
 
             .submit-button {
                 padding: 18px 20px;
-                font-size: 12px;
+                font-size: 13px;
                 min-height: 54px;
                 letter-spacing: 2px;
+            }
+
+            .success-message {
+                padding: 25px 20px;
+            }
+
+            .success-icon {
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                font-size: 24px;
+                margin-bottom: 15px;
             }
 
             /* Contact Section */
@@ -2971,168 +3240,242 @@
                     <span class="badge-text" data-fr="Réserver Votre Rendez-vous" data-de="Buchen Sie Ihren Termin" data-it="Prenota il Tuo Appuntamento" data-en="Reserve Your Appointment">Réserver Votre Rendez-vous</span>
                 </div>
                 <h2 class="section-title title-text" data-fr="Réservation" data-de="Buchung" data-it="Prenotazione" data-en="Booking">Réservation</h2>
+                <p class="section-subtitle" style="text-align: center; color: var(--gray); margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                    <span class="booking-subtitle-txt" data-fr="Réservez votre rendez-vous en 3 étapes simples. Service à domicile partout en Suisse."
+                          data-de="Buchen Sie Ihren Termin in 3 einfachen Schritten. Hausservice überall in der Schweiz."
+                          data-it="Prenota il tuo appuntamento in 3 semplici passaggi. Servizio a domicilio in tutta la Svizzera."
+                          data-en="Book your appointment in 3 simple steps. Home service anywhere in Switzerland.">
+                        Réservez votre rendez-vous en 3 étapes simples. Service à domicile partout en Suisse.
+                    </span>
+                </p>
             </div>
+
+            <!-- Booking Steps -->
+            <div class="booking-steps">
+                <div class="booking-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">📋</div>
+                    <h3 class="step-title step-title-1-txt" data-fr="Remplir le formulaire" data-de="Formular ausfüllen" data-it="Compilare il modulo" data-en="Fill the form">Remplir le formulaire</h3>
+                    <p class="step-desc step-desc-1-txt" data-fr="Choisissez votre service et horaire préféré" data-de="Wählen Sie Ihren Service und Ihre Wunschzeit" data-it="Scegli il tuo servizio e orario preferito" data-en="Choose your service and preferred time">Choisissez votre service et horaire préféré</p>
+                </div>
+                <div class="booking-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">💳</div>
+                    <h3 class="step-title step-title-2-txt" data-fr="Payer l'acompte 50%" data-de="50% Anzahlung" data-it="Pagare deposito 50%" data-en="Pay 50% deposit">Payer l'acompte 50%</h3>
+                    <p class="step-desc step-desc-2-txt" data-fr="Envoyez l'acompte via TWINT ou virement" data-de="Senden Sie die Anzahlung per TWINT oder Überweisung" data-it="Invia il deposito tramite TWINT o bonifico" data-en="Send deposit via TWINT or bank transfer">Envoyez l'acompte via TWINT ou virement</p>
+                </div>
+                <div class="booking-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">✅</div>
+                    <h3 class="step-title step-title-3-txt" data-fr="Confirmation" data-de="Bestätigung" data-it="Conferma" data-en="Confirmation">Confirmation</h3>
+                    <p class="step-desc step-desc-3-txt" data-fr="Recevez la confirmation par email" data-de="Erhalten Sie die Bestätigung per E-Mail" data-it="Ricevi la conferma via email" data-en="Receive confirmation by email">Recevez la confirmation par email</p>
+                </div>
+            </div>
+
             <div class="booking-grid">
-                <div class="booking-info">
-                    <div class="section-badge">
-                        <span class="badge-text" data-fr="Service Privé" data-de="Privater Service" data-it="Servizio Privato" data-en="Private Service">Service Privé</span>
-                    </div>
-                    <h3 class="section-title" style="font-size: 56px;">
-                        <span class="booking-title-txt" data-fr="Réservez<br>Votre Visite" data-de="Buchen Sie<br>Ihren Besuch" data-it="Prenota<br>La Tua Visita" data-en="Book<br>Your Visit">Réservez<br>Votre Visite</span>
-                    </h3>
-
-                    <!-- DEPOSIT REQUIREMENT - TOP NOTICE -->
-                    <div class="deposit-requirement-top">
-                        <div class="deposit-req-icon">⚠️</div>
-                        <div class="deposit-req-content">
-                            <h4 class="deposit-req-title" data-fr="ACOMPTE DE 50% REQUIS" data-de="50% ANZAHLUNG ERFORDERLICH" data-it="DEPOSITO 50% RICHIESTO" data-en="50% DEPOSIT REQUIRED">ACOMPTE DE 50% REQUIS</h4>
-                            <p class="deposit-req-text" data-fr="Votre rendez-vous sera confirmé uniquement après réception de l'acompte de 50% du prix du service."
-                               data-de="Ihr Termin wird erst nach Erhalt der 50% Anzahlung des Servicepreises bestätigt."
-                               data-it="Il tuo appuntamento sarà confermato solo dopo il ricevimento del deposito del 50% del prezzo del servizio."
-                               data-en="Your appointment will be confirmed only after receiving the 50% deposit of the service price.">
-                               Votre rendez-vous sera confirmé uniquement après réception de l'acompte de 50% du prix du service.
-                            </p>
-                        </div>
+                <!-- Left Side - Info Card -->
+                <div class="booking-info-card">
+                    <div class="info-card-header">
+                        <div class="info-card-icon">💎</div>
+                        <h3 class="info-card-title info-title-txt" data-fr="Service Premium" data-de="Premium-Service" data-it="Servizio Premium" data-en="Premium Service">Service Premium</h3>
                     </div>
 
-                    <p class="hero-description" style="margin-top: 30px;">
-                        <span class="booking-desc-txt" data-fr="Nous nous déplaçons partout en Suisse pour votre confort. Service privé, professionnel et discret."
-                              data-de="Wir kommen zu Ihnen überall in der Schweiz. Privater, professioneller und diskreter Service."
-                              data-it="Veniamo da te ovunque in Svizzera per il tuo comfort. Servizio privato, professionale e discreto."
-                              data-en="We come to you anywhere in Switzerland for your comfort. Private, professional and discreet service.">
-                              Nous nous déplaçons partout en Suisse pour votre confort. Service privé, professionnel et discret.
-                        </span>
-                    </p>
-                    <div class="payment-methods">
-                        <div class="payment-title payment-title-txt" data-fr="Paiements Acceptés" data-de="Akzeptierte Zahlungen" data-it="Pagamenti Accettati" data-en="Accepted Payments">Paiements Acceptés</div>
-                        <div class="payment-badges">
-                            <div class="payment-badge">
-                                <span>💳</span>
-                                <span>TWINT</span>
-                            </div>
-                            <div class="payment-badge">
-                                <span>💵</span>
-                                <span class="payment-txt" data-fr="Espèces" data-de="Bargeld" data-it="Contanti" data-en="Cash">Espèces</span>
-                            </div>
+                    <!-- Important Notice -->
+                    <div class="deposit-alert">
+                        <div class="alert-header">
+                            <span class="alert-icon">⚠️</span>
+                            <h4 class="alert-title alert-title-txt" data-fr="Acompte de 50% requis" data-de="50% Anzahlung erforderlich" data-it="Deposito 50% richiesto" data-en="50% deposit required">Acompte de 50% requis</h4>
                         </div>
+                        <p class="alert-text alert-text-txt" data-fr="Votre rendez-vous sera confirmé uniquement après réception de l'acompte de 50% du prix du service sélectionné."
+                           data-de="Ihr Termin wird nur nach Erhalt der 50% Anzahlung des ausgewählten Servicepreises bestätigt."
+                           data-it="Il tuo appuntamento sarà confermato solo dopo aver ricevuto il deposito del 50% del prezzo del servizio selezionato."
+                           data-en="Your appointment will be confirmed only after receiving the 50% deposit of the selected service price.">
+                           Votre rendez-vous sera confirmé uniquement après réception de l'acompte de 50% du prix du service sélectionné.
+                        </p>
+                    </div>
 
-                        <!-- Deposit Requirement Notice -->
-                        <div class="deposit-notice">
-                            <div class="deposit-icon">⚠️</div>
-                            <div class="deposit-content">
-                                <h4 class="deposit-title deposit-title-txt" data-fr="Acompte Requis" data-de="Anzahlung Erforderlich" data-it="Deposito Richiesto" data-en="Deposit Required">Acompte Requis</h4>
-                                <p class="deposit-text deposit-text-txt" data-fr="Un acompte de 50% est requis pour confirmer votre rendez-vous. Le solde restant sera payé après le service."
-                                   data-de="Eine Anzahlung von 50% ist erforderlich, um Ihren Termin zu bestätigen. Der Restbetrag wird nach der Dienstleistung bezahlt."
-                                   data-it="È richiesto un deposito del 50% per confermare il tuo appuntamento. Il saldo rimanente sarà pagato dopo il servizio."
-                                   data-en="A 50% deposit is required to confirm your appointment. The remaining balance will be paid after the service.">
-                                   Un acompte de 50% est requis pour confirmer votre rendez-vous. Le solde restant sera payé après le service.
-                                </p>
-                                <div class="deposit-methods">
-                                    <p class="deposit-method-title deposit-method-txt" data-fr="Méthodes d'acompte:" data-de="Anzahlungsmethoden:" data-it="Metodi di deposito:" data-en="Deposit methods:">Méthodes d'acompte:</p>
-                                    <div class="deposit-method-item">
-                                        <span>💳 TWINT:</span>
-                                        <strong>+41 76 597 13 95</strong>
-                                    </div>
-                                    <div class="deposit-method-item">
-                                        <span class="bank-transfer-txt" data-fr="🏦 Virement Bancaire:" data-de="🏦 Banküberweisung:" data-it="🏦 Bonifico Bancario:" data-en="🏦 Bank Transfer:">🏦 Virement Bancaire:</span>
-                                        <strong class="contact-email-txt" data-fr="Contactez-nous pour les détails" data-de="Kontaktieren Sie uns für Details" data-it="Contattaci per i dettagli" data-en="Contact us for details">Contactez-nous pour les détails</strong>
-                                    </div>
+                    <!-- Payment Methods -->
+                    <div class="payment-card">
+                        <h4 class="payment-card-title payment-card-title-txt" data-fr="Méthodes de paiement" data-de="Zahlungsmethoden" data-it="Metodi di pagamento" data-en="Payment methods">Méthodes de paiement</h4>
+
+                        <div class="payment-option">
+                            <div class="payment-option-header">
+                                <span class="payment-icon">💳</span>
+                                <span class="payment-name">TWINT</span>
+                                <span class="payment-recommended payment-recommended-txt" data-fr="Recommandé" data-de="Empfohlen" data-it="Consigliato" data-en="Recommended">Recommandé</span>
+                            </div>
+                            <div class="payment-details">
+                                <div class="payment-detail-row">
+                                    <span class="payment-detail-label payment-detail-label-txt" data-fr="Numéro:" data-de="Nummer:" data-it="Numero:" data-en="Number:">Numéro:</span>
+                                    <strong class="payment-detail-value">+41 76 597 13 95</strong>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="payment-option">
+                            <div class="payment-option-header">
+                                <span class="payment-icon">🏦</span>
+                                <span class="payment-name payment-bank-txt" data-fr="Virement Bancaire" data-de="Banküberweisung" data-it="Bonifico Bancario" data-en="Bank Transfer">Virement Bancaire</span>
+                            </div>
+                            <div class="payment-details">
+                                <p class="payment-detail-note payment-detail-note-txt" data-fr="Contactez-nous après la réservation pour recevoir les coordonnées bancaires."
+                                   data-de="Kontaktieren Sie uns nach der Buchung, um die Bankdaten zu erhalten."
+                                   data-it="Contattaci dopo la prenotazione per ricevere i dettagli bancari."
+                                   data-en="Contact us after booking to receive bank details.">
+                                   Contactez-nous après la réservation pour recevoir les coordonnées bancaires.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="payment-option">
+                            <div class="payment-option-header">
+                                <span class="payment-icon">💵</span>
+                                <span class="payment-name payment-cash-txt" data-fr="Espèces" data-de="Bargeld" data-it="Contanti" data-en="Cash">Espèces</span>
+                            </div>
+                            <div class="payment-details">
+                                <p class="payment-detail-note payment-final-txt" data-fr="Paiement final uniquement (acompte par TWINT ou virement)"
+                                   data-de="Nur Restzahlung (Anzahlung per TWINT oder Überweisung)"
+                                   data-it="Solo pagamento finale (deposito tramite TWINT o bonifico)"
+                                   data-en="Final payment only (deposit via TWINT or transfer)">
+                                   Paiement final uniquement (acompte par TWINT ou virement)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Features -->
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">🏠</span>
+                            <span class="feature-text feature-text-1-txt" data-fr="Service à domicile partout en Suisse" data-de="Hausservice in der ganzen Schweiz" data-it="Servizio a domicilio in tutta la Svizzera" data-en="Home service anywhere in Switzerland">Service à domicile partout en Suisse</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🔒</span>
+                            <span class="feature-text feature-text-2-txt" data-fr="Service privé et discret" data-de="Privater und diskreter Service" data-it="Servizio privato e discreto" data-en="Private and discreet service">Service privé et discret</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">⭐</span>
+                            <span class="feature-text feature-text-3-txt" data-fr="Qualité professionnelle garantie" data-de="Garantierte professionelle Qualität" data-it="Qualità professionale garantita" data-en="Guaranteed professional quality">Qualité professionnelle garantie</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="booking-form">
+                <!-- Right Side - Booking Form -->
+                <div class="booking-form-card">
                     <div id="successMessage" class="success-message">
-                        <span class="success-txt" data-fr="Merci! Votre demande de rendez-vous a été reçue. Veuillez envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 pour confirmer."
-                              data-de="Danke! Ihre Terminanfrage wurde empfangen. Bitte senden Sie die 50% Anzahlung per TWINT an +41 76 597 13 95 zur Bestätigung."
-                              data-it="Grazie! La tua richiesta è stata ricevuta. Invia il deposito del 50% tramite TWINT a +41 76 597 13 95 per confermare."
-                              data-en="Thank you! Your appointment request has been received. Please send the 50% deposit via TWINT to +41 76 597 13 95 to confirm.">
-                              Merci! Votre demande de rendez-vous a été reçue. Veuillez envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 pour confirmer.
+                        <div class="success-icon">✓</div>
+                        <span class="success-txt" data-fr="Merci! Votre demande a été reçue. Veuillez envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 pour confirmer votre rendez-vous."
+                              data-de="Danke! Ihre Anfrage wurde empfangen. Bitte senden Sie die 50% Anzahlung per TWINT an +41 76 597 13 95, um Ihren Termin zu bestätigen."
+                              data-it="Grazie! La tua richiesta è stata ricevuta. Invia il deposito del 50% tramite TWINT a +41 76 597 13 95 per confermare il tuo appuntamento."
+                              data-en="Thank you! Your request has been received. Please send the 50% deposit via TWINT to +41 76 597 13 95 to confirm your appointment.">
+                              Merci! Votre demande a été reçue. Veuillez envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 pour confirmer votre rendez-vous.
                         </span>
                     </div>
+
                     <form id="appointmentForm" name="bookings" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success">
                         <input type="hidden" name="form-name" value="bookings" />
                         <p style="display: none;">
                             <label>Don't fill this out: <input name="bot-field" /></label>
                         </p>
 
-                        <div class="form-group">
-                            <label for="name" class="form-label-txt" data-fr="Nom Complet *" data-de="Vollständiger Name *" data-it="Nome Completo *" data-en="Full Name *">Nom Complet *</label>
-                            <input type="text" id="name" name="name" required placeholder="Jean Dupont">
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label-txt" data-fr="Adresse Email *" data-de="E-Mail-Adresse *" data-it="Indirizzo Email *" data-en="Email Address *">Adresse Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="jean@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" class="form-label-txt" data-fr="Numéro de Téléphone *" data-de="Telefonnummer *" data-it="Numero di Telefono *" data-en="Phone Number *">Numéro de Téléphone *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="+41 XX XXX XX XX">
-                        </div>
-                        <div class="form-group" id="addressGroup" style="display: none;">
-                            <label for="address" class="form-label-txt" data-fr="Votre Adresse (pour service à domicile)" data-de="Ihre Adresse (für Hausservice)" data-it="Il Tuo Indirizzo (per servizio a domicilio)" data-en="Your Address (for home service)">Votre Adresse (pour service à domicile)</label>
-                            <input type="text" id="address" name="address" placeholder="Rue, Numéro, Code postal, Ville">
-                        </div>
-                        <div class="form-group">
-                            <label for="service" class="form-label-txt" data-fr="Choisir un Service *" data-de="Service Wählen *" data-it="Seleziona Servizio *" data-en="Select Service *">Choisir un Service *</label>
-                            <select id="service" name="service" required>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date" class="form-label-txt" data-fr="Date Préférée *" data-de="Bevorzugtes Datum *" data-it="Data Preferita *" data-en="Preferred Date *">Date Préférée *</label>
-                            <input type="date" id="date" name="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="time" class="form-label-txt" data-fr="Heure Préférée *" data-de="Bevorzugte Uhrzeit *" data-it="Ora Preferita *" data-en="Preferred Time *">Heure Préférée *</label>
-                            <select id="time" name="time" required>
-                                <option value="">Sélectionner l'heure...</option>
-                                <option value="09:00">09:00</option>
-                                <option value="10:00">10:00</option>
-                                <option value="11:00">11:00</option>
-                                <option value="12:00">12:00</option>
-                                <option value="13:00">13:00</option>
-                                <option value="14:00">14:00</option>
-                                <option value="15:00">15:00</option>
-                                <option value="16:00">16:00</option>
-                                <option value="17:00">17:00</option>
-                                <option value="18:00">18:00</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="payment" class="form-label-txt" data-fr="Mode de Paiement *" data-de="Zahlungsart *" data-it="Metodo di Pagamento *" data-en="Payment Method *">Mode de Paiement *</label>
-                            <select id="payment" name="payment" required>
-                                <option value="">Choisir un mode de paiement...</option>
-                                <option value="twint">TWINT</option>
-                                <option value="cash">Espèces</option>
-                            </select>
-                        </div>
+                        <div class="form-section">
+                            <h4 class="form-section-title form-section-1-txt" data-fr="📝 Informations personnelles" data-de="📝 Persönliche Informationen" data-it="📝 Informazioni personali" data-en="📝 Personal information">📝 Informations personnelles</h4>
 
-                        <div class="form-group deposit-confirmation-group">
-                            <label class="deposit-confirmation-label">
-                                <input type="checkbox" id="depositConfirm" name="depositConfirm" required>
-                                <span class="deposit-confirm-text" data-fr="J'ai envoyé l'acompte de 50% via TWINT au +41 76 597 13 95 *"
-                                      data-de="Ich habe die 50% Anzahlung per TWINT an +41 76 597 13 95 gesendet *"
-                                      data-it="Ho inviato il deposito del 50% tramite TWINT a +41 76 597 13 95 *"
-                                      data-en="I have sent the 50% deposit via TWINT to +41 76 597 13 95 *">
-                                    J'ai envoyé l'acompte de 50% via TWINT au +41 76 597 13 95 *
-                                </span>
-                            </label>
-                            <div class="deposit-info-small">
-                                <span class="deposit-info-txt" data-fr="⚠️ Votre rendez-vous ne sera confirmé qu'après vérification du paiement"
-                                      data-de="⚠️ Ihr Termin wird erst nach Zahlungsbestätigung bestätigt"
-                                      data-it="⚠️ Il tuo appuntamento sarà confermato solo dopo la verifica del pagamento"
-                                      data-en="⚠️ Your appointment will be confirmed only after payment verification">
-                                    ⚠️ Votre rendez-vous ne sera confirmé qu'après vérification du paiement
-                                </span>
+                            <div class="form-group">
+                                <label for="name" class="form-label-txt" data-fr="Nom Complet *" data-de="Vollständiger Name *" data-it="Nome Completo *" data-en="Full Name *">Nom Complet *</label>
+                                <input type="text" id="name" name="name" required placeholder="Jean Dupont">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email" class="form-label-txt" data-fr="Adresse Email *" data-de="E-Mail-Adresse *" data-it="Indirizzo Email *" data-en="Email Address *">Adresse Email *</label>
+                                    <input type="email" id="email" name="email" required placeholder="jean@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" class="form-label-txt" data-fr="Téléphone *" data-de="Telefon *" data-it="Telefono *" data-en="Phone *">Téléphone *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+41 XX XXX XX XX">
+                                </div>
+                            </div>
+                            <div class="form-group" id="addressGroup" style="display: none;">
+                                <label for="address" class="form-label-txt" data-fr="Adresse (service à domicile)" data-de="Adresse (Hausservice)" data-it="Indirizzo (servizio a domicilio)" data-en="Address (home service)">Adresse (service à domicile)</label>
+                                <input type="text" id="address" name="address" placeholder="Rue, Numéro, Code postal, Ville">
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="notes" class="form-label-txt" data-fr="Notes Supplémentaires" data-de="Zusätzliche Notizen" data-it="Note Aggiuntive" data-en="Additional Notes">Notes Supplémentaires</label>
-                            <textarea id="notes" name="notes" placeholder="Demandes spéciales ou préférences..."></textarea>
+                        <div class="form-section">
+                            <h4 class="form-section-title form-section-2-txt" data-fr="✂️ Détails du rendez-vous" data-de="✂️ Termindetails" data-it="✂️ Dettagli appuntamento" data-en="✂️ Appointment details">✂️ Détails du rendez-vous</h4>
+
+                            <div class="form-group">
+                                <label for="service" class="form-label-txt" data-fr="Service *" data-de="Service *" data-it="Servizio *" data-en="Service *">Service *</label>
+                                <select id="service" name="service" required>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="date" class="form-label-txt" data-fr="Date *" data-de="Datum *" data-it="Data *" data-en="Date *">Date *</label>
+                                    <input type="date" id="date" name="date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="time" class="form-label-txt" data-fr="Heure *" data-de="Zeit *" data-it="Ora *" data-en="Time *">Heure *</label>
+                                    <select id="time" name="time" required>
+                                        <option value="">Sélectionner...</option>
+                                        <option value="09:00">09:00</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="11:00">11:00</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="13:00">13:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="15:00">15:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="17:00">17:00</option>
+                                        <option value="18:00">18:00</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="submit-button submit-txt" data-fr="Confirmer le Rendez-vous" data-de="Termin Bestätigen" data-it="Conferma Appuntamento" data-en="Confirm Appointment">Confirmer le Rendez-vous</button>
+
+                        <div class="form-section">
+                            <h4 class="form-section-title form-section-3-txt" data-fr="💰 Paiement & Confirmation" data-de="💰 Zahlung & Bestätigung" data-it="💰 Pagamento & Conferma" data-en="💰 Payment & Confirmation">💰 Paiement & Confirmation</h4>
+
+                            <div class="form-group">
+                                <label for="payment" class="form-label-txt" data-fr="Paiement final (après service) *" data-de="Restzahlung (nach Service) *" data-it="Pagamento finale (dopo servizio) *" data-en="Final payment (after service) *">Paiement final (après service) *</label>
+                                <select id="payment" name="payment" required>
+                                    <option value="">Choisir...</option>
+                                    <option value="twint">TWINT</option>
+                                    <option value="cash">Espèces</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes" class="form-label-txt" data-fr="Notes / Demandes spéciales" data-de="Notizen / Spezielle Wünsche" data-it="Note / Richieste speciali" data-en="Notes / Special requests">Notes / Demandes spéciales</label>
+                                <textarea id="notes" name="notes" rows="3" placeholder="Demandes spéciales ou préférences..."></textarea>
+                            </div>
+
+                            <div class="deposit-checkbox-card">
+                                <label class="deposit-checkbox-label">
+                                    <input type="checkbox" id="depositConfirm" name="depositConfirm" required>
+                                    <div class="checkbox-content">
+                                        <span class="checkbox-icon">💳</span>
+                                        <div class="checkbox-text-wrapper">
+                                            <strong class="checkbox-title deposit-confirm-title-txt" data-fr="Confirmation d'acompte requis *" data-de="Anzahlungsbestätigung erforderlich *" data-it="Conferma deposito richiesta *" data-en="Deposit confirmation required *">Confirmation d'acompte requis *</strong>
+                                            <span class="checkbox-desc deposit-confirm-text" data-fr="Je confirme avoir envoyé l'acompte de 50% via TWINT au +41 76 597 13 95"
+                                                  data-de="Ich bestätige, dass ich die 50% Anzahlung per TWINT an +41 76 597 13 95 gesendet habe"
+                                                  data-it="Confermo di aver inviato il deposito del 50% tramite TWINT a +41 76 597 13 95"
+                                                  data-en="I confirm that I have sent the 50% deposit via TWINT to +41 76 597 13 95">
+                                                Je confirme avoir envoyé l'acompte de 50% via TWINT au +41 76 597 13 95
+                                            </span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <p class="deposit-note deposit-info-txt" data-fr="⚠️ Votre rendez-vous sera confirmé après vérification du paiement (généralement sous 24h)"
+                                   data-de="⚠️ Ihr Termin wird nach Zahlungsbestätigung bestätigt (normalerweise innerhalb von 24 Stunden)"
+                                   data-it="⚠️ Il tuo appuntamento sarà confermato dopo la verifica del pagamento (di solito entro 24 ore)"
+                                   data-en="⚠️ Your appointment will be confirmed after payment verification (usually within 24h)">
+                                   ⚠️ Votre rendez-vous sera confirmé après vérification du paiement (généralement sous 24h)
+                                </p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-button submit-txt" data-fr="Réserver maintenant" data-de="Jetzt buchen" data-it="Prenota ora" data-en="Book now">Réserver maintenant</button>
                     </form>
                 </div>
             </div>
@@ -3339,7 +3682,15 @@
                 '.deposit-title-txt', '.deposit-text-txt', '.deposit-method-txt',
                 '.bank-transfer-txt', '.contact-email-txt', '.contact-live-txt',
                 '.service-name-txt', '.location-subtitle-txt', '.deposit-req-title',
-                '.deposit-req-text', '.deposit-confirm-text', '.deposit-info-txt'
+                '.deposit-req-text', '.deposit-confirm-text', '.deposit-info-txt',
+                '.booking-subtitle-txt', '.step-title-1-txt', '.step-title-2-txt',
+                '.step-title-3-txt', '.step-desc-1-txt', '.step-desc-2-txt',
+                '.step-desc-3-txt', '.info-title-txt', '.alert-title-txt',
+                '.alert-text-txt', '.payment-card-title-txt', '.payment-recommended-txt',
+                '.payment-detail-label-txt', '.payment-bank-txt', '.payment-cash-txt',
+                '.payment-detail-note-txt', '.payment-final-txt', '.feature-text-1-txt',
+                '.feature-text-2-txt', '.feature-text-3-txt', '.form-section-1-txt',
+                '.form-section-2-txt', '.form-section-3-txt', '.deposit-confirm-title-txt'
             ];
 
             elements.forEach(selector => {
