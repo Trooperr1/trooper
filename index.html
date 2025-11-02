@@ -1104,66 +1104,131 @@
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
-        /* Booking Steps */
-        .booking-steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin: 80px 0;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .booking-step {
+        /* Premium Progress Indicator */
+        .booking-progress {
             position: relative;
-            text-align: center;
-            padding: 40px 30px;
-            background: rgba(201, 169, 97, 0.03);
-            border: 1px solid rgba(201, 169, 97, 0.15);
-            transition: all 0.4s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 900px;
+            margin: 80px auto 100px;
+            padding: 0 40px;
         }
 
-        .booking-step:hover {
-            background: rgba(201, 169, 97, 0.08);
-            border-color: var(--gold);
-            transform: translateY(-5px);
-        }
-
-        .step-number {
+        .progress-line {
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 35px;
-            height: 35px;
-            background: var(--gold);
-            color: var(--black);
+            top: 30px;
+            left: 100px;
+            right: 100px;
+            height: 3px;
+            background: rgba(201, 169, 97, 0.15);
+            z-index: 0;
+        }
+
+        .progress-line::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
+        }
+
+        .progress-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-number {
+            position: relative;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
+            background: var(--black);
+            border: 3px solid rgba(201, 169, 97, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 16px;
-        }
-
-        .step-icon {
-            font-size: 48px;
-            margin: 20px 0;
-        }
-
-        .step-title {
             font-size: 18px;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            color: var(--gray);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .step-desc {
-            font-size: 13px;
+        .progress-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-step.active .progress-number {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-color: var(--gold);
+            color: var(--black);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(201, 169, 97, 0.6);
+        }
+
+        .progress-step.active .progress-ring {
+            border-color: var(--gold);
+            animation: pulse-ring 2s infinite;
+        }
+
+        .progress-step.completed .progress-number {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--black);
+        }
+
+        @keyframes pulse-ring {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.15);
+                opacity: 0.5;
+            }
+        }
+
+        .progress-label {
+            font-size: 12px;
+            font-weight: 600;
             color: var(--gray);
-            line-height: 1.6;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step.active .progress-label {
+            color: var(--gold);
+        }
+
+        .progress-step.completed .progress-label {
+            color: var(--white);
         }
 
         /* Booking Grid */
@@ -1330,6 +1395,141 @@
             margin: 0;
         }
 
+        /* Premium Price Calculator */
+        .price-calculator {
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(201, 169, 97, 0.02));
+            border: 2px solid rgba(201, 169, 97, 0.25);
+            padding: 0;
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .price-calculator:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 40px rgba(201, 169, 97, 0.15);
+        }
+
+        .calculator-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 25px 30px;
+            background: rgba(201, 169, 97, 0.05);
+            border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+        }
+
+        .calculator-icon {
+            font-size: 28px;
+        }
+
+        .calculator-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .calculator-body {
+            padding: 30px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.08);
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-label {
+            font-size: 13px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .price-value {
+            font-size: 15px;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .price-row.total-price {
+            padding: 18px 0;
+            border-bottom: 2px solid rgba(201, 169, 97, 0.15);
+        }
+
+        .price-row.total-price .price-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .price-row.total-price .price-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(201, 169, 97, 0.3);
+        }
+
+        .price-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 20px 0;
+        }
+
+        .price-row.deposit-price {
+            background: rgba(201, 169, 97, 0.08);
+            margin: 0 -30px;
+            padding: 20px 30px;
+        }
+
+        .price-row.deposit-price .price-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .price-highlight {
+            font-size: 28px !important;
+            font-weight: 800 !important;
+            color: var(--gold) !important;
+            animation: price-pulse 2s infinite;
+        }
+
+        @keyframes price-pulse {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(201, 169, 97, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 25px rgba(201, 169, 97, 0.6);
+            }
+        }
+
+        .price-row.final-price .price-label {
+            color: var(--white);
+        }
+
+        .price-row.final-price .price-value {
+            font-size: 18px;
+            color: var(--gold);
+        }
+
+        .calculator-note {
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            font-size: 12px;
+            color: var(--gray);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
         /* Service Features */
         .service-features {
             padding: 30px;
@@ -1460,6 +1660,72 @@
 
         .form-group textarea:focus {
             border-color: var(--gold);
+        }
+
+        /* Premium Time Slot Selection */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .time-slot {
+            padding: 16px 10px;
+            background: rgba(201, 169, 97, 0.05);
+            border: 2px solid rgba(201, 169, 97, 0.2);
+            color: var(--white);
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Raleway', sans-serif;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .time-slot:hover {
+            background: rgba(201, 169, 97, 0.12);
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(201, 169, 97, 0.2);
+        }
+
+        .time-slot:hover::before {
+            left: 100%;
+        }
+
+        .time-slot.selected {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-color: var(--gold);
+            color: var(--black);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4);
+        }
+
+        .time-slot.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .time-slot:active {
+            transform: scale(0.95);
         }
 
         /* Deposit Checkbox Card */
@@ -2282,35 +2548,102 @@
                 font-size: 12px;
             }
 
-            /* Booking Section */
-            .booking-steps {
-                grid-template-columns: 1fr;
-                gap: 25px;
-                margin: 50px 0;
+            /* Booking Section - Premium Progress */
+            .booking-progress {
+                flex-wrap: wrap;
+                gap: 30px 10px;
+                padding: 0 10px;
+                margin: 50px auto 70px;
             }
 
-            .booking-step {
-                padding: 30px 20px;
+            .progress-line {
+                display: none;
             }
 
-            .step-number {
-                width: 32px;
-                height: 32px;
+            .progress-step {
+                flex: 1 1 45%;
+                min-width: 140px;
+            }
+
+            .progress-circle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .progress-number {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+                border-width: 2px;
+            }
+
+            .progress-label {
+                font-size: 10px;
+            }
+
+            /* Price Calculator */
+            .price-calculator {
+                margin-bottom: 25px;
+            }
+
+            .calculator-header {
+                padding: 20px;
+            }
+
+            .calculator-icon {
+                font-size: 24px;
+            }
+
+            .calculator-title {
                 font-size: 14px;
-                top: -12px;
             }
 
-            .step-icon {
-                font-size: 40px;
-                margin: 15px 0;
+            .calculator-body {
+                padding: 20px;
             }
 
-            .step-title {
+            .price-row {
+                padding: 12px 0;
+            }
+
+            .price-label {
+                font-size: 12px;
+            }
+
+            .price-value {
+                font-size: 14px;
+            }
+
+            .price-row.total-price .price-label {
+                font-size: 13px;
+            }
+
+            .price-row.total-price .price-amount {
+                font-size: 20px;
+            }
+
+            .price-highlight {
+                font-size: 22px !important;
+            }
+
+            .price-row.final-price .price-value {
                 font-size: 16px;
             }
 
-            .step-desc {
-                font-size: 12px;
+            .calculator-note {
+                padding: 15px 20px;
+                font-size: 11px;
+            }
+
+            /* Time Slots */
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .time-slot {
+                padding: 14px 8px;
+                font-size: 14px;
             }
 
             .booking-grid {
@@ -3250,25 +3583,36 @@
                 </p>
             </div>
 
-            <!-- Booking Steps -->
-            <div class="booking-steps">
-                <div class="booking-step">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">📋</div>
-                    <h3 class="step-title step-title-1-txt" data-fr="Remplir le formulaire" data-de="Formular ausfüllen" data-it="Compilare il modulo" data-en="Fill the form">Remplir le formulaire</h3>
-                    <p class="step-desc step-desc-1-txt" data-fr="Choisissez votre service et horaire préféré" data-de="Wählen Sie Ihren Service und Ihre Wunschzeit" data-it="Scegli il tuo servizio e orario preferito" data-en="Choose your service and preferred time">Choisissez votre service et horaire préféré</p>
+            <!-- Progress Indicator -->
+            <div class="booking-progress">
+                <div class="progress-line"></div>
+                <div class="progress-step active" data-step="1">
+                    <div class="progress-circle">
+                        <span class="progress-number">1</span>
+                        <div class="progress-ring"></div>
+                    </div>
+                    <span class="progress-label progress-label-1-txt" data-fr="Informations" data-de="Informationen" data-it="Informazioni" data-en="Information">Informations</span>
                 </div>
-                <div class="booking-step">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">💳</div>
-                    <h3 class="step-title step-title-2-txt" data-fr="Payer l'acompte 50%" data-de="50% Anzahlung" data-it="Pagare deposito 50%" data-en="Pay 50% deposit">Payer l'acompte 50%</h3>
-                    <p class="step-desc step-desc-2-txt" data-fr="Envoyez l'acompte via TWINT ou virement" data-de="Senden Sie die Anzahlung per TWINT oder Überweisung" data-it="Invia il deposito tramite TWINT o bonifico" data-en="Send deposit via TWINT or bank transfer">Envoyez l'acompte via TWINT ou virement</p>
+                <div class="progress-step" data-step="2">
+                    <div class="progress-circle">
+                        <span class="progress-number">2</span>
+                        <div class="progress-ring"></div>
+                    </div>
+                    <span class="progress-label progress-label-2-txt" data-fr="Service & Date" data-de="Service & Datum" data-it="Servizio & Data" data-en="Service & Date">Service & Date</span>
                 </div>
-                <div class="booking-step">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">✅</div>
-                    <h3 class="step-title step-title-3-txt" data-fr="Confirmation" data-de="Bestätigung" data-it="Conferma" data-en="Confirmation">Confirmation</h3>
-                    <p class="step-desc step-desc-3-txt" data-fr="Recevez la confirmation par email" data-de="Erhalten Sie die Bestätigung per E-Mail" data-it="Ricevi la conferma via email" data-en="Receive confirmation by email">Recevez la confirmation par email</p>
+                <div class="progress-step" data-step="3">
+                    <div class="progress-circle">
+                        <span class="progress-number">3</span>
+                        <div class="progress-ring"></div>
+                    </div>
+                    <span class="progress-label progress-label-3-txt" data-fr="Paiement" data-de="Zahlung" data-it="Pagamento" data-en="Payment">Paiement</span>
+                </div>
+                <div class="progress-step" data-step="4">
+                    <div class="progress-circle">
+                        <span class="progress-number">✓</span>
+                        <div class="progress-ring"></div>
+                    </div>
+                    <span class="progress-label progress-label-4-txt" data-fr="Confirmation" data-de="Bestätigung" data-it="Conferma" data-en="Confirmation">Confirmation</span>
                 </div>
             </div>
 
@@ -3343,6 +3687,36 @@
                         </div>
                     </div>
 
+                    <!-- Live Price Calculator -->
+                    <div class="price-calculator">
+                        <div class="calculator-header">
+                            <span class="calculator-icon">💰</span>
+                            <h4 class="calculator-title calculator-title-txt" data-fr="Calcul de prix" data-de="Preisberechnung" data-it="Calcolo del prezzo" data-en="Price Calculator">Calcul de prix</h4>
+                        </div>
+                        <div class="calculator-body">
+                            <div class="price-row">
+                                <span class="price-label price-service-txt" data-fr="Service sélectionné:" data-de="Ausgewählter Service:" data-it="Servizio selezionato:" data-en="Selected service:">Service sélectionné:</span>
+                                <span class="price-value" id="selectedServiceName">-</span>
+                            </div>
+                            <div class="price-row total-price">
+                                <span class="price-label price-total-txt" data-fr="Prix total:" data-de="Gesamtpreis:" data-it="Prezzo totale:" data-en="Total price:">Prix total:</span>
+                                <span class="price-value price-amount" id="totalPrice">CHF 0.-</span>
+                            </div>
+                            <div class="price-divider"></div>
+                            <div class="price-row deposit-price">
+                                <span class="price-label price-deposit-txt" data-fr="Acompte 50% requis:" data-de="50% Anzahlung erforderlich:" data-it="Deposito 50% richiesto:" data-en="50% deposit required:">Acompte 50% requis:</span>
+                                <span class="price-value price-highlight" id="depositAmount">CHF 0.-</span>
+                            </div>
+                            <div class="price-row final-price">
+                                <span class="price-label price-final-txt" data-fr="Paiement final:" data-de="Restzahlung:" data-it="Pagamento finale:" data-en="Final payment:">Paiement final:</span>
+                                <span class="price-value" id="finalAmount">CHF 0.-</span>
+                            </div>
+                        </div>
+                        <div class="calculator-note">
+                            <span class="calculator-note-txt" data-fr="💡 Le prix peut varier selon les besoins spécifiques" data-de="💡 Der Preis kann je nach spezifischen Bedürfnissen variieren" data-it="💡 Il prezzo può variare in base alle esigenze specifiche" data-en="💡 Price may vary based on specific needs">💡 Le prix peut varier selon les besoins spécifiques</span>
+                        </div>
+                    </div>
+
                     <!-- Service Features -->
                     <div class="service-features">
                         <div class="feature-item">
@@ -3409,26 +3783,27 @@
                                 <select id="service" name="service" required>
                                 </select>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="date" class="form-label-txt" data-fr="Date *" data-de="Datum *" data-it="Data *" data-en="Date *">Date *</label>
-                                    <input type="date" id="date" name="date" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="time" class="form-label-txt" data-fr="Heure *" data-de="Zeit *" data-it="Ora *" data-en="Time *">Heure *</label>
-                                    <select id="time" name="time" required>
-                                        <option value="">Sélectionner...</option>
-                                        <option value="09:00">09:00</option>
-                                        <option value="10:00">10:00</option>
-                                        <option value="11:00">11:00</option>
-                                        <option value="12:00">12:00</option>
-                                        <option value="13:00">13:00</option>
-                                        <option value="14:00">14:00</option>
-                                        <option value="15:00">15:00</option>
-                                        <option value="16:00">16:00</option>
-                                        <option value="17:00">17:00</option>
-                                        <option value="18:00">18:00</option>
-                                    </select>
+                            <div class="form-group">
+                                <label for="date" class="form-label-txt" data-fr="Date *" data-de="Datum *" data-it="Data *" data-en="Date *">Date *</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label-txt" data-fr="Heure préférée *" data-de="Bevorzugte Zeit *" data-it="Ora preferita *" data-en="Preferred Time *">Heure préférée *</label>
+                                <input type="hidden" id="time" name="time" required>
+                                <div class="time-slots">
+                                    <button type="button" class="time-slot" data-time="09:00">09:00</button>
+                                    <button type="button" class="time-slot" data-time="10:00">10:00</button>
+                                    <button type="button" class="time-slot" data-time="11:00">11:00</button>
+                                    <button type="button" class="time-slot" data-time="12:00">12:00</button>
+                                    <button type="button" class="time-slot" data-time="13:00">13:00</button>
+                                    <button type="button" class="time-slot" data-time="14:00">14:00</button>
+                                    <button type="button" class="time-slot" data-time="15:00">15:00</button>
+                                    <button type="button" class="time-slot" data-time="16:00">16:00</button>
+                                    <button type="button" class="time-slot" data-time="17:00">17:00</button>
+                                    <button type="button" class="time-slot" data-time="18:00">18:00</button>
+                                    <button type="button" class="time-slot" data-time="19:00">19:00</button>
+                                    <button type="button" class="time-slot" data-time="20:00">20:00</button>
                                 </div>
                             </div>
                         </div>
@@ -3690,7 +4065,10 @@
                 '.payment-detail-label-txt', '.payment-bank-txt', '.payment-cash-txt',
                 '.payment-detail-note-txt', '.payment-final-txt', '.feature-text-1-txt',
                 '.feature-text-2-txt', '.feature-text-3-txt', '.form-section-1-txt',
-                '.form-section-2-txt', '.form-section-3-txt', '.deposit-confirm-title-txt'
+                '.form-section-2-txt', '.form-section-3-txt', '.deposit-confirm-title-txt',
+                '.progress-label-1-txt', '.progress-label-2-txt', '.progress-label-3-txt',
+                '.progress-label-4-txt', '.calculator-title-txt', '.price-service-txt',
+                '.price-total-txt', '.price-deposit-txt', '.price-final-txt', '.calculator-note-txt'
             ];
 
             elements.forEach(selector => {
@@ -3748,12 +4126,159 @@
                 addressInput.removeAttribute('required');
                 addressInput.value = '';
             }
+            updatePriceCalculator();
+        });
+
+        // ===== PREMIUM FEATURES =====
+
+        // Time Slot Selection
+        const timeSlots = document.querySelectorAll('.time-slot');
+        const timeInput = document.getElementById('time');
+
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', function() {
+                // Remove selected class from all slots
+                timeSlots.forEach(s => s.classList.remove('selected'));
+
+                // Add selected class to clicked slot
+                this.classList.add('selected');
+
+                // Set hidden input value
+                timeInput.value = this.getAttribute('data-time');
+
+                // Visual feedback
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
+            });
+        });
+
+        // Premium Price Calculator
+        function updatePriceCalculator() {
+            const selectedService = serviceSelect.value;
+            const servicePrices = {
+                'coupe-classique': 60,
+                'barbe': 40,
+                'coupe-barbe': 90,
+                'coloration': 80,
+                'soin': 50,
+                'domicile': 120
+            };
+
+            const serviceNames = {
+                'fr': {
+                    'coupe-classique': 'Coupe Classique',
+                    'barbe': 'Taille de Barbe',
+                    'coupe-barbe': 'Coupe + Barbe',
+                    'coloration': 'Coloration',
+                    'soin': 'Soin Capillaire',
+                    'domicile': 'Service à Domicile'
+                },
+                'de': {
+                    'coupe-classique': 'Klassischer Schnitt',
+                    'barbe': 'Bartpflege',
+                    'coupe-barbe': 'Schnitt + Bart',
+                    'coloration': 'Färbung',
+                    'soin': 'Haarpflege',
+                    'domicile': 'Hausservice'
+                },
+                'it': {
+                    'coupe-classique': 'Taglio Classico',
+                    'barbe': 'Cura della Barba',
+                    'coupe-barbe': 'Taglio + Barba',
+                    'coloration': 'Colorazione',
+                    'soin': 'Trattamento',
+                    'domicile': 'Servizio a Domicilio'
+                },
+                'en': {
+                    'coupe-classique': 'Classic Cut',
+                    'barbe': 'Beard Grooming',
+                    'coupe-barbe': 'Cut + Beard',
+                    'coloration': 'Coloring',
+                    'soin': 'Hair Treatment',
+                    'domicile': 'Home Service'
+                }
+            };
+
+            const currentLang = document.documentElement.lang || 'fr';
+
+            if (selectedService && servicePrices[selectedService]) {
+                const totalPrice = servicePrices[selectedService];
+                const depositAmount = totalPrice * 0.5;
+                const finalAmount = totalPrice * 0.5;
+
+                document.getElementById('selectedServiceName').textContent =
+                    serviceNames[currentLang][selectedService] || serviceNames['fr'][selectedService];
+                document.getElementById('totalPrice').textContent = `CHF ${totalPrice}.-`;
+                document.getElementById('depositAmount').textContent = `CHF ${depositAmount}.-`;
+                document.getElementById('finalAmount').textContent = `CHF ${finalAmount}.-`;
+            } else {
+                document.getElementById('selectedServiceName').textContent = '-';
+                document.getElementById('totalPrice').textContent = 'CHF 0.-';
+                document.getElementById('depositAmount').textContent = 'CHF 0.-';
+                document.getElementById('finalAmount').textContent = 'CHF 0.-';
+            }
+        }
+
+        // Progress Indicator Update
+        function updateProgress() {
+            const form = document.getElementById('appointmentForm');
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const service = serviceSelect.value;
+            const date = document.getElementById('date').value;
+            const time = timeInput.value;
+            const payment = document.getElementById('payment').value;
+
+            const steps = document.querySelectorAll('.progress-step');
+            const progressLine = document.querySelector('.progress-line::after') || document.querySelector('.progress-line');
+
+            // Step 1: Personal Info
+            if (name && email && phone) {
+                steps[0].classList.add('completed');
+                steps[1].classList.add('active');
+                steps[0].classList.remove('active');
+            }
+
+            // Step 2: Service & Date
+            if (name && email && phone && service && date && time) {
+                steps[1].classList.add('completed');
+                steps[2].classList.add('active');
+                steps[1].classList.remove('active');
+            }
+
+            // Step 3: Payment
+            if (name && email && phone && service && date && time && payment) {
+                steps[2].classList.add('completed');
+                steps[3].classList.add('active');
+                steps[2].classList.remove('active');
+            }
+        }
+
+        // Add input listeners for progress updates
+        ['name', 'email', 'phone', 'service', 'date', 'payment'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('change', updateProgress);
+                element.addEventListener('input', updateProgress);
+            }
+        });
+
+        // Time input listener for progress
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', updateProgress);
         });
 
         // Form submission for Netlify
         document.getElementById('appointmentForm').addEventListener('submit', function(e) {
             // Netlify handles the submission automatically
             console.log('Form submitted to Netlify');
+
+            // Update progress to final step
+            const steps = document.querySelectorAll('.progress-step');
+            steps.forEach(s => s.classList.add('completed'));
         });
 
         // Smooth scrolling
