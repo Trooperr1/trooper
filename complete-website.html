@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMIÈRE ROYALE | The World's Most Exclusive Dining Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --platinum: #E5E4E2;
+            --silver: #C0C0C0;
+            --champagne: #F7E7CE;
+            --deep-navy: #0A0E27;
+            --midnight: #050814;
+            --royal-gold: #D4A574;
+            --pearl: #FAF9F6;
+            --onyx: #0F0F0F;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--midnight);
+            color: var(--platinum);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Luxurious animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 15% 30%, rgba(212, 165, 116, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, rgba(192, 192, 192, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(10, 14, 39, 0.6) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: luxuryPulse 25s ease-in-out infinite;
+        }
+
+        @keyframes luxuryPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Grain texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        nav, section, footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(5, 8, 20, 0.97);
+            padding: 2rem 7%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 1.2rem 7%;
+            background: rgba(5, 8, 20, 0.99);
+        }
+
+        .nav-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--royal-gold);
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2.8rem;
+            filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.6));
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(212, 165, 116, 0.6)); }
+            50% { filter: drop-shadow(0 0 30px rgba(212, 165, 116, 0.9)); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--platinum);
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 0.85rem;
+            transition: all 0.4s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+            transition: width 0.4s;
+        }
+
+        .nav-links a:hover {
+            color: var(--royal-gold);
+            letter-spacing: 4px;
+        }
+
+        .nav-links a:hover::after {
+            width: 120%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 120vh;
+            padding: 180px 7% 120px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(5, 8, 20, 0.8)),
+                url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=2000&h=1200&fit=crop') center/cover;
+            position: relative;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: rgba(212, 165, 116, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.4);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: var(--royal-gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: 12px;
+            color: var(--pearl);
+            font-family: 'Cormorant Garamond', serif;
+            text-transform: uppercase;
+        }
+
+        .hero .highlight {
+            display: block;
+            background: linear-gradient(135deg, var(--royal-gold) 0%, var(--champagne) 50%, var(--royal-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 400;
+            font-size: 9rem;
+            letter-spacing: 16px;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--silver);
+            margin-bottom: 4rem;
+            line-height: 2.2;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 2.5rem;
+            justify-content: center;
+            margin-bottom: 5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.8rem 4rem;
+            text-decoration: none;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.85rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--royal-gold) 0%, #C89968 100%);
+            color: var(--midnight);
+            box-shadow: 0 20px 60px rgba(212, 165, 116, 0.3);
+            border: 1px solid var(--royal-gold);
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.5);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--pearl);
+            border: 1px solid rgba(212, 165, 116, 0.5);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(212, 165, 116, 0.1);
+            border-color: var(--royal-gold);
+            transform: translateY(-5px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+        }
+
+        .stat-number {
+            font-size: 4.5rem;
+            font-weight: 300;
+            color: var(--royal-gold);
+            display: block;
+            margin-bottom: 1rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        /* Sections */
+        .section {
+            padding: 10rem 7%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: var(--pearl);
+            font-family: 'Cormorant Garamond', serif;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--silver);
+            margin-bottom: 6rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            letter-spacing: 2px;
+            line-height: 2;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .experience {
+            background: linear-gradient(180deg, var(--midnight) 0%, var(--deep-navy) 50%, var(--midnight) 100%);
+        }
+
+        .experience-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .experience-card {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: rgba(10, 14, 39, 0.4);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.6s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.6s;
+        }
+
+        .experience-card:hover::before {
+            opacity: 1;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--royal-gold);
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.2);
+        }
+
+        .experience-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--royal-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-card p {
+            color: var(--silver);
+            line-height: 2;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--onyx);
+        }
+
+        .about-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: center;
+            margin-bottom: 8rem;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s;
+            filter: grayscale(20%);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+        }
+
+        .about-text h2 {
+            font-size: 4rem;
+            margin-bottom: 3rem;
+            color: var(--royal-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 6px;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: var(--silver);
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .about-signature {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .signature-text {
+            font-size: 2.5rem;
+            color: var(--royal-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .signature-title {
+            font-size: 0.9rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .about-features {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
+            padding-top: 8rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--royal-gold);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .feature-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--royal-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .feature-text p {
+            font-size: 0.95rem;
+            color: var(--silver);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Menu Section */
+        .menu {
+            background: linear-gradient(180deg, var(--midnight) 0%, var(--onyx) 50%, var(--midnight) 100%);
+            min-height: 150vh;
+        }
+
+        .menu-categories {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .menu-category {
+            margin-bottom: 10rem;
+        }
+
+        .category-title {
+            font-size: 3.5rem;
+            color: var(--royal-gold);
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+            padding-bottom: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--royal-gold), transparent);
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .menu-item {
+            background: rgba(10, 14, 39, 0.3);
+            padding: 3.5rem 4rem;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.6s;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.05), transparent);
+            transition: left 0.8s;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            border-color: var(--royal-gold);
+            transform: translateX(20px);
+            box-shadow: 0 20px 60px rgba(212, 165, 116, 0.15);
+        }
+
+        .item-info {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .item-name {
+            font-size: 2rem;
+            color: var(--pearl);
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+        }
+
+        .item-description {
+            font-size: 1.05rem;
+            color: var(--silver);
+            line-height: 2;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .item-price {
+            font-size: 2.5rem;
+            color: var(--royal-gold);
+            font-weight: 300;
+            margin-left: 3rem;
+            font-family: 'Cormorant Garamond', serif;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Wine Collection */
+        .wine-collection {
+            background: var(--deep-navy);
+        }
+
+        .wine-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .wine-card {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: rgba(10, 14, 39, 0.4);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.6s;
+        }
+
+        .wine-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--royal-gold);
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.2);
+        }
+
+        .wine-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .wine-card h3 {
+            font-size: 1.8rem;
+            color: var(--royal-gold);
+            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .wine-card p {
+            color: var(--silver);
+            line-height: 2;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .wine-price {
+            font-size: 2rem;
+            color: var(--royal-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: var(--onyx);
+        }
+
+        .gallery-grid {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.6s;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: var(--royal-gold);
+            box-shadow: 0 40px 100px rgba(212, 165, 116, 0.3);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+            filter: grayscale(30%);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+            filter: grayscale(0%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            padding: 3rem;
+            transform: translateY(100%);
+            transition: transform 0.6s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .overlay-title {
+            font-size: 1.8rem;
+            color: var(--royal-gold);
+            margin-bottom: 0.8rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .overlay-description {
+            font-size: 1rem;
+            color: var(--silver);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--deep-navy);
+        }
+
+        .contact-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 4rem 3rem;
+            background: rgba(10, 14, 39, 0.4);
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            transition: all 0.6s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--royal-gold);
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: var(--royal-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        .contact-card p {
+            color: var(--silver);
+            font-size: 1.05rem;
+            line-height: 2;
+            font-weight: 300;
+        }
+
+        .contact-card a {
+            color: var(--royal-gold);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--champagne);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--midnight);
+            padding: 6rem 7% 3rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 5rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-about h3 {
+            font-size: 2.5rem;
+            color: var(--royal-gold);
+            margin-bottom: 2rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            letter-spacing: 6px;
+        }
+
+        .footer-about p {
+            color: var(--silver);
+            line-height: 2;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(212, 165, 116, 0.1);
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--royal-gold);
+            text-decoration: none;
+            transition: all 0.4s;
+        }
+
+        .social-icon:hover {
+            background: var(--royal-gold);
+            color: var(--midnight);
+            transform: translateY(-8px);
+        }
+
+        .footer-section h4 {
+            font-size: 1.2rem;
+            color: var(--royal-gold);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--silver);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 300;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-links a:hover {
+            color: var(--royal-gold);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+            color: var(--silver);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Floating Reserve Button */
+        .floating-reserve {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, var(--royal-gold), #C89968);
+            color: var(--midnight);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.85rem;
+            box-shadow: 0 20px 60px rgba(212, 165, 116, 0.4);
+            z-index: 999;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: 1px solid var(--royal-gold);
+        }
+
+        .floating-reserve:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(212, 165, 116, 0.6);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 5rem;
+            }
+            .hero .highlight {
+                font-size: 6rem;
+            }
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .experience-grid, .wine-grid, .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero-stats, .about-features, .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: 6px;
+            }
+            .hero .highlight {
+                font-size: 4rem;
+                letter-spacing: 8px;
+            }
+            .section-title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            .experience-grid, .wine-grid, .gallery-grid, .hero-stats, .about-features, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-buttons {
+                flex-direction: column;
+            }
+            .floating-reserve {
+                bottom: 20px;
+                right: 20px;
+                padding: 1.2rem 2rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="mainNav">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">◆</span>
+                LUMIÈRE ROYALE
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#wine">Wine</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">◆ MICHELIN THREE-STAR EXCELLENCE ◆</div>
+            <h1>
+                <span class="highlight">LUMIÈRE</span>
+                ROYALE
+            </h1>
+            <p class="hero-description">
+                Where culinary mastery transcends into art. A symphony of flavors crafted by world-renowned chefs,
+                served in an atmosphere of unparalleled elegance. Welcome to the pinnacle of gastronomic excellence.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button primary">Secure Your Table</a>
+                <a href="#menu" class="cta-button secondary">Explore Our Menu</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">3★</span>
+                    <span class="stat-label">Michelin Stars</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Years Excellence</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200K+</span>
+                    <span class="stat-label">Distinguished Guests</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">#1</span>
+                    <span class="stat-label">World Ranking</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience">
+        <h2 class="section-title">THE LUMIÈRE <span style="color: var(--royal-gold);">EXPERIENCE</span></h2>
+        <p class="section-subtitle">
+            Immerse yourself in a world where every detail is meticulously crafted to perfection.
+            From the moment you arrive, expect nothing less than extraordinary.
+        </p>
+
+        <div class="experience-grid">
+            <div class="experience-card">
+                <span class="experience-icon">👨‍🍳</span>
+                <h3>Master Chefs</h3>
+                <p>
+                    Our culinary team, led by Chef Patron Alexandre Dubois, features award-winning masters
+                    from the finest kitchens across Paris, Tokyo, and New York. Each dish represents decades
+                    of perfected technique and innovative vision.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <span class="experience-icon">🌟</span>
+                <h3>Private Dining</h3>
+                <p>
+                    Experience ultimate exclusivity in our private suites, each designed by renowned architects
+                    and offering personalized menus, dedicated sommeliers, and bespoke service for the most
+                    discerning clientele.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <span class="experience-icon">💎</span>
+                <h3>Rare Ingredients</h3>
+                <p>
+                    We source the world's most exceptional ingredients: white alba truffles, Osetra caviar,
+                    Japanese A5 wagyu, and rare vintage wines. Our global network ensures only the finest
+                    reach your plate.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <span class="experience-icon">🎭</span>
+                <h3>Live Performances</h3>
+                <p>
+                    Elevate your evening with intimate performances from world-class musicians, from classical
+                    virtuosos to contemporary jazz ensembles, creating the perfect ambiance for your culinary journey.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <span class="experience-icon">🏛️</span>
+                <h3>Historic Setting</h3>
+                <p>
+                    Housed in a meticulously restored 18th-century palace, our dining rooms feature original
+                    frescoes, crystal chandeliers, and architectural details that transport you to an era of
+                    royal splendor.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <span class="experience-icon">✨</span>
+                <h3>Personalized Service</h3>
+                <p>
+                    Your dedicated maître d' ensures every preference is remembered, every occasion is celebrated,
+                    and every visit exceeds expectations. Experience service elevated to an art form.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <h2 class="section-title">OUR <span style="color: var(--royal-gold);">LEGACY</span></h2>
+        <p class="section-subtitle">
+            A quarter-century journey of culinary excellence, innovation, and unwavering dedication
+            to the art of fine dining. This is our story.
+        </p>
+
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=900&h=1100&fit=crop" alt="Restaurant Interior">
+            </div>
+            <div class="about-text">
+                <h2>A PASSION FOR PERFECTION</h2>
+                <p>
+                    Founded in 1998 by visionary Chef Alexandre Dubois, Lumière Royale began as a dream to
+                    create the world's most extraordinary dining destination. After training under legends in
+                    Paris, earning accolades across Europe, and mastering techniques from Asia to the Americas,
+                    Chef Dubois established what would become a global icon of gastronomy.
+                </p>
+                <p>
+                    Within three years, we earned our first Michelin star. Five years later, our second.
+                    And in 2010, we achieved the ultimate recognition: three Michelin stars, a distinction
+                    we've proudly maintained for over a decade. But awards alone do not define us.
+                </p>
+                <p>
+                    What truly distinguishes Lumière Royale is our relentless pursuit of innovation while
+                    honoring timeless traditions. We source ingredients from private estates, collaborate
+                    with master artisans, and employ techniques both ancient and avant-garde. Every dish
+                    tells a story. Every ingredient has provenance. Every moment is memorable.
+                </p>
+
+                <div class="about-signature">
+                    <div class="signature-text">Alexandre Dubois</div>
+                    <div class="signature-title">Chef Patron & Founder</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-features">
+            <div class="feature-item">
+                <span class="feature-icon">🏆</span>
+                <div class="feature-text">
+                    <h4>AWARDS</h4>
+                    <p>3 Michelin Stars, #1 World's Best Restaurants, James Beard Excellence, AAA Five Diamond</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🌍</span>
+                <div class="feature-text">
+                    <h4>GLOBAL SOURCING</h4>
+                    <p>Partnerships with exclusive suppliers across 40 countries for the world's finest ingredients</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🎨</span>
+                <div class="feature-text">
+                    <h4>ARTISTRY</h4>
+                    <p>Each plate is a masterpiece, designed by our team of culinary artists and food designers</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <span class="feature-icon">🔬</span>
+                <div class="feature-text">
+                    <h4>INNOVATION LAB</h4>
+                    <p>Our molecular gastronomy laboratory pushes boundaries with cutting-edge techniques</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section menu">
+        <h2 class="section-title">CULINARY <span style="color: var(--royal-gold);">MASTERPIECES</span></h2>
+        <p class="section-subtitle">
+            Our menu is a living canvas, evolving with the seasons and inspired by global travels.
+            Each creation represents the perfect harmony of technique, innovation, and the finest ingredients.
+        </p>
+
+        <div class="menu-categories">
+            <!-- Signature Starters -->
+            <div class="menu-category">
+                <h3 class="category-title">SIGNATURE STARTERS</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Osetra Caviar Imperial</div>
+                            <div class="item-description">
+                                50g Russian Osetra caviar, served on gold leaf with warm blinis, crème fraîche,
+                                and champagne beurre blanc. A decadent beginning to your evening.
+                            </div>
+                        </div>
+                        <div class="item-price">$385</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Lobster Royale</div>
+                            <div class="item-description">
+                                Butter-poached Maine lobster, truffle emulsion, micro herbs, edible flowers,
+                                finished with 24K gold flakes and champagne foam.
+                            </div>
+                        </div>
+                        <div class="item-price">$195</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">White Alba Truffle Risotto</div>
+                            <div class="item-description">
+                                Carnaroli risotto, Parmigiano-Reggiano DOP, butter from Normandy, finished tableside
+                                with fresh-shaved white alba truffles from Piedmont.
+                            </div>
+                        </div>
+                        <div class="item-price">$285</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Courses -->
+            <div class="menu-category">
+                <h3 class="category-title">EXQUISITE MAIN COURSES</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Japanese A5 Wagyu</div>
+                            <div class="item-description">
+                                12oz certified Kobe beef from Hyogo Prefecture, seared over binchotan charcoal,
+                                served with truffle potato purée, grilled vegetables, and red wine reduction.
+                            </div>
+                        </div>
+                        <div class="item-price">$495</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Châteaubriand for Two</div>
+                            <div class="item-description">
+                                Prime center-cut beef tenderloin, carved tableside, served with béarnaise,
+                                pommes Anna, roasted marrow bone, and seasonal vegetables.
+                            </div>
+                        </div>
+                        <div class="item-price">$385</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Dover Sole Meunière</div>
+                            <div class="item-description">
+                                Whole Dover sole, filleted tableside, with brown butter, capers, lemon,
+                                fingerling potatoes, and haricots verts with almonds.
+                            </div>
+                        </div>
+                        <div class="item-price">$245</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-category">
+                <h3 class="category-title">DIVINE DESSERTS</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Chocolate Soufflé</div>
+                            <div class="item-description">
+                                Valrhona dark chocolate soufflé, prepared to order, served with vanilla bean gelato,
+                                raspberry coulis, and edible gold dust.
+                            </div>
+                        </div>
+                        <div class="item-price">$65</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">Crème Brûlée Trilogy</div>
+                            <div class="item-description">
+                                Three variations: vanilla bean, lavender honey, and dark chocolate,
+                                torched tableside with caramelized sugar.
+                            </div>
+                        </div>
+                        <div class="item-price">$55</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasting Menu -->
+            <div class="menu-category">
+                <h3 class="category-title">CHEF'S TASTING MENU</h3>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">The Grand Journey</div>
+                            <div class="item-description">
+                                12-course tasting menu designed by Chef Alexandre Dubois, featuring the finest
+                                seasonal ingredients, rare delicacies, and innovative techniques. Wine pairing included.
+                                Allow 4 hours for the complete experience.
+                            </div>
+                        </div>
+                        <div class="item-price">$1,250</div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <div class="item-name">The Ultimate Experience</div>
+                            <div class="item-description">
+                                18-course gastronomic odyssey with rare vintage wine pairings, tableside preparations,
+                                and personalized dishes. Chef's table seating with kitchen view. Private sommelier.
+                                Minimum 4 guests.
+                            </div>
+                        </div>
+                        <div class="item-price">$2,500</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Collection -->
+    <section id="wine" class="section wine-collection">
+        <h2 class="section-title">LEGENDARY <span style="color: var(--royal-gold);">WINE CELLAR</span></h2>
+        <p class="section-subtitle">
+            Our 15,000-bottle collection features rare vintages from the world's most prestigious estates.
+            Our Master Sommelier will guide you to the perfect pairing.
+        </p>
+
+        <div class="wine-grid">
+            <div class="wine-card">
+                <span class="wine-icon">🍾</span>
+                <h3>Vintage Champagnes</h3>
+                <p>
+                    Dom Pérignon, Krug, Cristal, and rare vintage cuvées from exclusive allocations.
+                    Experience bubbles of unparalleled quality.
+                </p>
+                <div class="wine-price">$450 - $5,000</div>
+            </div>
+
+            <div class="wine-card">
+                <span class="wine-icon">🍷</span>
+                <h3>Grand Cru Bordeaux</h3>
+                <p>
+                    First growths from Pauillac, Margaux, and Saint-Julien. Château Lafite,
+                    Latour, and Margaux from exceptional vintages.
+                </p>
+                <div class="wine-price">$800 - $15,000</div>
+            </div>
+
+            <div class="wine-card">
+                <span class="wine-icon">🌟</span>
+                <h3>Burgundy Treasures</h3>
+                <p>
+                    Domaine de la Romanée-Conti, Henri Jayer, Leroy. The world's most coveted
+                    and rarest bottles from legendary producers.
+                </p>
+                <div class="wine-price">$1,200 - $25,000</div>
+            </div>
+
+            <div class="wine-card">
+                <span class="wine-icon">🥂</span>
+                <h3>Rare Spirits</h3>
+                <p>
+                    Louis XIII Cognac, Macallan 50-year, Hennessy Paradis, vintage Armagnac.
+                    The pinnacle of distilled perfection.
+                </p>
+                <div class="wine-price">$500 - $8,000</div>
+            </div>
+
+            <div class="wine-card">
+                <span class="wine-icon">🍇</span>
+                <h3>California Icons</h3>
+                <p>
+                    Screaming Eagle, Harlan Estate, Opus One. Premium selections from Napa's
+                    most exclusive and sought-after wineries.
+                </p>
+                <div class="wine-price">$600 - $4,500</div>
+            </div>
+
+            <div class="wine-card">
+                <span class="wine-icon">✨</span>
+                <h3>Italian Excellence</h3>
+                <p>
+                    Sassicaia, Ornellaia, Barolo Riserva, Brunello di Montalcino. Italy's finest
+                    expressions from historic estates.
+                </p>
+                <div class="wine-price">$400 - $3,000</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <h2 class="section-title">VISUAL <span style="color: var(--royal-gold);">JOURNEY</span></h2>
+        <p class="section-subtitle">
+            Every dish is a work of art. Every space is designed for elegance.
+            Experience the beauty that awaits at Lumière Royale.
+        </p>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?w=700&h=700&fit=crop" alt="Culinary Art">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Culinary Artistry</div>
+                    <div class="overlay-description">Every plate tells a story</div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&h=700&fit=crop" alt="Fine Dining">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Perfection on a Plate</div>
+                    <div class="overlay-description">Attention to every detail</div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&h=700&fit=crop" alt="Dessert Excellence">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Sweet Masterpieces</div>
+                    <div class="overlay-description">Desserts beyond imagination</div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1560053218-938a4a979a2c?w=700&h=700&fit=crop" alt="Wine Selection">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Legendary Cellar</div>
+                    <div class="overlay-description">15,000 bottles of excellence</div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1562158147-c2850d895a80?w=700&h=700&fit=crop" alt="Kitchen">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">The Heart of Creation</div>
+                    <div class="overlay-description">Where magic happens</div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=700&h=700&fit=crop" alt="Dining Room">
+                <div class="gallery-overlay">
+                    <div class="overlay-title">Palatial Elegance</div>
+                    <div class="overlay-description">18th-century grandeur</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <h2 class="section-title">GET IN <span style="color: var(--royal-gold);">TOUCH</span></h2>
+        <p class="section-subtitle">
+            For reservations, private events, or inquiries, our concierge team is at your service.
+        </p>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <span class="contact-icon">📍</span>
+                <h3>Location</h3>
+                <p>
+                    1 Palace Boulevard<br>
+                    Upper East Side<br>
+                    New York, NY 10021
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <span class="contact-icon">📞</span>
+                <h3>Reservations</h3>
+                <p>
+                    <a href="tel:+12127771234">(212) 777-1234</a><br>
+                    Tue-Sat: 6:00 PM - 11:00 PM<br>
+                    Closed Sunday & Monday
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <span class="contact-icon">✉️</span>
+                <h3>Email</h3>
+                <p>
+                    <a href="mailto:reservations@lumiereroyale.com">reservations@lumiereroyale.com</a><br>
+                    <a href="mailto:concierge@lumiereroyale.com">concierge@lumiereroyale.com</a>
+                </p>
+            </div>
+
+            <div class="contact-card">
+                <span class="contact-icon">🎁</span>
+                <h3>Private Events</h3>
+                <p>
+                    <a href="mailto:events@lumiereroyale.com">events@lumiereroyale.com</a><br>
+                    Weddings, Galas, Corporate<br>
+                    Full Venue Buyouts Available
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>LUMIÈRE ROYALE</h3>
+                <p>
+                    The world's most prestigious dining destination. Three Michelin stars.
+                    25 years of culinary excellence. Where extraordinary becomes unforgettable.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📌</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Experience</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#wine">Wine Collection</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Private Events</a></li>
+                    <li><a href="#">Chef's Table</a></li>
+                    <li><a href="#">Wine Tastings</a></li>
+                    <li><a href="#">Gift Certificates</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Information</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Awards</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 LUMIÈRE ROYALE. All Rights Reserved. | A Legacy of Excellence</p>
+        </div>
+    </footer>
+
+    <!-- Floating Reserve Button -->
+    <a href="#contact" class="floating-reserve">RESERVE NOW</a>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.menu-item, .gallery-item, .contact-card, .experience-card, .wine-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
