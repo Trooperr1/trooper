@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Website Development - JAFF STUDIO | Premium Websites That Convert</title>
+    <meta name="description" content="Custom websites and e-commerce platforms that turn visitors into customers. Built for performance, designed for profit.">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        #canvas-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 2;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 60px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: #fff;
+            color: #000;
+            border: none;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 0 0 80px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .btn-primary {
+            padding: 20px 60px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5);
+        }
+
+        section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin: 80px 0;
+        }
+
+        .problem-box, .solution-box {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px;
+        }
+
+        .problem-box h3, .solution-box h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .problem-box {
+            border-left: 4px solid rgba(255, 100, 100, 0.5);
+        }
+
+        .solution-box {
+            border-left: 4px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .problem-list, .solution-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .problem-list li, .solution-list li {
+            padding: 15px 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.05rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .problem-list li:before {
+            content: '✗ ';
+            color: rgba(255, 100, 100, 0.7);
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .solution-list li:before {
+            content: '✓ ';
+            color: #fff;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin: 80px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
+            transition: all 0.5s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 80px 0;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
+            transition: all 0.5s;
+            text-align: center;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .pricing-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            list-style: none;
+        }
+
+        .pricing-features li:before {
+            content: '✓ ';
+            color: #fff;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .pricing-cta {
+            display: block;
+            padding: 18px 40px;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin: 80px 0;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 80px 60px;
+            text-align: center;
+            margin: 100px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            section { padding: 60px 20px; }
+            nav { padding: 15px 20px; }
+            .hero h1 { font-size: 3rem !important; }
+            .problem-solution { grid-template-columns: 1fr; gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; gap: 30px; }
+            .pricing-grid { grid-template-columns: 1fr; gap: 30px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+            .btn-primary { width: 100%; padding: 18px 40px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-3d"></canvas>
+
+    <div class="content-layer">
+        <nav>
+            <a href="jaff-creative-final.html" class="logo">JAFFSTUDIO</a>
+            <a href="#contact" class="nav-cta">GET STARTED</a>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-eyebrow">💻 WEBSITE DEVELOPMENT</p>
+                <h1>Your Website Is Your #1 Sales Rep</h1>
+                <p class="hero-subtitle">Is yours bringing in customers 24/7, or is it sitting there looking pretty while your competitors steal your revenue? Let's build you a website that actually sells.</p>
+                <a href="#contact" class="btn-primary">Get Your Custom Website</a>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">The Brutal Truth About Bad Websites</h2>
+            <p class="section-subtitle">A slow, outdated, or confusing website is bleeding your business dry</p>
+
+            <div class="problem-solution">
+                <div class="problem-box">
+                    <h3>Your Current Website</h3>
+                    <ul class="problem-list">
+                        <li>Takes 5+ seconds to load (visitors leave in 3)</li>
+                        <li>Looks like it was built in 2010</li>
+                        <li>Doesn't work on mobile (60% of traffic)</li>
+                        <li>No clear call-to-action or sales funnel</li>
+                        <li>Zero SEO optimization (Google ignores you)</li>
+                        <li>Complicated checkout process (abandoned carts)</li>
+                        <li>No trust signals or social proof</li>
+                    </ul>
+                </div>
+
+                <div class="solution-box">
+                    <h3>JAFF STUDIO Websites</h3>
+                    <ul class="solution-list">
+                        <li>Lightning-fast load times (under 2 seconds)</li>
+                        <li>Modern, premium design that builds trust</li>
+                        <li>Perfect on every device (mobile-first design)</li>
+                        <li>Strategic sales funnels that convert visitors</li>
+                        <li>SEO-optimized to rank on Google</li>
+                        <li>Streamlined checkout (higher conversion rates)</li>
+                        <li>Social proof built in (reviews, testimonials, stats)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Our Website Solutions</h2>
+            <p class="section-subtitle">Built for your specific business goals, not one-size-fits-all templates</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🛒</span>
+                    <h3>E-Commerce Websites</h3>
+                    <p><strong>What you get:</strong> Full online store with product catalog, shopping cart, secure checkout, inventory management, shipping integration.</p>
+                    <p style="margin-top: 20px;"><strong>Best for:</strong> Retail businesses, fashion brands, food/beverage, home goods, subscription services</p>
+                    <p style="margin-top: 20px;"><strong>Results:</strong> $180K+ generated in first 6 months, 68% of revenue from online sales, 4.2x ROAS on ads</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🏢</span>
+                    <h3>Business Websites</h3>
+                    <p><strong>What you get:</strong> Professional corporate site with services pages, about section, portfolio/case studies, contact forms, blog.</p>
+                    <p style="margin-top: 20px;"><strong>Best for:</strong> Service businesses, consultants, agencies, B2B companies, professional firms</p>
+                    <p style="margin-top: 20px;"><strong>Results:</strong> 3x more qualified leads, 45% increase in consultation bookings, premium brand positioning</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3>Portfolio Websites</h3>
+                    <p><strong>What you get:</strong> Stunning visual portfolio, project showcases, client testimonials, bio/about section, contact integration.</p>
+                    <p style="margin-top: 20px;"><strong>Best for:</strong> Designers, photographers, artists, freelancers, content creators, influencers</p>
+                    <p style="margin-top: 20px;"><strong>Results:</strong> 5x more client inquiries, ability to charge 50% higher rates, professional credibility</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span>
+                    <h3>Landing Pages</h3>
+                    <p><strong>What you get:</strong> High-converting single-page site optimized for one goal: getting visitors to take action (buy, book, subscribe).</p>
+                    <p style="margin-top: 20px;"><strong>Best for:</strong> Product launches, event registrations, lead generation, webinar signups, special offers</p>
+                    <p style="margin-top: 20px;"><strong>Results:</strong> 25-40% conversion rates (industry average is 2-5%), 10x ROI on ad spend</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">What's Included in Every Website</h2>
+            <p class="section-subtitle">Premium features that make your website a revenue-generating machine</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Blazing Fast Performance</h3>
+                    <p>Optimized code, compressed images, CDN integration. Your site loads in under 2 seconds. Fast sites rank higher on Google and convert better.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3>Mobile-First Design</h3>
+                    <p>60% of web traffic is mobile. Your site looks perfect and functions flawlessly on every device - phone, tablet, desktop.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>SEO Optimization</h3>
+                    <p>Optimized meta tags, headers, alt text, site structure. We build your site to rank on Google from day one. More visibility = more customers.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Security & SSL</h3>
+                    <p>Enterprise-grade SSL certificate, secure hosting, regular backups, malware protection. Your site and customer data are bulletproof.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Analytics Integration</h3>
+                    <p>Google Analytics, Facebook Pixel, conversion tracking set up. Know exactly where your traffic comes from and what's working.</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Conversion Optimization</h3>
+                    <p>Strategic CTAs, trust badges, scarcity triggers, social proof. Every element designed to turn visitors into paying customers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Website Performance Stats</h2>
+            <p class="section-subtitle">The difference a professional website makes</p>
+
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">$180K</div>
+                    <p class="stat-label">Revenue in First 6 Months</p>
+                </div>
+                <div>
+                    <div class="stat-number">68%</div>
+                    <p class="stat-label">Of Total Revenue Online</p>
+                </div>
+                <div>
+                    <div class="stat-number">3x</div>
+                    <p class="stat-label">More Qualified Leads</p>
+                </div>
+                <div>
+                    <div class="stat-number">4.2x</div>
+                    <p class="stat-label">Return on Ad Spend</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Website Pricing</h2>
+            <p class="section-subtitle">Transparent pricing, no hidden fees, full ownership</p>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4>Business Site</h4>
+                    <div class="pricing-price">$3,497</div>
+                    <ul class="pricing-features">
+                        <li>Up to 10 pages</li>
+                        <li>Mobile responsive design</li>
+                        <li>SEO optimization</li>
+                        <li>Contact forms</li>
+                        <li>Social media integration</li>
+                        <li>1 month free support</li>
+                        <li>Full ownership & code access</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h4>E-Commerce</h4>
+                    <div class="pricing-price">$6,997</div>
+                    <ul class="pricing-features">
+                        <li>Up to 100 products</li>
+                        <li>Shopping cart & checkout</li>
+                        <li>Payment gateway integration</li>
+                        <li>Inventory management</li>
+                        <li>Shipping calculator</li>
+                        <li>Product reviews system</li>
+                        <li>Email marketing integration</li>
+                        <li>3 months free support</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Launch Store</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h4>Custom Build</h4>
+                    <div class="pricing-price">Custom</div>
+                    <ul class="pricing-features">
+                        <li>Unlimited pages/products</li>
+                        <li>Custom features & functionality</li>
+                        <li>Advanced integrations (CRM, ERP)</li>
+                        <li>Multi-language support</li>
+                        <li>Custom admin dashboard</li>
+                        <li>API development</li>
+                        <li>Dedicated project manager</li>
+                        <li>6 months premium support</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="cta-section">
+                <h2>Ready to Build a Website That Sells?</h2>
+                <p>Stop losing customers to slow, ugly websites. Let's create your revenue-generating digital storefront.</p>
+                <a href="mailto:contact@jaffstudio.com" class="btn-primary">Get Your Free Quote</a>
+            </div>
+        </section>
+
+        <footer style="padding: 80px 60px 40px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+            <h3 style="font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: #fff;">JAFF STUDIO</h3>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;">&copy; 2025 JAFF STUDIO. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas-3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        camera.position.z = 5;
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const isMobile = window.innerWidth <= 768;
+        const particleCount = isMobile ? 800 : 2000;
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 20;
+            positions[i + 1] = (Math.random() - 0.5) * 20;
+            positions[i + 2] = (Math.random() - 0.5) * 20;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.03,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.0003;
+            particles.rotation.x += 0.0002;
+            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
