@@ -1330,6 +1330,148 @@
         footer {
             animation: fadeIn 0.8s ease-out;
         }
+
+        /* Contact Form Styles */
+        .contact-form-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-form-container:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #000;
+            color: #fff;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            padding: 20px 40px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .form-submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .form-success-message {
+            display: none;
+            padding: 20px;
+            background: rgba(76, 217, 100, 0.15);
+            border: 1px solid rgba(76, 217, 100, 0.3);
+            border-radius: 8px;
+            color: #4CD964;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-form-container {
+                padding: 40px 25px;
+                margin: 40px 20px 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+            }
+
+            .form-submit-btn {
+                padding: 18px 30px;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1828,9 +1970,87 @@
         <section id="contact">
             <p class="section-eyebrow" style="color: #666;">GET IN TOUCH</p>
             <h2 class="section-title">Let's Create Together</h2>
-            <p class="section-subtitle">Ready to transform your brand? Get in touch and let's discuss your project.</p>
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="contact.html" class="btn-primary" style="margin: 10px;">Contact Us</a>
+            <p class="section-subtitle">Ready to transform your brand? Fill out the form below and let's discuss your project.</p>
+
+            <div class="contact-form-container">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name *</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-input"
+                                placeholder="John Doe"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="company" class="form-label">Company</label>
+                            <input
+                                type="text"
+                                id="company"
+                                name="company"
+                                class="form-input"
+                                placeholder="Your Company"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-input"
+                                placeholder="john@example.com"
+                                required
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                class="form-input"
+                                placeholder="+1 234 567 8900"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service" class="form-label">Service Interested In *</label>
+                        <select id="service" name="service" class="form-select" required>
+                            <option value="">Select a service...</option>
+                            <option value="AI Solutions">AI Solutions</option>
+                            <option value="Website Development">Website Development</option>
+                            <option value="Social Media Management">Social Media Management</option>
+                            <option value="Full Package">Full Package (Multiple Services)</option>
+                            <option value="Other">Other / Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Your Message *</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            class="form-textarea"
+                            placeholder="Tell us about your project, goals, and timeline..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">Send Message</button>
+
+                    <div id="successMessage" class="form-success-message">
+                        ✓ Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.
+                    </div>
+                </form>
             </div>
         </section>
 
@@ -2051,6 +2271,55 @@
             });
         });
         observer.observe(mobileMenu, { attributes: true });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+
+            // Create email subject and body
+            const subject = encodeURIComponent('New Contact Form Submission from ' + formData.name);
+            const body = encodeURIComponent(
+                'CONTACT FORM SUBMISSION\n' +
+                '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+                'Name: ' + formData.name + '\n' +
+                'Company: ' + (formData.company || 'N/A') + '\n' +
+                'Email: ' + formData.email + '\n' +
+                'Phone: ' + (formData.phone || 'N/A') + '\n' +
+                'Service Interested In: ' + formData.service + '\n\n' +
+                'MESSAGE:\n' +
+                '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+                formData.message + '\n\n' +
+                '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
+                'Sent from JAFF STUDIO Contact Form'
+            );
+
+            // Open mailto link
+            window.location.href = 'mailto:contact@jaffstudio.com?subject=' + subject + '&body=' + body;
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Reset form after a short delay
+            setTimeout(() => {
+                this.reset();
+                // Scroll to top of contact section
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 500);
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
     </script>
 </body>
 </html>
