@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Plumbing Pro | 24/7 Emergency Plumbing Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>JAFF STUDIO - Elite Creative Agency | Premium 3D Experience</title>
+    <meta name="description" content="World-class creative agency with stunning 3D experiences.">
+
+    <!-- Three.js for 3D Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -11,396 +22,419 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0d1b2e 100%);
-            color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Animated background pattern */
-        body::before {
-            content: '';
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* 3D Canvas Background */
+        #canvas-3d {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                radial-gradient(circle at 20% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(70, 130, 180, 0.05) 0%, transparent 50%);
-            pointer-events: none;
             z-index: 0;
-            animation: bgPulse 15s ease-in-out infinite;
+            pointer-events: none;
         }
 
-        @keyframes bgPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        nav, section, footer {
-            position: relative;
+        /* Animated Gradient Overlay */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            animation: gradientShift 15s ease infinite;
         }
 
-        /* Emergency Banner */
-        .emergency-banner {
-            background: linear-gradient(90deg, #ff4444 0%, #cc0000 100%);
-            padding: 0.8rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+        @keyframes gradientShift {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
+        /* Content Layer */
+        .content-layer {
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 0.6s ease-out;
         }
 
-        .emergency-banner a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 1rem;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-selector {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            padding-right: 36px;
             transition: all 0.3s;
         }
 
-        .emergency-banner a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+        .language-selector:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .language-selector option {
+            background: #000;
+            color: #fff;
         }
 
         /* Navigation */
         nav {
-            background: rgba(10, 22, 40, 0.95);
-            padding: 1.2rem 5%;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(30, 144, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
+            padding: 20px 60px;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: #fff;
         }
 
-        .logo-icon {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.6));
-        }
-
-        .nav-links {
+        .nav-menu {
             display: flex;
-            gap: 2.5rem;
+            gap: 40px;
             list-style: none;
         }
 
-        .nav-links a {
-            color: #ffffff;
+        .nav-menu a {
+            color: #fff;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             transition: all 0.3s;
             position: relative;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .nav-links a::after {
+        .nav-menu a::before {
             content: '';
             position: absolute;
             bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             width: 0;
             height: 2px;
-            background: #1e90ff;
+            background: #fff;
             transition: width 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #1e90ff;
+        .nav-menu a:hover::before {
+            width: 100%;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-cta {
+            padding: 12px 30px;
+            background: #fff;
+            color: #000;
+            border: none;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5);
         }
 
         /* Hero Section */
         .hero {
-            min-height: 90vh;
-            padding: 100px 5% 80px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
             position: relative;
         }
 
         .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            z-index: 2;
         }
 
-        .hero-left {
-            animation: fadeInLeft 1s ease;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            background: rgba(30, 144, 255, 0.2);
-            border: 2px solid rgba(30, 144, 255, 0.4);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            font-weight: 700;
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            color: #00bfff;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.2s;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -1px;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin: 30px 0;
+            color: #fff;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.4s;
+            text-shadow: 0 0 80px rgba(255, 255, 255, 0.3);
         }
 
-        .hero .highlight {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #4682b4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: #b0c4de;
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 50px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.6s;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 2.5rem;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            border-radius: 8px;
-            font-size: 0.95rem;
-        }
-
-        .cta-button.primary {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
-        }
-
-        .cta-button.primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.6);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(30, 144, 255, 0.5);
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(30, 144, 255, 0.1);
-            border-color: #1e90ff;
-            transform: translateY(-3px);
-        }
-
-        .trust-indicators {
-            display: flex;
-            gap: 3rem;
+            gap: 20px;
+            justify-content: center;
             flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.8s;
         }
 
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .trust-icon {
-            font-size: 2rem;
-            color: #1e90ff;
-        }
-
-        .trust-text {
-            font-size: 0.9rem;
-            color: #b0c4de;
-        }
-
-        .trust-text strong {
-            display: block;
-            color: #ffffff;
-            font-size: 1.1rem;
-        }
-
-        .hero-right {
-            position: relative;
-            animation: fadeInRight 1s ease;
-        }
-
-        @keyframes fadeInRight {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateX(50px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
-        .hero-image {
+        .btn-primary, .btn-secondary {
+            padding: 18px 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-block;
             position: relative;
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(30, 144, 255, 0.3);
         }
 
-        .hero-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
+        .btn-primary {
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
         }
 
-        .floating-badge {
+        .btn-primary::before {
+            content: '';
             position: absolute;
-            background: rgba(10, 22, 40, 0.95);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.5);
             backdrop-filter: blur(10px);
-            padding: 1.5rem 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: float 3s ease-in-out infinite;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Floating Orbs */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .orb-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255,255,255,0.25), transparent);
+            bottom: 10%;
+            left: 50%;
+            animation-delay: 10s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-50px, 50px) scale(0.9);
+            }
         }
 
-        .badge-1 {
-            top: 10%;
-            left: -5%;
+        /* Section Styles */
+        section {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
         }
 
-        .badge-2 {
-            bottom: 10%;
-            right: -5%;
+        .full-width {
+            max-width: 100%;
+            margin: 0;
+            padding: 100px 80px;
         }
 
-        .badge-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+        .full-width-white {
+            background: #fff;
+            color: #000;
+            position: relative;
         }
 
-        .badge-text {
-            font-weight: 700;
-            font-size: 1rem;
+        .full-width-light {
+            background: #f5f5f5;
+            color: #000;
+        }
+
+        .section-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 6rem 5%;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            letter-spacing: -1px;
         }
 
         .section-subtitle {
-            text-align: center;
             font-size: 1.1rem;
-            color: #b0c4de;
-            margin-bottom: 4rem;
+            color: #666;
+            text-align: center;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto 80px;
         }
 
-        /* Services Section */
-        .services {
-            background: rgba(10, 22, 40, 0.5);
-        }
-
+        /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 100px;
         }
 
         .service-card {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 3rem 2.5rem;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            border-radius: 15px;
-            transition: all 0.4s;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 40px;
+            transition: all 0.5s;
             position: relative;
             overflow: hidden;
         }
@@ -409,897 +443,1096 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #1e90ff, transparent);
-            transition: left 0.5s;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
         }
 
         .service-card:hover::before {
-            left: 100%;
+            opacity: 1;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.6);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.2);
-            background: rgba(26, 41, 66, 0.8);
+            box-shadow: 0 30px 80px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .service-number {
+            font-size: 3.5rem;
+            color: rgba(255,255,255,0.1);
+            font-weight: 900;
+            margin-bottom: 30px;
+            line-height: 1;
         }
 
         .service-icon {
             font-size: 3rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
             display: block;
         }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
+        .service-category {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        .service-card p {
-            color: #b0c4de;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .service-features li {
-            padding: 0.5rem 0;
-            color: #b0c4de;
-            font-size: 0.9rem;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: #1e90ff;
-            font-weight: 700;
-            margin-right: 0.8rem;
-        }
-
-        /* Why Choose Us Section */
-        .why-choose {
-            background: rgba(10, 22, 40, 0.3);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .feature-box {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: rgba(26, 41, 66, 0.4);
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            transition: all 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.5);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .feature-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .feature-box p {
-            color: #b0c4de;
-            line-height: 1.7;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            background: rgba(10, 22, 40, 0.5);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .testimonial-card {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 2.5rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
-            position: relative;
-        }
-
-        .testimonial-quote {
-            font-size: 3rem;
-            color: rgba(30, 144, 255, 0.3);
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-        }
-
-        .testimonial-text {
-            color: #b0c4de;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #1e90ff, #4682b4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .author-info h4 {
-            color: #ffffff;
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info p {
-            color: #b0c4de;
-            font-size: 0.85rem;
-        }
-
-        .rating {
-            color: #ffd700;
-            font-size: 1rem;
-            margin-top: 1rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: rgba(10, 22, 40, 0.3);
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-info h3 {
+        .service-title {
             font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1e90ff;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #fff;
+            line-height: 1.2;
         }
 
-        .contact-item {
+        .service-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 30px;
+        }
+
+        .service-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .service-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
             display: flex;
             align-items: flex-start;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: rgba(26, 41, 66, 0.4);
-            border-radius: 10px;
-            border: 1px solid rgba(30, 144, 255, 0.2);
+            transition: all 0.3s;
         }
 
-        .contact-icon {
-            font-size: 2rem;
-            color: #1e90ff;
-            flex-shrink: 0;
+        .service-list li:last-child {
+            border-bottom: none;
         }
 
-        .contact-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .contact-details p {
-            color: #b0c4de;
-            font-size: 1rem;
-        }
-
-        .contact-details a {
-            color: #1e90ff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .contact-details a:hover {
-            color: #00bfff;
-        }
-
-        .contact-form {
-            background: rgba(26, 41, 66, 0.6);
-            padding: 3rem;
-            border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.3);
-        }
-
-        .contact-form h3 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: #1e90ff;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
+        .service-list li:before {
+            content: '→';
+            margin-right: 12px;
+            color: rgba(255,255,255,0.5);
             font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(10, 22, 40, 0.5);
-            border: 2px solid rgba(30, 144, 255, 0.3);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
             transition: all 0.3s;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #1e90ff;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+        .service-list li:hover {
+            color: #fff;
+            padding-left: 10px;
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        .service-list li:hover:before {
+            color: #fff;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: rgba(10, 22, 40, 0.8);
-            padding: 3rem 5%;
-            border-top: 2px solid rgba(30, 144, 255, 0.3);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-content p {
-            color: #b0c4de;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: #1e90ff;
+        .service-cta {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.2);
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 4px;
         }
 
-        .footer-links a:hover {
-            color: #00bfff;
+        .service-cta:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #fff;
+            transform: translateY(-2px);
         }
 
-        /* Floating Call Button */
-        .floating-call {
+        /* WhatsApp Widget */
+        .whatsapp-widget {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #ff4444, #cc0000);
-            color: #ffffff;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #2CB742 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.5);
-            z-index: 999;
-            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            z-index: 9000;
+            box-shadow: 0 10px 40px rgba(37,211,102,0.5);
+            animation: floatWidget 3s ease-in-out infinite;
             transition: all 0.3s;
-            animation: bounce 2s infinite;
+        }
+
+        .whatsapp-widget:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 50px rgba(37,211,102,0.7);
+        }
+
+        .whatsapp-widget svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
+        @keyframes floatWidget {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 110px;
+            right: 35px;
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 8999;
+            box-shadow: 0 10px 40px rgba(255,255,255,0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 50px rgba(255,255,255,0.5);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 10000;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            z-index: 9998;
+            padding: 100px 30px 30px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-menu li {
+            margin-bottom: 30px;
+        }
+
+        .mobile-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-cta {
+            margin-top: 40px;
+            padding: 20px 40px;
+            background: #fff;
+            color: #000;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
             text-decoration: none;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-top: 100px;
         }
 
-        .floating-call:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 68, 68, 0.7);
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+        @media (max-width: 1024px) {
+            section, .full-width { padding: 80px 40px; }
+            .services-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 4rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Mobile Navigation */
+            .nav-menu { display: none; }
+            .nav-cta { display: none; }
+            .mobile-menu-toggle { display: block; }
+
+            section, .full-width { padding: 60px 20px; }
+            nav {
+                padding: 15px 20px;
+                justify-content: space-between;
             }
 
-            .hero-right {
-                order: -1;
+            /* Hero Section */
+            .hero {
+                min-height: 100vh;
+                padding: 100px 20px 60px;
             }
 
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+            .hero h1 {
+                font-size: 3rem !important;
+                letter-spacing: -1px !important;
             }
 
-            .nav-links {
-                display: none;
-            }
-
-            .services-grid,
-            .features-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .trust-indicators {
-                flex-direction: column;
-                gap: 1.5rem;
+            .hero-subtitle {
+                font-size: 1.1rem !important;
             }
 
             .hero-buttons {
                 flex-direction: column;
+                width: 100%;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+                padding: 20px 40px !important;
+                font-size: 0.9rem !important;
             }
 
-            .emergency-banner {
-                font-size: 0.8rem;
+            .services-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
             }
 
-            .emergency-banner a {
-                display: block;
-                margin-top: 0.5rem;
-                margin-left: 0;
+            .service-card {
+                padding: 40px 30px !important;
             }
 
-            .floating-badge {
+            .service-number {
+                font-size: 2.5rem !important;
+            }
+
+            .service-title {
+                font-size: 1.5rem !important;
+            }
+
+            .service-list li {
+                font-size: 0.85rem !important;
+            }
+
+            /* Stats Mobile */
+            .floating-orb {
                 display: none;
             }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 25px !important;
+            }
+
+            .stat-number {
+                font-size: 2.2rem !important;
+            }
+
+            .stat-label {
+                font-size: 0.7rem !important;
+            }
+
+            /* WhatsApp & Back to Top Mobile */
+            .whatsapp-widget {
+                width: 55px !important;
+                height: 55px !important;
+                bottom: 20px !important;
+                right: 20px !important;
+            }
+
+            .back-to-top {
+                width: 45px !important;
+                height: 45px !important;
+                bottom: 90px !important;
+                right: 20px !important;
+                font-size: 1rem !important;
+            }
+
+            /* Touch-friendly improvements */
+            a, button {
+                -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* iPhone X and newer notch support */
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+
+            nav {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+            }
+
+            .mobile-menu {
+                padding-left: max(30px, env(safe-area-inset-left));
+                padding-right: max(30px, env(safe-area-inset-right));
+                padding-bottom: max(30px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* Footer Styles */
+        footer a:hover {
+            color: #fff !important;
+            text-decoration: none;
+        }
+
+        footer {
+            animation: fadeIn 0.8s ease-out;
         }
     </style>
 </head>
 <body>
-    <!-- Emergency Banner -->
-    <div class="emergency-banner">
-        🚨 24/7 EMERGENCY PLUMBING SERVICES AVAILABLE
-        <a href="tel:+1234567890">CALL NOW: (123) 456-7890</a>
+    <!-- 3D Canvas Background -->
+    <canvas id="canvas-3d"></canvas>
+
+    <!-- Gradient Overlay -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Floating Orbs -->
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+
+    <!-- Content Layer -->
+    <div class="content-layer">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo" data-i18n="logo">JAFFSTUDIO</div>
+            <ul class="nav-menu">
+                <li><a href="#home" data-i18n="nav.home">HOME</a></li>
+                <li><a href="#about" data-i18n="nav.about">ABOUT</a></li>
+                <li><a href="#services" data-i18n="nav.services">SERVICES</a></li>
+                <li><a href="#contact" data-i18n="nav.contact">CONTACT</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <div class="language-switcher">
+                    <select class="language-selector" id="languageSwitcher">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="fr">🇫🇷 Français</option>
+                    </select>
+                </div>
+                <a href="#contact" class="nav-cta" data-i18n="nav.cta">LET'S TALK</a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#home" class="mobile-menu-link" data-i18n="nav.home">HOME</a></li>
+                <li><a href="#about" class="mobile-menu-link" data-i18n="nav.about">ABOUT</a></li>
+                <li><a href="#services" class="mobile-menu-link" data-i18n="nav.services">SERVICES</a></li>
+                <li><a href="#contact" class="mobile-menu-link" data-i18n="nav.contact">CONTACT</a></li>
+            </ul>
+            <a href="#contact" class="mobile-menu-cta mobile-menu-link" data-i18n="nav.cta">LET'S TALK</a>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="hero-eyebrow" data-i18n="hero.eyebrow">Elite Creative Agency</p>
+                <h1 data-i18n="hero.title">JAFF STUDIO</h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">Where Excellence Meets Innovation - Crafting Premium Brand Experiences</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary" data-i18n="hero.cta1">START PROJECT</a>
+                    <a href="#services" class="btn-secondary" data-i18n="hero.cta2">EXPLORE SERVICES</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="full-width full-width-white">
+            <p class="section-eyebrow" data-i18n="about.eyebrow">WHO WE ARE</p>
+            <h2 class="section-title" data-i18n="about.title">We Build Businesses That Scale</h2>
+            <p class="section-subtitle" data-i18n="about.subtitle">
+                JAFF STUDIO combines AI automation, web development, and performance marketing to deliver measurable growth for ambitious businesses.
+            </p>
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <p class="stat-label" data-i18n="about.stat1">PROJECTS DELIVERED</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.8x</div>
+                    <p class="stat-label" data-i18n="about.stat2">AVERAGE CLIENT ROI</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">24/7</div>
+                    <p class="stat-label" data-i18n="about.stat3">AI-POWERED SUPPORT</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <p class="stat-label" data-i18n="about.stat4">CLIENT OWNERSHIP</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">⚡</div>
+                    <p class="stat-label" data-i18n="about.stat5">IMMEDIATE RESPONSE</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <p class="section-eyebrow" style="color: #666;" data-i18n="services.eyebrow">WHAT WE DO</p>
+            <h2 class="section-title" data-i18n="services.title">Our Premium Services</h2>
+            <p class="section-subtitle" data-i18n="services.subtitle">Cutting-edge solutions powered by innovation and creativity</p>
+            <div class="services-grid">
+                <!-- AI Solutions -->
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <div class="service-icon">🤖</div>
+                    <p class="service-category" data-i18n="services.ai.category">INTELLIGENT AUTOMATION</p>
+                    <h3 class="service-title" data-i18n="services.ai.title">AI Solutions</h3>
+                    <p class="service-description" data-i18n="services.ai.description">Transform your business with cutting-edge artificial intelligence and automation</p>
+                    <ul class="service-list">
+                        <li data-i18n="services.ai.item1">Custom AI Chatbots for customer service automation and lead generation</li>
+                        <li data-i18n="services.ai.item2">Voice Agents for phone automation and intelligent voice assistants</li>
+                        <li data-i18n="services.ai.item3">Business Process Automation for workflow optimization</li>
+                        <li data-i18n="services.ai.item4">AI-powered data processing and analysis</li>
+                        <li data-i18n="services.ai.item5">24/7 automated customer support systems</li>
+                    </ul>
+                </div>
+
+                <!-- Website Development -->
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <div class="service-icon">💻</div>
+                    <p class="service-category" data-i18n="services.web.category">DIGITAL PRESENCE</p>
+                    <h3 class="service-title" data-i18n="services.web.title">Website Development</h3>
+                    <p class="service-description" data-i18n="services.web.description">Premium websites and web applications built for performance and conversion</p>
+                    <ul class="service-list">
+                        <li data-i18n="services.web.item1">E-commerce websites with payment integration and inventory management</li>
+                        <li data-i18n="services.web.item2">Business websites, corporate sites, and landing pages</li>
+                        <li data-i18n="services.web.item3">Portfolio sites and personal branding websites</li>
+                        <li data-i18n="services.web.item4">Custom web applications tailored to your needs</li>
+                        <li data-i18n="services.web.item5">Responsive design for all devices and platforms</li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Management -->
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <div class="service-icon">📱</div>
+                    <p class="service-category" data-i18n="services.social.category">BRAND GROWTH</p>
+                    <h3 class="service-title" data-i18n="services.social.title">Social Media Management</h3>
+                    <p class="service-description" data-i18n="services.social.description">Strategic social media solutions that drive engagement and revenue</p>
+                    <ul class="service-list">
+                        <li data-i18n="services.social.item1">Professional content creation and scheduling</li>
+                        <li data-i18n="services.social.item2">Data-driven social media strategy and planning</li>
+                        <li data-i18n="services.social.item3">Paid advertising campaigns (Facebook, Instagram, Google Ads)</li>
+                        <li data-i18n="services.social.item4">Comprehensive analytics and performance reporting</li>
+                        <li data-i18n="services.social.item5">Community management and engagement optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <p class="section-eyebrow" style="color: #666;" data-i18n="contact.eyebrow">GET IN TOUCH</p>
+            <h2 class="section-title" data-i18n="contact.title">Let's Create Together</h2>
+            <p class="section-subtitle" data-i18n="contact.subtitle">Ready to transform your brand? Fill out the form below and let's discuss your project.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer style="padding: 80px 60px 40px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+            <h3 style="font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: #fff;" data-i18n="logo">JAFF STUDIO</h3>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;" data-i18n="footer.tagline">Elite AI-Powered Creative Agency</p>
+
+            <!-- Social Media Links -->
+            <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px;">
+                <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;">Instagram</a>
+                <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;">LinkedIn</a>
+                <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;">Twitter</a>
+                <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;">Behance</a>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; margin-top: 30px;">
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;" data-i18n="footer.copyright">&copy; 2025 JAFF STUDIO. All rights reserved.</p>
+                <p style="color: rgba(255,255,255,0.4); font-size: 0.85rem; margin-top: 10px;" data-i18n="footer.location">Swiss-based AI Agency | Compliant with nFADP</p>
+            </div>
+        </footer>
     </div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Why Choose Us</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!-- Back to Top Button -->
+    <button class="back-to-top">↑</button>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-left">
-                <div class="hero-badge">⭐ Certified & Licensed Plumbers</div>
-                <h1>Your <span class="highlight">Elite</span><br>Plumbing Partner</h1>
-                <p class="hero-description">
-                    Professional plumbing services available 24/7. From emergency repairs to complete installations,
-                    we deliver excellence with every job. Licensed, insured, and trusted by thousands.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="cta-button primary">Request Service</a>
-                    <a href="tel:+1234567890" class="cta-button secondary">Call Emergency</a>
-                </div>
-                <div class="trust-indicators">
-                    <div class="trust-item">
-                        <span class="trust-icon">✓</span>
-                        <div class="trust-text">
-                            <strong>Licensed</strong>
-                            Fully Certified
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⚡</span>
-                        <div class="trust-text">
-                            <strong>24/7</strong>
-                            Emergency Service
-                        </div>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">⭐</span>
-                        <div class="trust-text">
-                            <strong>5.0 Rating</strong>
-                            1000+ Reviews
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-right">
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop" alt="Professional Plumber">
-                    <div class="floating-badge badge-1">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-text">Fully Insured</div>
-                    </div>
-                    <div class="floating-badge badge-2">
-                        <div class="badge-icon">⏰</div>
-                        <div class="badge-text">Same Day Service</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section services">
-        <h2 class="section-title">Our <span class="highlight">Premium</span> Services</h2>
-        <p class="section-subtitle">
-            Comprehensive plumbing solutions for residential and commercial properties.
-            No job too big or small.
-        </p>
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">🚰</span>
-                <h3>Emergency Repairs</h3>
-                <p>24/7 emergency plumbing services for urgent issues. Fast response times, expert solutions.</p>
-                <ul class="service-features">
-                    <li>Burst pipe repairs</li>
-                    <li>Water heater failures</li>
-                    <li>Severe drain clogs</li>
-                    <li>Gas leak detection</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🚿</span>
-                <h3>Bathroom Plumbing</h3>
-                <p>Complete bathroom plumbing services from installations to renovations.</p>
-                <ul class="service-features">
-                    <li>Toilet installation & repair</li>
-                    <li>Shower/tub services</li>
-                    <li>Sink & faucet work</li>
-                    <li>Full bathroom remodels</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🍽️</span>
-                <h3>Kitchen Plumbing</h3>
-                <p>Professional kitchen plumbing for functionality and efficiency.</p>
-                <ul class="service-features">
-                    <li>Garbage disposal services</li>
-                    <li>Dishwasher installation</li>
-                    <li>Kitchen sink repair</li>
-                    <li>Water line installation</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">♨️</span>
-                <h3>Water Heaters</h3>
-                <p>Expert water heater installation, repair, and maintenance services.</p>
-                <ul class="service-features">
-                    <li>Tank & tankless heaters</li>
-                    <li>Repair & replacement</li>
-                    <li>Energy-efficient options</li>
-                    <li>Regular maintenance</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🌊</span>
-                <h3>Drain Cleaning</h3>
-                <p>Advanced drain cleaning and hydro-jetting for stubborn clogs.</p>
-                <ul class="service-features">
-                    <li>Video camera inspection</li>
-                    <li>Hydro-jetting services</li>
-                    <li>Root removal</li>
-                    <li>Preventive maintenance</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏠</span>
-                <h3>Pipe Services</h3>
-                <p>Complete pipe installation, repair, and replacement services.</p>
-                <ul class="service-features">
-                    <li>Leak detection & repair</li>
-                    <li>Pipe replacement</li>
-                    <li>Re-piping services</li>
-                    <li>Sewer line repair</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">💧</span>
-                <h3>Water Filtration</h3>
-                <p>Clean, safe water with our advanced filtration systems.</p>
-                <ul class="service-features">
-                    <li>Whole-house filters</li>
-                    <li>Water softeners</li>
-                    <li>Reverse osmosis systems</li>
-                    <li>Water quality testing</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🏢</span>
-                <h3>Commercial Plumbing</h3>
-                <p>Professional plumbing services for businesses and commercial properties.</p>
-                <ul class="service-features">
-                    <li>Restaurant plumbing</li>
-                    <li>Office buildings</li>
-                    <li>Retail spaces</li>
-                    <li>Maintenance contracts</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="section why-choose">
-        <h2 class="section-title">Why Choose <span class="highlight">Elite Plumbing</span></h2>
-        <p class="section-subtitle">
-            We're not just another plumbing company. We're your trusted partner for all plumbing needs.
-        </p>
-        <div class="features-grid">
-            <div class="feature-box">
-                <span class="feature-icon">⚡</span>
-                <h3>Fast Response</h3>
-                <p>Same-day service available. We arrive on time, every time, ready to solve your plumbing issues quickly.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🎓</span>
-                <h3>Expert Team</h3>
-                <p>Licensed, certified, and highly trained plumbers with years of experience in all aspects of plumbing.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">💯</span>
-                <h3>Quality Guarantee</h3>
-                <p>100% satisfaction guaranteed. We stand behind our work with comprehensive warranties.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">💰</span>
-                <h3>Fair Pricing</h3>
-                <p>Transparent, upfront pricing with no hidden fees. Free estimates on all major work.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🛠️</span>
-                <h3>Modern Equipment</h3>
-                <p>State-of-the-art tools and technology for efficient, precise, and lasting solutions.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🌟</span>
-                <h3>Customer First</h3>
-                <p>Exceptional customer service is our priority. Your satisfaction is our success.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials">
-        <h2 class="section-title">What Our <span class="highlight">Customers Say</span></h2>
-        <p class="section-subtitle">
-            Don't just take our word for it. See what our satisfied customers have to say.
-        </p>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    Elite Plumbing saved the day! Had a burst pipe at 2 AM and they were here within 30 minutes.
-                    Professional, fast, and fixed everything perfectly. Highly recommend!
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">JD</div>
-                    <div class="author-info">
-                        <h4>John Davis</h4>
-                        <p>Homeowner</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    Best plumbing company I've ever worked with. They completely renovated our bathroom plumbing
-                    and the quality is outstanding. Fair prices and excellent workmanship.
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">SM</div>
-                    <div class="author-info">
-                        <h4>Sarah Martinez</h4>
-                        <p>Property Manager</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testimonial-card">
-                <div class="testimonial-quote">"</div>
-                <p class="testimonial-text">
-                    We use Elite Plumbing for all our commercial properties. Always reliable, professional,
-                    and their emergency service is truly 24/7. Worth every penny!
-                </p>
-                <div class="rating">⭐⭐⭐⭐⭐</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">RW</div>
-                    <div class="author-info">
-                        <h4>Robert Williams</h4>
-                        <p>Business Owner</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
-        <p class="section-subtitle">
-            Ready to solve your plumbing issues? Contact us today for a free estimate.
-        </p>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-
-                <div class="contact-item">
-                    <span class="contact-icon">📞</span>
-                    <div class="contact-details">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+1234567890">(123) 456-7890</a></p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">24/7 Emergency Line</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">✉️</span>
-                    <div class="contact-details">
-                        <h4>Email</h4>
-                        <p><a href="mailto:info@eliteplumbing.com">info@eliteplumbing.com</a></p>
-                        <p><a href="mailto:emergency@eliteplumbing.com">emergency@eliteplumbing.com</a></p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>123 Main Street</p>
-                        <p>Your City, ST 12345</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">⏰</span>
-                    <div class="contact-details">
-                        <h4>Business Hours</h4>
-                        <p>Monday - Friday: 7:00 AM - 7:00 PM</p>
-                        <p>Saturday: 8:00 AM - 5:00 PM</p>
-                        <p>Sunday: Emergency Only</p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">Emergency Service: 24/7</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3>Request Service</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name *</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="service">Service Type *</label>
-                        <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="emergency">Emergency Repair</option>
-                            <option value="bathroom">Bathroom Plumbing</option>
-                            <option value="kitchen">Kitchen Plumbing</option>
-                            <option value="water-heater">Water Heater</option>
-                            <option value="drain-cleaning">Drain Cleaning</option>
-                            <option value="pipe-services">Pipe Services</option>
-                            <option value="water-filtration">Water Filtration</option>
-                            <option value="commercial">Commercial Plumbing</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Describe Your Issue *</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Request Service Now</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
-            </div>
-            <p>&copy; 2025 Elite Plumbing Pro. All Rights Reserved.</p>
-            <p style="margin-top: 0.5rem;">Licensed & Insured | Serving Your Area Since 2005</p>
-            <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#why-us">Why Choose Us</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Call Button -->
-    <a href="tel:+1234567890" class="floating-call" title="Call Now for Emergency Service">📞</a>
+    <!-- WhatsApp Widget -->
+    <a href="https://wa.me/1234567890" target="_blank" class="whatsapp-widget">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
 
     <script>
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Translation Object
+        const translations = {
+            en: {
+                logo: "JAFFSTUDIO",
+                nav: {
+                    home: "HOME",
+                    about: "ABOUT",
+                    services: "SERVICES",
+                    contact: "CONTACT",
+                    cta: "LET'S TALK"
+                },
+                hero: {
+                    eyebrow: "Elite Creative Agency",
+                    title: "JAFF STUDIO",
+                    subtitle: "Where Excellence Meets Innovation - Crafting Premium Brand Experiences",
+                    cta1: "START PROJECT",
+                    cta2: "EXPLORE SERVICES"
+                },
+                about: {
+                    eyebrow: "WHO WE ARE",
+                    title: "We Build Businesses That Scale",
+                    subtitle: "JAFF STUDIO combines AI automation, web development, and performance marketing to deliver measurable growth for ambitious businesses.",
+                    stat1: "PROJECTS DELIVERED",
+                    stat2: "AVERAGE CLIENT ROI",
+                    stat3: "AI-POWERED SUPPORT",
+                    stat4: "CLIENT OWNERSHIP",
+                    stat5: "IMMEDIATE RESPONSE"
+                },
+                services: {
+                    eyebrow: "WHAT WE DO",
+                    title: "Our Premium Services",
+                    subtitle: "Cutting-edge solutions powered by innovation and creativity",
+                    ai: {
+                        category: "INTELLIGENT AUTOMATION",
+                        title: "AI Solutions",
+                        description: "Transform your business with cutting-edge artificial intelligence and automation",
+                        item1: "Custom AI Chatbots for customer service automation and lead generation",
+                        item2: "Voice Agents for phone automation and intelligent voice assistants",
+                        item3: "Business Process Automation for workflow optimization",
+                        item4: "AI-powered data processing and analysis",
+                        item5: "24/7 automated customer support systems"
+                    },
+                    web: {
+                        category: "DIGITAL PRESENCE",
+                        title: "Website Development",
+                        description: "Premium websites and web applications built for performance and conversion",
+                        item1: "E-commerce websites with payment integration and inventory management",
+                        item2: "Business websites, corporate sites, and landing pages",
+                        item3: "Portfolio sites and personal branding websites",
+                        item4: "Custom web applications tailored to your needs",
+                        item5: "Responsive design for all devices and platforms"
+                    },
+                    social: {
+                        category: "BRAND GROWTH",
+                        title: "Social Media Management",
+                        description: "Strategic social media solutions that drive engagement and revenue",
+                        item1: "Professional content creation and scheduling",
+                        item2: "Data-driven social media strategy and planning",
+                        item3: "Paid advertising campaigns (Facebook, Instagram, Google Ads)",
+                        item4: "Comprehensive analytics and performance reporting",
+                        item5: "Community management and engagement optimization"
+                    }
+                },
+                contact: {
+                    eyebrow: "GET IN TOUCH",
+                    title: "Let's Create Together",
+                    subtitle: "Ready to transform your brand? Fill out the form below and let's discuss your project."
+                },
+                footer: {
+                    tagline: "Elite AI-Powered Creative Agency",
+                    copyright: "© 2025 JAFF STUDIO. All rights reserved.",
+                    location: "Swiss-based AI Agency | Compliant with nFADP"
+                }
+            },
+            de: {
+                logo: "JAFFSTUDIO",
+                nav: {
+                    home: "STARTSEITE",
+                    about: "ÜBER UNS",
+                    services: "DIENSTLEISTUNGEN",
+                    contact: "KONTAKT",
+                    cta: "KONTAKT AUFNEHMEN"
+                },
+                hero: {
+                    eyebrow: "Elite Kreativagentur",
+                    title: "JAFF STUDIO",
+                    subtitle: "Wo Exzellenz auf Innovation trifft - Wir schaffen Premium-Markenerlebnisse",
+                    cta1: "PROJEKT STARTEN",
+                    cta2: "DIENSTE ENTDECKEN"
+                },
+                about: {
+                    eyebrow: "WER WIR SIND",
+                    title: "Wir bauen skalierbare Unternehmen",
+                    subtitle: "JAFF STUDIO kombiniert KI-Automatisierung, Webentwicklung und Performance-Marketing, um messbares Wachstum für ambitionierte Unternehmen zu liefern.",
+                    stat1: "PROJEKTE ABGESCHLOSSEN",
+                    stat2: "DURCHSCHNITTLICHER KUNDEN-ROI",
+                    stat3: "KI-GESTÜTZTER SUPPORT",
+                    stat4: "KUNDENEIGENTUM",
+                    stat5: "SOFORTIGE ANTWORT"
+                },
+                services: {
+                    eyebrow: "WAS WIR TUN",
+                    title: "Unsere Premium-Dienstleistungen",
+                    subtitle: "Modernste Lösungen, angetrieben von Innovation und Kreativität",
+                    ai: {
+                        category: "INTELLIGENTE AUTOMATISIERUNG",
+                        title: "KI-Lösungen",
+                        description: "Transformieren Sie Ihr Unternehmen mit modernster künstlicher Intelligenz und Automatisierung",
+                        item1: "Maßgeschneiderte KI-Chatbots für Kundenservice-Automatisierung und Lead-Generierung",
+                        item2: "Sprachagenten für Telefonautomatisierung und intelligente Sprachassistenten",
+                        item3: "Geschäftsprozess-Automatisierung für Workflow-Optimierung",
+                        item4: "KI-gestützte Datenverarbeitung und Analyse",
+                        item5: "24/7 automatisierte Kundensupportsysteme"
+                    },
+                    web: {
+                        category: "DIGITALE PRÄSENZ",
+                        title: "Webentwicklung",
+                        description: "Premium-Websites und Webanwendungen für Performance und Konversion",
+                        item1: "E-Commerce-Websites mit Zahlungsintegration und Bestandsverwaltung",
+                        item2: "Unternehmenswebsites, Firmenwebsites und Landingpages",
+                        item3: "Portfolio-Websites und persönliche Branding-Websites",
+                        item4: "Maßgeschneiderte Webanwendungen für Ihre Bedürfnisse",
+                        item5: "Responsives Design für alle Geräte und Plattformen"
+                    },
+                    social: {
+                        category: "MARKENWACHSTUM",
+                        title: "Social Media Management",
+                        description: "Strategische Social-Media-Lösungen, die Engagement und Umsatz fördern",
+                        item1: "Professionelle Content-Erstellung und Planung",
+                        item2: "Datengestützte Social-Media-Strategie und Planung",
+                        item3: "Bezahlte Werbekampagnen (Facebook, Instagram, Google Ads)",
+                        item4: "Umfassende Analysen und Performance-Berichte",
+                        item5: "Community-Management und Engagement-Optimierung"
+                    }
+                },
+                contact: {
+                    eyebrow: "KONTAKT AUFNEHMEN",
+                    title: "Lassen Sie uns gemeinsam kreativ sein",
+                    subtitle: "Bereit, Ihre Marke zu transformieren? Füllen Sie das Formular aus und lassen Sie uns über Ihr Projekt sprechen."
+                },
+                footer: {
+                    tagline: "Elite KI-gestützte Kreativagentur",
+                    copyright: "© 2025 JAFF STUDIO. Alle Rechte vorbehalten.",
+                    location: "Schweizer KI-Agentur | nFADP-konform"
+                }
+            },
+            it: {
+                logo: "JAFFSTUDIO",
+                nav: {
+                    home: "HOME",
+                    about: "CHI SIAMO",
+                    services: "SERVIZI",
+                    contact: "CONTATTI",
+                    cta: "PARLIAMONE"
+                },
+                hero: {
+                    eyebrow: "Agenzia Creativa d'Elite",
+                    title: "JAFF STUDIO",
+                    subtitle: "Dove l'Eccellenza Incontra l'Innovazione - Creiamo Esperienze di Brand Premium",
+                    cta1: "INIZIA PROGETTO",
+                    cta2: "ESPLORA SERVIZI"
+                },
+                about: {
+                    eyebrow: "CHI SIAMO",
+                    title: "Costruiamo Aziende che Scalano",
+                    subtitle: "JAFF STUDIO combina automazione AI, sviluppo web e performance marketing per offrire crescita misurabile alle aziende ambiziose.",
+                    stat1: "PROGETTI CONSEGNATI",
+                    stat2: "ROI MEDIO CLIENTI",
+                    stat3: "SUPPORTO ALIMENTATO DA AI",
+                    stat4: "PROPRIETÀ DEL CLIENTE",
+                    stat5: "RISPOSTA IMMEDIATA"
+                },
+                services: {
+                    eyebrow: "COSA FACCIAMO",
+                    title: "I Nostri Servizi Premium",
+                    subtitle: "Soluzioni all'avanguardia alimentate da innovazione e creatività",
+                    ai: {
+                        category: "AUTOMAZIONE INTELLIGENTE",
+                        title: "Soluzioni AI",
+                        description: "Trasforma la tua azienda con intelligenza artificiale e automazione all'avanguardia",
+                        item1: "Chatbot AI personalizzati per automazione del servizio clienti e generazione di lead",
+                        item2: "Agenti vocali per automazione telefonica e assistenti vocali intelligenti",
+                        item3: "Automazione dei processi aziendali per l'ottimizzazione del flusso di lavoro",
+                        item4: "Elaborazione e analisi dei dati alimentata da AI",
+                        item5: "Sistemi di supporto clienti automatizzati 24/7"
+                    },
+                    web: {
+                        category: "PRESENZA DIGITALE",
+                        title: "Sviluppo Siti Web",
+                        description: "Siti web e applicazioni web premium costruiti per performance e conversione",
+                        item1: "Siti e-commerce con integrazione pagamenti e gestione inventario",
+                        item2: "Siti web aziendali, siti corporate e landing page",
+                        item3: "Siti portfolio e siti web di branding personale",
+                        item4: "Applicazioni web personalizzate per le tue esigenze",
+                        item5: "Design responsive per tutti i dispositivi e piattaforme"
+                    },
+                    social: {
+                        category: "CRESCITA DEL BRAND",
+                        title: "Gestione Social Media",
+                        description: "Soluzioni social media strategiche che guidano engagement e fatturato",
+                        item1: "Creazione e programmazione contenuti professionali",
+                        item2: "Strategia e pianificazione social media basata sui dati",
+                        item3: "Campagne pubblicitarie a pagamento (Facebook, Instagram, Google Ads)",
+                        item4: "Analisi complete e report sulle performance",
+                        item5: "Gestione della community e ottimizzazione dell'engagement"
+                    }
+                },
+                contact: {
+                    eyebrow: "METTITI IN CONTATTO",
+                    title: "Creiamo Insieme",
+                    subtitle: "Pronto a trasformare il tuo brand? Compila il modulo qui sotto e parliamo del tuo progetto."
+                },
+                footer: {
+                    tagline: "Agenzia Creativa d'Elite Alimentata da AI",
+                    copyright: "© 2025 JAFF STUDIO. Tutti i diritti riservati.",
+                    location: "Agenzia AI con sede in Svizzera | Conforme a nFADP"
+                }
+            },
+            fr: {
+                logo: "JAFFSTUDIO",
+                nav: {
+                    home: "ACCUEIL",
+                    about: "À PROPOS",
+                    services: "SERVICES",
+                    contact: "CONTACT",
+                    cta: "DISCUTONS"
+                },
+                hero: {
+                    eyebrow: "Agence Créative d'Élite",
+                    title: "JAFF STUDIO",
+                    subtitle: "Où l'Excellence Rencontre l'Innovation - Créer des Expériences de Marque Premium",
+                    cta1: "DÉMARRER UN PROJET",
+                    cta2: "EXPLORER LES SERVICES"
+                },
+                about: {
+                    eyebrow: "QUI NOUS SOMMES",
+                    title: "Nous Construisons des Entreprises qui Évoluent",
+                    subtitle: "JAFF STUDIO combine l'automatisation IA, le développement web et le marketing de performance pour offrir une croissance mesurable aux entreprises ambitieuses.",
+                    stat1: "PROJETS LIVRÉS",
+                    stat2: "ROI MOYEN DES CLIENTS",
+                    stat3: "SUPPORT ALIMENTÉ PAR IA",
+                    stat4: "PROPRIÉTÉ DU CLIENT",
+                    stat5: "RÉPONSE IMMÉDIATE"
+                },
+                services: {
+                    eyebrow: "CE QUE NOUS FAISONS",
+                    title: "Nos Services Premium",
+                    subtitle: "Solutions de pointe alimentées par l'innovation et la créativité",
+                    ai: {
+                        category: "AUTOMATISATION INTELLIGENTE",
+                        title: "Solutions IA",
+                        description: "Transformez votre entreprise avec l'intelligence artificielle et l'automatisation de pointe",
+                        item1: "Chatbots IA personnalisés pour l'automatisation du service client et la génération de leads",
+                        item2: "Agents vocaux pour l'automatisation téléphonique et les assistants vocaux intelligents",
+                        item3: "Automatisation des processus métier pour l'optimisation du flux de travail",
+                        item4: "Traitement et analyse de données alimentés par IA",
+                        item5: "Systèmes de support client automatisés 24/7"
+                    },
+                    web: {
+                        category: "PRÉSENCE NUMÉRIQUE",
+                        title: "Développement Web",
+                        description: "Sites web et applications web premium conçus pour la performance et la conversion",
+                        item1: "Sites e-commerce avec intégration de paiement et gestion des stocks",
+                        item2: "Sites web d'entreprise, sites corporatifs et pages de destination",
+                        item3: "Sites portfolio et sites web de marque personnelle",
+                        item4: "Applications web personnalisées adaptées à vos besoins",
+                        item5: "Design responsive pour tous les appareils et plateformes"
+                    },
+                    social: {
+                        category: "CROISSANCE DE LA MARQUE",
+                        title: "Gestion des Réseaux Sociaux",
+                        description: "Solutions de réseaux sociaux stratégiques qui génèrent engagement et revenus",
+                        item1: "Création et planification de contenu professionnel",
+                        item2: "Stratégie et planification des réseaux sociaux basées sur les données",
+                        item3: "Campagnes publicitaires payantes (Facebook, Instagram, Google Ads)",
+                        item4: "Analyses complètes et rapports de performance",
+                        item5: "Gestion de communauté et optimisation de l'engagement"
+                    }
+                },
+                contact: {
+                    eyebrow: "CONTACTEZ-NOUS",
+                    title: "Créons Ensemble",
+                    subtitle: "Prêt à transformer votre marque ? Remplissez le formulaire ci-dessous et discutons de votre projet."
+                },
+                footer: {
+                    tagline: "Agence Créative d'Élite Alimentée par IA",
+                    copyright: "© 2025 JAFF STUDIO. Tous droits réservés.",
+                    location: "Agence IA basée en Suisse | Conforme à la nFADP"
+                }
+            }
+        };
 
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
+        // Function to get nested property from object
+        function getNestedProperty(obj, path) {
+            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
+        }
 
-            // Create mailto link
-            const subject = encodeURIComponent('Plumbing Service Request from ' + formData.name);
-            const body = encodeURIComponent(
-                `Name: ${formData.name}\n` +
-                `Email: ${formData.email}\n` +
-                `Phone: ${formData.phone}\n` +
-                `Service Type: ${formData.service}\n\n` +
-                `Message:\n${formData.message}`
-            );
+        // Function to change language
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getNestedProperty(translations[lang], key);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
 
-            window.location.href = `mailto:info@eliteplumbing.com?subject=${subject}&body=${body}`;
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
 
-            // Reset form
-            setTimeout(() => {
-                this.reset();
-                alert('Thank you! Your request has been sent. We will contact you shortly.');
-            }, 500);
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Language switcher event listener
+        document.getElementById('languageSwitcher').addEventListener('change', function(e) {
+            changeLanguage(e.target.value);
         });
 
-        // Smooth scrolling
+        // Load saved language preference or default to English
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        document.getElementById('languageSwitcher').value = savedLang;
+        changeLanguage(savedLang);
+
+        // THREE.JS 3D Background - BLACK & WHITE
+        const canvas = document.getElementById('canvas-3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        camera.position.z = 5;
+
+        // Particle System - White particles (reduce for mobile)
+        const particlesGeometry = new THREE.BufferGeometry();
+        const isMobile = window.innerWidth <= 768;
+        const particleCount = isMobile ? 800 : 2000;
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 20;
+            positions[i + 1] = (Math.random() - 0.5) * 20;
+            positions[i + 2] = (Math.random() - 0.5) * 20;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.03,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+
+        // 3D Geometric Shapes - White wireframe
+        const torusGeometry = new THREE.TorusGeometry(1.5, 0.4, 16, 100);
+        const torusMaterial = new THREE.MeshBasicMaterial({
+            color: 0xffffff,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.1
+        });
+        const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+        scene.add(torus);
+
+        // Mouse Movement
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation Loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particles.rotation.y += 0.0003;
+            particles.rotation.x += 0.0002;
+
+            torus.rotation.x += 0.002;
+            torus.rotation.y += 0.003;
+
+            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Back to Top
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
+
+        // GSAP Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.utils.toArray('.service-card').forEach((el, i) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                },
+                y: 80,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.1
+            });
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.textContent = '☰';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                mobileMenu.classList.remove('active');
+                mobileMenuToggle.textContent = '☰';
+            }
+        });
+
+        // Prevent body scroll when mobile menu is open
+        const body = document.body;
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.attributeName === 'class') {
+                    if (mobileMenu.classList.contains('active')) {
+                        body.style.overflow = 'hidden';
+                    } else {
+                        body.style.overflow = '';
+                    }
+                }
+            });
+        });
+        observer.observe(mobileMenu, { attributes: true });
     </script>
 </body>
 </html>
