@@ -1973,7 +1973,13 @@
             <p class="section-subtitle">Ready to transform your brand? Fill out the form below and let's discuss your project.</p>
 
             <div class="contact-form-container">
-                <form id="contactForm">
+                <form id="contactForm" action="https://formsubmit.co/contact@jaffstudio.com" method="POST">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - JAFF STUDIO">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name" class="form-label">Your Name *</label>
@@ -2271,55 +2277,6 @@
             });
         });
         observer.observe(mobileMenu, { attributes: true });
-
-        // Contact Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const formData = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
-            };
-
-            // Create email subject and body
-            const subject = encodeURIComponent('New Contact Form Submission from ' + formData.name);
-            const body = encodeURIComponent(
-                'CONTACT FORM SUBMISSION\n' +
-                '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
-                'Name: ' + formData.name + '\n' +
-                'Company: ' + (formData.company || 'N/A') + '\n' +
-                'Email: ' + formData.email + '\n' +
-                'Phone: ' + (formData.phone || 'N/A') + '\n' +
-                'Service Interested In: ' + formData.service + '\n\n' +
-                'MESSAGE:\n' +
-                '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
-                formData.message + '\n\n' +
-                '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n' +
-                'Sent from JAFF STUDIO Contact Form'
-            );
-
-            // Open mailto link
-            window.location.href = 'mailto:contact@jaffstudio.com?subject=' + subject + '&body=' + body;
-
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-
-            // Reset form after a short delay
-            setTimeout(() => {
-                this.reset();
-                // Scroll to top of contact section
-                document.getElementById('contact').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 500);
-
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('successMessage').style.display = 'none';
-            }, 5000);
-        });
     </script>
 </body>
 </html>
