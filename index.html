@@ -388,11 +388,6 @@
             position: relative;
         }
 
-        .full-width-light {
-            background: #f5f5f5;
-            color: #000;
-        }
-
         .section-eyebrow {
             font-size: 0.75rem;
             font-weight: 600;
@@ -538,26 +533,406 @@
             color: #fff;
         }
 
-        .service-cta {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 30px;
-            background: transparent;
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.2);
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            border-radius: 4px;
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 150px;
+            margin-top: 100px;
         }
 
-        .service-cta:hover {
+        .portfolio-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .portfolio-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .portfolio-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .portfolio-image {
+            background: #0f0f0f;
+            height: 500px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            z-index: 1;
+        }
+
+        .portfolio-image:hover {
+            border-color: rgba(255,255,255,0.3);
+            box-shadow: 0 20px 60px rgba(255,255,255,0.1);
+            transform: scale(1.02);
+        }
+
+        .portfolio-image:hover::before {
+            background: linear-gradient(135deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+        }
+
+        .portfolio-category {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .portfolio-description {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 50px;
+            margin-top: 100px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 100px;
+            align-items: start;
+        }
+
+        .pricing-card {
+            padding: 50px 40px;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            transition: all 0.5s;
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .pricing-card.featured {
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.3);
+            transform: scale(1.05);
+            box-shadow: 0 40px 100px rgba(255,255,255,0.25);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 30px;
+            background: #fff;
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .pricing-tier-name {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .pricing-price {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .pricing-features ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li:before {
+            content: '✓';
+            margin-right: 12px;
+            color: #fff;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 18px 30px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.5);
+        }
+
+        .pricing-card:not(.featured) .pricing-cta {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .pricing-card:not(.featured) .pricing-cta:hover {
             background: rgba(255,255,255,0.1);
             border-color: #fff;
-            transform: translateY(-2px);
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 900px;
+            margin: 100px auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 30px 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .faq-question:hover {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 20px;
+        }
+
+        .faq-answer p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-select {
+            cursor: pointer;
+        }
+
+        .form-select option {
+            background: #000;
+            color: #fff;
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            padding: 20px 40px;
+            background: #fff;
+            color: #000;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5);
         }
 
         /* WhatsApp Widget */
@@ -694,48 +1069,26 @@
             text-decoration: none;
         }
 
-        /* Stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 50px;
-            margin-top: 100px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 4rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 10px;
-            color: #000;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
         /* Mobile Responsive */
         @media (max-width: 1024px) {
             section, .full-width { padding: 80px 40px; }
-            .services-grid {
+            .services-grid, .pricing-grid {
                 grid-template-columns: 1fr !important;
                 gap: 30px !important;
             }
-
+            .portfolio-item {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
             .hero h1 {
                 font-size: 4rem !important;
+            }
+            .pricing-card.featured {
+                transform: none !important;
             }
         }
 
         @media (max-width: 768px) {
-            /* Mobile Navigation */
             .nav-menu { display: none; }
             .nav-cta { display: none; }
             .mobile-menu-toggle { display: block; }
@@ -746,7 +1099,6 @@
                 justify-content: space-between;
             }
 
-            /* Hero Section */
             .hero {
                 min-height: 100vh;
                 padding: 100px 20px 60px;
@@ -773,11 +1125,6 @@
                 font-size: 0.9rem !important;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr !important;
-                gap: 30px !important;
-            }
-
             .service-card {
                 padding: 40px 30px !important;
             }
@@ -790,11 +1137,40 @@
                 font-size: 1.5rem !important;
             }
 
-            .service-list li {
-                font-size: 0.85rem !important;
+            .portfolio-item:nth-child(even) {
+                direction: ltr;
             }
 
-            /* Stats Mobile */
+            .portfolio-image {
+                height: 250px !important;
+            }
+
+            .portfolio-title {
+                font-size: 1.8rem !important;
+            }
+
+            .pricing-card {
+                padding: 35px 20px !important;
+            }
+
+            .pricing-price {
+                font-size: 2.5rem !important;
+            }
+
+            .faq-question {
+                font-size: 1rem !important;
+            }
+
+            .contact-form-container {
+                padding: 40px 25px;
+                margin: 40px 20px 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
             .floating-orb {
                 display: none;
             }
@@ -812,7 +1188,6 @@
                 font-size: 0.7rem !important;
             }
 
-            /* WhatsApp & Back to Top Mobile */
             .whatsapp-widget {
                 width: 55px !important;
                 height: 55px !important;
@@ -828,32 +1203,11 @@
                 font-size: 1rem !important;
             }
 
-            /* Touch-friendly improvements */
             a, button {
                 -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
             }
         }
 
-        /* iPhone X and newer notch support */
-        @supports (padding: max(0px)) {
-            body {
-                padding-left: env(safe-area-inset-left);
-                padding-right: env(safe-area-inset-right);
-            }
-
-            nav {
-                padding-left: max(20px, env(safe-area-inset-left));
-                padding-right: max(20px, env(safe-area-inset-right));
-            }
-
-            .mobile-menu {
-                padding-left: max(30px, env(safe-area-inset-left));
-                padding-right: max(30px, env(safe-area-inset-right));
-                padding-bottom: max(30px, env(safe-area-inset-bottom));
-            }
-        }
-
-        /* Footer Styles */
         footer a:hover {
             color: #fff !important;
             text-decoration: none;
@@ -885,6 +1239,9 @@
                 <li><a href="#home" data-i18n="nav.home">HOME</a></li>
                 <li><a href="#about" data-i18n="nav.about">ABOUT</a></li>
                 <li><a href="#services" data-i18n="nav.services">SERVICES</a></li>
+                <li><a href="#portfolio" data-i18n="nav.portfolio">PORTFOLIO</a></li>
+                <li><a href="#pricing" data-i18n="nav.pricing">PRICING</a></li>
+                <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
                 <li><a href="#contact" data-i18n="nav.contact">CONTACT</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 20px;">
@@ -907,6 +1264,9 @@
                 <li><a href="#home" class="mobile-menu-link" data-i18n="nav.home">HOME</a></li>
                 <li><a href="#about" class="mobile-menu-link" data-i18n="nav.about">ABOUT</a></li>
                 <li><a href="#services" class="mobile-menu-link" data-i18n="nav.services">SERVICES</a></li>
+                <li><a href="#portfolio" class="mobile-menu-link" data-i18n="nav.portfolio">PORTFOLIO</a></li>
+                <li><a href="#pricing" class="mobile-menu-link" data-i18n="nav.pricing">PRICING</a></li>
+                <li><a href="#faq" class="mobile-menu-link" data-i18n="nav.faq">FAQ</a></li>
                 <li><a href="#contact" class="mobile-menu-link" data-i18n="nav.contact">CONTACT</a></li>
             </ul>
             <a href="#contact" class="mobile-menu-cta mobile-menu-link" data-i18n="nav.cta">LET'S TALK</a>
@@ -1012,11 +1372,235 @@
             </div>
         </section>
 
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+            <p class="section-eyebrow" style="color: #666;" data-i18n="portfolio.eyebrow">FEATURED WORK</p>
+            <h2 class="section-title" data-i18n="portfolio.title">Case Studies</h2>
+            <p class="section-subtitle" data-i18n="portfolio.subtitle">Real results from real clients - transforming businesses with innovative solutions</p>
+
+            <div class="portfolio-grid">
+                <!-- Case Study 1 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=80');"></div>
+                    <div>
+                        <p class="portfolio-category" data-i18n="portfolio.case1.category">AI SOLUTIONS</p>
+                        <h3 class="portfolio-title" data-i18n="portfolio.case1.title">AI Chatbot Implementation</h3>
+                        <p class="portfolio-description" data-i18n="portfolio.case1.description">
+                            Mid-size e-commerce company reduced support tickets by 73% and increased conversion rate by 35% with our custom AI chatbot solution.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80');"></div>
+                    <div>
+                        <p class="portfolio-category" data-i18n="portfolio.case2.category">WEB DEVELOPMENT • SOCIAL MEDIA</p>
+                        <h3 class="portfolio-title" data-i18n="portfolio.case2.title">E-commerce Website + Social Media</h3>
+                        <p class="portfolio-description" data-i18n="portfolio.case2.description">
+                            Local business generated $180K in online revenue in 6 months with our e-commerce platform and social media management.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 -->
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80');"></div>
+                    <div>
+                        <p class="portfolio-category" data-i18n="portfolio.case3.category">AI VOICE AUTOMATION</p>
+                        <h3 class="portfolio-title" data-i18n="portfolio.case3.title">Voice Agent for Service Business</h3>
+                        <p class="portfolio-description" data-i18n="portfolio.case3.description">
+                            Medical practice answered 91% of calls instantly and generated $85K additional revenue with our AI voice agent.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing">
+            <p class="section-eyebrow" style="color: #666;" data-i18n="pricing.eyebrow">INVESTMENT</p>
+            <h2 class="section-title" data-i18n="pricing.title">Pricing Plans</h2>
+            <p class="section-subtitle" data-i18n="pricing.subtitle">Premium packages designed to transform your business</p>
+
+            <div class="pricing-grid">
+                <!-- TIER 1: STARTER -->
+                <div class="pricing-card">
+                    <p class="pricing-tier-name" data-i18n="pricing.starter.name">Starter</p>
+                    <div class="pricing-price">$3,497</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li data-i18n="pricing.starter.feature1">Website OR AI Chatbot OR Social Media Setup</li>
+                            <li data-i18n="pricing.starter.feature2">3 Months Support</li>
+                            <li data-i18n="pricing.starter.feature3">Email Support</li>
+                            <li data-i18n="pricing.starter.feature4">Basic Training</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="pricing-cta" data-i18n="pricing.starter.cta">Get Started</a>
+                </div>
+
+                <!-- TIER 2: PROFESSIONAL (FEATURED) -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge" data-i18n="pricing.professional.badge">⭐ MOST POPULAR</div>
+                    <p class="pricing-tier-name" data-i18n="pricing.professional.name">Professional</p>
+                    <div class="pricing-price">$9,997</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li data-i18n="pricing.professional.feature1">Custom Website + E-Commerce</li>
+                            <li data-i18n="pricing.professional.feature2">AI Chatbot + Voice Agent</li>
+                            <li data-i18n="pricing.professional.feature3">6 Months Social Media Management</li>
+                            <li data-i18n="pricing.professional.feature4">Monthly Strategy Calls</li>
+                            <li data-i18n="pricing.professional.feature5">Performance Reports</li>
+                            <li data-i18n="pricing.professional.feature6">Priority Support</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="pricing-cta" data-i18n="pricing.professional.cta">Scale Now</a>
+                </div>
+
+                <!-- TIER 3: ENTERPRISE -->
+                <div class="pricing-card">
+                    <p class="pricing-tier-name" data-i18n="pricing.enterprise.name">Enterprise</p>
+                    <div class="pricing-price" data-i18n="pricing.enterprise.price" style="font-size: 2.5rem;">Contact Us</div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li data-i18n="pricing.enterprise.feature1">Everything in Professional</li>
+                            <li data-i18n="pricing.enterprise.feature2">Full AI Suite</li>
+                            <li data-i18n="pricing.enterprise.feature3">12 Months Management</li>
+                            <li data-i18n="pricing.enterprise.feature4">Dedicated Team</li>
+                            <li data-i18n="pricing.enterprise.feature5">Weekly Calls</li>
+                            <li data-i18n="pricing.enterprise.feature6">24/7 Support</li>
+                            <li data-i18n="pricing.enterprise.feature7">Custom Solutions</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="pricing-cta" data-i18n="pricing.enterprise.cta">Let's Build Your Empire</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <p class="section-eyebrow" style="color: #666;" data-i18n="faq.eyebrow">QUESTIONS</p>
+            <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+            <p class="section-subtitle" data-i18n="faq.subtitle">Everything you need to know about working with us</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q1">What's included in the packages?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a1">You choose which services you need most. Starter gets 1 service, Professional gets 2. We'll discuss your business goals and recommend the best combination during our kickoff call.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q2">How long does it take to complete my project?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a2">Starter projects: 2-4 weeks. Professional: 4-8 weeks. Enterprise: 8-12 weeks. Timeline depends on your specific requirements and how quickly you provide feedback.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q3">Do I own everything you create?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a3">Yes. Once the project is paid for, you own all code, designs, content, and assets. Full ownership transferred to you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q4">What if I need changes after launch?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a4">Starter includes 1 month free support. Professional includes 3 months. Enterprise includes 6 months. After that, we offer maintenance plans starting at $297/month or hourly rates.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q5">Are there any hidden fees?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a5">No. The prices shown are what you pay. Ad spend budgets are separate and paid directly to platforms like Google/Meta, not to us.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span data-i18n="faq.q6">Can I upgrade my package later?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p data-i18n="faq.a6">Absolutely. You can upgrade anytime and we'll credit what you've already paid toward the higher tier.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact">
             <p class="section-eyebrow" style="color: #666;" data-i18n="contact.eyebrow">GET IN TOUCH</p>
             <h2 class="section-title" data-i18n="contact.title">Let's Create Together</h2>
             <p class="section-subtitle" data-i18n="contact.subtitle">Ready to transform your brand? Fill out the form below and let's discuss your project.</p>
+
+            <div class="contact-form-container">
+                <form id="contactForm" action="https://formsubmit.co/contact@jaffstudio.com" method="POST">
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - JAFF STUDIO">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label" data-i18n="contact.form.name">Your Name *</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="company" class="form-label" data-i18n="contact.form.company">Company</label>
+                            <input type="text" id="company" name="company" class="form-input" placeholder="Your Company" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="form-label" data-i18n="contact.form.email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label" data-i18n="contact.form.phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 234 567 8900" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service" class="form-label" data-i18n="contact.form.service">Service Interested In *</label>
+                        <select id="service" name="service" class="form-select" required>
+                            <option value="" data-i18n="contact.form.selectService">Select a service...</option>
+                            <option value="AI Solutions" data-i18n="contact.form.aiSolutions">AI Solutions</option>
+                            <option value="Website Development" data-i18n="contact.form.webDev">Website Development</option>
+                            <option value="Social Media Management" data-i18n="contact.form.socialMedia">Social Media Management</option>
+                            <option value="Full Package" data-i18n="contact.form.fullPackage">Full Package (Multiple Services)</option>
+                            <option value="Other" data-i18n="contact.form.other">Other / Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label" data-i18n="contact.form.message">Your Message *</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your project..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn" data-i18n="contact.form.submit">Send Message</button>
+                </form>
+            </div>
         </section>
 
         <!-- Footer -->
@@ -1024,7 +1608,6 @@
             <h3 style="font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: #fff;" data-i18n="logo">JAFF STUDIO</h3>
             <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;" data-i18n="footer.tagline">Elite AI-Powered Creative Agency</p>
 
-            <!-- Social Media Links -->
             <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px;">
                 <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;">Instagram</a>
                 <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s;">LinkedIn</a>
@@ -1049,305 +1632,9 @@
         </svg>
     </a>
 
+    <script src="translations.js"></script>
     <script>
-        // Translation Object
-        const translations = {
-            en: {
-                logo: "JAFFSTUDIO",
-                nav: {
-                    home: "HOME",
-                    about: "ABOUT",
-                    services: "SERVICES",
-                    contact: "CONTACT",
-                    cta: "LET'S TALK"
-                },
-                hero: {
-                    eyebrow: "Elite Creative Agency",
-                    title: "JAFF STUDIO",
-                    subtitle: "Where Excellence Meets Innovation - Crafting Premium Brand Experiences",
-                    cta1: "START PROJECT",
-                    cta2: "EXPLORE SERVICES"
-                },
-                about: {
-                    eyebrow: "WHO WE ARE",
-                    title: "We Build Businesses That Scale",
-                    subtitle: "JAFF STUDIO combines AI automation, web development, and performance marketing to deliver measurable growth for ambitious businesses.",
-                    stat1: "PROJECTS DELIVERED",
-                    stat2: "AVERAGE CLIENT ROI",
-                    stat3: "AI-POWERED SUPPORT",
-                    stat4: "CLIENT OWNERSHIP",
-                    stat5: "IMMEDIATE RESPONSE"
-                },
-                services: {
-                    eyebrow: "WHAT WE DO",
-                    title: "Our Premium Services",
-                    subtitle: "Cutting-edge solutions powered by innovation and creativity",
-                    ai: {
-                        category: "INTELLIGENT AUTOMATION",
-                        title: "AI Solutions",
-                        description: "Transform your business with cutting-edge artificial intelligence and automation",
-                        item1: "Custom AI Chatbots for customer service automation and lead generation",
-                        item2: "Voice Agents for phone automation and intelligent voice assistants",
-                        item3: "Business Process Automation for workflow optimization",
-                        item4: "AI-powered data processing and analysis",
-                        item5: "24/7 automated customer support systems"
-                    },
-                    web: {
-                        category: "DIGITAL PRESENCE",
-                        title: "Website Development",
-                        description: "Premium websites and web applications built for performance and conversion",
-                        item1: "E-commerce websites with payment integration and inventory management",
-                        item2: "Business websites, corporate sites, and landing pages",
-                        item3: "Portfolio sites and personal branding websites",
-                        item4: "Custom web applications tailored to your needs",
-                        item5: "Responsive design for all devices and platforms"
-                    },
-                    social: {
-                        category: "BRAND GROWTH",
-                        title: "Social Media Management",
-                        description: "Strategic social media solutions that drive engagement and revenue",
-                        item1: "Professional content creation and scheduling",
-                        item2: "Data-driven social media strategy and planning",
-                        item3: "Paid advertising campaigns (Facebook, Instagram, Google Ads)",
-                        item4: "Comprehensive analytics and performance reporting",
-                        item5: "Community management and engagement optimization"
-                    }
-                },
-                contact: {
-                    eyebrow: "GET IN TOUCH",
-                    title: "Let's Create Together",
-                    subtitle: "Ready to transform your brand? Fill out the form below and let's discuss your project."
-                },
-                footer: {
-                    tagline: "Elite AI-Powered Creative Agency",
-                    copyright: "© 2025 JAFF STUDIO. All rights reserved.",
-                    location: "Swiss-based AI Agency | Compliant with nFADP"
-                }
-            },
-            de: {
-                logo: "JAFFSTUDIO",
-                nav: {
-                    home: "STARTSEITE",
-                    about: "ÜBER UNS",
-                    services: "DIENSTLEISTUNGEN",
-                    contact: "KONTAKT",
-                    cta: "KONTAKT AUFNEHMEN"
-                },
-                hero: {
-                    eyebrow: "Elite Kreativagentur",
-                    title: "JAFF STUDIO",
-                    subtitle: "Wo Exzellenz auf Innovation trifft - Wir schaffen Premium-Markenerlebnisse",
-                    cta1: "PROJEKT STARTEN",
-                    cta2: "DIENSTE ENTDECKEN"
-                },
-                about: {
-                    eyebrow: "WER WIR SIND",
-                    title: "Wir bauen skalierbare Unternehmen",
-                    subtitle: "JAFF STUDIO kombiniert KI-Automatisierung, Webentwicklung und Performance-Marketing, um messbares Wachstum für ambitionierte Unternehmen zu liefern.",
-                    stat1: "PROJEKTE ABGESCHLOSSEN",
-                    stat2: "DURCHSCHNITTLICHER KUNDEN-ROI",
-                    stat3: "KI-GESTÜTZTER SUPPORT",
-                    stat4: "KUNDENEIGENTUM",
-                    stat5: "SOFORTIGE ANTWORT"
-                },
-                services: {
-                    eyebrow: "WAS WIR TUN",
-                    title: "Unsere Premium-Dienstleistungen",
-                    subtitle: "Modernste Lösungen, angetrieben von Innovation und Kreativität",
-                    ai: {
-                        category: "INTELLIGENTE AUTOMATISIERUNG",
-                        title: "KI-Lösungen",
-                        description: "Transformieren Sie Ihr Unternehmen mit modernster künstlicher Intelligenz und Automatisierung",
-                        item1: "Maßgeschneiderte KI-Chatbots für Kundenservice-Automatisierung und Lead-Generierung",
-                        item2: "Sprachagenten für Telefonautomatisierung und intelligente Sprachassistenten",
-                        item3: "Geschäftsprozess-Automatisierung für Workflow-Optimierung",
-                        item4: "KI-gestützte Datenverarbeitung und Analyse",
-                        item5: "24/7 automatisierte Kundensupportsysteme"
-                    },
-                    web: {
-                        category: "DIGITALE PRÄSENZ",
-                        title: "Webentwicklung",
-                        description: "Premium-Websites und Webanwendungen für Performance und Konversion",
-                        item1: "E-Commerce-Websites mit Zahlungsintegration und Bestandsverwaltung",
-                        item2: "Unternehmenswebsites, Firmenwebsites und Landingpages",
-                        item3: "Portfolio-Websites und persönliche Branding-Websites",
-                        item4: "Maßgeschneiderte Webanwendungen für Ihre Bedürfnisse",
-                        item5: "Responsives Design für alle Geräte und Plattformen"
-                    },
-                    social: {
-                        category: "MARKENWACHSTUM",
-                        title: "Social Media Management",
-                        description: "Strategische Social-Media-Lösungen, die Engagement und Umsatz fördern",
-                        item1: "Professionelle Content-Erstellung und Planung",
-                        item2: "Datengestützte Social-Media-Strategie und Planung",
-                        item3: "Bezahlte Werbekampagnen (Facebook, Instagram, Google Ads)",
-                        item4: "Umfassende Analysen und Performance-Berichte",
-                        item5: "Community-Management und Engagement-Optimierung"
-                    }
-                },
-                contact: {
-                    eyebrow: "KONTAKT AUFNEHMEN",
-                    title: "Lassen Sie uns gemeinsam kreativ sein",
-                    subtitle: "Bereit, Ihre Marke zu transformieren? Füllen Sie das Formular aus und lassen Sie uns über Ihr Projekt sprechen."
-                },
-                footer: {
-                    tagline: "Elite KI-gestützte Kreativagentur",
-                    copyright: "© 2025 JAFF STUDIO. Alle Rechte vorbehalten.",
-                    location: "Schweizer KI-Agentur | nFADP-konform"
-                }
-            },
-            it: {
-                logo: "JAFFSTUDIO",
-                nav: {
-                    home: "HOME",
-                    about: "CHI SIAMO",
-                    services: "SERVIZI",
-                    contact: "CONTATTI",
-                    cta: "PARLIAMONE"
-                },
-                hero: {
-                    eyebrow: "Agenzia Creativa d'Elite",
-                    title: "JAFF STUDIO",
-                    subtitle: "Dove l'Eccellenza Incontra l'Innovazione - Creiamo Esperienze di Brand Premium",
-                    cta1: "INIZIA PROGETTO",
-                    cta2: "ESPLORA SERVIZI"
-                },
-                about: {
-                    eyebrow: "CHI SIAMO",
-                    title: "Costruiamo Aziende che Scalano",
-                    subtitle: "JAFF STUDIO combina automazione AI, sviluppo web e performance marketing per offrire crescita misurabile alle aziende ambiziose.",
-                    stat1: "PROGETTI CONSEGNATI",
-                    stat2: "ROI MEDIO CLIENTI",
-                    stat3: "SUPPORTO ALIMENTATO DA AI",
-                    stat4: "PROPRIETÀ DEL CLIENTE",
-                    stat5: "RISPOSTA IMMEDIATA"
-                },
-                services: {
-                    eyebrow: "COSA FACCIAMO",
-                    title: "I Nostri Servizi Premium",
-                    subtitle: "Soluzioni all'avanguardia alimentate da innovazione e creatività",
-                    ai: {
-                        category: "AUTOMAZIONE INTELLIGENTE",
-                        title: "Soluzioni AI",
-                        description: "Trasforma la tua azienda con intelligenza artificiale e automazione all'avanguardia",
-                        item1: "Chatbot AI personalizzati per automazione del servizio clienti e generazione di lead",
-                        item2: "Agenti vocali per automazione telefonica e assistenti vocali intelligenti",
-                        item3: "Automazione dei processi aziendali per l'ottimizzazione del flusso di lavoro",
-                        item4: "Elaborazione e analisi dei dati alimentata da AI",
-                        item5: "Sistemi di supporto clienti automatizzati 24/7"
-                    },
-                    web: {
-                        category: "PRESENZA DIGITALE",
-                        title: "Sviluppo Siti Web",
-                        description: "Siti web e applicazioni web premium costruiti per performance e conversione",
-                        item1: "Siti e-commerce con integrazione pagamenti e gestione inventario",
-                        item2: "Siti web aziendali, siti corporate e landing page",
-                        item3: "Siti portfolio e siti web di branding personale",
-                        item4: "Applicazioni web personalizzate per le tue esigenze",
-                        item5: "Design responsive per tutti i dispositivi e piattaforme"
-                    },
-                    social: {
-                        category: "CRESCITA DEL BRAND",
-                        title: "Gestione Social Media",
-                        description: "Soluzioni social media strategiche che guidano engagement e fatturato",
-                        item1: "Creazione e programmazione contenuti professionali",
-                        item2: "Strategia e pianificazione social media basata sui dati",
-                        item3: "Campagne pubblicitarie a pagamento (Facebook, Instagram, Google Ads)",
-                        item4: "Analisi complete e report sulle performance",
-                        item5: "Gestione della community e ottimizzazione dell'engagement"
-                    }
-                },
-                contact: {
-                    eyebrow: "METTITI IN CONTATTO",
-                    title: "Creiamo Insieme",
-                    subtitle: "Pronto a trasformare il tuo brand? Compila il modulo qui sotto e parliamo del tuo progetto."
-                },
-                footer: {
-                    tagline: "Agenzia Creativa d'Elite Alimentata da AI",
-                    copyright: "© 2025 JAFF STUDIO. Tutti i diritti riservati.",
-                    location: "Agenzia AI con sede in Svizzera | Conforme a nFADP"
-                }
-            },
-            fr: {
-                logo: "JAFFSTUDIO",
-                nav: {
-                    home: "ACCUEIL",
-                    about: "À PROPOS",
-                    services: "SERVICES",
-                    contact: "CONTACT",
-                    cta: "DISCUTONS"
-                },
-                hero: {
-                    eyebrow: "Agence Créative d'Élite",
-                    title: "JAFF STUDIO",
-                    subtitle: "Où l'Excellence Rencontre l'Innovation - Créer des Expériences de Marque Premium",
-                    cta1: "DÉMARRER UN PROJET",
-                    cta2: "EXPLORER LES SERVICES"
-                },
-                about: {
-                    eyebrow: "QUI NOUS SOMMES",
-                    title: "Nous Construisons des Entreprises qui Évoluent",
-                    subtitle: "JAFF STUDIO combine l'automatisation IA, le développement web et le marketing de performance pour offrir une croissance mesurable aux entreprises ambitieuses.",
-                    stat1: "PROJETS LIVRÉS",
-                    stat2: "ROI MOYEN DES CLIENTS",
-                    stat3: "SUPPORT ALIMENTÉ PAR IA",
-                    stat4: "PROPRIÉTÉ DU CLIENT",
-                    stat5: "RÉPONSE IMMÉDIATE"
-                },
-                services: {
-                    eyebrow: "CE QUE NOUS FAISONS",
-                    title: "Nos Services Premium",
-                    subtitle: "Solutions de pointe alimentées par l'innovation et la créativité",
-                    ai: {
-                        category: "AUTOMATISATION INTELLIGENTE",
-                        title: "Solutions IA",
-                        description: "Transformez votre entreprise avec l'intelligence artificielle et l'automatisation de pointe",
-                        item1: "Chatbots IA personnalisés pour l'automatisation du service client et la génération de leads",
-                        item2: "Agents vocaux pour l'automatisation téléphonique et les assistants vocaux intelligents",
-                        item3: "Automatisation des processus métier pour l'optimisation du flux de travail",
-                        item4: "Traitement et analyse de données alimentés par IA",
-                        item5: "Systèmes de support client automatisés 24/7"
-                    },
-                    web: {
-                        category: "PRÉSENCE NUMÉRIQUE",
-                        title: "Développement Web",
-                        description: "Sites web et applications web premium conçus pour la performance et la conversion",
-                        item1: "Sites e-commerce avec intégration de paiement et gestion des stocks",
-                        item2: "Sites web d'entreprise, sites corporatifs et pages de destination",
-                        item3: "Sites portfolio et sites web de marque personnelle",
-                        item4: "Applications web personnalisées adaptées à vos besoins",
-                        item5: "Design responsive pour tous les appareils et plateformes"
-                    },
-                    social: {
-                        category: "CROISSANCE DE LA MARQUE",
-                        title: "Gestion des Réseaux Sociaux",
-                        description: "Solutions de réseaux sociaux stratégiques qui génèrent engagement et revenus",
-                        item1: "Création et planification de contenu professionnel",
-                        item2: "Stratégie et planification des réseaux sociaux basées sur les données",
-                        item3: "Campagnes publicitaires payantes (Facebook, Instagram, Google Ads)",
-                        item4: "Analyses complètes et rapports de performance",
-                        item5: "Gestion de communauté et optimisation de l'engagement"
-                    }
-                },
-                contact: {
-                    eyebrow: "CONTACTEZ-NOUS",
-                    title: "Créons Ensemble",
-                    subtitle: "Prêt à transformer votre marque ? Remplissez le formulaire ci-dessous et discutons de votre projet."
-                },
-                footer: {
-                    tagline: "Agence Créative d'Élite Alimentée par IA",
-                    copyright: "© 2025 JAFF STUDIO. Tous droits réservés.",
-                    location: "Agence IA basée en Suisse | Conforme à la nFADP"
-                }
-            }
-        };
-
-        // Function to get nested property from object
-        function getNestedProperty(obj, path) {
-            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
-        }
-
-        // Function to change language
+        // Language switching
         function changeLanguage(lang) {
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(element => {
@@ -1357,25 +1644,23 @@
                     element.textContent = translation;
                 }
             });
-
-            // Save language preference
             localStorage.setItem('preferredLanguage', lang);
-
-            // Update HTML lang attribute
             document.documentElement.lang = lang;
         }
 
-        // Language switcher event listener
+        function getNestedProperty(obj, path) {
+            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
+        }
+
         document.getElementById('languageSwitcher').addEventListener('change', function(e) {
             changeLanguage(e.target.value);
         });
 
-        // Load saved language preference or default to English
         const savedLang = localStorage.getItem('preferredLanguage') || 'en';
         document.getElementById('languageSwitcher').value = savedLang;
         changeLanguage(savedLang);
 
-        // THREE.JS 3D Background - BLACK & WHITE
+        // THREE.JS 3D Background
         const canvas = document.getElementById('canvas-3d');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -1385,7 +1670,6 @@
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         camera.position.z = 5;
 
-        // Particle System - White particles (reduce for mobile)
         const particlesGeometry = new THREE.BufferGeometry();
         const isMobile = window.innerWidth <= 768;
         const particleCount = isMobile ? 800 : 2000;
@@ -1410,7 +1694,6 @@
         const particles = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particles);
 
-        // 3D Geometric Shapes - White wireframe
         const torusGeometry = new THREE.TorusGeometry(1.5, 0.4, 16, 100);
         const torusMaterial = new THREE.MeshBasicMaterial({
             color: 0xffffff,
@@ -1421,35 +1704,40 @@
         const torus = new THREE.Mesh(torusGeometry, torusMaterial);
         scene.add(torus);
 
-        // Mouse Movement
         let mouseX = 0, mouseY = 0;
         document.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth) * 2 - 1;
             mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
         });
 
-        // Animation Loop
         function animate() {
             requestAnimationFrame(animate);
-
             particles.rotation.y += 0.0003;
             particles.rotation.x += 0.0002;
-
             torus.rotation.x += 0.002;
             torus.rotation.y += 0.003;
-
             camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
             camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
-
             renderer.render(scene, camera);
         }
         animate();
 
-        // Handle Resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const item = button.parentElement;
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
         });
 
         // Back to Top
@@ -1480,7 +1768,7 @@
         // GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray('.service-card').forEach((el, i) => {
+        gsap.utils.toArray('.service-card, .portfolio-item').forEach((el, i) => {
             gsap.from(el, {
                 scrollTrigger: {
                     trigger: el,
@@ -1503,7 +1791,6 @@
             mobileMenuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Close mobile menu when clicking a link
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -1511,7 +1798,6 @@
             });
         });
 
-        // Close mobile menu when clicking outside
         mobileMenu.addEventListener('click', (e) => {
             if (e.target === mobileMenu) {
                 mobileMenu.classList.remove('active');
@@ -1519,7 +1805,6 @@
             }
         });
 
-        // Prevent body scroll when mobile menu is open
         const body = document.body;
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
