@@ -13,8 +13,42 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; line-height: 1.6; }
         
-        .page { display: none; }
-        .page.active { display: block; }
+        .page {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .page.active {
+            display: block;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page.fade-out {
+            animation: fadeOutDown 0.4s ease forwards;
+        }
+
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
         
         #canvas-3d { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         .content-layer { position: relative; z-index: 2; }
@@ -478,11 +512,30 @@
     </div>
     
     <script>
-        // Page Navigation
+        // Page Navigation with smooth transitions
         function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
+            const currentPage = document.querySelector('.page.active');
+            const newPage = document.getElementById(pageId);
+
+            if (currentPage === newPage) return;
+
+            // Fade out current page
+            if (currentPage) {
+                currentPage.classList.add('fade-out');
+
+                setTimeout(() => {
+                    currentPage.classList.remove('active', 'fade-out');
+
+                    // Fade in new page
+                    newPage.classList.add('active');
+
+                    // Smooth scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 400);
+            } else {
+                newPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         }
         
         // THREE.JS Background
