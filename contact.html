@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Jaff Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+        
+        #canvas-3d { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .content-layer { position: relative; z-index: 2; animation: fadeIn 0.6s ease-out; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 60px; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); z-index: 9999; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 1.3rem; font-weight: 900; color: #fff; text-decoration: none; }
+        .back-link { padding: 12px 30px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; border-radius: 4px; }
+        .back-link:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-2px); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 150px 20px 80px; }
+        
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; letter-spacing: -2px; margin-bottom: 20px; color: #fff; text-shadow: 0 0 80px rgba(255,255,255,0.3); }
+        .header p { font-size: 1.3rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; }
+        
+        .contact-form { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 50px; margin-top: 40px; }
+        
+        .form-group { margin-bottom: 30px; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 12px; }
+        
+        .form-group input,
+        .form-group textarea { width: 100%; padding: 18px 20px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 1rem; font-family: 'Inter', sans-serif; transition: all 0.3s; }
+        
+        .form-group input:focus,
+        .form-group textarea:focus { outline: none; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.08); }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+        
+        .form-group textarea { min-height: 180px; resize: vertical; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .submit-btn { width: 100%; padding: 20px; background: #fff; color: #000; border: 2px solid #fff; font-size: 1rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 8px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 30px rgba(255,255,255,0.3); }
+        
+        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,255,255,0.5); }
+        
+        .info-box { background: rgba(255,255,255,0.05); border-left: 4px solid #fff; padding: 25px; border-radius: 8px; margin-top: 40px; }
+        .info-box h3 { font-size: 1.2rem; margin-bottom: 15px; }
+        .info-box p { color: rgba(255,255,255,0.7); margin: 8px 0; }
+        .info-box a { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.3); transition: border-color 0.3s; }
+        .info-box a:hover { border-bottom-color: #fff; }
+        
+        .success-message { display: none; background: #4caf50; color: #fff; padding: 20px; border-radius: 8px; margin-top: 20px; text-align: center; font-weight: 600; }
+        
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .container { padding: 120px 20px 60px; }
+            .contact-form { padding: 30px 20px; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
+            .header h1 { font-size: 2rem; }
+            .header p { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas-3d"></canvas>
+    
+    <div class="content-layer">
+        <nav>
+            <a href="index.html" class="logo">JAFFSTUDIO</a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </nav>
+        
+        <div class="container">
+            <div class="header">
+                <h1>Let's Create Together</h1>
+                <p>Ready to transform your business with AI-powered solutions? Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company Name</label>
+                        <input type="text" id="company" name="company" placeholder="Your Company">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+41 XX XXX XX XX">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Service Interested In *</label>
+                    <input type="text" id="service" name="service" placeholder="AI Solutions, Website Development, Social Media..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Project *</label>
+                    <textarea id="message" name="message" placeholder="Describe your project, goals, timeline, and budget..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+                
+                <div class="success-message" id="successMessage">
+                    ✓ Message sent successfully! We'll get back to you soon.
+                </div>
+            </form>
+            
+            <div class="info-box">
+                <h3>Other Ways to Reach Us</h3>
+                <p><strong>Email:</strong> <a href="mailto:contact@jaffstudio.com">contact@jaffstudio.com</a></p>
+                <p><strong>Location:</strong> Switzerland</p>
+                <p><strong>Response Time:</strong> Within 24 hours</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // THREE.JS Background
+        const canvas = document.getElementById('canvas-3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        camera.position.z = 5;
+        
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particleCount = window.innerWidth <= 768 ? 800 : 2000;
+        const positions = new Float32Array(particleCount * 3);
+        
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 20;
+            positions[i + 1] = (Math.random() - 0.5) * 20;
+            positions[i + 2] = (Math.random() - 0.5) * 20;
+        }
+        
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.03,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+        
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+        
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.0003;
+            particles.rotation.x += 0.0002;
+            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                service: document.getElementById('service').value,
+                message: document.getElementById('message').value
+            };
+            
+            // Create mailto link
+            const subject = encodeURIComponent('New Contact Form Submission from ' + formData.name);
+            const body = encodeURIComponent(
+                'Name: ' + formData.name + '\n' +
+                'Company: ' + formData.company + '\n' +
+                'Email: ' + formData.email + '\n' +
+                'Phone: ' + formData.phone + '\n' +
+                'Service Interested In: ' + formData.service + '\n\n' +
+                'Message:\n' + formData.message
+            );
+            
+            // Open email client
+            window.location.href = 'mailto:contact@jaffstudio.com?subject=' + subject + '&body=' + body;
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
