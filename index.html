@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elite Plumbing Pro | 24/7 Emergency Plumbing Services</title>
+    <title>Sukha Ayurveda | Centre de Bien-être & Soins Ayurvédiques</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,10 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a1628 0%, #1a2942 50%, #0d1b2e 100%);
-            color: #ffffff;
-            line-height: 1.6;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8dcc4 50%, #f0e6d2 100%);
+            color: #2c2416;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
@@ -28,17 +28,17 @@
             width: 100%;
             height: 100%;
             background-image:
-                radial-gradient(circle at 20% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 191, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(70, 130, 180, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(139, 115, 85, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184, 134, 11, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(107, 142, 35, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
-            animation: bgPulse 15s ease-in-out infinite;
+            animation: bgPulse 20s ease-in-out infinite;
         }
 
         @keyframes bgPulse {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.6; }
         }
 
         nav, section, footer {
@@ -46,24 +46,19 @@
             z-index: 1;
         }
 
-        /* Emergency Banner */
-        .emergency-banner {
-            background: linear-gradient(90deg, #ff4444 0%, #cc0000 100%);
-            padding: 0.8rem;
+        /* Top Banner */
+        .top-banner {
+            background: linear-gradient(90deg, #8b7355 0%, #b8860b 100%);
+            padding: 0.9rem;
             text-align: center;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 0.95rem;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-            box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
-
-        .emergency-banner a {
+        .top-banner a {
             color: #ffffff;
             text-decoration: none;
             margin-left: 1rem;
@@ -73,21 +68,21 @@
             transition: all 0.3s;
         }
 
-        .emergency-banner a:hover {
-            background: rgba(255, 255, 255, 0.3);
+        .top-banner a:hover {
+            background: rgba(255, 255, 255, 0.35);
             transform: scale(1.05);
         }
 
         /* Navigation */
         nav {
-            background: rgba(10, 22, 40, 0.95);
-            padding: 1.2rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.3rem 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid rgba(30, 144, 255, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         .nav-content {
@@ -99,19 +94,19 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #8b7355;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            font-family: 'Palatino', 'Georgia', serif;
         }
 
         .logo-icon {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 10px rgba(30, 144, 255, 0.6));
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.4));
         }
 
         .nav-links {
@@ -121,13 +116,12 @@
         }
 
         .nav-links a {
-            color: #ffffff;
+            color: #5a4a3a;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s;
             position: relative;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
@@ -139,12 +133,12 @@
             transform: translateX(-50%);
             width: 0;
             height: 2px;
-            background: #1e90ff;
+            background: #b8860b;
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: #1e90ff;
+            color: #b8860b;
         }
 
         .nav-links a:hover::after {
@@ -153,7 +147,7 @@
 
         /* Hero Section */
         .hero {
-            min-height: 90vh;
+            min-height: 92vh;
             padding: 100px 5% 80px;
             display: flex;
             align-items: center;
@@ -188,15 +182,15 @@
         .hero-badge {
             display: inline-block;
             padding: 0.6rem 1.5rem;
-            background: rgba(30, 144, 255, 0.2);
-            border: 2px solid rgba(30, 144, 255, 0.4);
+            background: rgba(184, 134, 11, 0.15);
+            border: 2px solid rgba(184, 134, 11, 0.3);
             border-radius: 50px;
             font-size: 0.85rem;
             letter-spacing: 2px;
             margin-bottom: 2rem;
             font-weight: 700;
             text-transform: uppercase;
-            color: #00bfff;
+            color: #8b7355;
         }
 
         .hero h1 {
@@ -205,20 +199,22 @@
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -1px;
+            color: #2c2416;
+            font-family: 'Palatino', 'Georgia', serif;
         }
 
         .hero .highlight {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 50%, #4682b4 100%);
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 50%, #8b7355 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-description {
-            font-size: 1.2rem;
-            color: #b0c4de;
+            font-size: 1.25rem;
+            color: #5a4a3a;
             margin-bottom: 2.5rem;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .hero-buttons {
@@ -232,7 +228,6 @@
             padding: 1.2rem 2.5rem;
             text-decoration: none;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s;
             border-radius: 8px;
@@ -240,25 +235,25 @@
         }
 
         .cta-button.primary {
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
             color: #ffffff;
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.3);
         }
 
         .cta-button.primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.6);
+            box-shadow: 0 15px 40px rgba(184, 134, 11, 0.5);
         }
 
         .cta-button.secondary {
             background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(30, 144, 255, 0.5);
+            color: #8b7355;
+            border: 2px solid rgba(139, 115, 85, 0.5);
         }
 
         .cta-button.secondary:hover {
-            background: rgba(30, 144, 255, 0.1);
-            border-color: #1e90ff;
+            background: rgba(184, 134, 11, 0.1);
+            border-color: #b8860b;
             transform: translateY(-3px);
         }
 
@@ -276,17 +271,16 @@
 
         .trust-icon {
             font-size: 2rem;
-            color: #1e90ff;
         }
 
         .trust-text {
             font-size: 0.9rem;
-            color: #b0c4de;
+            color: #5a4a3a;
         }
 
         .trust-text strong {
             display: block;
-            color: #ffffff;
+            color: #2c2416;
             font-size: 1.1rem;
         }
 
@@ -310,25 +304,25 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(30, 144, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(184, 134, 11, 0.3);
         }
 
         .hero-image img {
             width: 100%;
-            height: 500px;
+            height: 550px;
             object-fit: cover;
             display: block;
         }
 
         .floating-badge {
             position: absolute;
-            background: rgba(10, 22, 40, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 1.5rem 2rem;
             border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(184, 134, 11, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             animation: float 3s ease-in-out infinite;
         }
 
@@ -355,8 +349,8 @@
         .badge-text {
             font-weight: 700;
             font-size: 1rem;
-            text-transform: uppercase;
             letter-spacing: 1px;
+            color: #8b7355;
         }
 
         /* Section Styling */
@@ -366,25 +360,27 @@
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 3.2rem;
             margin-bottom: 1rem;
             font-weight: 800;
             letter-spacing: -1px;
+            color: #2c2416;
+            font-family: 'Palatino', 'Georgia', serif;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #b0c4de;
+            font-size: 1.15rem;
+            color: #5a4a3a;
             margin-bottom: 4rem;
-            max-width: 700px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
         }
 
         /* Services Section */
         .services {
-            background: rgba(10, 22, 40, 0.5);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .services-grid {
@@ -396,9 +392,9 @@
         }
 
         .service-card {
-            background: rgba(26, 41, 66, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             padding: 3rem 2.5rem;
-            border: 2px solid rgba(30, 144, 255, 0.2);
+            border: 2px solid rgba(184, 134, 11, 0.2);
             border-radius: 15px;
             transition: all 0.4s;
             position: relative;
@@ -412,7 +408,7 @@
             left: -100%;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, transparent, #1e90ff, transparent);
+            background: linear-gradient(90deg, transparent, #b8860b, transparent);
             transition: left 0.5s;
         }
 
@@ -422,9 +418,9 @@
 
         .service-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.6);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.2);
-            background: rgba(26, 41, 66, 0.8);
+            border-color: rgba(184, 134, 11, 0.6);
+            box-shadow: 0 20px 60px rgba(184, 134, 11, 0.15);
+            background: rgba(255, 255, 255, 1);
         }
 
         .service-icon {
@@ -436,15 +432,15 @@
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #1e90ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #8b7355;
+            letter-spacing: 0.5px;
             font-weight: 700;
+            font-family: 'Palatino', 'Georgia', serif;
         }
 
         .service-card p {
-            color: #b0c4de;
-            line-height: 1.8;
+            color: #5a4a3a;
+            line-height: 1.9;
             margin-bottom: 1.5rem;
         }
 
@@ -455,67 +451,169 @@
 
         .service-features li {
             padding: 0.5rem 0;
-            color: #b0c4de;
-            font-size: 0.9rem;
+            color: #5a4a3a;
+            font-size: 0.95rem;
         }
 
         .service-features li::before {
             content: '✓';
-            color: #1e90ff;
+            color: #b8860b;
             font-weight: 700;
             margin-right: 0.8rem;
         }
 
-        /* Why Choose Us Section */
-        .why-choose {
-            background: rgba(10, 22, 40, 0.3);
+        /* About Section */
+        .about {
+            background: rgba(245, 241, 232, 0.5);
         }
 
-        .features-grid {
+        .about-content {
+            max-width: 1400px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            border: 3px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #8b7355;
+            font-family: 'Palatino', 'Georgia', serif;
+        }
+
+        .about-text p {
+            color: #5a4a3a;
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-feature-icon {
+            font-size: 2rem;
+        }
+
+        .about-feature-text {
+            font-weight: 700;
+            color: #2c2416;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .feature-box {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: rgba(26, 41, 66, 0.4);
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3rem 2.5rem;
             border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
+            border: 2px solid rgba(184, 134, 11, 0.2);
             transition: all 0.3s;
+            text-align: center;
         }
 
-        .feature-box:hover {
+        .pricing-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(30, 144, 255, 0.5);
-            box-shadow: 0 15px 40px rgba(30, 144, 255, 0.15);
+            border-color: rgba(184, 134, 11, 0.6);
+            box-shadow: 0 20px 60px rgba(184, 134, 11, 0.2);
         }
 
-        .feature-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            display: block;
+        .pricing-card.featured {
+            border-color: #b8860b;
+            box-shadow: 0 15px 50px rgba(184, 134, 11, 0.25);
         }
 
-        .feature-box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #1e90ff;
+        .pricing-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 1rem;
         }
 
-        .feature-box p {
-            color: #b0c4de;
-            line-height: 1.7;
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #8b7355;
+            font-family: 'Palatino', 'Georgia', serif;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #b8860b;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-duration {
+            color: #5a4a3a;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.7rem 0;
+            color: #5a4a3a;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.1);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #b8860b;
+            font-weight: 700;
+            margin-right: 1rem;
         }
 
         /* Testimonials Section */
         .testimonials {
-            background: rgba(10, 22, 40, 0.5);
+            background: rgba(245, 241, 232, 0.5);
         }
 
         .testimonials-grid {
@@ -527,25 +625,25 @@
         }
 
         .testimonial-card {
-            background: rgba(26, 41, 66, 0.6);
+            background: rgba(255, 255, 255, 0.8);
             padding: 2.5rem;
             border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.2);
+            border: 2px solid rgba(184, 134, 11, 0.2);
             position: relative;
         }
 
         .testimonial-quote {
             font-size: 3rem;
-            color: rgba(30, 144, 255, 0.3);
+            color: rgba(184, 134, 11, 0.3);
             position: absolute;
             top: 1rem;
             left: 1.5rem;
         }
 
         .testimonial-text {
-            color: #b0c4de;
-            font-size: 1rem;
-            line-height: 1.8;
+            color: #5a4a3a;
+            font-size: 1.05rem;
+            line-height: 1.9;
             margin-bottom: 1.5rem;
             margin-top: 2rem;
             font-style: italic;
@@ -560,35 +658,36 @@
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #1e90ff, #4682b4);
+            background: linear-gradient(135deg, #b8860b, #8b7355);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             font-weight: 700;
+            color: #ffffff;
         }
 
         .author-info h4 {
-            color: #ffffff;
+            color: #2c2416;
             font-size: 1rem;
             margin-bottom: 0.2rem;
         }
 
         .author-info p {
-            color: #b0c4de;
+            color: #5a4a3a;
             font-size: 0.85rem;
         }
 
         .rating {
-            color: #ffd700;
+            color: #daa520;
             font-size: 1rem;
             margin-top: 1rem;
         }
 
         /* Contact Section */
         .contact {
-            background: rgba(10, 22, 40, 0.3);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .contact-container {
@@ -602,7 +701,8 @@
         .contact-info h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
-            color: #1e90ff;
+            color: #8b7355;
+            font-family: 'Palatino', 'Georgia', serif;
         }
 
         .contact-item {
@@ -611,51 +711,51 @@
             gap: 1.5rem;
             margin-bottom: 2rem;
             padding: 1.5rem;
-            background: rgba(26, 41, 66, 0.4);
+            background: rgba(255, 255, 255, 0.6);
             border-radius: 10px;
-            border: 1px solid rgba(30, 144, 255, 0.2);
+            border: 1px solid rgba(184, 134, 11, 0.2);
         }
 
         .contact-icon {
             font-size: 2rem;
-            color: #1e90ff;
             flex-shrink: 0;
         }
 
         .contact-details h4 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #2c2416;
+            letter-spacing: 0.5px;
+            font-weight: 700;
         }
 
         .contact-details p {
-            color: #b0c4de;
+            color: #5a4a3a;
             font-size: 1rem;
         }
 
         .contact-details a {
-            color: #1e90ff;
+            color: #b8860b;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .contact-details a:hover {
-            color: #00bfff;
+            color: #daa520;
         }
 
         .contact-form {
-            background: rgba(26, 41, 66, 0.6);
+            background: rgba(255, 255, 255, 0.9);
             padding: 3rem;
             border-radius: 15px;
-            border: 2px solid rgba(30, 144, 255, 0.3);
+            border: 2px solid rgba(184, 134, 11, 0.3);
         }
 
         .contact-form h3 {
             font-size: 2rem;
             margin-bottom: 2rem;
-            color: #1e90ff;
+            color: #8b7355;
+            font-family: 'Palatino', 'Georgia', serif;
         }
 
         .form-group {
@@ -665,10 +765,9 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #ffffff;
+            color: #2c2416;
             font-weight: 600;
             font-size: 0.9rem;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
@@ -677,20 +776,21 @@
         .form-group select {
             width: 100%;
             padding: 1rem;
-            background: rgba(10, 22, 40, 0.5);
-            border: 2px solid rgba(30, 144, 255, 0.3);
+            background: rgba(245, 241, 232, 0.5);
+            border: 2px solid rgba(184, 134, 11, 0.3);
             border-radius: 8px;
-            color: #ffffff;
+            color: #2c2416;
             font-size: 1rem;
             transition: all 0.3s;
+            font-family: 'Georgia', 'Times New Roman', serif;
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #1e90ff;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+            border-color: #b8860b;
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.2);
         }
 
         .form-group textarea {
@@ -701,13 +801,12 @@
         .submit-btn {
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+            background: linear-gradient(135deg, #b8860b 0%, #daa520 100%);
             color: #ffffff;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.3s;
@@ -715,14 +814,14 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.4);
+            box-shadow: 0 10px 30px rgba(184, 134, 11, 0.4);
         }
 
         /* Footer */
         footer {
-            background: rgba(10, 22, 40, 0.8);
+            background: rgba(139, 115, 85, 0.15);
             padding: 3rem 5%;
-            border-top: 2px solid rgba(30, 144, 255, 0.3);
+            border-top: 2px solid rgba(184, 134, 11, 0.3);
         }
 
         .footer-content {
@@ -732,7 +831,7 @@
         }
 
         .footer-content p {
-            color: #b0c4de;
+            color: #5a4a3a;
             margin-bottom: 0.5rem;
         }
 
@@ -745,57 +844,56 @@
         }
 
         .footer-links a {
-            color: #1e90ff;
+            color: #8b7355;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: #00bfff;
+            color: #b8860b;
         }
 
-        /* Floating Call Button */
-        .floating-call {
+        /* Floating Booking Button */
+        .floating-book {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, #ff4444, #cc0000);
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #b8860b, #daa520);
             color: #ffffff;
-            border-radius: 50%;
+            border-radius: 50px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.5);
+            gap: 0.8rem;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
             z-index: 999;
             cursor: pointer;
             transition: all 0.3s;
-            animation: bounce 2s infinite;
+            animation: pulse 2s infinite;
             text-decoration: none;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
             }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
+            50% {
+                box-shadow: 0 8px 35px rgba(184, 134, 11, 0.6);
             }
         }
 
-        .floating-call:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(255, 68, 68, 0.7);
+        .floating-book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(184, 134, 11, 0.6);
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero-content {
+            .hero-content,
+            .about-content,
+            .contact-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
@@ -808,22 +906,18 @@
                 order: -1;
             }
 
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
             .nav-links {
                 display: none;
             }
 
             .services-grid,
-            .features-grid,
+            .pricing-grid,
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
-            .trust-indicators {
+            .trust-indicators,
+            .about-features {
                 flex-direction: column;
                 gap: 1.5rem;
             }
@@ -836,94 +930,90 @@
                 font-size: 2rem;
             }
 
-            .emergency-banner {
-                font-size: 0.8rem;
-            }
-
-            .emergency-banner a {
-                display: block;
-                margin-top: 0.5rem;
-                margin-left: 0;
-            }
-
             .floating-badge {
                 display: none;
+            }
+
+            .floating-book {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Emergency Banner -->
-    <div class="emergency-banner">
-        🚨 24/7 EMERGENCY PLUMBING SERVICES AVAILABLE
-        <a href="tel:+1234567890">CALL NOW: (123) 456-7890</a>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        🌿 Bienvenue au Centre Sukha Ayurveda - L'Harmonie du Corps et de l'Esprit
+        <a href="#contact">Réserver Maintenant</a>
     </div>
 
     <!-- Navigation -->
     <nav>
         <div class="nav-content">
             <div class="logo">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
+                <span class="logo-icon">🕉️</span>
+                SUKHA AYURVEDA
             </div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#why-us">Why Choose Us</a></li>
-                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Soins</a></li>
+                <li><a href="#a-propos">À Propos</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="accueil" class="hero">
         <div class="hero-content">
             <div class="hero-left">
-                <div class="hero-badge">⭐ Certified & Licensed Plumbers</div>
-                <h1>Your <span class="highlight">Elite</span><br>Plumbing Partner</h1>
+                <div class="hero-badge">🌸 Médecine Ayurvédique Traditionnelle</div>
+                <h1>Retrouvez Votre <span class="highlight">Équilibre</span><br>Naturel</h1>
                 <p class="hero-description">
-                    Professional plumbing services available 24/7. From emergency repairs to complete installations,
-                    we deliver excellence with every job. Licensed, insured, and trusted by thousands.
+                    Plongez dans l'univers apaisant de l'Ayurveda avec nos soins authentiques et personnalisés.
+                    Découvrez une approche holistique du bien-être qui harmonise corps, esprit et âme.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="cta-button primary">Request Service</a>
-                    <a href="tel:+1234567890" class="cta-button secondary">Call Emergency</a>
+                    <a href="#contact" class="cta-button primary">Réserver une Séance</a>
+                    <a href="#services" class="cta-button secondary">Découvrir nos Soins</a>
                 </div>
                 <div class="trust-indicators">
                     <div class="trust-item">
-                        <span class="trust-icon">✓</span>
+                        <span class="trust-icon">✨</span>
                         <div class="trust-text">
-                            <strong>Licensed</strong>
-                            Fully Certified
+                            <strong>Certifié</strong>
+                            Praticiens Diplômés
                         </div>
                     </div>
                     <div class="trust-item">
-                        <span class="trust-icon">⚡</span>
+                        <span class="trust-icon">🌿</span>
                         <div class="trust-text">
-                            <strong>24/7</strong>
-                            Emergency Service
+                            <strong>100% Naturel</strong>
+                            Produits Bio
                         </div>
                     </div>
                     <div class="trust-item">
                         <span class="trust-icon">⭐</span>
                         <div class="trust-text">
-                            <strong>5.0 Rating</strong>
-                            1000+ Reviews
+                            <strong>Excellence</strong>
+                            +500 Clients Satisfaits
                         </div>
                     </div>
                 </div>
             </div>
             <div class="hero-right">
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop" alt="Professional Plumber">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&h=600&fit=crop" alt="Massage Ayurvédique">
                     <div class="floating-badge badge-1">
-                        <div class="badge-icon">🛡️</div>
-                        <div class="badge-text">Fully Insured</div>
+                        <div class="badge-icon">🧘</div>
+                        <div class="badge-text">Soins Personnalisés</div>
                     </div>
                     <div class="floating-badge badge-2">
-                        <div class="badge-icon">⏰</div>
-                        <div class="badge-text">Same Day Service</div>
+                        <div class="badge-icon">🌺</div>
+                        <div class="badge-text">Ambiance Zen</div>
                     </div>
                 </div>
             </div>
@@ -932,174 +1022,236 @@
 
     <!-- Services Section -->
     <section id="services" class="section services">
-        <h2 class="section-title">Our <span class="highlight">Premium</span> Services</h2>
+        <h2 class="section-title">Nos <span class="highlight">Soins</span> Ayurvédiques</h2>
         <p class="section-subtitle">
-            Comprehensive plumbing solutions for residential and commercial properties.
-            No job too big or small.
+            Des soins ancestraux adaptés à vos besoins pour restaurer l'harmonie et la vitalité.
         </p>
         <div class="services-grid">
             <div class="service-card">
-                <span class="service-icon">🚰</span>
-                <h3>Emergency Repairs</h3>
-                <p>24/7 emergency plumbing services for urgent issues. Fast response times, expert solutions.</p>
+                <span class="service-icon">💆</span>
+                <h3>Abhyanga</h3>
+                <p>Massage traditionnel à l'huile chaude qui détend profondément, améliore la circulation et élimine les toxines.</p>
                 <ul class="service-features">
-                    <li>Burst pipe repairs</li>
-                    <li>Water heater failures</li>
-                    <li>Severe drain clogs</li>
-                    <li>Gas leak detection</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🚿</span>
-                <h3>Bathroom Plumbing</h3>
-                <p>Complete bathroom plumbing services from installations to renovations.</p>
-                <ul class="service-features">
-                    <li>Toilet installation & repair</li>
-                    <li>Shower/tub services</li>
-                    <li>Sink & faucet work</li>
-                    <li>Full bathroom remodels</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">🍽️</span>
-                <h3>Kitchen Plumbing</h3>
-                <p>Professional kitchen plumbing for functionality and efficiency.</p>
-                <ul class="service-features">
-                    <li>Garbage disposal services</li>
-                    <li>Dishwasher installation</li>
-                    <li>Kitchen sink repair</li>
-                    <li>Water line installation</li>
-                </ul>
-            </div>
-
-            <div class="service-card">
-                <span class="service-icon">♨️</span>
-                <h3>Water Heaters</h3>
-                <p>Expert water heater installation, repair, and maintenance services.</p>
-                <ul class="service-features">
-                    <li>Tank & tankless heaters</li>
-                    <li>Repair & replacement</li>
-                    <li>Energy-efficient options</li>
-                    <li>Regular maintenance</li>
+                    <li>Relaxation profonde</li>
+                    <li>Détoxification</li>
+                    <li>Huiles biologiques</li>
+                    <li>60 ou 90 minutes</li>
                 </ul>
             </div>
 
             <div class="service-card">
                 <span class="service-icon">🌊</span>
-                <h3>Drain Cleaning</h3>
-                <p>Advanced drain cleaning and hydro-jetting for stubborn clogs.</p>
+                <h3>Shirodhara</h3>
+                <p>Soin relaxant où un filet d'huile tiède coule sur le front pour apaiser le mental et réduire le stress.</p>
                 <ul class="service-features">
-                    <li>Video camera inspection</li>
-                    <li>Hydro-jetting services</li>
-                    <li>Root removal</li>
-                    <li>Preventive maintenance</li>
+                    <li>Apaisement mental</li>
+                    <li>Réduction du stress</li>
+                    <li>Améliore le sommeil</li>
+                    <li>45 minutes</li>
                 </ul>
             </div>
 
             <div class="service-card">
-                <span class="service-icon">🏠</span>
-                <h3>Pipe Services</h3>
-                <p>Complete pipe installation, repair, and replacement services.</p>
+                <span class="service-icon">🔥</span>
+                <h3>Swedana</h3>
+                <p>Bain de vapeur aux plantes médicinales qui purifie et régénère le corps en profondeur.</p>
                 <ul class="service-features">
-                    <li>Leak detection & repair</li>
-                    <li>Pipe replacement</li>
-                    <li>Re-piping services</li>
-                    <li>Sewer line repair</li>
+                    <li>Élimination des toxines</li>
+                    <li>Plantes ayurvédiques</li>
+                    <li>Améliore circulation</li>
+                    <li>30 minutes</li>
                 </ul>
             </div>
 
             <div class="service-card">
-                <span class="service-icon">💧</span>
-                <h3>Water Filtration</h3>
-                <p>Clean, safe water with our advanced filtration systems.</p>
+                <span class="service-icon">🌸</span>
+                <h3>Padabhyanga</h3>
+                <p>Massage thérapeutique des pieds qui stimule les points d'énergie et favorise l'équilibre global.</p>
                 <ul class="service-features">
-                    <li>Whole-house filters</li>
-                    <li>Water softeners</li>
-                    <li>Reverse osmosis systems</li>
-                    <li>Water quality testing</li>
+                    <li>Réflexologie ayurvédique</li>
+                    <li>Points marmas</li>
+                    <li>Relaxation profonde</li>
+                    <li>45 minutes</li>
                 </ul>
             </div>
 
             <div class="service-card">
-                <span class="service-icon">🏢</span>
-                <h3>Commercial Plumbing</h3>
-                <p>Professional plumbing services for businesses and commercial properties.</p>
+                <span class="service-icon">🧘</span>
+                <h3>Consultation Ayurvédique</h3>
+                <p>Bilan personnalisé de votre constitution (dosha) avec recommandations sur mesure pour votre bien-être.</p>
                 <ul class="service-features">
-                    <li>Restaurant plumbing</li>
-                    <li>Office buildings</li>
-                    <li>Retail spaces</li>
-                    <li>Maintenance contracts</li>
+                    <li>Analyse de constitution</li>
+                    <li>Plan personnalisé</li>
+                    <li>Conseils nutrition</li>
+                    <li>60 minutes</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🍃</span>
+                <h3>Udvartana</h3>
+                <p>Massage énergisant aux poudres d'herbes qui tonifie, exfolie et revitalise la peau.</p>
+                <ul class="service-features">
+                    <li>Exfoliation naturelle</li>
+                    <li>Tonification</li>
+                    <li>Drainage lymphatique</li>
+                    <li>60 minutes</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">👁️</span>
+                <h3>Netra Tarpana</h3>
+                <p>Soin des yeux au ghee qui apaise, nourrit et améliore la vision.</p>
+                <ul class="service-features">
+                    <li>Soulage fatigue oculaire</li>
+                    <li>Améliore la vision</li>
+                    <li>Ghee médicinal</li>
+                    <li>30 minutes</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <span class="service-icon">🌿</span>
+                <h3>Cure Panchakarma</h3>
+                <p>Programme de détoxification profonde sur plusieurs jours pour une régénération complète.</p>
+                <ul class="service-features">
+                    <li>Détox complète</li>
+                    <li>Programmes 3-7 jours</li>
+                    <li>Suivi personnalisé</li>
+                    <li>Régénération totale</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="section why-choose">
-        <h2 class="section-title">Why Choose <span class="highlight">Elite Plumbing</span></h2>
+    <!-- About Section -->
+    <section id="a-propos" class="section about">
+        <h2 class="section-title">À Propos de <span class="highlight">Sukha Ayurveda</span></h2>
         <p class="section-subtitle">
-            We're not just another plumbing company. We're your trusted partner for all plumbing needs.
+            Un voyage vers le bien-être authentique guidé par la sagesse ancestrale de l'Ayurveda.
         </p>
-        <div class="features-grid">
-            <div class="feature-box">
-                <span class="feature-icon">⚡</span>
-                <h3>Fast Response</h3>
-                <p>Same-day service available. We arrive on time, every time, ready to solve your plumbing issues quickly.</p>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&h=600&fit=crop" alt="Centre Ayurveda">
+            </div>
+            <div class="about-text">
+                <h3>Notre Mission</h3>
+                <p>
+                    Sukha Ayurveda est né d'une passion profonde pour la médecine traditionnelle indienne et son pouvoir
+                    de transformation. Notre centre offre un havre de paix où chaque soin est une invitation à reconnecter
+                    avec votre essence naturelle.
+                </p>
+                <p>
+                    Nos praticiens certifiés combinent techniques ancestrales et approche personnalisée pour vous offrir
+                    une expérience de bien-être unique. Nous utilisons exclusivement des huiles biologiques et des plantes
+                    médicinales de haute qualité.
+                </p>
+                <div class="about-features">
+                    <div class="about-feature">
+                        <span class="about-feature-icon">🎓</span>
+                        <span class="about-feature-text">Praticiens Certifiés</span>
+                    </div>
+                    <div class="about-feature">
+                        <span class="about-feature-icon">🌱</span>
+                        <span class="about-feature-text">Produits 100% Bio</span>
+                    </div>
+                    <div class="about-feature">
+                        <span class="about-feature-icon">🏛️</span>
+                        <span class="about-feature-text">Tradition Authentique</span>
+                    </div>
+                    <div class="about-feature">
+                        <span class="about-feature-icon">💚</span>
+                        <span class="about-feature-text">Approche Holistique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="tarifs" class="section pricing">
+        <h2 class="section-title">Tarifs & <span class="highlight">Forfaits</span></h2>
+        <p class="section-subtitle">
+            Des formules adaptées à tous vos besoins de bien-être.
+        </p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Séance Découverte</h3>
+                <div class="pricing-price">65€</div>
+                <div class="pricing-duration">1 heure</div>
+                <ul class="pricing-features">
+                    <li>Massage Abhyanga 60 min</li>
+                    <li>Huiles biologiques</li>
+                    <li>Ambiance zen</li>
+                    <li>Thé ayurvédique offert</li>
+                </ul>
+                <a href="#contact" class="cta-button primary">Réserver</a>
             </div>
 
-            <div class="feature-box">
-                <span class="feature-icon">🎓</span>
-                <h3>Expert Team</h3>
-                <p>Licensed, certified, and highly trained plumbers with years of experience in all aspects of plumbing.</p>
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Populaire</div>
+                <h3>Forfait Harmonie</h3>
+                <div class="pricing-price">180€</div>
+                <div class="pricing-duration">3 séances</div>
+                <ul class="pricing-features">
+                    <li>3 massages au choix</li>
+                    <li>Consultation ayurvédique</li>
+                    <li>Plan personnalisé</li>
+                    <li>Huiles sur mesure</li>
+                    <li>Valable 2 mois</li>
+                </ul>
+                <a href="#contact" class="cta-button primary">Réserver</a>
             </div>
 
-            <div class="feature-box">
-                <span class="feature-icon">💯</span>
-                <h3>Quality Guarantee</h3>
-                <p>100% satisfaction guaranteed. We stand behind our work with comprehensive warranties.</p>
+            <div class="pricing-card">
+                <h3>Cure Bien-Être</h3>
+                <div class="pricing-price">450€</div>
+                <div class="pricing-duration">Programme 5 jours</div>
+                <ul class="pricing-features">
+                    <li>5 soins complets</li>
+                    <li>Consultation approfondie</li>
+                    <li>Suivi personnalisé</li>
+                    <li>Kit d'huiles offert</li>
+                    <li>Conseils nutrition</li>
+                </ul>
+                <a href="#contact" class="cta-button primary">Réserver</a>
             </div>
 
-            <div class="feature-box">
-                <span class="feature-icon">💰</span>
-                <h3>Fair Pricing</h3>
-                <p>Transparent, upfront pricing with no hidden fees. Free estimates on all major work.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🛠️</span>
-                <h3>Modern Equipment</h3>
-                <p>State-of-the-art tools and technology for efficient, precise, and lasting solutions.</p>
-            </div>
-
-            <div class="feature-box">
-                <span class="feature-icon">🌟</span>
-                <h3>Customer First</h3>
-                <p>Exceptional customer service is our priority. Your satisfaction is our success.</p>
+            <div class="pricing-card">
+                <h3>Shirodhara Premium</h3>
+                <div class="pricing-price">85€</div>
+                <div class="pricing-duration">45 minutes</div>
+                <ul class="pricing-features">
+                    <li>Shirodhara traditionnel</li>
+                    <li>Huiles médicinales</li>
+                    <li>Massage crânien</li>
+                    <li>Ambiance apaisante</li>
+                </ul>
+                <a href="#contact" class="cta-button primary">Réserver</a>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="section testimonials">
-        <h2 class="section-title">What Our <span class="highlight">Customers Say</span></h2>
+    <section id="temoignages" class="section testimonials">
+        <h2 class="section-title">Témoignages de nos <span class="highlight">Clients</span></h2>
         <p class="section-subtitle">
-            Don't just take our word for it. See what our satisfied customers have to say.
+            Découvrez les expériences transformatrices de nos visiteurs.
         </p>
         <div class="testimonials-grid">
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
                 <p class="testimonial-text">
-                    Elite Plumbing saved the day! Had a burst pipe at 2 AM and they were here within 30 minutes.
-                    Professional, fast, and fixed everything perfectly. Highly recommend!
+                    Une expérience absolument magique ! Le massage Abhyanga était d'une douceur incroyable.
+                    Je suis ressortie complètement détendue et régénérée. L'ambiance du centre est parfaite.
                 </p>
                 <div class="rating">⭐⭐⭐⭐⭐</div>
                 <div class="testimonial-author">
-                    <div class="author-avatar">JD</div>
+                    <div class="author-avatar">ML</div>
                     <div class="author-info">
-                        <h4>John Davis</h4>
-                        <p>Homeowner</p>
+                        <h4>Marie Laurent</h4>
+                        <p>Professeur de Yoga</p>
                     </div>
                 </div>
             </div>
@@ -1107,15 +1259,15 @@
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
                 <p class="testimonial-text">
-                    Best plumbing company I've ever worked with. They completely renovated our bathroom plumbing
-                    and the quality is outstanding. Fair prices and excellent workmanship.
+                    Le Shirodhara a littéralement transformé ma vie. Après des mois de stress et d'insomnie,
+                    j'ai enfin retrouvé la paix intérieure. Les praticiens sont d'une bienveillance exceptionnelle.
                 </p>
                 <div class="rating">⭐⭐⭐⭐⭐</div>
                 <div class="testimonial-author">
-                    <div class="author-avatar">SM</div>
+                    <div class="author-avatar">SD</div>
                     <div class="author-info">
-                        <h4>Sarah Martinez</h4>
-                        <p>Property Manager</p>
+                        <h4>Sophie Dubois</h4>
+                        <p>Directrice Marketing</p>
                     </div>
                 </div>
             </div>
@@ -1123,15 +1275,15 @@
             <div class="testimonial-card">
                 <div class="testimonial-quote">"</div>
                 <p class="testimonial-text">
-                    We use Elite Plumbing for all our commercial properties. Always reliable, professional,
-                    and their emergency service is truly 24/7. Worth every penny!
+                    La cure Panchakarma a été une révélation. Un véritable reset pour mon corps et mon esprit.
+                    Je recommande vivement à tous ceux qui cherchent un bien-être authentique et durable.
                 </p>
                 <div class="rating">⭐⭐⭐⭐⭐</div>
                 <div class="testimonial-author">
-                    <div class="author-avatar">RW</div>
+                    <div class="author-avatar">PC</div>
                     <div class="author-info">
-                        <h4>Robert Williams</h4>
-                        <p>Business Owner</p>
+                        <h4>Pierre Chevalier</h4>
+                        <p>Chef d'Entreprise</p>
                     </div>
                 </div>
             </div>
@@ -1140,20 +1292,20 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section contact">
-        <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+        <h2 class="section-title">Réservez Votre <span class="highlight">Séance</span></h2>
         <p class="section-subtitle">
-            Ready to solve your plumbing issues? Contact us today for a free estimate.
+            Contactez-nous pour découvrir les bienfaits de l'Ayurveda.
         </p>
         <div class="contact-container">
             <div class="contact-info">
-                <h3>Contact Information</h3>
+                <h3>Informations Pratiques</h3>
 
                 <div class="contact-item">
                     <span class="contact-icon">📞</span>
                     <div class="contact-details">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+1234567890">(123) 456-7890</a></p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">24/7 Emergency Line</p>
+                        <h4>Téléphone</h4>
+                        <p><a href="tel:+33123456789">01 23 45 67 89</a></p>
+                        <p><a href="tel:+33612345678">06 12 34 56 78</a></p>
                     </div>
                 </div>
 
@@ -1161,72 +1313,69 @@
                     <span class="contact-icon">✉️</span>
                     <div class="contact-details">
                         <h4>Email</h4>
-                        <p><a href="mailto:info@eliteplumbing.com">info@eliteplumbing.com</a></p>
-                        <p><a href="mailto:emergency@eliteplumbing.com">emergency@eliteplumbing.com</a></p>
+                        <p><a href="mailto:contact@sukha-ayurveda.com">contact@sukha-ayurveda.com</a></p>
                     </div>
                 </div>
 
                 <div class="contact-item">
                     <span class="contact-icon">📍</span>
                     <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>123 Main Street</p>
-                        <p>Your City, ST 12345</p>
+                        <h4>Adresse</h4>
+                        <p>15 Rue de la Paix</p>
+                        <p>75002 Paris, France</p>
                     </div>
                 </div>
 
                 <div class="contact-item">
                     <span class="contact-icon">⏰</span>
                     <div class="contact-details">
-                        <h4>Business Hours</h4>
-                        <p>Monday - Friday: 7:00 AM - 7:00 PM</p>
-                        <p>Saturday: 8:00 AM - 5:00 PM</p>
-                        <p>Sunday: Emergency Only</p>
-                        <p style="color: #ff4444; font-weight: 700; margin-top: 0.5rem;">Emergency Service: 24/7</p>
+                        <h4>Horaires d'Ouverture</h4>
+                        <p>Lundi - Vendredi: 9h00 - 20h00</p>
+                        <p>Samedi: 10h00 - 18h00</p>
+                        <p>Dimanche: Sur rendez-vous</p>
                     </div>
                 </div>
             </div>
 
             <div class="contact-form">
-                <h3>Request Service</h3>
+                <h3>Demande de Réservation</h3>
                 <form id="contactForm">
                     <div class="form-group">
-                        <label for="name">Full Name *</label>
+                        <label for="name">Nom Complet *</label>
                         <input type="text" id="name" name="name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
+                        <label for="email">Email *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number *</label>
+                        <label for="phone">Téléphone *</label>
                         <input type="tel" id="phone" name="phone" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="service">Service Type *</label>
+                        <label for="service">Type de Soin *</label>
                         <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="emergency">Emergency Repair</option>
-                            <option value="bathroom">Bathroom Plumbing</option>
-                            <option value="kitchen">Kitchen Plumbing</option>
-                            <option value="water-heater">Water Heater</option>
-                            <option value="drain-cleaning">Drain Cleaning</option>
-                            <option value="pipe-services">Pipe Services</option>
-                            <option value="water-filtration">Water Filtration</option>
-                            <option value="commercial">Commercial Plumbing</option>
-                            <option value="other">Other</option>
+                            <option value="">Choisissez un soin</option>
+                            <option value="abhyanga">Abhyanga - Massage à l'huile</option>
+                            <option value="shirodhara">Shirodhara - Soin du front</option>
+                            <option value="swedana">Swedana - Bain de vapeur</option>
+                            <option value="padabhyanga">Padabhyanga - Massage des pieds</option>
+                            <option value="consultation">Consultation ayurvédique</option>
+                            <option value="udvartana">Udvartana - Massage aux poudres</option>
+                            <option value="netra">Netra Tarpana - Soin des yeux</option>
+                            <option value="panchakarma">Cure Panchakarma</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Describe Your Issue *</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <label for="message">Votre Message</label>
+                        <textarea id="message" name="message" placeholder="Date souhaitée, questions particulières..."></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">Request Service Now</button>
+                    <button type="submit" class="submit-btn">Envoyer ma Demande</button>
                 </form>
             </div>
         </div>
@@ -1236,24 +1385,27 @@
     <footer>
         <div class="footer-content">
             <div class="logo" style="justify-content: center; margin-bottom: 1.5rem;">
-                <span class="logo-icon">🔧</span>
-                ELITE PLUMBING
+                <span class="logo-icon">🕉️</span>
+                SUKHA AYURVEDA
             </div>
-            <p>&copy; 2025 Elite Plumbing Pro. All Rights Reserved.</p>
-            <p style="margin-top: 0.5rem;">Licensed & Insured | Serving Your Area Since 2005</p>
+            <p>&copy; 2025 Sukha Ayurveda. Tous droits réservés.</p>
+            <p style="margin-top: 0.5rem;">Centre de Bien-être Ayurvédique Certifié</p>
             <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#why-us">Why Choose Us</a>
-                <a href="#testimonials">Testimonials</a>
+                <a href="#services">Nos Soins</a>
+                <a href="#a-propos">À Propos</a>
+                <a href="#tarifs">Tarifs</a>
+                <a href="#temoignages">Témoignages</a>
                 <a href="#contact">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <a href="#">Mentions Légales</a>
             </div>
         </div>
     </footer>
 
-    <!-- Floating Call Button -->
-    <a href="tel:+1234567890" class="floating-call" title="Call Now for Emergency Service">📞</a>
+    <!-- Floating Booking Button -->
+    <a href="#contact" class="floating-book">
+        <span>📅</span>
+        <span>Réserver</span>
+    </a>
 
     <script>
         // Form submission
@@ -1269,21 +1421,21 @@
             };
 
             // Create mailto link
-            const subject = encodeURIComponent('Plumbing Service Request from ' + formData.name);
+            const subject = encodeURIComponent('Demande de réservation - ' + formData.name);
             const body = encodeURIComponent(
-                `Name: ${formData.name}\n` +
+                `Nom: ${formData.name}\n` +
                 `Email: ${formData.email}\n` +
-                `Phone: ${formData.phone}\n` +
-                `Service Type: ${formData.service}\n\n` +
+                `Téléphone: ${formData.phone}\n` +
+                `Soin souhaité: ${formData.service}\n\n` +
                 `Message:\n${formData.message}`
             );
 
-            window.location.href = `mailto:info@eliteplumbing.com?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:contact@sukha-ayurveda.com?subject=${subject}&body=${body}`;
 
             // Reset form
             setTimeout(() => {
                 this.reset();
-                alert('Thank you! Your request has been sent. We will contact you shortly.');
+                alert('Merci ! Votre demande a été envoyée. Nous vous contacterons très prochainement.');
             }, 500);
         });
 
