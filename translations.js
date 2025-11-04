@@ -164,6 +164,10 @@ const translations = {
         },
         footer: {
             tagline: "Elite AI-Powered Creative Agency",
+            privacy: "Privacy Policy",
+            terms: "Terms of Service",
+            cookies: "Cookie Policy",
+            legal: "Legal Notice",
             copyright: "© 2025 JAFF STUDIO. All rights reserved.",
             location: "Swiss-based AI Agency | Compliant with nFADP"
         }
@@ -332,6 +336,10 @@ const translations = {
         },
         footer: {
             tagline: "Elite KI-gestützte Kreativagentur",
+            privacy: "Datenschutzrichtlinie",
+            terms: "Nutzungsbedingungen",
+            cookies: "Cookie-Richtlinie",
+            legal: "Impressum",
             copyright: "© 2025 JAFF STUDIO. Alle Rechte vorbehalten.",
             location: "Schweizer KI-Agentur | nFADP-konform"
         }
@@ -500,6 +508,10 @@ const translations = {
         },
         footer: {
             tagline: "Agenzia Creativa d'Elite Alimentata da AI",
+            privacy: "Informativa sulla Privacy",
+            terms: "Termini di Servizio",
+            cookies: "Policy sui Cookie",
+            legal: "Note Legali",
             copyright: "© 2025 JAFF STUDIO. Tutti i diritti riservati.",
             location: "Agenzia AI con sede in Svizzera | Conforme a nFADP"
         }
@@ -668,6 +680,10 @@ const translations = {
         },
         footer: {
             tagline: "Agence Créative d'Élite Alimentée par IA",
+            privacy: "Politique de Confidentialité",
+            terms: "Conditions d'Utilisation",
+            cookies: "Politique des Cookies",
+            legal: "Mentions Légales",
             copyright: "© 2025 JAFF STUDIO. Tous droits réservés.",
             location: "Agence IA basée en Suisse | Conforme à la nFADP"
         }
