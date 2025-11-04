@@ -1649,7 +1649,11 @@
                 const key = element.getAttribute('data-i18n');
                 const translation = getNestedProperty(translations[lang], key);
                 if (translation) {
-                    element.textContent = translation;
+                    if (element.tagName === 'OPTION') {
+                        element.textContent = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
                 }
             });
 
