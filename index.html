@@ -1562,22 +1562,22 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name" class="form-label" data-i18n="contact.form.name">Your Name *</label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required />
+                            <input type="text" id="name" name="name" class="form-input" data-i18n-placeholder="contact.form.namePlaceholder" placeholder="John Doe" required />
                         </div>
                         <div class="form-group">
                             <label for="company" class="form-label" data-i18n="contact.form.company">Company</label>
-                            <input type="text" id="company" name="company" class="form-input" placeholder="Your Company" />
+                            <input type="text" id="company" name="company" class="form-input" data-i18n-placeholder="contact.form.companyPlaceholder" placeholder="Your Company" />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email" class="form-label" data-i18n="contact.form.email">Email Address *</label>
-                            <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required />
+                            <input type="email" id="email" name="email" class="form-input" data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="john@example.com" required />
                         </div>
                         <div class="form-group">
                             <label for="phone" class="form-label" data-i18n="contact.form.phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 234 567 8900" />
+                            <input type="tel" id="phone" name="phone" class="form-input" data-i18n-placeholder="contact.form.phonePlaceholder" placeholder="+1 234 567 8900" />
                         </div>
                     </div>
 
@@ -1595,7 +1595,7 @@
 
                     <div class="form-group">
                         <label for="message" class="form-label" data-i18n="contact.form.message">Your Message *</label>
-                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your project..." required></textarea>
+                        <textarea id="message" name="message" class="form-textarea" data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Tell us about your project..." required></textarea>
                     </div>
 
                     <button type="submit" class="form-submit-btn" data-i18n="contact.form.submit">Send Message</button>
@@ -1636,6 +1636,7 @@
     <script>
         // Language switching
         function changeLanguage(lang) {
+            // Translate text content
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
@@ -1644,6 +1645,17 @@
                     element.textContent = translation;
                 }
             });
+
+            // Translate placeholders
+            const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+            placeholderElements.forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                const translation = getNestedProperty(translations[lang], key);
+                if (translation) {
+                    element.placeholder = translation;
+                }
+            });
+
             localStorage.setItem('preferredLanguage', lang);
             document.documentElement.lang = lang;
         }

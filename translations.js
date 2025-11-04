@@ -143,9 +143,13 @@ const translations = {
             subtitle: "Ready to transform your brand? Fill out the form below and let's discuss your project.",
             form: {
                 name: "Your Name *",
+                namePlaceholder: "John Doe",
                 company: "Company",
+                companyPlaceholder: "Your Company",
                 email: "Email Address *",
+                emailPlaceholder: "john@example.com",
                 phone: "Phone Number",
+                phonePlaceholder: "+1 234 567 8900",
                 service: "Service Interested In *",
                 selectService: "Select a service...",
                 aiSolutions: "AI Solutions",
@@ -154,6 +158,7 @@ const translations = {
                 fullPackage: "Full Package (Multiple Services)",
                 other: "Other / Consultation",
                 message: "Your Message *",
+                messagePlaceholder: "Tell us about your project...",
                 submit: "Send Message"
             }
         },
@@ -306,9 +311,13 @@ const translations = {
             subtitle: "Bereit, Ihre Marke zu transformieren? Füllen Sie das Formular aus und lassen Sie uns über Ihr Projekt sprechen.",
             form: {
                 name: "Ihr Name *",
+                namePlaceholder: "Max Mustermann",
                 company: "Firma",
+                companyPlaceholder: "Ihre Firma",
                 email: "E-Mail-Adresse *",
+                emailPlaceholder: "max@beispiel.de",
                 phone: "Telefonnummer",
+                phonePlaceholder: "+49 123 456 7890",
                 service: "Interessierter Service *",
                 selectService: "Wählen Sie einen Service...",
                 aiSolutions: "KI-Lösungen",
@@ -317,6 +326,7 @@ const translations = {
                 fullPackage: "Vollpaket (Mehrere Services)",
                 other: "Andere / Beratung",
                 message: "Ihre Nachricht *",
+                messagePlaceholder: "Erzählen Sie uns von Ihrem Projekt...",
                 submit: "Nachricht senden"
             }
         },
@@ -469,9 +479,13 @@ const translations = {
             subtitle: "Pronto a trasformare il tuo brand? Compila il modulo qui sotto e parliamo del tuo progetto.",
             form: {
                 name: "Il Tuo Nome *",
+                namePlaceholder: "Mario Rossi",
                 company: "Azienda",
+                companyPlaceholder: "La Tua Azienda",
                 email: "Indirizzo Email *",
+                emailPlaceholder: "mario@esempio.it",
                 phone: "Numero di Telefono",
+                phonePlaceholder: "+39 123 456 7890",
                 service: "Servizio di Interesse *",
                 selectService: "Seleziona un servizio...",
                 aiSolutions: "Soluzioni AI",
@@ -480,6 +494,7 @@ const translations = {
                 fullPackage: "Pacchetto Completo (Servizi Multipli)",
                 other: "Altro / Consulenza",
                 message: "Il Tuo Messaggio *",
+                messagePlaceholder: "Raccontaci del tuo progetto...",
                 submit: "Invia Messaggio"
             }
         },
@@ -632,9 +647,13 @@ const translations = {
             subtitle: "Prêt à transformer votre marque? Remplissez le formulaire ci-dessous et discutons de votre projet.",
             form: {
                 name: "Votre Nom *",
+                namePlaceholder: "Jean Dupont",
                 company: "Entreprise",
+                companyPlaceholder: "Votre Entreprise",
                 email: "Adresse Email *",
+                emailPlaceholder: "jean@exemple.fr",
                 phone: "Numéro de Téléphone",
+                phonePlaceholder: "+33 1 23 45 67 89",
                 service: "Service Intéressé *",
                 selectService: "Sélectionner un service...",
                 aiSolutions: "Solutions IA",
@@ -643,6 +662,7 @@ const translations = {
                 fullPackage: "Forfait Complet (Plusieurs Services)",
                 other: "Autre / Consultation",
                 message: "Votre Message *",
+                messagePlaceholder: "Parlez-nous de votre projet...",
                 submit: "Envoyer le Message"
             }
         },
