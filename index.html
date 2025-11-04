@@ -8,19 +8,6 @@
     <title>JAFF STUDIO - Elite Creative Agency | Premium 3D Experience</title>
     <meta name="description" content="World-class creative agency with stunning 3D experiences.">
 
-    <!-- Google Translate -->
-    <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,de,fr,it,es,pt,nl,ru,zh-CN,ja,ko,ar,hi,tr',
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <!-- Three.js for 3D Background -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
@@ -101,14 +88,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* Hide Google Translate banner */
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0 !important; }
-        .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
-        .goog-te-gadget .goog-te-combo { color: white !important; }
-        .goog-logo-link { display: none !important; }
-        .goog-te-gadget span { display: none !important; }
 
         /* Navigation */
         nav {
@@ -1331,6 +1310,39 @@
             animation: fadeIn 0.8s ease-out;
         }
 
+        /* Language Switcher Styles */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
         /* Contact Form Styles */
         .contact-form-container {
             max-width: 800px;
@@ -1492,17 +1504,22 @@
         <nav>
             <div class="logo">JAFFSTUDIO</div>
             <ul class="nav-menu">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li><a href="#portfolio">PORTFOLIO</a></li>
-                <li><a href="#pricing">PRICING</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">CONTACT</a></li>
+                <li><a href="#home" data-translate="nav_home">HOME</a></li>
+                <li><a href="#about" data-translate="nav_about">ABOUT</a></li>
+                <li><a href="#services" data-translate="nav_services">SERVICES</a></li>
+                <li><a href="#portfolio" data-translate="nav_portfolio">PORTFOLIO</a></li>
+                <li><a href="#pricing" data-translate="nav_pricing">PRICING</a></li>
+                <li><a href="#faq" data-translate="nav_faq">FAQ</a></li>
+                <li><a href="#contact" data-translate="nav_contact">CONTACT</a></li>
             </ul>
             <div style="display: flex; align-items: center; gap: 20px;">
-                <div id="google_translate_element"></div>
-                <a href="#contact" class="nav-cta">LET'S TALK</a>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="de">DE</button>
+                    <button class="lang-btn" data-lang="it">IT</button>
+                </div>
+                <a href="#contact" class="nav-cta" data-translate="nav_cta">LET'S TALK</a>
                 <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
             </div>
         </nav>
@@ -1510,15 +1527,21 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <ul>
-                <li><a href="#home" class="mobile-menu-link">HOME</a></li>
-                <li><a href="#about" class="mobile-menu-link">ABOUT</a></li>
-                <li><a href="#services" class="mobile-menu-link">SERVICES</a></li>
-                <li><a href="#portfolio" class="mobile-menu-link">PORTFOLIO</a></li>
-                <li><a href="#pricing" class="mobile-menu-link">PRICING</a></li>
-                <li><a href="#faq" class="mobile-menu-link">FAQ</a></li>
-                <li><a href="#contact" class="mobile-menu-link">CONTACT</a></li>
+                <li><a href="#home" class="mobile-menu-link" data-translate="nav_home">HOME</a></li>
+                <li><a href="#about" class="mobile-menu-link" data-translate="nav_about">ABOUT</a></li>
+                <li><a href="#services" class="mobile-menu-link" data-translate="nav_services">SERVICES</a></li>
+                <li><a href="#portfolio" class="mobile-menu-link" data-translate="nav_portfolio">PORTFOLIO</a></li>
+                <li><a href="#pricing" class="mobile-menu-link" data-translate="nav_pricing">PRICING</a></li>
+                <li><a href="#faq" class="mobile-menu-link" data-translate="nav_faq">FAQ</a></li>
+                <li><a href="#contact" class="mobile-menu-link" data-translate="nav_contact">CONTACT</a></li>
             </ul>
-            <a href="#contact" class="mobile-menu-cta mobile-menu-link">LET'S TALK</a>
+            <div class="language-switcher" style="padding: 20px; justify-content: center;">
+                <button class="lang-btn active" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="fr">FR</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+                <button class="lang-btn" data-lang="it">IT</button>
+            </div>
+            <a href="#contact" class="mobile-menu-cta mobile-menu-link" data-translate="nav_cta">LET'S TALK</a>
         </div>
 
         <!-- Hero Section -->
