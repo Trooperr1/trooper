@@ -71,17 +71,50 @@ const translations = {
             case1: {
                 category: "AI SOLUTIONS",
                 title: "AI Chatbot Implementation",
-                description: "Mid-size e-commerce company reduced support tickets by 73% and increased conversion rate by 35% with our custom AI chatbot solution."
+                clientLabel: "Client:",
+                client: "Mid-size e-commerce company (fashion/retail)",
+                problemLabel: "Problem:",
+                problem: "Overwhelmed customer service team, 60% of questions were repetitive",
+                solutionLabel: "Solution:",
+                solution: "Custom AI chatbot with product recommendations",
+                resultsHeading: "Results:",
+                result1: "73% reduction in support tickets",
+                result2: "24/7 customer support coverage",
+                result3: "35% increase in conversion rate",
+                result4: "ROI achieved in 4 months",
+                result5: "Customer satisfaction score improved from 3.2 to 4.6/5"
             },
             case2: {
                 category: "WEB DEVELOPMENT • SOCIAL MEDIA",
                 title: "E-commerce Website + Social Media",
-                description: "Local business generated $180K in online revenue in 6 months with our e-commerce platform and social media management."
+                clientLabel: "Client:",
+                client: "Local business expanding online (food/hospitality)",
+                problemLabel: "Problem:",
+                problem: "Outdated website, zero online sales, no social presence",
+                solutionLabel: "Solution:",
+                solution: "Modern e-commerce platform + social media management with paid ads",
+                resultsHeading: "Results:",
+                result1: "Generated $180K in online revenue in first 6 months",
+                result2: "Built Instagram following from 200 to 12,500 followers",
+                result3: "4.2x ROAS (Return on Ad Spend) on paid campaigns",
+                result4: "450+ 5-star reviews generated",
+                result5: "68% of total revenue now from online sales"
             },
             case3: {
                 category: "AI VOICE AUTOMATION",
                 title: "Voice Agent for Service Business",
-                description: "Medical practice answered 91% of calls instantly and generated $85K additional revenue with our AI voice agent."
+                clientLabel: "Client:",
+                client: "Medical/dental practice",
+                problemLabel: "Problem:",
+                problem: "Missing 40% of incoming calls, lost appointments, staff overwhelmed",
+                solutionLabel: "Solution:",
+                solution: "AI voice agent for appointment booking and FAQs",
+                resultsHeading: "Results:",
+                result1: "91% of calls now answered instantly",
+                result2: "$85K additional revenue from recovered missed calls",
+                result3: "Staff time reduced by 15 hours/week on phone tasks",
+                result4: "28% increase in booked appointments",
+                result5: "Patient/customer satisfaction up 42%"
             }
         },
         pricing: {
@@ -243,17 +276,50 @@ const translations = {
             case1: {
                 category: "KI-LÖSUNGEN",
                 title: "KI-Chatbot-Implementierung",
-                description: "Mittelständisches E-Commerce-Unternehmen reduzierte Support-Tickets um 73% und steigerte die Conversion-Rate um 35% mit unserer maßgeschneiderten KI-Chatbot-Lösung."
+                clientLabel: "Kunde:",
+                client: "Mittelständisches E-Commerce-Unternehmen (Mode/Einzelhandel)",
+                problemLabel: "Problem:",
+                problem: "Überlastetes Kundenservice-Team, 60% der Fragen waren repetitiv",
+                solutionLabel: "Lösung:",
+                solution: "Maßgeschneiderter KI-Chatbot mit Produktempfehlungen",
+                resultsHeading: "Ergebnisse:",
+                result1: "73% Reduzierung der Support-Tickets",
+                result2: "24/7 Kundensupport-Abdeckung",
+                result3: "35% Steigerung der Conversion-Rate",
+                result4: "ROI in 4 Monaten erreicht",
+                result5: "Kundenzufriedenheitswert verbessert von 3,2 auf 4,6/5"
             },
             case2: {
                 category: "WEBENTWICKLUNG • SOCIAL MEDIA",
                 title: "E-Commerce-Website + Social Media",
-                description: "Lokales Unternehmen generierte $180.000 Online-Umsatz in 6 Monaten mit unserer E-Commerce-Plattform und Social-Media-Management."
+                clientLabel: "Kunde:",
+                client: "Lokales Unternehmen expandiert online (Lebensmittel/Gastgewerbe)",
+                problemLabel: "Problem:",
+                problem: "Veraltete Website, null Online-Verkäufe, keine Social-Media-Präsenz",
+                solutionLabel: "Lösung:",
+                solution: "Moderne E-Commerce-Plattform + Social-Media-Management mit bezahlten Anzeigen",
+                resultsHeading: "Ergebnisse:",
+                result1: "$180.000 Online-Umsatz in den ersten 6 Monaten generiert",
+                result2: "Instagram-Follower von 200 auf 12.500 aufgebaut",
+                result3: "4,2x ROAS (Return on Ad Spend) bei bezahlten Kampagnen",
+                result4: "450+ 5-Sterne-Bewertungen generiert",
+                result5: "68% des Gesamtumsatzes jetzt aus Online-Verkäufen"
             },
             case3: {
                 category: "KI-SPRACHAUTOMATISIERUNG",
                 title: "Sprachagent für Dienstleistungsunternehmen",
-                description: "Arztpraxis beantwortete 91% der Anrufe sofort und generierte $85.000 zusätzlichen Umsatz mit unserem KI-Sprachagenten."
+                clientLabel: "Kunde:",
+                client: "Arzt-/Zahnarztpraxis",
+                problemLabel: "Problem:",
+                problem: "40% der eingehenden Anrufe verpasst, verlorene Termine, überlastetes Personal",
+                solutionLabel: "Lösung:",
+                solution: "KI-Sprachagent für Terminbuchung und FAQs",
+                resultsHeading: "Ergebnisse:",
+                result1: "91% der Anrufe werden jetzt sofort beantwortet",
+                result2: "$85.000 zusätzlicher Umsatz durch wiedergewonnene verpasste Anrufe",
+                result3: "Personalzeit um 15 Stunden/Woche bei Telefonaufgaben reduziert",
+                result4: "28% Steigerung bei gebuchten Terminen",
+                result5: "Patienten-/Kundenzufriedenheit um 42% gestiegen"
             }
         },
         pricing: {
@@ -587,17 +653,50 @@ const translations = {
             case1: {
                 category: "SOLUTIONS IA",
                 title: "Implémentation de Chatbot IA",
-                description: "Entreprise e-commerce de taille moyenne a réduit les tickets de support de 73% et augmenté le taux de conversion de 35% avec notre solution chatbot IA personnalisée."
+                clientLabel: "Client:",
+                client: "Entreprise e-commerce de taille moyenne (mode/retail)",
+                problemLabel: "Problème:",
+                problem: "Équipe de service client débordée, 60% des questions étaient répétitives",
+                solutionLabel: "Solution:",
+                solution: "Chatbot IA personnalisé avec recommandations de produits",
+                resultsHeading: "Résultats:",
+                result1: "73% de réduction des tickets de support",
+                result2: "Couverture du support client 24/7",
+                result3: "35% d'augmentation du taux de conversion",
+                result4: "ROI atteint en 4 mois",
+                result5: "Score de satisfaction client amélioré de 3,2 à 4,6/5"
             },
             case2: {
                 category: "DÉVELOPPEMENT WEB • RÉSEAUX SOCIAUX",
                 title: "Site E-commerce + Réseaux Sociaux",
-                description: "Entreprise locale a généré 180 000$ de revenus en ligne en 6 mois avec notre plateforme e-commerce et gestion des réseaux sociaux."
+                clientLabel: "Client:",
+                client: "Entreprise locale en expansion en ligne (alimentation/hôtellerie)",
+                problemLabel: "Problème:",
+                problem: "Site web obsolète, zéro vente en ligne, aucune présence sur les réseaux sociaux",
+                solutionLabel: "Solution:",
+                solution: "Plateforme e-commerce moderne + gestion des réseaux sociaux avec publicités payantes",
+                resultsHeading: "Résultats:",
+                result1: "180 000$ de revenus en ligne générés au cours des 6 premiers mois",
+                result2: "Abonnés Instagram passés de 200 à 12 500",
+                result3: "4,2x ROAS (Retour sur dépenses publicitaires) sur les campagnes payantes",
+                result4: "450+ avis 5 étoiles générés",
+                result5: "68% du chiffre d'affaires total provient désormais des ventes en ligne"
             },
             case3: {
                 category: "AUTOMATISATION VOCALE IA",
                 title: "Agent Vocal pour Entreprise de Services",
-                description: "Cabinet médical a répondu à 91% des appels instantanément et généré 85 000$ de revenus supplémentaires avec notre agent vocal IA."
+                clientLabel: "Client:",
+                client: "Cabinet médical/dentaire",
+                problemLabel: "Problème:",
+                problem: "40% des appels entrants manqués, rendez-vous perdus, personnel débordé",
+                solutionLabel: "Solution:",
+                solution: "Agent vocal IA pour prise de rendez-vous et FAQ",
+                resultsHeading: "Résultats:",
+                result1: "91% des appels maintenant répondus instantanément",
+                result2: "85 000$ de revenus supplémentaires grâce aux appels manqués récupérés",
+                result3: "Temps du personnel réduit de 15 heures/semaine sur les tâches téléphoniques",
+                result4: "28% d'augmentation des rendez-vous réservés",
+                result5: "Satisfaction des patients/clients en hausse de 42%"
             }
         },
         pricing: {
