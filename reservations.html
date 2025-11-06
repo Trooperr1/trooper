@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations | Le Château Rouge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h1>Le Château Rouge</h1>
+                <p class="logo-subtitle">Haute Cuisine</p>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="private-dining.html">Private Dining</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="reservations.html" class="btn-reserve active">Reserve</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero reservations-hero">
+        <div class="page-hero-content">
+            <h1 class="page-title">Reservations</h1>
+            <p class="page-subtitle">Secure Your Culinary Experience</p>
+        </div>
+    </section>
+
+    <!-- Reservations Section -->
+    <section class="reservations-section">
+        <div class="container">
+            <div class="reservations-content">
+                <!-- Reservation Form -->
+                <div class="reservation-form-wrapper">
+                    <div class="form-header">
+                        <h2>Request a Reservation</h2>
+                        <p>Please complete the form below and our reservations team will contact you to confirm your booking.</p>
+                    </div>
+
+                    <form id="reservationForm" class="reservation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Preferred Date *</label>
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Preferred Time *</label>
+                                <select id="time" name="time" required>
+                                    <option value="">Select a time</option>
+                                    <option value="19:00">7:00 PM</option>
+                                    <option value="19:30">7:30 PM</option>
+                                    <option value="20:00">8:00 PM</option>
+                                    <option value="20:30">8:30 PM</option>
+                                    <option value="21:00">9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guests">Number of Guests *</label>
+                                <select id="guests" name="guests" required>
+                                    <option value="">Select number</option>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="7">7+ Guests (Private Dining)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="menu">Preferred Menu *</label>
+                                <select id="menu" name="menu" required>
+                                    <option value="">Select menu</option>
+                                    <option value="grand-voyage">Le Grand Voyage (12 courses)</option>
+                                    <option value="signature">Menu Signature (7 courses)</option>
+                                    <option value="vegetarian">Menu Végétarien (7 courses)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wine">Wine Pairing</label>
+                            <select id="wine" name="wine">
+                                <option value="">No wine pairing</option>
+                                <option value="premium">Premium Selection</option>
+                                <option value="prestige">Prestige Collection</option>
+                                <option value="rare-vintage">Rare Vintage</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="occasion">Special Occasion</label>
+                            <select id="occasion" name="occasion">
+                                <option value="">Select if applicable</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="engagement">Engagement</option>
+                                <option value="business">Business Dinner</option>
+                                <option value="celebration">Celebration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dietary">Dietary Restrictions or Allergies</label>
+                            <textarea id="dietary" name="dietary" rows="3" placeholder="Please list any dietary restrictions, allergies, or special requests..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Additional Comments</label>
+                            <textarea id="comments" name="comments" rows="4" placeholder="Any additional information or special requests..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Submit Reservation Request</button>
+
+                        <p class="form-disclaimer">
+                            * Required fields. Your reservation will be confirmed by our team within 24 hours.
+                            For same-day reservations, please call us directly at +33 1 23 45 67 89.
+                        </p>
+                    </form>
+                </div>
+
+                <!-- Reservation Information -->
+                <div class="reservation-info">
+                    <div class="info-card">
+                        <h3>Reservation Policy</h3>
+                        <div class="info-content">
+                            <div class="info-item">
+                                <h4>Advance Booking</h4>
+                                <p>We recommend booking 4-6 weeks in advance. Last-minute availability may be limited.</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Confirmation</h4>
+                                <p>All reservations require credit card guarantee. You will not be charged at booking.</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Cancellation</h4>
+                                <p>Cancellations must be made 48 hours in advance. Late cancellations incur a €200 per person fee.</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Arrival Time</h4>
+                                <p>Please arrive 15 minutes before your reservation. Tables are held for 15 minutes only.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Dress Code</h3>
+                        <div class="info-content">
+                            <p class="dress-code-text">
+                                We maintain an elegant dress code to preserve the refined atmosphere of Le Château Rouge.
+                            </p>
+                            <div class="dress-code-list">
+                                <div class="dress-item">
+                                    <span class="dress-icon">✓</span>
+                                    <span>Suits or jackets for gentlemen</span>
+                                </div>
+                                <div class="dress-item">
+                                    <span class="dress-icon">✓</span>
+                                    <span>Evening wear for ladies</span>
+                                </div>
+                                <div class="dress-item">
+                                    <span class="dress-icon">✗</span>
+                                    <span>Casual attire, shorts, or sportswear</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Contact Us</h3>
+                        <div class="info-content">
+                            <div class="contact-item">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">✉️</div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:reservations@chateaurouge.com">reservations@chateaurouge.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">⏰</div>
+                                <div>
+                                    <h4>Reservations Team</h4>
+                                    <p>Available daily 10:00 AM - 6:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card highlight-card">
+                        <h3>Private Dining</h3>
+                        <div class="info-content">
+                            <p>
+                                For parties of 8 or more, explore our exclusive private dining options with customized
+                                menus and dedicated service.
+                            </p>
+                            <a href="private-dining.html" class="btn-text">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Le Château Rouge</h3>
+                    <p class="footer-description">Three Michelin-starred excellence in the heart of culinary tradition.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="private-dining.html">Private Dining</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Location & Hours</a></li>
+                        <li><a href="reservations.html">Reservations</a></li>
+                        <li><a href="mailto:reservations@chateaurouge.com">reservations@chateaurouge.com</a></li>
+                        <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hours</h4>
+                    <p>Tuesday - Saturday<br>7:00 PM - 11:00 PM</p>
+                    <p class="footer-note">Closed Sunday & Monday</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Le Château Rouge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .reservations-hero {
+            background: linear-gradient(rgba(107, 15, 40, 0.7), rgba(139, 21, 56, 0.6)),
+                        url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&h=1080&fit=crop') center/cover;
+        }
+
+        .reservations-section {
+            padding: 8rem 0;
+            background: var(--light-cream);
+        }
+
+        .reservations-content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 5rem;
+        }
+
+        .reservation-form-wrapper {
+            background: var(--cream);
+            padding: 4rem;
+            border: 1px solid var(--light-silver);
+        }
+
+        .form-header {
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: var(--light-charcoal);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .reservation-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--light-silver);
+            background: var(--light-cream);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-burgundy);
+            background: var(--cream);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .btn-submit {
+            padding: 1.3rem;
+            background: var(--primary-burgundy);
+            color: var(--cream);
+            border: 2px solid var(--primary-burgundy);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: var(--dark-burgundy);
+            border-color: var(--dark-burgundy);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 21, 56, 0.3);
+        }
+
+        .form-disclaimer {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--dark-silver);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .reservation-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border: 1px solid var(--light-silver);
+        }
+
+        .info-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--primary-burgundy);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .info-item p {
+            color: var(--light-charcoal);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .dress-code-text {
+            color: var(--light-charcoal);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .dress-code-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .dress-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--light-charcoal);
+        }
+
+        .dress-icon {
+            font-size: 1.2rem;
+            color: var(--primary-burgundy);
+            font-weight: 700;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            color: var(--light-charcoal);
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-burgundy);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--dark-burgundy);
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, var(--dark-burgundy) 0%, var(--primary-burgundy) 100%);
+            color: var(--light-cream);
+        }
+
+        .highlight-card h3 {
+            color: var(--light-cream);
+        }
+
+        .highlight-card p {
+            color: var(--light-cream);
+            opacity: 0.95;
+        }
+
+        .highlight-card .btn-text {
+            color: var(--light-cream);
+            margin-top: 1rem;
+        }
+
+        .highlight-card .btn-text:hover {
+            color: var(--cream);
+        }
+
+        @media (max-width: 1024px) {
+            .reservations-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reservation-form-wrapper {
+                padding: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value,
+                menu: document.getElementById('menu').value,
+                wine: document.getElementById('wine').value,
+                occasion: document.getElementById('occasion').value,
+                dietary: document.getElementById('dietary').value,
+                comments: document.getElementById('comments').value
+            };
+
+            // Create mailto link
+            const subject = encodeURIComponent(`Reservation Request - ${formData.firstName} ${formData.lastName}`);
+            const body = encodeURIComponent(
+                `RESERVATION REQUEST\n\n` +
+                `Guest Information:\n` +
+                `Name: ${formData.firstName} ${formData.lastName}\n` +
+                `Email: ${formData.email}\n` +
+                `Phone: ${formData.phone}\n\n` +
+                `Reservation Details:\n` +
+                `Date: ${formData.date}\n` +
+                `Time: ${formData.time}\n` +
+                `Number of Guests: ${formData.guests}\n` +
+                `Menu: ${formData.menu}\n` +
+                `Wine Pairing: ${formData.wine || 'None'}\n` +
+                `Special Occasion: ${formData.occasion || 'None'}\n\n` +
+                `Dietary Restrictions:\n${formData.dietary || 'None'}\n\n` +
+                `Additional Comments:\n${formData.comments || 'None'}`
+            );
+
+            window.location.href = `mailto:reservations@chateaurouge.com?subject=${subject}&body=${body}`;
+
+            // Show confirmation message
+            setTimeout(() => {
+                alert('Thank you for your reservation request. Our team will contact you within 24 hours to confirm your booking.');
+                this.reset();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
