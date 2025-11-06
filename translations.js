@@ -212,138 +212,120 @@ const translations = {
             hero: {
                 eyebrow: "🤖 AI SOLUTIONS",
                 title: "Stop Losing Money While You Sleep",
-                subtitle: "Turn your business into a 24/7 revenue machine with AI automation that works smarter than your entire team combined.",
+                subtitle: "Turn your business into a 24/7 revenue machine with custom AI chatbots and voice agents that never take a break, never miss a lead, and never complain.",
                 cta: "Get Your Custom AI Solution"
             },
             problem: {
-                eyebrow: "THE PROBLEM",
-                title: "Your Business Bleeds Money Every Second You're Not Available",
-                point1Title: "💸 Missed Revenue While Offline",
-                point1Text: "Every unanswered call, email, or message is a lost sale. Your competitors with AI are stealing customers 24/7.",
-                point2Title: "⏰ Time Wasted on Repetitive Tasks",
-                point2Text: "Your team spends hours answering the same questions, scheduling appointments, qualifying leads manually.",
-                point3Title: "📉 Leads Going Cold",
-                point3Text: "By the time you respond (hours or days later), your prospect has already chosen someone else."
+                title: "The Problem Costing You Thousands",
+                subtitle: "Every missed call, delayed response, and unanswered question is money walking out the door",
+                withoutTitle: "Without AI Automation",
+                issue1: "Missing 40-60% of incoming calls during busy hours",
+                issue2: "Customers waiting hours (or days) for email responses",
+                issue3: "Paying staff $3,000-5,000/month to answer repetitive questions",
+                issue4: "Losing leads to competitors who respond faster",
+                issue5: "No one available nights, weekends, or holidays",
+                issue6: "Inconsistent customer service quality",
+                issue7: "Staff overwhelmed with simple, repetitive tasks"
             },
             solution: {
-                eyebrow: "THE SOLUTION",
-                title: "AI That Never Sleeps, Never Takes Breaks, Never Loses a Deal",
-                subtitle: "Imagine having a tireless team member who:",
-                benefit1: "Answers customer questions instantly at 3 AM",
-                benefit2: "Qualifies and books appointments automatically",
-                benefit3: "Follows up with leads within seconds",
-                benefit4: "Handles 100+ conversations simultaneously",
-                benefit5: "Learns your business and gets smarter over time"
+                withTitle: "With JAFF STUDIO AI",
+                benefit1: "Answer 100% of customer inquiries instantly, 24/7",
+                benefit2: "Capture and qualify leads while you sleep",
+                benefit3: "Book appointments automatically without human intervention",
+                benefit4: "Handle 1,000+ conversations simultaneously",
+                benefit5: "Provide perfect, consistent responses every time",
+                benefit6: "Free up your team for high-value tasks",
+                benefit7: "Pay once, profit forever - no recurring salary costs"
             },
             solutions: {
-                eyebrow: "OUR AI SOLUTIONS",
-                title: "Choose Your Revenue Multiplier",
-                card1: {
-                    category: "CHAT AUTOMATION",
-                    title: "AI Chatbot Assistant",
-                    description: "Your 24/7 customer service agent that never sleeps",
-                    feature1: "Instant responses to customer questions",
-                    feature2: "Lead capture and qualification",
-                    feature3: "Product recommendations",
-                    feature4: "Integrates with your existing tools",
-                    feature5: "Learns from every conversation",
-                    pricing: "Starting at $497/month"
+                title: "Our AI Solutions",
+                subtitle: "Custom-built AI systems designed to scale your specific business",
+                chatbot: {
+                    title: "AI Chatbots",
+                    whatLabel: "What it does:",
+                    what: "Intelligent chat widget on your website that answers questions, captures leads, books appointments, and provides product recommendations.",
+                    bestLabel: "Best for:",
+                    best: "E-commerce stores, service businesses, medical practices, real estate agents",
+                    resultsLabel: "Results:",
+                    results: "73% reduction in support tickets, 35% increase in conversion rates, 24/7 lead generation"
                 },
-                card2: {
-                    category: "VOICE AUTOMATION",
-                    title: "AI Voice Agent",
-                    description: "Professional phone automation that sounds 100% human",
-                    feature1: "Answer every call, even at 3 AM",
-                    feature2: "Schedule appointments automatically",
-                    feature3: "Handle FAQs and support calls",
-                    feature4: "Warm transfer to your team when needed",
-                    feature5: "Multi-language support",
-                    pricing: "Starting at $997/month"
+                voice: {
+                    title: "AI Voice Agents",
+                    whatLabel: "What it does:",
+                    what: "Answers phone calls with natural-sounding AI voice, books appointments, answers FAQs, routes urgent calls to humans.",
+                    bestLabel: "Best for:",
+                    best: "Medical/dental offices, home services (HVAC, plumbing), law firms, restaurants",
+                    resultsLabel: "Results:",
+                    results: "91% of calls answered instantly, $85K+ recovered revenue from missed calls, 28% increase in bookings"
                 },
-                card3: {
-                    category: "WORKFLOW AUTOMATION",
+                automation: {
                     title: "Business Process Automation",
-                    description: "Eliminate manual work and scale without hiring",
-                    feature1: "Automate data entry and reporting",
-                    feature2: "Email and follow-up automation",
-                    feature3: "CRM and tool integrations",
-                    feature4: "Custom workflows for your business",
-                    feature5: "Real-time analytics dashboard",
-                    pricing: "Starting at $1,497/month"
+                    whatLabel: "What it does:",
+                    what: "Automates repetitive workflows like data entry, invoice processing, appointment reminders, follow-up emails.",
+                    bestLabel: "Best for:",
+                    best: "Any business with manual, repetitive tasks eating up staff time",
+                    resultsLabel: "Results:",
+                    results: "15-30 hours saved per week, 90% reduction in human error, staff focused on revenue-generating work"
                 },
-                card4: {
-                    category: "FULL AI SUITE",
-                    title: "Enterprise AI Package",
-                    description: "Complete AI transformation for ambitious businesses",
-                    feature1: "Everything from all packages",
-                    feature2: "Custom AI solutions built for you",
-                    feature3: "Dedicated AI strategist",
-                    feature4: "Priority support and updates",
-                    feature5: "Quarterly strategy sessions",
-                    pricing: "Contact for Custom Quote"
+                leads: {
+                    title: "AI Lead Qualification",
+                    whatLabel: "What it does:",
+                    what: "Automatically scores and qualifies incoming leads, books sales calls only with high-intent prospects.",
+                    bestLabel: "Best for:",
+                    best: "B2B companies, agencies, consultants, high-ticket sales teams",
+                    resultsLabel: "Results:",
+                    results: "60% more qualified leads, sales team closing 40% more deals, zero time wasted on tire-kickers"
                 }
             },
             stats: {
-                title: "Real Results From Real Businesses",
-                stat1: "73% Reduction",
-                stat1Sub: "in support tickets",
-                stat2: "$85K+ Recovered",
-                stat2Sub: "from missed calls",
-                stat3: "24/7 Coverage",
-                stat3Sub: "never miss a lead",
-                stat4: "4-Month ROI",
-                stat4Sub: "average payback period"
+                title: "The Numbers Don't Lie",
+                subtitle: "Real results from real businesses using our AI solutions",
+                stat1: "Reduction in Support Tickets",
+                stat2: "Revenue Recovered in 6 Months",
+                stat3: "Average ROI Within 6 Months",
+                stat4: "Customers Served Non-Stop"
             },
             pricing: {
-                eyebrow: "INVESTMENT",
-                title: "Transparent Pricing, Massive ROI",
-                subtitle: "No contracts. Cancel anytime. Results guaranteed or money back.",
+                title: "Investment & Pricing",
+                subtitle: "Choose the AI solution that fits your business needs",
                 starter: {
-                    name: "Starter AI",
-                    price: "$497",
-                    period: "/month",
-                    description: "Perfect for small businesses testing AI automation",
-                    feature1: "AI Chatbot OR Email Automation",
-                    feature2: "Up to 1,000 interactions/month",
-                    feature3: "Basic integrations",
-                    feature4: "Email support",
-                    feature5: "Monthly performance reports",
-                    cta: "Start Automating"
+                    name: "Starter Bot",
+                    feature1: "AI Chatbot OR Voice Agent (pick one)",
+                    feature2: "Up to 1,000 conversations/month",
+                    feature3: "Basic CRM integration",
+                    feature4: "Standard training on your business",
+                    feature5: "Email support",
+                    feature6: "1 month free support after launch",
+                    cta: "Get Started"
                 },
                 professional: {
-                    badge: "⭐ MOST POPULAR",
                     name: "Professional AI",
-                    price: "$1,497",
-                    period: "/month",
-                    description: "For growing businesses ready to scale with AI",
-                    feature1: "AI Chatbot + Voice Agent",
-                    feature2: "Up to 5,000 interactions/month",
-                    feature3: "Advanced integrations (CRM, Calendar, etc.)",
-                    feature4: "Priority support",
-                    feature5: "Weekly performance calls",
-                    feature6: "Custom training for your business",
-                    cta: "Scale with AI"
+                    feature1: "AI Chatbot + Voice Agent (both)",
+                    feature2: "Unlimited conversations",
+                    feature3: "Full CRM integration",
+                    feature4: "Advanced training & customization",
+                    feature5: "Lead qualification system",
+                    feature6: "Priority support",
+                    feature7: "3 months free support after launch",
+                    cta: "Scale Now"
                 },
                 enterprise: {
-                    name: "Enterprise AI",
+                    name: "Enterprise Suite",
                     price: "Custom",
-                    period: "pricing",
-                    description: "Complete AI transformation for serious growth",
-                    feature1: "Everything in Professional",
-                    feature2: "Unlimited interactions",
-                    feature3: "Custom AI development",
-                    feature4: "Dedicated AI strategist",
-                    feature5: "24/7 priority support",
-                    feature6: "Quarterly business reviews",
-                    feature7: "Multi-location support",
-                    cta: "Let's Talk"
+                    feature1: "Multiple AI chatbots & voice agents",
+                    feature2: "Full business process automation",
+                    feature3: "Multi-location support",
+                    feature4: "Advanced analytics & reporting",
+                    feature5: "Dedicated AI specialist",
+                    feature6: "White-glove onboarding",
+                    feature7: "6 months premium support",
+                    cta: "Contact Us"
                 }
             },
             cta: {
-                eyebrow: "READY TO AUTOMATE?",
-                title: "Let's Build Your AI Solution",
-                subtitle: "Book a free 30-minute strategy call. We'll analyze your business and show you exactly how AI can save you time and make you money.",
-                button: "Book Your Free Strategy Call"
+                title: "Ready to Automate Your Revenue?",
+                subtitle: "Stop losing money to missed calls and slow responses. Let's build your custom AI solution.",
+                button: "Get Your Free Consultation"
             }
         }
     },
@@ -559,138 +541,120 @@ const translations = {
             hero: {
                 eyebrow: "🤖 KI-LÖSUNGEN",
                 title: "Hören Sie auf, Geld zu verlieren, während Sie schlafen",
-                subtitle: "Verwandeln Sie Ihr Unternehmen in eine 24/7-Umsatzmaschine mit KI-Automatisierung, die intelligenter arbeitet als Ihr gesamtes Team zusammen.",
+                subtitle: "Verwandeln Sie Ihr Unternehmen in eine 24/7-Umsatzmaschine mit maßgeschneiderten KI-Chatbots und Sprachagenten, die nie eine Pause machen, nie einen Lead verpassen und sich nie beschweren.",
                 cta: "Holen Sie sich Ihre maßgeschneiderte KI-Lösung"
             },
             problem: {
-                eyebrow: "DAS PROBLEM",
-                title: "Ihr Unternehmen verliert jede Sekunde Geld, in der Sie nicht verfügbar sind",
-                point1Title: "💸 Verpasste Einnahmen im Offline-Modus",
-                point1Text: "Jeder unbeantwortete Anruf, jede E-Mail oder Nachricht ist ein verlorener Verkauf. Ihre Konkurrenten mit KI stehlen rund um die Uhr Kunden.",
-                point2Title: "⏰ Zeitverschwendung bei sich wiederholenden Aufgaben",
-                point2Text: "Ihr Team verbringt Stunden damit, dieselben Fragen zu beantworten, Termine zu vereinbaren und Leads manuell zu qualifizieren.",
-                point3Title: "📉 Leads werden kalt",
-                point3Text: "Bis Sie antworten (Stunden oder Tage später), hat sich Ihr Interessent bereits für jemand anderen entschieden."
+                title: "Das Problem, das Sie Tausende kostet",
+                subtitle: "Jeder verpasste Anruf, jede verzögerte Antwort und jede unbeantwortete Frage ist Geld, das zur Tür hinausgeht",
+                withoutTitle: "Ohne KI-Automatisierung",
+                issue1: "40-60% der eingehenden Anrufe während der Stoßzeiten verpassen",
+                issue2: "Kunden warten Stunden (oder Tage) auf E-Mail-Antworten",
+                issue3: "3.000-5.000€/Monat für Personal zahlen, um sich wiederholende Fragen zu beantworten",
+                issue4: "Leads an Konkurrenten verlieren, die schneller antworten",
+                issue5: "Niemand verfügbar nachts, am Wochenende oder an Feiertagen",
+                issue6: "Inkonsistente Kundenservice-Qualität",
+                issue7: "Personal überwältigt mit einfachen, sich wiederholenden Aufgaben"
             },
             solution: {
-                eyebrow: "DIE LÖSUNG",
-                title: "KI, die niemals schläft, niemals Pausen macht, niemals ein Geschäft verliert",
-                subtitle: "Stellen Sie sich einen unermüdlichen Teammitarbeiter vor, der:",
-                benefit1: "Kundenfragen um 3 Uhr morgens sofort beantwortet",
-                benefit2: "Termine automatisch qualifiziert und bucht",
-                benefit3: "Innerhalb von Sekunden mit Leads nachfasst",
-                benefit4: "100+ Gespräche gleichzeitig führt",
-                benefit5: "Ihr Geschäft lernt und im Laufe der Zeit intelligenter wird"
+                withTitle: "Mit JAFF STUDIO KI",
+                benefit1: "100% der Kundenanfragen sofort beantworten, 24/7",
+                benefit2: "Leads erfassen und qualifizieren, während Sie schlafen",
+                benefit3: "Termine automatisch buchen ohne menschliches Eingreifen",
+                benefit4: "1.000+ Gespräche gleichzeitig führen",
+                benefit5: "Perfekte, konsistente Antworten jedes Mal liefern",
+                benefit6: "Ihr Team für hochwertige Aufgaben freimachen",
+                benefit7: "Einmal zahlen, für immer profitieren - keine wiederkehrenden Gehaltskosten"
             },
             solutions: {
-                eyebrow: "UNSERE KI-LÖSUNGEN",
-                title: "Wählen Sie Ihren Umsatzmultiplikator",
-                card1: {
-                    category: "CHAT-AUTOMATISIERUNG",
-                    title: "KI-Chatbot-Assistent",
-                    description: "Ihr 24/7-Kundenservice-Agent, der niemals schläft",
-                    feature1: "Sofortige Antworten auf Kundenfragen",
-                    feature2: "Lead-Erfassung und Qualifizierung",
-                    feature3: "Produktempfehlungen",
-                    feature4: "Integration mit Ihren vorhandenen Tools",
-                    feature5: "Lernt aus jedem Gespräch",
-                    pricing: "Ab 497€/Monat"
+                title: "Unsere KI-Lösungen",
+                subtitle: "Maßgeschneiderte KI-Systeme, die für Ihr spezifisches Unternehmen entwickelt wurden",
+                chatbot: {
+                    title: "KI-Chatbots",
+                    whatLabel: "Was es tut:",
+                    what: "Intelligentes Chat-Widget auf Ihrer Website, das Fragen beantwortet, Leads erfasst, Termine bucht und Produktempfehlungen gibt.",
+                    bestLabel: "Am besten für:",
+                    best: "E-Commerce-Shops, Dienstleistungsunternehmen, Arztpraxen, Immobilienmakler",
+                    resultsLabel: "Ergebnisse:",
+                    results: "73% Reduzierung der Support-Tickets, 35% Steigerung der Conversion-Rate, 24/7 Lead-Generierung"
                 },
-                card2: {
-                    category: "SPRACHAUTOMATISIERUNG",
-                    title: "KI-Sprachagent",
-                    description: "Professionelle Telefonautomatisierung, die zu 100% menschlich klingt",
-                    feature1: "Jeden Anruf beantworten, sogar um 3 Uhr morgens",
-                    feature2: "Termine automatisch vereinbaren",
-                    feature3: "FAQs und Support-Anrufe bearbeiten",
-                    feature4: "Warme Weiterleitung an Ihr Team bei Bedarf",
-                    feature5: "Mehrsprachiger Support",
-                    pricing: "Ab 997€/Monat"
+                voice: {
+                    title: "KI-Sprachagenten",
+                    whatLabel: "Was es tut:",
+                    what: "Beantwortet Telefonanrufe mit natürlich klingender KI-Stimme, bucht Termine, beantwortet FAQs, leitet dringende Anrufe an Menschen weiter.",
+                    bestLabel: "Am besten für:",
+                    best: "Arzt-/Zahnarztpraxen, Heimdienstleistungen (HLK, Klempner), Anwaltskanzleien, Restaurants",
+                    resultsLabel: "Ergebnisse:",
+                    results: "91% der Anrufe sofort beantwortet, 85.000€+ wiedergewonnener Umsatz aus verpassten Anrufen, 28% Steigerung bei Buchungen"
                 },
-                card3: {
-                    category: "WORKFLOW-AUTOMATISIERUNG",
+                automation: {
                     title: "Geschäftsprozess-Automatisierung",
-                    description: "Manuelle Arbeit eliminieren und ohne Neueinstellungen skalieren",
-                    feature1: "Dateneingabe und Berichterstellung automatisieren",
-                    feature2: "E-Mail- und Follow-up-Automatisierung",
-                    feature3: "CRM- und Tool-Integrationen",
-                    feature4: "Benutzerdefinierte Workflows für Ihr Unternehmen",
-                    feature5: "Echtzeit-Analyse-Dashboard",
-                    pricing: "Ab 1.497€/Monat"
+                    whatLabel: "Was es tut:",
+                    what: "Automatisiert sich wiederholende Workflows wie Dateneingabe, Rechnungsverarbeitung, Terminerinnerungen, Follow-up-E-Mails.",
+                    bestLabel: "Am besten für:",
+                    best: "Jedes Unternehmen mit manuellen, sich wiederholenden Aufgaben, die Personalzeit fressen",
+                    resultsLabel: "Ergebnisse:",
+                    results: "15-30 Stunden pro Woche gespart, 90% Reduzierung menschlicher Fehler, Personal konzentriert auf umsatzgenerierende Arbeit"
                 },
-                card4: {
-                    category: "VOLLSTÄNDIGE KI-SUITE",
-                    title: "Enterprise KI-Paket",
-                    description: "Komplette KI-Transformation für ambitionierte Unternehmen",
-                    feature1: "Alles aus allen Paketen",
-                    feature2: "Maßgeschneiderte KI-Lösungen für Sie",
-                    feature3: "Dedizierter KI-Stratege",
-                    feature4: "Prioritäts-Support und Updates",
-                    feature5: "Vierteljährliche Strategie-Sitzungen",
-                    pricing: "Kontakt für individuelles Angebot"
+                leads: {
+                    title: "KI-Lead-Qualifizierung",
+                    whatLabel: "Was es tut:",
+                    what: "Bewertet und qualifiziert eingehende Leads automatisch, bucht Verkaufsgespräche nur mit hochinteressierten Interessenten.",
+                    bestLabel: "Am besten für:",
+                    best: "B2B-Unternehmen, Agenturen, Berater, High-Ticket-Vertriebsteams",
+                    resultsLabel: "Ergebnisse:",
+                    results: "60% mehr qualifizierte Leads, Vertriebsteam schließt 40% mehr Deals ab, null Zeitverschwendung mit Reifenkickern"
                 }
             },
             stats: {
-                title: "Echte Ergebnisse von echten Unternehmen",
-                stat1: "73% Reduzierung",
-                stat1Sub: "bei Support-Tickets",
-                stat2: "85.000€+ Wiedergewonnen",
-                stat2Sub: "aus verpassten Anrufen",
-                stat3: "24/7 Abdeckung",
-                stat3Sub: "verpassen Sie keinen Lead",
-                stat4: "4-Monate ROI",
-                stat4Sub: "durchschnittliche Amortisationszeit"
+                title: "Die Zahlen lügen nicht",
+                subtitle: "Echte Ergebnisse von echten Unternehmen, die unsere KI-Lösungen nutzen",
+                stat1: "Reduzierung bei Support-Tickets",
+                stat2: "Umsatz in 6 Monaten wiedergewonnen",
+                stat3: "Durchschnittlicher ROI innerhalb von 6 Monaten",
+                stat4: "Kunden rund um die Uhr bedient"
             },
             pricing: {
-                eyebrow: "INVESTITION",
-                title: "Transparente Preise, massiver ROI",
-                subtitle: "Keine Verträge. Jederzeit kündbar. Ergebnisse garantiert oder Geld zurück.",
+                title: "Investition & Preise",
+                subtitle: "Wählen Sie die KI-Lösung, die zu Ihrem Geschäftsbedarf passt",
                 starter: {
-                    name: "Starter KI",
-                    price: "497€",
-                    period: "/Monat",
-                    description: "Perfekt für kleine Unternehmen, die KI-Automatisierung testen",
-                    feature1: "KI-Chatbot ODER E-Mail-Automatisierung",
-                    feature2: "Bis zu 1.000 Interaktionen/Monat",
-                    feature3: "Grundlegende Integrationen",
-                    feature4: "E-Mail-Support",
-                    feature5: "Monatliche Performance-Berichte",
-                    cta: "Automatisierung starten"
+                    name: "Starter Bot",
+                    feature1: "KI-Chatbot ODER Sprachagent (wählen Sie einen)",
+                    feature2: "Bis zu 1.000 Gespräche/Monat",
+                    feature3: "Grundlegende CRM-Integration",
+                    feature4: "Standard-Schulung für Ihr Unternehmen",
+                    feature5: "E-Mail-Support",
+                    feature6: "1 Monat kostenloser Support nach Start",
+                    cta: "Jetzt starten"
                 },
                 professional: {
-                    badge: "⭐ AM BELIEBTESTEN",
                     name: "Professional KI",
-                    price: "1.497€",
-                    period: "/Monat",
-                    description: "Für wachsende Unternehmen, die mit KI skalieren möchten",
-                    feature1: "KI-Chatbot + Sprachagent",
-                    feature2: "Bis zu 5.000 Interaktionen/Monat",
-                    feature3: "Erweiterte Integrationen (CRM, Kalender usw.)",
-                    feature4: "Prioritäts-Support",
-                    feature5: "Wöchentliche Performance-Calls",
-                    feature6: "Individuelle Schulung für Ihr Unternehmen",
-                    cta: "Mit KI skalieren"
+                    feature1: "KI-Chatbot + Sprachagent (beide)",
+                    feature2: "Unbegrenzte Gespräche",
+                    feature3: "Vollständige CRM-Integration",
+                    feature4: "Erweiterte Schulung & Anpassung",
+                    feature5: "Lead-Qualifizierungssystem",
+                    feature6: "Prioritäts-Support",
+                    feature7: "3 Monate kostenloser Support nach Start",
+                    cta: "Jetzt skalieren"
                 },
                 enterprise: {
-                    name: "Enterprise KI",
+                    name: "Enterprise Suite",
                     price: "Individuell",
-                    period: "Preise",
-                    description: "Komplette KI-Transformation für ernsthaftes Wachstum",
-                    feature1: "Alles aus Professional",
-                    feature2: "Unbegrenzte Interaktionen",
-                    feature3: "Benutzerdefinierte KI-Entwicklung",
-                    feature4: "Dedizierter KI-Stratege",
-                    feature5: "24/7 Prioritäts-Support",
-                    feature6: "Vierteljährliche Business-Reviews",
-                    feature7: "Multi-Standort-Support",
-                    cta: "Lass uns sprechen"
+                    feature1: "Mehrere KI-Chatbots & Sprachagenten",
+                    feature2: "Vollständige Geschäftsprozess-Automatisierung",
+                    feature3: "Multi-Standort-Support",
+                    feature4: "Erweiterte Analysen & Berichte",
+                    feature5: "Dedizierter KI-Spezialist",
+                    feature6: "White-Glove-Onboarding",
+                    feature7: "6 Monate Premium-Support",
+                    cta: "Kontaktieren Sie uns"
                 }
             },
             cta: {
-                eyebrow: "BEREIT ZU AUTOMATISIEREN?",
-                title: "Lassen Sie uns Ihre KI-Lösung erstellen",
-                subtitle: "Buchen Sie ein kostenloses 30-minütiges Strategiegespräch. Wir analysieren Ihr Unternehmen und zeigen Ihnen genau, wie KI Ihnen Zeit sparen und Geld einbringen kann.",
-                button: "Buchen Sie Ihr kostenloses Strategiegespräch"
+                title: "Bereit, Ihren Umsatz zu automatisieren?",
+                subtitle: "Hören Sie auf, Geld durch verpasste Anrufe und langsame Antworten zu verlieren. Lassen Sie uns Ihre maßgeschneiderte KI-Lösung erstellen.",
+                button: "Holen Sie sich Ihre kostenlose Beratung"
             }
         }
     },
@@ -1078,138 +1042,120 @@ const translations = {
             hero: {
                 eyebrow: "🤖 SOLUTIONS IA",
                 title: "Arrêtez de perdre de l'argent pendant votre sommeil",
-                subtitle: "Transformez votre entreprise en une machine à revenus 24/7 avec une automatisation IA qui travaille plus intelligemment que toute votre équipe réunie.",
+                subtitle: "Transformez votre entreprise en une machine à revenus 24/7 avec des chatbots IA personnalisés et des agents vocaux qui ne prennent jamais de pause, ne manquent jamais un prospect et ne se plaignent jamais.",
                 cta: "Obtenez votre solution IA personnalisée"
             },
             problem: {
-                eyebrow: "LE PROBLÈME",
-                title: "Votre entreprise perd de l'argent chaque seconde où vous n'êtes pas disponible",
-                point1Title: "💸 Revenus manqués hors ligne",
-                point1Text: "Chaque appel, e-mail ou message sans réponse est une vente perdue. Vos concurrents avec l'IA volent des clients 24/7.",
-                point2Title: "⏰ Temps perdu sur des tâches répétitives",
-                point2Text: "Votre équipe passe des heures à répondre aux mêmes questions, à planifier des rendez-vous, à qualifier manuellement les prospects.",
-                point3Title: "📉 Les prospects refroidissent",
-                point3Text: "Au moment où vous répondez (heures ou jours plus tard), votre prospect a déjà choisi quelqu'un d'autre."
+                title: "Le problème qui vous coûte des milliers",
+                subtitle: "Chaque appel manqué, réponse retardée et question sans réponse représente de l'argent qui sort par la porte",
+                withoutTitle: "Sans automatisation IA",
+                issue1: "Manquer 40-60% des appels entrants pendant les heures de pointe",
+                issue2: "Les clients attendent des heures (ou des jours) pour des réponses par e-mail",
+                issue3: "Payer le personnel 3.000-5.000€/mois pour répondre à des questions répétitives",
+                issue4: "Perdre des prospects au profit de concurrents qui répondent plus rapidement",
+                issue5: "Personne de disponible la nuit, les week-ends ou les jours fériés",
+                issue6: "Qualité du service client incohérente",
+                issue7: "Personnel débordé par des tâches simples et répétitives"
             },
             solution: {
-                eyebrow: "LA SOLUTION",
-                title: "Une IA qui ne dort jamais, ne prend jamais de pause, ne perd jamais une affaire",
-                subtitle: "Imaginez avoir un membre d'équipe infatigable qui:",
-                benefit1: "Répond instantanément aux questions des clients à 3h du matin",
-                benefit2: "Qualifie et réserve des rendez-vous automatiquement",
-                benefit3: "Fait le suivi avec les prospects en quelques secondes",
-                benefit4: "Gère 100+ conversations simultanément",
-                benefit5: "Apprend votre entreprise et devient plus intelligent avec le temps"
+                withTitle: "Avec JAFF STUDIO IA",
+                benefit1: "Répondre à 100% des demandes clients instantanément, 24/7",
+                benefit2: "Capturer et qualifier les prospects pendant que vous dormez",
+                benefit3: "Réserver des rendez-vous automatiquement sans intervention humaine",
+                benefit4: "Gérer 1.000+ conversations simultanément",
+                benefit5: "Fournir des réponses parfaites et cohérentes à chaque fois",
+                benefit6: "Libérer votre équipe pour des tâches à haute valeur",
+                benefit7: "Payer une fois, profiter pour toujours - pas de coûts salariaux récurrents"
             },
             solutions: {
-                eyebrow: "NOS SOLUTIONS IA",
-                title: "Choisissez votre multiplicateur de revenus",
-                card1: {
-                    category: "AUTOMATISATION CHAT",
-                    title: "Assistant Chatbot IA",
-                    description: "Votre agent de service client 24/7 qui ne dort jamais",
-                    feature1: "Réponses instantanées aux questions des clients",
-                    feature2: "Capture et qualification de prospects",
-                    feature3: "Recommandations de produits",
-                    feature4: "S'intègre avec vos outils existants",
-                    feature5: "Apprend de chaque conversation",
-                    pricing: "À partir de 497€/mois"
+                title: "Nos solutions IA",
+                subtitle: "Systèmes IA personnalisés conçus pour faire évoluer votre entreprise spécifique",
+                chatbot: {
+                    title: "Chatbots IA",
+                    whatLabel: "Ce qu'il fait :",
+                    what: "Widget de chat intelligent sur votre site web qui répond aux questions, capture les prospects, réserve des rendez-vous et fournit des recommandations de produits.",
+                    bestLabel: "Idéal pour :",
+                    best: "Boutiques e-commerce, entreprises de services, cabinets médicaux, agents immobiliers",
+                    resultsLabel: "Résultats :",
+                    results: "73% de réduction des tickets de support, 35% d'augmentation des taux de conversion, génération de prospects 24/7"
                 },
-                card2: {
-                    category: "AUTOMATISATION VOCALE",
-                    title: "Agent Vocal IA",
-                    description: "Automatisation téléphonique professionnelle qui sonne 100% humaine",
-                    feature1: "Répondre à chaque appel, même à 3h du matin",
-                    feature2: "Planifier les rendez-vous automatiquement",
-                    feature3: "Gérer les FAQ et les appels de support",
-                    feature4: "Transfert chaleureux vers votre équipe si nécessaire",
-                    feature5: "Support multilingue",
-                    pricing: "À partir de 997€/mois"
+                voice: {
+                    title: "Agents vocaux IA",
+                    whatLabel: "Ce qu'il fait :",
+                    what: "Répond aux appels téléphoniques avec une voix IA au son naturel, réserve des rendez-vous, répond aux FAQ, achemine les appels urgents vers les humains.",
+                    bestLabel: "Idéal pour :",
+                    best: "Cabinets médicaux/dentaires, services à domicile (CVC, plomberie), cabinets d'avocats, restaurants",
+                    resultsLabel: "Résultats :",
+                    results: "91% des appels répondus instantanément, 85.000€+ de revenus récupérés des appels manqués, 28% d'augmentation des réservations"
                 },
-                card3: {
-                    category: "AUTOMATISATION DES FLUX",
-                    title: "Automatisation des Processus Métier",
-                    description: "Éliminer le travail manuel et évoluer sans embaucher",
-                    feature1: "Automatiser la saisie de données et les rapports",
-                    feature2: "Automatisation des e-mails et des suivis",
-                    feature3: "Intégrations CRM et outils",
-                    feature4: "Flux de travail personnalisés pour votre entreprise",
-                    feature5: "Tableau de bord analytique en temps réel",
-                    pricing: "À partir de 1.497€/mois"
+                automation: {
+                    title: "Automatisation des processus métier",
+                    whatLabel: "Ce qu'il fait :",
+                    what: "Automatise les flux de travail répétitifs comme la saisie de données, le traitement des factures, les rappels de rendez-vous, les e-mails de suivi.",
+                    bestLabel: "Idéal pour :",
+                    best: "Toute entreprise avec des tâches manuelles répétitives qui consomment du temps du personnel",
+                    resultsLabel: "Résultats :",
+                    results: "15-30 heures économisées par semaine, 90% de réduction des erreurs humaines, personnel concentré sur le travail générateur de revenus"
                 },
-                card4: {
-                    category: "SUITE IA COMPLÈTE",
-                    title: "Package IA Entreprise",
-                    description: "Transformation IA complète pour les entreprises ambitieuses",
-                    feature1: "Tout des packages précédents",
-                    feature2: "Solutions IA personnalisées construites pour vous",
-                    feature3: "Stratège IA dédié",
-                    feature4: "Support prioritaire et mises à jour",
-                    feature5: "Sessions de stratégie trimestrielles",
-                    pricing: "Contactez pour un devis personnalisé"
+                leads: {
+                    title: "Qualification de prospects IA",
+                    whatLabel: "Ce qu'il fait :",
+                    what: "Note et qualifie automatiquement les prospects entrants, réserve des appels de vente uniquement avec des prospects à forte intention.",
+                    bestLabel: "Idéal pour :",
+                    best: "Entreprises B2B, agences, consultants, équipes de vente à ticket élevé",
+                    resultsLabel: "Résultats :",
+                    results: "60% de prospects qualifiés en plus, équipe de vente conclut 40% de deals en plus, zéro temps perdu avec les curieux"
                 }
             },
             stats: {
-                title: "Résultats réels d'entreprises réelles",
-                stat1: "73% de réduction",
-                stat1Sub: "des tickets de support",
-                stat2: "85.000€+ Récupérés",
-                stat2Sub: "des appels manqués",
-                stat3: "Couverture 24/7",
-                stat3Sub: "ne manquez jamais un prospect",
-                stat4: "ROI en 4 mois",
-                stat4Sub: "période de récupération moyenne"
+                title: "Les chiffres ne mentent pas",
+                subtitle: "Résultats réels d'entreprises réelles utilisant nos solutions IA",
+                stat1: "Réduction des tickets de support",
+                stat2: "Revenus récupérés en 6 mois",
+                stat3: "ROI moyen en 6 mois",
+                stat4: "Clients servis en continu"
             },
             pricing: {
-                eyebrow: "INVESTISSEMENT",
-                title: "Prix transparents, ROI massif",
-                subtitle: "Pas de contrats. Annulation à tout moment. Résultats garantis ou argent remboursé.",
+                title: "Investissement & Tarification",
+                subtitle: "Choisissez la solution IA qui correspond aux besoins de votre entreprise",
                 starter: {
-                    name: "Starter IA",
-                    price: "497€",
-                    period: "/mois",
-                    description: "Parfait pour les petites entreprises testant l'automatisation IA",
-                    feature1: "Chatbot IA OU Automatisation e-mail",
-                    feature2: "Jusqu'à 1.000 interactions/mois",
-                    feature3: "Intégrations de base",
-                    feature4: "Support par e-mail",
-                    feature5: "Rapports de performance mensuels",
-                    cta: "Commencer l'automatisation"
+                    name: "Starter Bot",
+                    feature1: "Chatbot IA OU Agent vocal (choisissez-en un)",
+                    feature2: "Jusqu'à 1.000 conversations/mois",
+                    feature3: "Intégration CRM de base",
+                    feature4: "Formation standard sur votre entreprise",
+                    feature5: "Support par e-mail",
+                    feature6: "1 mois de support gratuit après le lancement",
+                    cta: "Commencer"
                 },
                 professional: {
-                    badge: "⭐ PLUS POPULAIRE",
                     name: "Professional IA",
-                    price: "1.497€",
-                    period: "/mois",
-                    description: "Pour les entreprises en croissance prêtes à évoluer avec l'IA",
-                    feature1: "Chatbot IA + Agent Vocal",
-                    feature2: "Jusqu'à 5.000 interactions/mois",
-                    feature3: "Intégrations avancées (CRM, Calendrier, etc.)",
-                    feature4: "Support prioritaire",
-                    feature5: "Appels de performance hebdomadaires",
-                    feature6: "Formation personnalisée pour votre entreprise",
-                    cta: "Évoluer avec l'IA"
+                    feature1: "Chatbot IA + Agent vocal (les deux)",
+                    feature2: "Conversations illimitées",
+                    feature3: "Intégration CRM complète",
+                    feature4: "Formation avancée & personnalisation",
+                    feature5: "Système de qualification de prospects",
+                    feature6: "Support prioritaire",
+                    feature7: "3 mois de support gratuit après le lancement",
+                    cta: "Évoluer maintenant"
                 },
                 enterprise: {
-                    name: "Enterprise IA",
+                    name: "Suite Enterprise",
                     price: "Personnalisé",
-                    period: "tarification",
-                    description: "Transformation IA complète pour une croissance sérieuse",
-                    feature1: "Tout de Professional",
-                    feature2: "Interactions illimitées",
-                    feature3: "Développement IA personnalisé",
-                    feature4: "Stratège IA dédié",
-                    feature5: "Support prioritaire 24/7",
-                    feature6: "Revues d'entreprise trimestrielles",
-                    feature7: "Support multi-sites",
-                    cta: "Discutons"
+                    feature1: "Plusieurs chatbots IA & agents vocaux",
+                    feature2: "Automatisation complète des processus métier",
+                    feature3: "Support multi-sites",
+                    feature4: "Analyses avancées & rapports",
+                    feature5: "Spécialiste IA dédié",
+                    feature6: "Intégration VIP",
+                    feature7: "6 mois de support premium",
+                    cta: "Contactez-nous"
                 }
             },
             cta: {
-                eyebrow: "PRÊT À AUTOMATISER?",
-                title: "Construisons votre solution IA",
-                subtitle: "Réservez un appel stratégique gratuit de 30 minutes. Nous analyserons votre entreprise et vous montrerons exactement comment l'IA peut vous faire gagner du temps et de l'argent.",
-                button: "Réservez votre appel stratégique gratuit"
+                title: "Prêt à automatiser vos revenus ?",
+                subtitle: "Arrêtez de perdre de l'argent avec des appels manqués et des réponses lentes. Construisons votre solution IA personnalisée.",
+                button: "Obtenez votre consultation gratuite"
             }
         }
     }
