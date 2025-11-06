@@ -2,141 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Solutions - JAFF STUDIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AI Solutions - JAFF STUDIO | Transform Your Business with AI Automation</title>
+    <meta name="description" content="Custom AI chatbots, voice agents, and business automation solutions that generate revenue 24/7.">
 
-    <!-- Link to external translations file -->
-    <script src="../translations.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
-            padding: 40px;
-        }
-
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .language-selector {
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .language-selector option {
-            background: #000;
-            color: #fff;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-        }
-
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; overflow-x: hidden; line-height: 1.6; }
+        #canvas-3d { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .content-layer { position: relative; z-index: 2; animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .language-switcher { position: relative; display: inline-block; }
+        .language-selector { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: #fff; padding: 8px 16px; border-radius: 4px; cursor: pointer; backdrop-filter: blur(10px); font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; appearance: none; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 8px center; background-size: 16px; padding-right: 36px; transition: all 0.3s; }
+        .language-selector:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.5); }
+        .language-selector option { background: #000; color: #fff; }
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 60px; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 9999; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px; color: #fff; text-decoration: none; }
+        .nav-cta { padding: 12px 30px; background: #fff; color: #000; border: none; text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5); }
+        .back-btn { padding: 12px 30px; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-2px); }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 80px; }
+        .hero-content { max-width: 1000px; }
+        .hero-eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; line-height: 0.95; letter-spacing: -3px; margin: 30px 0; color: #fff; text-shadow: 0 0 80px rgba(255, 255, 255, 0.3); }
+        .hero-subtitle { font-size: 1.4rem; color: rgba(255,255,255,0.8); max-width: 800px; margin: 0 auto 50px; }
+        .btn-primary { padding: 20px 60px; background: #fff; color: #000; border: 2px solid #fff; text-decoration: none; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s; display: inline-block; box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3); font-size: 1rem; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 255, 255, 0.5); }
+        section { padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+        .section-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; letter-spacing: -2px; margin-bottom: 30px; text-align: center; }
+        .section-subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.7); text-align: center; max-width: 800px; margin: 0 auto 80px; }
+        .problem-solution { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin: 80px 0; }
+        .problem-box, .solution-box { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 50px; }
+        .problem-box h3, .solution-box h3 { font-size: 2rem; margin-bottom: 30px; color: #fff; }
+        .problem-box { border-left: 4px solid rgba(255, 100, 100, 0.5); }
+        .solution-box { border-left: 4px solid rgba(255, 255, 255, 0.8); }
+        .problem-list, .solution-list { list-style: none; padding: 0; }
+        .problem-list li, .solution-list li { padding: 15px 0; color: rgba(255,255,255,0.8); font-size: 1.05rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .problem-list li:before { content: '✗ '; color: rgba(255, 100, 100, 0.7); font-weight: 700; margin-right: 10px; }
+        .solution-list li:before { content: '✓ '; color: #fff; font-weight: 700; margin-right: 10px; }
+        .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin: 80px 0; }
+        .feature-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 50px 40px; transition: all 0.5s; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 30px 80px rgba(255, 255, 255, 0.15); border-color: rgba(255,255,255,0.3); }
+        .feature-icon { font-size: 3.5rem; margin-bottom: 25px; display: block; }
+        .feature-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 20px; color: #fff; }
+        .feature-card p { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.7; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin: 80px 0; }
+        .pricing-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 50px 40px; transition: all 0.5s; text-align: center; }
+        .pricing-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.3); }
+        .pricing-card h4 { font-size: 1.5rem; margin-bottom: 20px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; }
+        .pricing-price { font-size: 3.5rem; font-weight: 900; color: #fff; margin-bottom: 30px; }
+        .pricing-features { text-align: left; margin-bottom: 40px; }
+        .pricing-features li { padding: 12px 0; color: rgba(255,255,255,0.8); border-bottom: 1px solid rgba(255,255,255,0.05); list-style: none; }
+        .pricing-features li:before { content: '✓ '; color: #fff; font-weight: 700; margin-right: 10px; }
+        .pricing-cta { display: block; padding: 18px 40px; background: #fff; color: #000; text-decoration: none; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s; border-radius: 5px; font-size: 0.9rem; }
+        .pricing-cta:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(255,255,255,0.5); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin: 80px 0; text-align: center; }
+        .stat-number { font-size: 3.5rem; font-weight: 900; color: #fff; margin-bottom: 15px; }
+        .stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+        .cta-section { background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 30px; padding: 80px 60px; text-align: center; margin: 100px 0; }
+        .cta-section h2 { font-size: 3rem; font-weight: 900; margin-bottom: 25px; }
+        .cta-section p { font-size: 1.3rem; color: rgba(255,255,255,0.8); margin-bottom: 40px; }
+        @media (max-width: 768px) { section { padding: 60px 20px; } nav { padding: 15px 20px; } .hero h1 { font-size: 3rem !important; } .problem-solution { grid-template-columns: 1fr; gap: 30px; } .features-grid { grid-template-columns: 1fr; gap: 30px; } .pricing-grid { grid-template-columns: 1fr; gap: 30px; } .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; } .btn-primary { width: 100%; padding: 18px 40px; } }
     </style>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <select class="language-selector" id="languageSwitcher">
-            <option value="en">🇬🇧 English</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="fr">🇫🇷 Français</option>
-        </select>
+    <canvas id="canvas-3d"></canvas>
+    <div class="content-layer">
+        <nav>
+            <a href="../index.html" class="logo" data-i18n="logo">JAFFSTUDIO</a>
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <div class="language-switcher">
+                    <select class="language-selector" id="languageSwitcher">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="fr">🇫🇷 Français</option>
+                    </select>
+                </div>
+                <a href="../index.html" class="back-btn" data-i18n="aiPage.nav.backHome">← Back to Home</a>
+                <a href="../index.html#contact" class="nav-cta" data-i18n="aiPage.nav.getStarted">GET STARTED</a>
+            </div>
+        </nav>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="hero-eyebrow" data-i18n="aiPage.hero.eyebrow">🤖 AI SOLUTIONS</p>
+                <h1 data-i18n="aiPage.hero.title">Stop Losing Money While You Sleep</h1>
+                <p class="hero-subtitle" data-i18n="aiPage.hero.subtitle">Turn your business into a 24/7 revenue machine with custom AI chatbots and voice agents that never take a break, never miss a lead, and never complain.</p>
+                <a href="#contact" class="btn-primary" data-i18n="aiPage.hero.cta">Get Your Custom AI Solution</a>
+            </div>
+        </section>
+        <section>
+            <h2 class="section-title" data-i18n="aiPage.problem.title">The Problem Costing You Thousands</h2>
+            <p class="section-subtitle" data-i18n="aiPage.problem.subtitle">Every missed call, delayed response, and unanswered question is money walking out the door</p>
+            <div class="problem-solution">
+                <div class="problem-box">
+                    <h3 data-i18n="aiPage.problem.withoutTitle">Without AI Automation</h3>
+                    <ul class="problem-list">
+                        <li data-i18n="aiPage.problem.issue1">Missing 40-60% of incoming calls during busy hours</li>
+                        <li data-i18n="aiPage.problem.issue2">Customers waiting hours (or days) for email responses</li>
+                        <li data-i18n="aiPage.problem.issue3">Paying staff $3,000-5,000/month to answer repetitive questions</li>
+                        <li data-i18n="aiPage.problem.issue4">Losing leads to competitors who respond faster</li>
+                        <li data-i18n="aiPage.problem.issue5">No one available nights, weekends, or holidays</li>
+                        <li data-i18n="aiPage.problem.issue6">Inconsistent customer service quality</li>
+                        <li data-i18n="aiPage.problem.issue7">Staff overwhelmed with simple, repetitive tasks</li>
+                    </ul>
+                </div>
+                <div class="solution-box">
+                    <h3 data-i18n="aiPage.solution.withTitle">With JAFF STUDIO AI</h3>
+                    <ul class="solution-list">
+                        <li data-i18n="aiPage.solution.benefit1">Answer 100% of customer inquiries instantly, 24/7</li>
+                        <li data-i18n="aiPage.solution.benefit2">Capture and qualify leads while you sleep</li>
+                        <li data-i18n="aiPage.solution.benefit3">Book appointments automatically without human intervention</li>
+                        <li data-i18n="aiPage.solution.benefit4">Handle 1,000+ conversations simultaneously</li>
+                        <li data-i18n="aiPage.solution.benefit5">Provide perfect, consistent responses every time</li>
+                        <li data-i18n="aiPage.solution.benefit6">Free up your team for high-value tasks</li>
+                        <li data-i18n="aiPage.solution.benefit7">Pay once, profit forever - no recurring salary costs</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="section-title" data-i18n="aiPage.solutions.title">Our AI Solutions</h2>
+            <p class="section-subtitle" data-i18n="aiPage.solutions.subtitle">Custom-built AI systems designed to scale your specific business</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">💬</span>
+                    <h3 data-i18n="aiPage.solutions.chatbot.title">AI Chatbots</h3>
+                    <p><strong data-i18n="aiPage.solutions.chatbot.whatLabel">What it does:</strong> <span data-i18n="aiPage.solutions.chatbot.what">Intelligent chat widget on your website that answers questions, captures leads, books appointments, and provides product recommendations.</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.chatbot.bestLabel">Best for:</strong> <span data-i18n="aiPage.solutions.chatbot.best">E-commerce stores, service businesses, medical practices, real estate agents</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.chatbot.resultsLabel">Results:</strong> <span data-i18n="aiPage.solutions.chatbot.results">73% reduction in support tickets, 35% increase in conversion rates, 24/7 lead generation</span></p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📞</span>
+                    <h3 data-i18n="aiPage.solutions.voice.title">AI Voice Agents</h3>
+                    <p><strong data-i18n="aiPage.solutions.voice.whatLabel">What it does:</strong> <span data-i18n="aiPage.solutions.voice.what">Answers phone calls with natural-sounding AI voice, books appointments, answers FAQs, routes urgent calls to humans.</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.voice.bestLabel">Best for:</strong> <span data-i18n="aiPage.solutions.voice.best">Medical/dental offices, home services (HVAC, plumbing), law firms, restaurants</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.voice.resultsLabel">Results:</strong> <span data-i18n="aiPage.solutions.voice.results">91% of calls answered instantly, $85K+ recovered revenue from missed calls, 28% increase in bookings</span></p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span>
+                    <h3 data-i18n="aiPage.solutions.automation.title">Business Process Automation</h3>
+                    <p><strong data-i18n="aiPage.solutions.automation.whatLabel">What it does:</strong> <span data-i18n="aiPage.solutions.automation.what">Automates repetitive workflows like data entry, invoice processing, appointment reminders, follow-up emails.</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.automation.bestLabel">Best for:</strong> <span data-i18n="aiPage.solutions.automation.best">Any business with manual, repetitive tasks eating up staff time</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.automation.resultsLabel">Results:</strong> <span data-i18n="aiPage.solutions.automation.results">15-30 hours saved per week, 90% reduction in human error, staff focused on revenue-generating work</span></p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 data-i18n="aiPage.solutions.leads.title">AI Lead Qualification</h3>
+                    <p><strong data-i18n="aiPage.solutions.leads.whatLabel">What it does:</strong> <span data-i18n="aiPage.solutions.leads.what">Automatically scores and qualifies incoming leads, books sales calls only with high-intent prospects.</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.leads.bestLabel">Best for:</strong> <span data-i18n="aiPage.solutions.leads.best">B2B companies, agencies, consultants, high-ticket sales teams</span></p>
+                    <p style="margin-top: 20px;"><strong data-i18n="aiPage.solutions.leads.resultsLabel">Results:</strong> <span data-i18n="aiPage.solutions.leads.results">60% more qualified leads, sales team closing 40% more deals, zero time wasted on tire-kickers</span></p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="section-title" data-i18n="aiPage.stats.title">The Numbers Don't Lie</h2>
+            <p class="section-subtitle" data-i18n="aiPage.stats.subtitle">Real results from real businesses using our AI solutions</p>
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">73%</div>
+                    <p class="stat-label" data-i18n="aiPage.stats.stat1">Reduction in Support Tickets</p>
+                </div>
+                <div>
+                    <div class="stat-number">$85K</div>
+                    <p class="stat-label" data-i18n="aiPage.stats.stat2">Revenue Recovered in 6 Months</p>
+                </div>
+                <div>
+                    <div class="stat-number">4.2x</div>
+                    <p class="stat-label" data-i18n="aiPage.stats.stat3">Average ROI Within 6 Months</p>
+                </div>
+                <div>
+                    <div class="stat-number">24/7</div>
+                    <p class="stat-label" data-i18n="aiPage.stats.stat4">Customers Served Non-Stop</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="section-title" data-i18n="aiPage.pricing.title">Investment & Pricing</h2>
+            <p class="section-subtitle" data-i18n="aiPage.pricing.subtitle">Choose the AI solution that fits your business needs</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h4 data-i18n="aiPage.pricing.starter.name">Starter Bot</h4>
+                    <div class="pricing-price">$2,997</div>
+                    <ul class="pricing-features">
+                        <li data-i18n="aiPage.pricing.starter.feature1">AI Chatbot OR Voice Agent (pick one)</li>
+                        <li data-i18n="aiPage.pricing.starter.feature2">Up to 1,000 conversations/month</li>
+                        <li data-i18n="aiPage.pricing.starter.feature3">Basic CRM integration</li>
+                        <li data-i18n="aiPage.pricing.starter.feature4">Standard training on your business</li>
+                        <li data-i18n="aiPage.pricing.starter.feature5">Email support</li>
+                        <li data-i18n="aiPage.pricing.starter.feature6">1 month free support after launch</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta" data-i18n="aiPage.pricing.starter.cta">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h4 data-i18n="aiPage.pricing.professional.name">Professional AI</h4>
+                    <div class="pricing-price">$6,997</div>
+                    <ul class="pricing-features">
+                        <li data-i18n="aiPage.pricing.professional.feature1">AI Chatbot + Voice Agent (both)</li>
+                        <li data-i18n="aiPage.pricing.professional.feature2">Unlimited conversations</li>
+                        <li data-i18n="aiPage.pricing.professional.feature3">Full CRM integration</li>
+                        <li data-i18n="aiPage.pricing.professional.feature4">Advanced training & customization</li>
+                        <li data-i18n="aiPage.pricing.professional.feature5">Lead qualification system</li>
+                        <li data-i18n="aiPage.pricing.professional.feature6">Priority support</li>
+                        <li data-i18n="aiPage.pricing.professional.feature7">3 months free support after launch</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta" data-i18n="aiPage.pricing.professional.cta">Scale Now</a>
+                </div>
+                <div class="pricing-card">
+                    <h4 data-i18n="aiPage.pricing.enterprise.name">Enterprise Suite</h4>
+                    <div class="pricing-price" data-i18n="aiPage.pricing.enterprise.price">Custom</div>
+                    <ul class="pricing-features">
+                        <li data-i18n="aiPage.pricing.enterprise.feature1">Multiple AI chatbots & voice agents</li>
+                        <li data-i18n="aiPage.pricing.enterprise.feature2">Full business process automation</li>
+                        <li data-i18n="aiPage.pricing.enterprise.feature3">Multi-location support</li>
+                        <li data-i18n="aiPage.pricing.enterprise.feature4">Advanced analytics & reporting</li>
+                        <li data-i18n="aiPage.pricing.enterprise.feature5">Dedicated AI specialist</li>
+                        <li data-i18n="aiPage.pricing.enterprise.feature6">White-glove onboarding</li>
+                        <li data-i18n="aiPage.pricing.enterprise.feature7">6 months premium support</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta" data-i18n="aiPage.pricing.enterprise.cta">Contact Us</a>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="cta-section">
+                <h2 data-i18n="aiPage.cta.title">Ready to Automate Your Revenue?</h2>
+                <p data-i18n="aiPage.cta.subtitle">Stop losing money to missed calls and slow responses. Let's build your custom AI solution.</p>
+                <a href="mailto:contact@jaffstudio.com" class="btn-primary" data-i18n="aiPage.cta.button">Get Your Free Consultation</a>
+            </div>
+        </section>
+        <footer style="padding: 80px 60px 40px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+            <h3 style="font-size: 2rem; font-weight: 900; margin-bottom: 20px; color: #fff;" data-i18n="logo">JAFF STUDIO</h3>
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 30px;" data-i18n="footer.copyright">&copy; 2025 JAFF STUDIO. All rights reserved.</p>
+        </footer>
     </div>
-
-    <!-- Content -->
-    <a href="../index.html" class="back-link" data-i18n="aiPage.nav.backHome">← Back to Home</a>
-
-    <p class="eyebrow" data-i18n="aiPage.hero.eyebrow">🤖 AI SOLUTIONS</p>
-    <h1 data-i18n="aiPage.hero.title">Stop Losing Money While You Sleep</h1>
-    <p data-i18n="aiPage.hero.subtitle">Turn your business into a 24/7 revenue machine with AI automation that works smarter than your entire team combined.</p>
-
-    <h2 data-i18n="aiPage.problem.eyebrow">THE PROBLEM</h2>
-    <h3 data-i18n="aiPage.problem.title">Your Business Bleeds Money Every Second You're Not Available</h3>
-
-    <h4 data-i18n="aiPage.problem.point1Title">💸 Missed Revenue While Offline</h4>
-    <p data-i18n="aiPage.problem.point1Text">Every unanswered call, email, or message is a lost sale. Your competitors with AI are stealing customers 24/7.</p>
-
-    <h4 data-i18n="aiPage.problem.point2Title">⏰ Time Wasted on Repetitive Tasks</h4>
-    <p data-i18n="aiPage.problem.point2Text">Your team spends hours answering the same questions, scheduling appointments, qualifying leads manually.</p>
-
-    <h4 data-i18n="aiPage.problem.point3Title">📉 Leads Going Cold</h4>
-    <p data-i18n="aiPage.problem.point3Text">By the time you respond (hours or days later), your prospect has already chosen someone else.</p>
-
-    <h2 data-i18n="aiPage.solution.eyebrow">THE SOLUTION</h2>
-    <h3 data-i18n="aiPage.solution.title">AI That Never Sleeps, Never Takes Breaks, Never Loses a Deal</h3>
-    <p data-i18n="aiPage.solution.subtitle">Imagine having a tireless team member who:</p>
-
-    <ul>
-        <li data-i18n="aiPage.solution.benefit1">Answers customer questions instantly at 3 AM</li>
-        <li data-i18n="aiPage.solution.benefit2">Qualifies and books appointments automatically</li>
-        <li data-i18n="aiPage.solution.benefit3">Follows up with leads within seconds</li>
-        <li data-i18n="aiPage.solution.benefit4">Handles 100+ conversations simultaneously</li>
-        <li data-i18n="aiPage.solution.benefit5">Learns your business and gets smarter over time</li>
-    </ul>
-
-    <!-- Translation Script -->
+    <script src="../translations.js"></script>
     <script>
-        // Helper function to get nested property
-        function getNestedProperty(obj, path) {
-            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
-        }
-
-        // Translation function
         function changeLanguage(lang) {
-            // Translate all elements with data-i18n
-            document.querySelectorAll('[data-i18n]').forEach(element => {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 const translation = getNestedProperty(translations[lang], key);
-                if (translation) {
-                    element.textContent = translation;
-                }
+                if (translation) { element.textContent = translation; }
             });
-
-            // Save language preference
             localStorage.setItem('preferredLanguage', lang);
             document.documentElement.lang = lang;
         }
-
-        // Language switcher event
-        document.getElementById('languageSwitcher').addEventListener('change', function(e) {
-            changeLanguage(e.target.value);
+        function getNestedProperty(obj, path) {
+            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
+        }
+        document.getElementById('languageSwitcher').addEventListener('change', function(e) { changeLanguage(e.target.value); });
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        document.getElementById('languageSwitcher').value = savedLang;
+        changeLanguage(savedLang);
+        const canvas = document.getElementById('canvas-3d');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        camera.position.z = 5;
+        const particlesGeometry = new THREE.BufferGeometry();
+        const isMobile = window.innerWidth <= 768;
+        const particleCount = isMobile ? 800 : 2000;
+        const positions = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount * 3; i += 3) {
+            positions[i] = (Math.random() - 0.5) * 20;
+            positions[i + 1] = (Math.random() - 0.5) * 20;
+            positions[i + 2] = (Math.random() - 0.5) * 20;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.03, color: 0xffffff, transparent: true, opacity: 0.6, blending: THREE.AdditiveBlending
         });
-
-        // AUTO-LOAD saved language on page load
-        window.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            document.getElementById('languageSwitcher').value = savedLang;
-            changeLanguage(savedLang);
+        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particles);
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.0003;
+            particles.rotation.x += 0.0002;
+            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
 </body>
