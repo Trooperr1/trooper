@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Solutions - JAFF STUDIO</title>
+
+    <!-- Link to external translations file -->
+    <script src="../translations.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            padding: 40px;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-selector {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .language-selector option {
+            background: #000;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <select class="language-selector" id="languageSwitcher">
+            <option value="en">🇬🇧 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="fr">🇫🇷 Français</option>
+        </select>
+    </div>
+
+    <!-- Content -->
+    <a href="../index.html" class="back-link" data-i18n="aiPage.nav.backHome">← Back to Home</a>
+
+    <p class="eyebrow" data-i18n="aiPage.hero.eyebrow">🤖 AI SOLUTIONS</p>
+    <h1 data-i18n="aiPage.hero.title">Stop Losing Money While You Sleep</h1>
+    <p data-i18n="aiPage.hero.subtitle">Turn your business into a 24/7 revenue machine with AI automation that works smarter than your entire team combined.</p>
+
+    <h2 data-i18n="aiPage.problem.eyebrow">THE PROBLEM</h2>
+    <h3 data-i18n="aiPage.problem.title">Your Business Bleeds Money Every Second You're Not Available</h3>
+
+    <h4 data-i18n="aiPage.problem.point1Title">💸 Missed Revenue While Offline</h4>
+    <p data-i18n="aiPage.problem.point1Text">Every unanswered call, email, or message is a lost sale. Your competitors with AI are stealing customers 24/7.</p>
+
+    <h4 data-i18n="aiPage.problem.point2Title">⏰ Time Wasted on Repetitive Tasks</h4>
+    <p data-i18n="aiPage.problem.point2Text">Your team spends hours answering the same questions, scheduling appointments, qualifying leads manually.</p>
+
+    <h4 data-i18n="aiPage.problem.point3Title">📉 Leads Going Cold</h4>
+    <p data-i18n="aiPage.problem.point3Text">By the time you respond (hours or days later), your prospect has already chosen someone else.</p>
+
+    <h2 data-i18n="aiPage.solution.eyebrow">THE SOLUTION</h2>
+    <h3 data-i18n="aiPage.solution.title">AI That Never Sleeps, Never Takes Breaks, Never Loses a Deal</h3>
+    <p data-i18n="aiPage.solution.subtitle">Imagine having a tireless team member who:</p>
+
+    <ul>
+        <li data-i18n="aiPage.solution.benefit1">Answers customer questions instantly at 3 AM</li>
+        <li data-i18n="aiPage.solution.benefit2">Qualifies and books appointments automatically</li>
+        <li data-i18n="aiPage.solution.benefit3">Follows up with leads within seconds</li>
+        <li data-i18n="aiPage.solution.benefit4">Handles 100+ conversations simultaneously</li>
+        <li data-i18n="aiPage.solution.benefit5">Learns your business and gets smarter over time</li>
+    </ul>
+
+    <!-- Translation Script -->
+    <script>
+        // Helper function to get nested property
+        function getNestedProperty(obj, path) {
+            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
+        }
+
+        // Translation function
+        function changeLanguage(lang) {
+            // Translate all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const translation = getNestedProperty(translations[lang], key);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+            document.documentElement.lang = lang;
+        }
+
+        // Language switcher event
+        document.getElementById('languageSwitcher').addEventListener('change', function(e) {
+            changeLanguage(e.target.value);
+        });
+
+        // AUTO-LOAD saved language on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+            document.getElementById('languageSwitcher').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
