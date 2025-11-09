@@ -1955,6 +1955,18 @@
             box-shadow: 0 15px 50px rgba(201, 169, 97, 0.4);
         }
 
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-button:disabled:hover {
+            background: var(--gold);
+            transform: none;
+            box-shadow: none;
+        }
+
         /* Payment Required Alert */
         .payment-required-alert {
             background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.1));
@@ -4268,7 +4280,7 @@
                         </div>
                     </div>
 
-                    <div id="successMessage" class="success-message">
+                    <div id="appointmentSuccessMessage" class="success-message">
                         <div class="success-icon">✓</div>
                         <span class="success-txt" data-fr="Merci! Votre demande a été reçue. Veuillez envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 pour confirmer votre rendez-vous."
                               data-de="Danke! Ihre Anfrage wurde empfangen. Bitte senden Sie die 50% Anzahlung per TWINT an +41 76 597 13 95, um Ihren Termin zu bestätigen."
@@ -4278,11 +4290,10 @@
                         </span>
                     </div>
 
-                    <form id="appointmentForm" name="bookings" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success">
-                        <input type="hidden" name="form-name" value="bookings" />
-                        <p style="display: none;">
-                            <label>Don't fill this out: <input name="bot-field" /></label>
-                        </p>
+                    <form id="appointmentForm" method="POST" action="https://formspree.io/f/xgvrwrjo">
+                        <!-- Hidden field to identify this is a booking form -->
+                        <input type="hidden" name="_subject" value="Nouvelle réservation - Shuana Barber">
+                        <input type="hidden" name="form_type" value="Réservation Rendez-vous">
 
                         <div class="form-section">
                             <h4 class="form-section-title form-section-1-txt" data-fr="📝 Informations personnelles" data-de="📝 Persönliche Informationen" data-it="📝 Informazioni personali" data-en="📝 Personal information">📝 Informations personnelles</h4>
@@ -4498,7 +4509,7 @@
                         Envoyer le Message
                     </button>
 
-                    <div class="form-success-message" id="successMessage">
+                    <div class="form-success-message" id="contactSuccessMessage">
                         <span class="contact-form-success-txt"
                               data-fr="✓ Merci! Votre message a été envoyé avec succès."
                               data-de="✓ Danke! Ihre Nachricht wurde erfolgreich gesendet."
@@ -4945,15 +4956,77 @@
             slot.addEventListener('click', updateProgress);
         });
 
-        // Form submission for Netlify
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-            // Netlify handles the submission automatically
-            console.log('Form submitted to Netlify');
+        // Appointment Form Handler with AJAX
+        const appointmentForm = document.getElementById('appointmentForm');
+        if (appointmentForm) {
+            appointmentForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
 
-            // Update progress to final step
-            const steps = document.querySelectorAll('.progress-step');
-            steps.forEach(s => s.classList.add('completed'));
-        });
+                const form = e.target;
+                const formData = new FormData(form);
+                const submitButton = form.querySelector('.submit-button');
+                const successMessage = document.getElementById('appointmentSuccessMessage');
+
+                // Disable submit button and show loading state
+                const originalText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = currentLang === 'fr' ? 'Envoi en cours...' :
+                                           currentLang === 'de' ? 'Wird gesendet...' :
+                                           currentLang === 'it' ? 'Invio in corso...' :
+                                           'Sending...';
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Show success message
+                        successMessage.classList.add('show');
+                        successMessage.style.display = 'block';
+
+                        // Update progress to final step
+                        const steps = document.querySelectorAll('.progress-step');
+                        steps.forEach(s => s.classList.add('completed'));
+
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                        // Clear form after short delay
+                        setTimeout(() => {
+                            form.reset();
+                            // Reset time slots
+                            document.querySelectorAll('.time-slot').forEach(slot => {
+                                slot.classList.remove('selected');
+                            });
+                        }, 1000);
+                    } else {
+                        // Show error alert
+                        const errorMsg = currentLang === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' :
+                                        currentLang === 'de' ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' :
+                                        currentLang === 'it' ? 'Si è verificato un errore. Si prega di riprovare.' :
+                                        'An error occurred. Please try again.';
+                        alert(errorMsg);
+                    }
+                } catch (error) {
+                    // Show error alert
+                    const errorMsg = currentLang === 'fr' ? 'Erreur de connexion. Veuillez vérifier votre internet.' :
+                                    currentLang === 'de' ? 'Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.' :
+                                    currentLang === 'it' ? 'Errore di connessione. Controllare la connessione Internet.' :
+                                    'Connection error. Please check your internet.';
+                    alert(errorMsg);
+                    console.error('Appointment form error:', error);
+                } finally {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            });
+        }
 
         // Contact Form Handler with AJAX
         const contactForm = document.getElementById('contactForm');
@@ -4964,7 +5037,7 @@
                 const form = e.target;
                 const formData = new FormData(form);
                 const submitButton = form.querySelector('.contact-form-button');
-                const successMessage = document.getElementById('successMessage');
+                const successMessage = document.getElementById('contactSuccessMessage');
 
                 // Disable submit button and show loading state
                 const originalText = submitButton.textContent;
