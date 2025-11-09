@@ -1955,6 +1955,78 @@
             box-shadow: 0 15px 50px rgba(201, 169, 97, 0.4);
         }
 
+        /* Payment Required Alert */
+        .payment-required-alert {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 152, 0, 0.1));
+            border: 3px solid #ffc107;
+            border-left: 8px solid #ff9800;
+            padding: 30px;
+            margin-bottom: 35px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            animation: pulseAlert 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseAlert {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+            }
+        }
+
+        .alert-icon {
+            font-size: 40px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            color: #ff9800;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .alert-text {
+            color: var(--white);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .twint-number {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .twint-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .twint-phone {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffc107;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+        }
+
         .success-message {
             display: none;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
@@ -3025,6 +3097,35 @@
                 letter-spacing: 2px;
             }
 
+            .payment-required-alert {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+
+            .alert-icon {
+                font-size: 32px;
+            }
+
+            .alert-title {
+                font-size: 16px;
+            }
+
+            .alert-text {
+                font-size: 13px;
+            }
+
+            .twint-number {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding: 12px 15px;
+            }
+
+            .twint-phone {
+                font-size: 18px;
+            }
+
             .success-message {
                 padding: 25px 20px;
             }
@@ -3998,6 +4099,31 @@
 
                 <!-- Right Side - Booking Form -->
                 <div class="booking-form-card">
+                    <!-- Payment Requirement Alert -->
+                    <div class="payment-required-alert">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <h4 class="alert-title alert-title-txt"
+                                data-fr="Acompte de 50% REQUIS avant réservation"
+                                data-de="50% Anzahlung VOR Buchung ERFORDERLICH"
+                                data-it="Deposito del 50% RICHIESTO prima della prenotazione"
+                                data-en="50% Deposit REQUIRED before booking">
+                                Acompte de 50% REQUIS avant réservation
+                            </h4>
+                            <p class="alert-text alert-text-txt"
+                               data-fr="Vous devez d'abord envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 AVANT de remplir ce formulaire. Votre rendez-vous ne sera confirmé qu'après vérification du paiement."
+                               data-de="Sie müssen zuerst die 50% Anzahlung per TWINT an +41 76 597 13 95 senden, BEVOR Sie dieses Formular ausfüllen. Ihr Termin wird erst nach Zahlungsbestätigung bestätigt."
+                               data-it="Devi prima inviare il deposito del 50% tramite TWINT a +41 76 597 13 95 PRIMA di compilare questo modulo. Il tuo appuntamento sarà confermato solo dopo la verifica del pagamento."
+                               data-en="You must first send the 50% deposit via TWINT to +41 76 597 13 95 BEFORE filling out this form. Your appointment will only be confirmed after payment verification.">
+                                Vous devez d'abord envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 AVANT de remplir ce formulaire. Votre rendez-vous ne sera confirmé qu'après vérification du paiement.
+                            </p>
+                            <div class="twint-number">
+                                <span class="twint-label">📱 TWINT:</span>
+                                <span class="twint-phone">+41 76 597 13 95</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div id="successMessage" class="success-message">
                         <div class="success-icon">✓</div>
                         <span class="success-txt" data-fr="Merci! Votre demande a été reçue. Veuillez envoyer l'acompte de 50% via TWINT au +41 76 597 13 95 pour confirmer votre rendez-vous."
