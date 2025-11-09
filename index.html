@@ -2399,12 +2399,25 @@
                 display: flex;
                 justify-content: flex-start;
                 padding: 8px 0;
-                flex: 0 0 auto;
+                flex: 1 1 auto;
+                order: 1;
             }
 
             /* Show hamburger menu on mobile */
             .hamburger-menu {
-                display: flex;
+                display: flex !important;
+                flex: 0 0 auto;
+                order: 2;
+                position: relative;
+                z-index: 1002;
+                min-width: 48px;
+                min-height: 48px;
+                -webkit-tap-highlight-color: rgba(201, 169, 97, 0.3);
+                touch-action: manipulation;
+            }
+
+            .hamburger-line {
+                pointer-events: none;
             }
 
             .logo {
@@ -2426,6 +2439,7 @@
                 opacity: 0;
                 transition: all 0.4s ease;
                 flex-basis: 100%;
+                order: 3;
             }
 
             /* Show menu when mobile-menu-open class is added */
@@ -3171,6 +3185,31 @@
                 height: 48px;
                 font-size: 18px;
                 right: 16px;
+            }
+        }
+
+        /* iPhone Specific Fix - Ensure hamburger always shows on all mobile devices */
+        @media only screen and (max-width: 767px) {
+            .hamburger-menu {
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .nav-container {
+                display: flex !important;
+            }
+
+            .logo-container {
+                order: 1;
+            }
+
+            .hamburger-menu {
+                order: 2;
+            }
+
+            .nav-right {
+                order: 3;
             }
         }
     </style>
