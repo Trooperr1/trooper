@@ -4447,47 +4447,47 @@
                     <input type="hidden" name="_subject" value="Nouveau message depuis le site Shuana Barber">
 
                     <div class="form-group">
-                        <label class="contact-form-name-txt"
+                        <label for="contact-name" class="contact-form-name-txt"
                                data-fr="Votre Nom"
                                data-de="Ihr Name"
                                data-it="Il Tuo Nome"
                                data-en="Your Name">
                             Votre Nom
                         </label>
-                        <input type="text" name="name" required>
+                        <input type="text" id="contact-name" name="name" required autocomplete="name">
                     </div>
 
                     <div class="form-group">
-                        <label class="contact-form-email-txt"
+                        <label for="contact-email" class="contact-form-email-txt"
                                data-fr="Votre Email"
                                data-de="Ihre E-Mail"
                                data-it="La Tua Email"
                                data-en="Your Email">
                             Votre Email
                         </label>
-                        <input type="email" name="email" required>
+                        <input type="email" id="contact-email" name="email" required autocomplete="email">
                     </div>
 
                     <div class="form-group">
-                        <label class="contact-form-phone-txt"
+                        <label for="contact-phone" class="contact-form-phone-txt"
                                data-fr="Votre Téléphone (Optionnel)"
                                data-de="Ihre Telefonnummer (Optional)"
                                data-it="Il Tuo Telefono (Facoltativo)"
                                data-en="Your Phone (Optional)">
                             Votre Téléphone (Optionnel)
                         </label>
-                        <input type="tel" name="phone">
+                        <input type="tel" id="contact-phone" name="phone" autocomplete="tel">
                     </div>
 
                     <div class="form-group">
-                        <label class="contact-form-message-txt"
+                        <label for="contact-message" class="contact-form-message-txt"
                                data-fr="Votre Message"
                                data-de="Ihre Nachricht"
                                data-it="Il Tuo Messaggio"
                                data-en="Your Message">
                             Votre Message
                         </label>
-                        <textarea name="message" required></textarea>
+                        <textarea id="contact-message" name="message" required></textarea>
                     </div>
 
                     <button type="submit" class="contact-form-button contact-form-submit-txt"
@@ -4795,61 +4795,98 @@
         function updatePriceCalculator() {
             const selectedService = serviceSelect.value;
             const servicePrices = {
-                'coupe-classique': 60,
-                'barbe': 40,
-                'coupe-barbe': 90,
-                'coloration': 80,
-                'soin': 50,
-                'domicile': 120
+                'coupe': 35,
+                'etudiant': 25,
+                'barbe': 20,
+                'coupe-barbe': 50,
+                'coloration': 30,
+                'enfants': 20,
+                'shampoing': 15,
+                'epilation': 15,
+                'masque': 20,
+                'domicile': 0  // Sur devis
             };
 
             const serviceNames = {
                 'fr': {
-                    'coupe-classique': 'Coupe Classique',
-                    'barbe': 'Taille de Barbe',
+                    'coupe': 'La Coupe',
+                    'etudiant': 'La Coupe Étudiant',
+                    'barbe': 'La Barbe',
                     'coupe-barbe': 'Coupe + Barbe',
-                    'coloration': 'Coloration',
-                    'soin': 'Soin Capillaire',
-                    'domicile': 'Service à Domicile'
+                    'coloration': 'La Coloration',
+                    'enfants': 'Enfants',
+                    'shampoing': 'Shampoing & Séchage',
+                    'epilation': 'Épilation au Fil',
+                    'masque': 'Masque Visage',
+                    'domicile': 'Service à Domicile Privé'
                 },
                 'de': {
-                    'coupe-classique': 'Klassischer Schnitt',
-                    'barbe': 'Bartpflege',
-                    'coupe-barbe': 'Schnitt + Bart',
-                    'coloration': 'Färbung',
-                    'soin': 'Haarpflege',
-                    'domicile': 'Hausservice'
+                    'coupe': 'Haarschnitt',
+                    'etudiant': 'Studenten Haarschnitt',
+                    'barbe': 'Bartschnitt',
+                    'coupe-barbe': 'Haarschnitt + Bartschnitt',
+                    'coloration': 'Haarfärbung',
+                    'enfants': 'Kinderhaarschnitt',
+                    'shampoing': 'Shampoo & Föhnen',
+                    'epilation': 'Fadentechnik',
+                    'masque': 'Gesichtsmaske',
+                    'domicile': 'Privater Hausservice'
                 },
                 'it': {
-                    'coupe-classique': 'Taglio Classico',
-                    'barbe': 'Cura della Barba',
+                    'coupe': 'Taglio di Capelli',
+                    'etudiant': 'Taglio Studenti',
+                    'barbe': 'Rifinitura Barba',
                     'coupe-barbe': 'Taglio + Barba',
-                    'coloration': 'Colorazione',
-                    'soin': 'Trattamento',
-                    'domicile': 'Servizio a Domicilio'
+                    'coloration': 'Colorazione Capelli',
+                    'enfants': 'Taglio Bambini',
+                    'shampoing': 'Shampoo e Piega',
+                    'epilation': 'Depilazione con Filo',
+                    'masque': 'Maschera Viso',
+                    'domicile': 'Servizio Privato a Domicilio'
                 },
                 'en': {
-                    'coupe-classique': 'Classic Cut',
-                    'barbe': 'Beard Grooming',
-                    'coupe-barbe': 'Cut + Beard',
-                    'coloration': 'Coloring',
-                    'soin': 'Hair Treatment',
-                    'domicile': 'Home Service'
+                    'coupe': 'Haircut',
+                    'etudiant': 'Student Haircut',
+                    'barbe': 'Beard Trim',
+                    'coupe-barbe': 'Haircut + Beard Trim',
+                    'coloration': 'Hair Coloring',
+                    'enfants': "Children's Haircut",
+                    'shampoing': 'Shampoo & Blow Dry',
+                    'epilation': 'Threading',
+                    'masque': 'Facial Mask',
+                    'domicile': 'Private Home Service'
                 }
             };
 
             const currentLang = document.documentElement.lang || 'fr';
 
-            if (selectedService && servicePrices[selectedService]) {
-                const totalPrice = servicePrices[selectedService];
-                const depositAmount = totalPrice * 0.5;
-                const finalAmount = totalPrice * 0.5;
+            if (selectedService && servicePrices[selectedService] !== undefined) {
+                if (selectedService === 'domicile') {
+                    // Special handling for home service
+                    document.getElementById('selectedServiceName').textContent =
+                        serviceNames[currentLang][selectedService] || serviceNames['fr'][selectedService];
 
-                document.getElementById('selectedServiceName').textContent =
-                    serviceNames[currentLang][selectedService] || serviceNames['fr'][selectedService];
-                document.getElementById('totalPrice').textContent = `CHF ${totalPrice}.-`;
-                document.getElementById('depositAmount').textContent = `CHF ${depositAmount}.-`;
-                document.getElementById('finalAmount').textContent = `CHF ${finalAmount}.-`;
+                    const onRequestText = {
+                        'fr': 'Sur Devis',
+                        'de': 'Auf Anfrage',
+                        'it': 'Su Preventivo',
+                        'en': 'On Request'
+                    };
+
+                    document.getElementById('totalPrice').textContent = onRequestText[currentLang] || onRequestText['fr'];
+                    document.getElementById('depositAmount').textContent = onRequestText[currentLang] || onRequestText['fr'];
+                    document.getElementById('finalAmount').textContent = onRequestText[currentLang] || onRequestText['fr'];
+                } else {
+                    const totalPrice = servicePrices[selectedService];
+                    const depositAmount = totalPrice * 0.5;
+                    const finalAmount = totalPrice * 0.5;
+
+                    document.getElementById('selectedServiceName').textContent =
+                        serviceNames[currentLang][selectedService] || serviceNames['fr'][selectedService];
+                    document.getElementById('totalPrice').textContent = `CHF ${totalPrice}.-`;
+                    document.getElementById('depositAmount').textContent = `CHF ${depositAmount.toFixed(0)}.-`;
+                    document.getElementById('finalAmount').textContent = `CHF ${finalAmount.toFixed(0)}.-`;
+                }
             } else {
                 document.getElementById('selectedServiceName').textContent = '-';
                 document.getElementById('totalPrice').textContent = 'CHF 0.-';
@@ -4919,61 +4956,68 @@
         });
 
         // Contact Form Handler with AJAX
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
 
-            const form = e.target;
-            const formData = new FormData(form);
-            const submitButton = form.querySelector('.contact-form-button');
-            const successMessage = document.getElementById('successMessage');
+                const form = e.target;
+                const formData = new FormData(form);
+                const submitButton = form.querySelector('.contact-form-button');
+                const successMessage = document.getElementById('successMessage');
 
-            // Disable submit button and show loading state
-            const originalText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = currentLang === 'fr' ? 'Envoi en cours...' :
-                                       currentLang === 'de' ? 'Wird gesendet...' :
-                                       currentLang === 'it' ? 'Invio in corso...' :
-                                       'Sending...';
+                // Disable submit button and show loading state
+                const originalText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = currentLang === 'fr' ? 'Envoi en cours...' :
+                                           currentLang === 'de' ? 'Wird gesendet...' :
+                                           currentLang === 'it' ? 'Invio in corso...' :
+                                           'Sending...';
 
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        form.reset();
+
+                        // Scroll to success message
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 5000);
+                    } else {
+                        // Show error alert
+                        const errorMsg = currentLang === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' :
+                                        currentLang === 'de' ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' :
+                                        currentLang === 'it' ? 'Si è verificato un errore. Si prega di riprovare.' :
+                                        'An error occurred. Please try again.';
+                        alert(errorMsg);
                     }
-                });
-
-                if (response.ok) {
-                    // Show success message
-                    successMessage.style.display = 'block';
-                    form.reset();
-
-                    // Hide success message after 5 seconds
-                    setTimeout(() => {
-                        successMessage.style.display = 'none';
-                    }, 5000);
-                } else {
+                } catch (error) {
                     // Show error alert
-                    const errorMsg = currentLang === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' :
-                                    currentLang === 'de' ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' :
-                                    currentLang === 'it' ? 'Si è verificato un errore. Si prega di riprovare.' :
-                                    'An error occurred. Please try again.';
+                    const errorMsg = currentLang === 'fr' ? 'Erreur de connexion. Veuillez vérifier votre internet.' :
+                                    currentLang === 'de' ? 'Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.' :
+                                    currentLang === 'it' ? 'Errore di connessione. Controllare la connessione Internet.' :
+                                    'Connection error. Please check your internet.';
                     alert(errorMsg);
+                    console.error('Contact form error:', error);
+                } finally {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
                 }
-            } catch (error) {
-                // Show error alert
-                const errorMsg = currentLang === 'fr' ? 'Erreur de connexion. Veuillez vérifier votre internet.' :
-                                currentLang === 'de' ? 'Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.' :
-                                currentLang === 'it' ? 'Errore di connessione. Controllare la connessione Internet.' :
-                                'Connection error. Please check your internet.';
-                alert(errorMsg);
-            } finally {
-                // Re-enable submit button
-                submitButton.disabled = false;
-                submitButton.textContent = originalText;
-            }
-        });
+            });
+        }
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
