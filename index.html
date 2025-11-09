@@ -2210,6 +2210,18 @@
             box-shadow: 0 15px 50px rgba(201, 169, 97, 0.4);
         }
 
+        .contact-form-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .contact-form-button:disabled:hover {
+            background: var(--gold);
+            transform: none;
+            box-shadow: none;
+        }
+
         .form-success-message {
             display: none;
             background: linear-gradient(135deg, rgba(76, 175, 80, 0.15), rgba(56, 142, 60, 0.1));
@@ -4431,6 +4443,9 @@
                         Envoyez-nous un Message
                     </h3>
 
+                    <!-- Hidden field for email subject -->
+                    <input type="hidden" name="_subject" value="Nouveau message depuis le site Shuana Barber">
+
                     <div class="form-group">
                         <label class="contact-form-name-txt"
                                data-fr="Votre Nom"
@@ -4901,6 +4916,63 @@
             // Update progress to final step
             const steps = document.querySelectorAll('.progress-step');
             steps.forEach(s => s.classList.add('completed'));
+        });
+
+        // Contact Form Handler with AJAX
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('.contact-form-button');
+            const successMessage = document.getElementById('successMessage');
+
+            // Disable submit button and show loading state
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = currentLang === 'fr' ? 'Envoi en cours...' :
+                                       currentLang === 'de' ? 'Wird gesendet...' :
+                                       currentLang === 'it' ? 'Invio in corso...' :
+                                       'Sending...';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    form.reset();
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    // Show error alert
+                    const errorMsg = currentLang === 'fr' ? 'Une erreur est survenue. Veuillez réessayer.' :
+                                    currentLang === 'de' ? 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.' :
+                                    currentLang === 'it' ? 'Si è verificato un errore. Si prega di riprovare.' :
+                                    'An error occurred. Please try again.';
+                    alert(errorMsg);
+                }
+            } catch (error) {
+                // Show error alert
+                const errorMsg = currentLang === 'fr' ? 'Erreur de connexion. Veuillez vérifier votre internet.' :
+                                currentLang === 'de' ? 'Verbindungsfehler. Bitte überprüfen Sie Ihre Internetverbindung.' :
+                                currentLang === 'it' ? 'Errore di connessione. Controllare la connessione Internet.' :
+                                'Connection error. Please check your internet.';
+                alert(errorMsg);
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalText;
+            }
         });
 
         // Smooth scrolling
