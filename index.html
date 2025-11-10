@@ -32,6 +32,31 @@
             color: #fff;
             overflow-x: hidden;
             line-height: 1.6;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Page Transition Overlay */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 999999;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .page-transition-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
 
         /* 3D Canvas Background */
@@ -87,6 +112,19 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Section Reveal Animation */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Language Switcher */
@@ -1722,258 +1760,258 @@
 
     <script src="translations.js"></script>
     <script>
-        // Language switching
-        function changeLanguage(lang) {
-            // Translate text content
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const translation = getNestedProperty(translations[lang], key);
-                if (translation) {
-                    if (element.tagName === 'OPTION') {
-                        element.textContent = translation;
-                    } else {
-                        element.textContent = translation;
-                    }
-                }
-            });
+        // Wrap ALL JavaScript in DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page Load Animation
+            document.body.classList.add('loaded');
 
-            // Translate placeholders
-            const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
-            placeholderElements.forEach(element => {
-                const key = element.getAttribute('data-i18n-placeholder');
-                const translation = getNestedProperty(translations[lang], key);
-                if (translation) {
-                    element.placeholder = translation;
-                }
-            });
+            // Create Page Transition Overlay
+            const pageTransitionOverlay = document.createElement('div');
+            pageTransitionOverlay.className = 'page-transition-overlay';
+            document.body.appendChild(pageTransitionOverlay);
 
-            localStorage.setItem('preferredLanguage', lang);
-            document.documentElement.lang = lang;
-        }
-
-        function getNestedProperty(obj, path) {
-            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
-        }
-
-        document.getElementById('languageSwitcher').addEventListener('change', function(e) {
-            changeLanguage(e.target.value);
-        });
-
-        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-        document.getElementById('languageSwitcher').value = savedLang;
-        changeLanguage(savedLang);
-
-        // THREE.JS 3D Background
-        const canvas = document.getElementById('canvas-3d');
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        camera.position.z = 5;
-
-        const particlesGeometry = new THREE.BufferGeometry();
-        const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 800 : 2000;
-        const positions = new Float32Array(particleCount * 3);
-
-        for (let i = 0; i < particleCount * 3; i += 3) {
-            positions[i] = (Math.random() - 0.5) * 20;
-            positions[i + 1] = (Math.random() - 0.5) * 20;
-            positions[i + 2] = (Math.random() - 0.5) * 20;
-        }
-
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.03,
-            color: 0xffffff,
-            transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending
-        });
-
-        const particles = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particles);
-
-        const torusGeometry = new THREE.TorusGeometry(1.5, 0.4, 16, 100);
-        const torusMaterial = new THREE.MeshBasicMaterial({
-            color: 0xffffff,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.1
-        });
-        const torus = new THREE.Mesh(torusGeometry, torusMaterial);
-        scene.add(torus);
-
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        function animate() {
-            requestAnimationFrame(animate);
-            particles.rotation.y += 0.0003;
-            particles.rotation.x += 0.0002;
-            torus.rotation.x += 0.002;
-            torus.rotation.y += 0.003;
-            camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
-            camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const item = button.parentElement;
-                const wasActive = item.classList.contains('active');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Back to Top
-        const backToTop = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href && href !== '#') {
+            // Page Transition for internal links
+            document.querySelectorAll('a[href^="pages/"]').forEach(link => {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const href = this.getAttribute('href');
+                    pageTransitionOverlay.classList.add('active');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                });
+            });
+
+            // Scroll Observer for Section Reveal Animations
+            const scrollObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
                     }
-                }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
             });
-        });
 
-        // GSAP Scroll Animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        gsap.utils.toArray('.service-card, .portfolio-item').forEach((el, i) => {
-            gsap.from(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 85%',
-                },
-                y: 80,
-                opacity: 0,
-                duration: 0.8,
-                delay: i * 0.1
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                scrollObserver.observe(section);
             });
-        });
 
-        // Mobile Menu Toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
-        });
-
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuToggle.textContent = '☰';
-            });
-        });
-
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target === mobileMenu) {
-                mobileMenu.classList.remove('active');
-                mobileMenuToggle.textContent = '☰';
-            }
-        });
-
-        const body = document.body;
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    if (mobileMenu.classList.contains('active')) {
-                        body.style.overflow = 'hidden';
-                    } else {
-                        body.style.overflow = '';
+            // Language switching
+            function changeLanguage(lang) {
+                // Translate text content
+                const elements = document.querySelectorAll('[data-i18n]');
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    const translation = getNestedProperty(translations[lang], key);
+                    if (translation) {
+                        if (element.tagName === 'OPTION') {
+                            element.textContent = translation;
+                        } else {
+                            element.textContent = translation;
+                        }
                     }
-                }
-            });
-        });
-        observer.observe(mobileMenu, { attributes: true });
+                });
 
-        // Translation functionality - Load from external file
-        function translatePage(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                const translation = getNestedProperty(translations[lang], key);
-                if (translation) {
-                    element.textContent = translation;
-                }
-            });
+                // Translate placeholders
+                const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+                placeholderElements.forEach(element => {
+                    const key = element.getAttribute('data-i18n-placeholder');
+                    const translation = getNestedProperty(translations[lang], key);
+                    if (translation) {
+                        element.placeholder = translation;
+                    }
+                });
 
-            // Update placeholders
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-                const key = element.getAttribute('data-i18n-placeholder');
-                const translation = getNestedProperty(translations[lang], key);
-                if (translation) {
-                    element.placeholder = translation;
-                }
-            });
-        }
-
-        function getNestedProperty(obj, path) {
-            return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
-        }
-
-        // Custom Language Switcher
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', function () {
-                const lang = this.getAttribute('data-lang');
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                translatePage(lang);
                 localStorage.setItem('preferredLanguage', lang);
-            });
-        });
+                document.documentElement.lang = lang;
+            }
 
-        // Load saved language on page load
-        window.addEventListener('DOMContentLoaded', function () {
-            const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-            const langBtn = document.querySelector(`[data-lang="${savedLang}"]`);
-            if (langBtn) {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                langBtn.classList.add('active');
-                translatePage(savedLang);
+            function getNestedProperty(obj, path) {
+                return path.split('.').reduce((prev, curr) => prev && prev[curr], obj);
+            }
+
+            const languageSwitcher = document.getElementById('languageSwitcher');
+            if (languageSwitcher) {
+                languageSwitcher.addEventListener('change', function(e) {
+                    changeLanguage(e.target.value);
+                });
+
+                const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+                languageSwitcher.value = savedLang;
+                changeLanguage(savedLang);
+            }
+
+            // THREE.JS 3D Background
+            const canvas = document.getElementById('canvas-3d');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            camera.position.z = 5;
+
+            const particlesGeometry = new THREE.BufferGeometry();
+            const isMobile = window.innerWidth <= 768;
+            const particleCount = isMobile ? 800 : 2000;
+            const positions = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 20;
+                positions[i + 1] = (Math.random() - 0.5) * 20;
+                positions[i + 2] = (Math.random() - 0.5) * 20;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.03,
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+
+            const torusGeometry = new THREE.TorusGeometry(1.5, 0.4, 16, 100);
+            const torusMaterial = new THREE.MeshBasicMaterial({
+                color: 0xffffff,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.1
+            });
+            const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+            scene.add(torus);
+
+            let mouseX = 0, mouseY = 0;
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+                particles.rotation.y += 0.0003;
+                particles.rotation.x += 0.0002;
+                torus.rotation.x += 0.002;
+                torus.rotation.y += 0.003;
+                camera.position.x += (mouseX * 0.3 - camera.position.x) * 0.05;
+                camera.position.y += (mouseY * 0.3 - camera.position.y) * 0.05;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+            // FAQ Accordion
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.parentElement;
+                    const wasActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                    if (!wasActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Back to Top
+            const backToTop = document.querySelector('.back-to-top');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 500) {
+                        backToTop.classList.add('visible');
+                    } else {
+                        backToTop.classList.remove('visible');
+                    }
+                });
+
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                });
+            });
+
+            // GSAP Scroll Animations
+            if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+                gsap.registerPlugin(ScrollTrigger);
+
+                gsap.utils.toArray('.service-card, .portfolio-item').forEach((el, i) => {
+                    gsap.from(el, {
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                        },
+                        y: 80,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.1
+                    });
+                });
+            }
+
+            // Mobile Menu Toggle - WITH SAFETY CHECKS
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                    mobileMenuToggle.textContent = mobileMenu.classList.contains('active') ? '✕' : '☰';
+                });
+
+                mobileMenuLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    });
+                });
+
+                mobileMenu.addEventListener('click', (e) => {
+                    if (e.target === mobileMenu) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    }
+                });
+
+                const body = document.body;
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'class') {
+                            if (mobileMenu.classList.contains('active')) {
+                                body.style.overflow = 'hidden';
+                            } else {
+                                body.style.overflow = '';
+                            }
+                        }
+                    });
+                });
+                observer.observe(mobileMenu, { attributes: true });
             }
         });
     </script>
-
-    <!-- Load translations from external file -->
-    <script src="translations.js"></script>
 </body>
 </html>
