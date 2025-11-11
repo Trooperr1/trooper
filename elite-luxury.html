@@ -1860,6 +1860,472 @@
             }
         }
 
+        /* === 3D INTERACTIVE GALLERY === */
+        .gallery-3d {
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12), transparent 70%),
+                        linear-gradient(180deg, var(--color-black), var(--color-deep-black));
+            padding: 10rem 2rem;
+        }
+
+        .gallery-scene {
+            perspective: 2000px;
+            position: relative;
+            height: 700px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid-3d {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 1s var(--ease-expo);
+        }
+
+        .gallery-item-3d {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(var(--blur-lg));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.8s var(--ease-expo);
+            transform-style: preserve-3d;
+            box-shadow: var(--shadow-elite);
+        }
+
+        .gallery-item-3d:hover {
+            transform: scale(1.15) translateZ(100px) rotateY(10deg) !important;
+            box-shadow: var(--shadow-luxury), var(--glow-lg);
+            border-color: var(--color-royal-purple);
+            z-index: 100;
+        }
+
+        .gallery-item-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item-3d:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            transform: translateY(100%);
+            transition: transform 0.5s var(--ease-expo);
+        }
+
+        .gallery-item-3d:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item-title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item-subtitle {
+            color: var(--color-gold);
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* === ELITE AWARDS SECTION === */
+        .awards {
+            background: linear-gradient(180deg, var(--color-deep-black), var(--color-black), var(--color-deep-black));
+            padding: 10rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .awards::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.05), transparent 60%);
+            pointer-events: none;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 4rem auto 0;
+        }
+
+        .award-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(var(--blur-md));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s var(--ease-expo);
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                transparent,
+                rgba(212, 175, 55, 0.1),
+                transparent 30%
+            );
+            animation: rotateBorder 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .award-card:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes rotateBorder {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .award-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.3);
+            border-color: var(--color-gold);
+        }
+
+        .award-trophy {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: all 0.6s var(--ease-elastic);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+        }
+
+        .award-card:hover .award-trophy {
+            transform: scale(1.2) rotateY(360deg);
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 1));
+        }
+
+        .award-year {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-champagne));
+            color: var(--color-black);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .award-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--color-white);
+            margin-bottom: 0.75rem;
+        }
+
+        .award-category {
+            color: var(--color-gold);
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .award-description {
+            color: var(--color-silver);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* === IMMERSIVE EXPERIENCE CTA === */
+        .experience-cta {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .experience-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(99, 102, 241, 0.4)),
+                        url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1920&h=1080&fit=crop') center/cover;
+            animation: kenBurns 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-20px, -20px); }
+        }
+
+        .experience-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+        }
+
+        .experience-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .experience-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(var(--blur-md));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            color: var(--color-gold);
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .experience-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 900;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+            line-height: 1.1;
+        }
+
+        .experience-subtitle {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            color: var(--color-silver);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .experience-cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-luxury {
+            padding: 1.5rem 3.5rem;
+            background: linear-gradient(135deg, var(--color-gold), var(--color-champagne));
+            color: var(--color-black);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-expo);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-luxury:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.7);
+        }
+
+        .experience-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .experience-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--color-gold);
+            animation: floatParticle 15s infinite;
+            opacity: 0.6;
+        }
+
+        /* === NEW ANIMATION 1: FLOATING === */
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-100vh) translateX(50px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .float-animation {
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* === NEW ANIMATION 2: TYPEWRITER === */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--color-gold);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blinkCursor 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--color-gold); }
+        }
+
+        /* === NEW ANIMATION 3: MORPHING BLOBS === */
+        .blob-container {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            filter: blur(40px);
+            opacity: 0.3;
+            animation: blobMove 20s ease-in-out infinite;
+        }
+
+        .blob {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-royal-purple), var(--color-violet));
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: blobMorph 8s ease-in-out infinite;
+        }
+
+        @keyframes blobMorph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
+        }
+
+        @keyframes blobMove {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(100px, -100px) scale(1.1); }
+            50% { transform: translate(-100px, 100px) scale(0.9); }
+            75% { transform: translate(50px, 50px) scale(1.05); }
+        }
+
+        /* === NEW ANIMATION 4: LIQUID WAVE === */
+        .liquid-wave {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .liquid-wave::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(99, 102, 241, 0.3),
+                transparent);
+            animation: liquidFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes liquidFlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* === NEW ANIMATION 5: PARTICLE EXPLOSION === */
+        .explode-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--color-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
         /* === UTILITY CLASSES === */
         .text-gradient {
             background: linear-gradient(135deg, var(--color-gold), var(--color-royal-purple));
@@ -1919,7 +2385,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#showcase">Showcase</a></li>
             <li><a href="#features">Features</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -2088,6 +2554,65 @@
         </div>
     </section>
 
+    <!-- ELITE AWARDS & RECOGNITION -->
+    <section class="awards">
+        <div class="container">
+            <div class="section-label">RECOGNITION</div>
+            <h2 class="section-title">Award-Winning Excellence</h2>
+            <p class="section-subtitle">Globally recognized for pushing the boundaries of design and innovation.</p>
+
+            <div class="awards-grid">
+                <div class="award-card liquid-wave">
+                    <div class="award-year">2024</div>
+                    <div class="award-trophy">🏆</div>
+                    <h3 class="award-name">Awwwards SOTD</h3>
+                    <p class="award-category">Site of the Day</p>
+                    <p class="award-description">Recognized for exceptional design, creativity, and user experience.</p>
+                </div>
+
+                <div class="award-card liquid-wave">
+                    <div class="award-year">2024</div>
+                    <div class="award-trophy">⭐</div>
+                    <h3 class="award-name">FWA of the Day</h3>
+                    <p class="award-category">Featured Excellence</p>
+                    <p class="award-description">Featured for cutting-edge web design and innovation.</p>
+                </div>
+
+                <div class="award-card liquid-wave">
+                    <div class="award-year">2023</div>
+                    <div class="award-trophy">💎</div>
+                    <h3 class="award-name">CSS Design Awards</h3>
+                    <p class="award-category">Best UI/UX</p>
+                    <p class="award-description">Honored for pixel-perfect design and seamless interactions.</p>
+                </div>
+
+                <div class="award-card liquid-wave">
+                    <div class="award-year">2023</div>
+                    <div class="award-trophy">🎨</div>
+                    <h3 class="award-name">Webby Awards</h3>
+                    <p class="award-category">Best Visual Design</p>
+                    <p class="award-description">Celebrated for stunning aesthetics and artistic vision.</p>
+                </div>
+
+                <div class="award-card liquid-wave">
+                    <div class="award-year">2023</div>
+                    <div class="award-trophy">🌟</div>
+                    <h3 class="award-name">Red Dot Award</h3>
+                    <p class="award-category">Communication Design</p>
+                    <p class="award-description">Awarded for exceptional quality and creative excellence.</p>
+                </div>
+
+                <div class="award-card liquid-wave">
+                    <div class="award-year">2022</div>
+                    <div class="award-trophy">👑</div>
+                    <h3 class="award-name">Cannes Lion</h3>
+                    <p class="award-category">Digital Craft</p>
+                    <p class="award-description">Grand Prix winner for innovative digital experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- LUXURY PORTFOLIO -->
     <section class="portfolio" id="portfolio">
         <div class="container">
@@ -2146,6 +2671,70 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 3D INTERACTIVE GALLERY -->
+    <section class="gallery-3d" id="gallery">
+        <div class="container">
+            <div class="section-label">GALLERY</div>
+            <h2 class="section-title">3D Interactive Showcase</h2>
+            <p class="section-subtitle">Explore our work in immersive 3D space. Hover to experience depth and detail.</p>
+
+            <div class="gallery-scene">
+                <div class="gallery-grid-3d" id="gallery3d">
+                    <div class="gallery-item-3d float-animation">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=700&h=900&fit=crop" alt="Luxury Design 1">
+                        <div class="gallery-item-overlay">
+                            <h3 class="gallery-item-title">Premium Architecture</h3>
+                            <p class="gallery-item-subtitle">Award-Winning Design</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item-3d float-animation">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=700&h=900&fit=crop" alt="Luxury Design 2">
+                        <div class="gallery-item-overlay">
+                            <h3 class="gallery-item-title">Elite Interior</h3>
+                            <p class="gallery-item-subtitle">Museum Quality</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item-3d float-animation">
+                        <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?w=700&h=900&fit=crop" alt="Luxury Design 3">
+                        <div class="gallery-item-overlay">
+                            <h3 class="gallery-item-title">Modern Luxury</h3>
+                            <p class="gallery-item-subtitle">Cannes Winner</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item-3d float-animation">
+                        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=700&h=900&fit=crop" alt="Luxury Design 4">
+                        <div class="gallery-item-overlay">
+                            <h3 class="gallery-item-title">Sophisticated Space</h3>
+                            <p class="gallery-item-subtitle">Best in Class</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item-3d float-animation">
+                        <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=700&h=900&fit=crop" alt="Luxury Design 5">
+                        <div class="gallery-item-overlay">
+                            <h3 class="gallery-item-title">Timeless Elegance</h3>
+                            <p class="gallery-item-subtitle">FWA Featured</p>
+                        </div>
+                    </div>
+                    <div class="gallery-item-3d float-animation">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=700&h=900&fit=crop" alt="Luxury Design 6">
+                        <div class="gallery-item-overlay">
+                            <h3 class="gallery-item-title">Premium Finishes</h3>
+                            <p class="gallery-item-subtitle">Design Excellence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Morphing Blobs Background -->
+        <div class="blob-container" style="top: 10%; left: 10%;">
+            <div class="blob"></div>
+        </div>
+        <div class="blob-container" style="top: 60%; right: 10%;">
+            <div class="blob"></div>
         </div>
     </section>
 
@@ -2393,6 +2982,23 @@
                     <div class="tech-logo" style="top: 25%; left: 7%; transform: translate(-50%, -50%);">⚡</div>
                     <div class="tech-logo" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">🚀</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMMERSIVE EXPERIENCE CTA -->
+    <section class="experience-cta">
+        <div class="experience-bg"></div>
+        <div class="experience-overlay"></div>
+        <div class="experience-particles" id="experienceParticles"></div>
+
+        <div class="experience-content">
+            <div class="experience-badge">LIMITED AVAILABILITY</div>
+            <h2 class="experience-title typewriter">Ready to Go Elite?</h2>
+            <p class="experience-subtitle">Transform your vision into a masterpiece. Join the world's most prestigious brands who trust us with their digital presence.</p>
+            <div class="experience-cta-buttons">
+                <button class="btn-luxury" id="explosionBtn">Start Your Journey</button>
+                <a href="#contact" class="btn btn-secondary">Schedule Consultation</a>
             </div>
         </div>
     </section>
@@ -2909,8 +3515,231 @@
             // Resize handlers
         }, 250));
 
+        // === 3D INTERACTIVE GALLERY ===
+        const gallery3d = document.getElementById('gallery3d');
+        const galleryItems = document.querySelectorAll('.gallery-item-3d');
+
+        function position3DGallery() {
+            galleryItems.forEach((item, index) => {
+                const angle = (index / galleryItems.length) * Math.PI * 2;
+                const radius = 500;
+                const x = Math.cos(angle) * radius;
+                const z = Math.sin(angle) * radius;
+                const rotateY = (angle * 180 / Math.PI) + 90;
+
+                item.style.left = '50%';
+                item.style.top = '50%';
+                item.style.transform = `translate(-50%, -50%) translate3d(${x}px, 0, ${z}px) rotateY(${rotateY}deg)`;
+            });
+        }
+
+        position3DGallery();
+
+        // Gallery rotation on mouse move
+        let gallery3dRotation = 0;
+        gallery3d.addEventListener('mousemove', (e) => {
+            const rect = gallery3d.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const centerX = rect.width / 2;
+            const rotationAmount = (mouseX - centerX) / centerX * 15;
+
+            gallery3d.style.transform = `rotateY(${rotationAmount}deg)`;
+        });
+
+        gallery3d.addEventListener('mouseleave', () => {
+            gallery3d.style.transform = 'rotateY(0deg)';
+        });
+
+        // Auto-rotate gallery
+        let autoRotateGallery = setInterval(() => {
+            gallery3dRotation += 0.5;
+            if (!gallery3d.matches(':hover')) {
+                gallery3d.style.transform = `rotateY(${gallery3dRotation}deg)`;
+            }
+        }, 50);
+
+        // === AWARDS SECTION ANIMATIONS ===
+        const awardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.award-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.8s cubic-bezier(0.19, 1, 0.22, 1)';
+            awardObserver.observe(card);
+        });
+
+        // === EXPERIENCE CTA PARTICLES ===
+        const experienceParticles = document.getElementById('experienceParticles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'experience-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.bottom = '0';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            experienceParticles.appendChild(particle);
+        }
+
+        // === PARTICLE EXPLOSION EFFECT ===
+        const explosionBtn = document.getElementById('explosionBtn');
+        explosionBtn.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Create explosion particles
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explode-particle';
+
+                const angle = (Math.PI * 2 * i) / 20;
+                const velocity = 100 + Math.random() * 100;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 1000);
+            }
+
+            // Button feedback
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 100);
+        });
+
+        // === TYPEWRITER EFFECT ===
+        function typewriterEffect() {
+            const typewriterElements = document.querySelectorAll('.typewriter');
+            const typewriterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'typing 3.5s steps(40, end), blinkCursor 0.75s step-end infinite';
+                        typewriterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            typewriterElements.forEach(el => {
+                typewriterObserver.observe(el);
+            });
+        }
+
+        typewriterEffect();
+
+        // === FLOATING ANIMATION (Applied to gallery items) ===
+        // Already applied via CSS class 'float-animation'
+
+        // === MORPHING BLOBS (Applied via HTML) ===
+        // Already applied via HTML structure
+
+        // === LIQUID WAVE (Applied to award cards) ===
+        // Already applied via CSS class 'liquid-wave'
+
+        // === ENHANCED SCROLL ANIMATIONS ===
+        const enhancedObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.gallery-item-3d').forEach(el => {
+            enhancedObserver.observe(el);
+        });
+
+        // === PARALLAX SCROLL EFFECT FOR BLOBS ===
+        const blobs = document.querySelectorAll('.blob-container');
+        window.addEventListener('scroll', throttle(() => {
+            const scrolled = window.scrollY;
+            blobs.forEach((blob, index) => {
+                const speed = 0.5 + (index * 0.2);
+                const yPos = -(scrolled * speed);
+                blob.style.transform = `translateY(${yPos}px)`;
+            });
+        }, 100));
+
+        // === HOVER EFFECTS FOR NEW SECTIONS ===
+        document.querySelectorAll('.award-card, .gallery-item-3d').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.zIndex = '100';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                setTimeout(() => {
+                    this.style.zIndex = '';
+                }, 500);
+            });
+        });
+
+        // === EXPERIENCE SECTION PARALLAX ===
+        const experienceBg = document.querySelector('.experience-bg');
+        const experienceSection = document.querySelector('.experience-cta');
+
+        const experienceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    window.addEventListener('scroll', function parallaxExperience() {
+                        const rect = experienceSection.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom > 0) {
+                            const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                            const yPos = scrollPercent * 50;
+                            experienceBg.style.transform = `translateY(${yPos}px)`;
+                        }
+                    });
+                }
+            });
+        });
+
+        experienceObserver.observe(experienceSection);
+
+        // === STAGGERED ANIMATIONS FOR GALLERY ===
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    galleryItems.forEach((item, i) => {
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                        }, i * 100);
+                    });
+                    galleryObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        if (gallery3d) galleryObserver.observe(gallery3d);
+
+        // Set initial opacity
+        galleryItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transition = 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1)';
+        });
+
+        // === RESPONSIVE GALLERY ===
+        window.addEventListener('resize', debounce(() => {
+            position3DGallery();
+        }, 250));
+
         console.log('%c✨ ELITE LUXURY WEBSITE ✨', 'font-size: 24px; font-weight: bold; background: linear-gradient(135deg, #6366F1, #D4AF37); -webkit-background-clip: text; color: transparent;');
         console.log('%cCrafted with precision and passion', 'font-size: 14px; color: #C0C0C0;');
+        console.log('%c🚀 NEW: 3 Major Sections + 5 Elite Animations Added!', 'font-size: 16px; font-weight: bold; color: #D4AF37;');
     </script>
 </body>
 </html>
