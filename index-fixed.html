@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE NOIR - Ultra Premium Fashion House</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Three.js - Updated CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+
+    <!-- GSAP with ScrollTrigger - Updated CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Luxury Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="luxury-spinner"></div>
+            <div class="loading-text">
+                <h1 class="loading-brand">ÉLITE NOIR</h1>
+                <p class="loading-tagline">Crafting Excellence Since 2024</p>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="loading-percentage" id="loadingPercentage">0%</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Background Canvas -->
+    <canvas id="threejs-canvas"></canvas>
+
+    <!-- Cursor Follower -->
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">
+                    <span class="logo-elite">ÉLITE</span>
+                    <span class="logo-noir">NOIR</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#collections" class="nav-link">Collections</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#boutiques" class="nav-link">Boutiques</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn" id="searchBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-text-wrapper">
+                <h1 class="hero-title">
+                    <span class="hero-title-line" data-text="WHERE">WHERE</span>
+                    <span class="hero-title-line" data-text="LUXURY">LUXURY</span>
+                    <span class="hero-title-line" data-text="MEETS">MEETS</span>
+                    <span class="hero-title-line" data-text="ARTISTRY">ARTISTRY</span>
+                </h1>
+                <p class="hero-subtitle">Experience the pinnacle of haute couture craftsmanship</p>
+                <div class="hero-cta">
+                    <button class="cta-primary">
+                        <span>Explore Collection</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    <button class="cta-secondary">
+                        <span>Book Private Viewing</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="hero-image-slider">
+                <div class="hero-slide active"></div>
+                <div class="hero-slide"></div>
+                <div class="hero-slide"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="150">0</h3>
+                <p class="stat-label">Years Combined Experience</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="50">0</h3>
+                <p class="stat-label">Global Boutiques</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="500">0</h3>
+                <p class="stat-label">Artisan Craftsmen</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="1000">0</h3>
+                <p class="stat-label">Exclusive Pieces Yearly</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="collections-section" id="collections">
+        <div class="section-header">
+            <span class="section-subtitle">Spring/Summer 2024</span>
+            <h2 class="section-title">Signature Collections</h2>
+            <p class="section-description">Each piece tells a story of unparalleled craftsmanship and timeless elegance</p>
+        </div>
+
+        <div class="collections-grid">
+            <!-- Collection 1 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="1">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge">New Arrival</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Noir Heritage</h3>
+                    <p class="collection-description">Timeless elegance reimagined for the modern connoisseur</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">24 Pieces</span>
+                        <span class="collection-price">From $2,500</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collection 2 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="2">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge exclusive">Exclusive</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Lumière Royale</h3>
+                    <p class="collection-description">Radiant sophistication for those who dare to stand out</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">18 Pieces</span>
+                        <span class="collection-price">From $3,200</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collection 3 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="3">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge limited">Limited Edition</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Avant-Garde Essence</h3>
+                    <p class="collection-description">Bold designs pushing the boundaries of haute couture</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">12 Pieces</span>
+                        <span class="collection-price">From $4,800</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collection 4 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="4">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge">Signature</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Éternelle Grace</h3>
+                    <p class="collection-description">Eternal beauty crafted for life's grandest moments</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">30 Pieces</span>
+                        <span class="collection-price">From $2,900</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Product Showcase -->
+    <section class="product-3d-section">
+        <div class="product-3d-container">
+            <div class="product-3d-canvas-wrapper">
+                <canvas id="product-canvas"></canvas>
+                <div class="canvas-overlay">
+                    <h3>Interactive 3D View</h3>
+                    <p>Drag to rotate • Scroll to zoom</p>
+                </div>
+            </div>
+            <div class="product-3d-info">
+                <span class="product-category">Signature Collection</span>
+                <h2 class="product-3d-title">Couture Noir Ensemble</h2>
+                <p class="product-3d-description">
+                    A masterpiece of Italian craftsmanship, featuring hand-stitched details and the finest cashmere blend. Each piece is individually numbered and comes with a certificate of authenticity.
+                </p>
+                <div class="product-features">
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                        <span>Premium Italian Fabric</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Bespoke Tailoring Available</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span>Lifetime Quality Guarantee</span>
+                    </div>
+                </div>
+                <div class="product-pricing">
+                    <span class="product-price">$5,499</span>
+                    <span class="product-installment">or 12 payments of $458.25</span>
+                </div>
+                <div class="product-actions">
+                    <button class="product-btn primary">
+                        <span>Reserve Now</span>
+                    </button>
+                    <button class="product-btn secondary">
+                        <span>Schedule Fitting</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <span class="about-subtitle">Our Heritage</span>
+                <h2 class="about-title">Crafting Timeless Elegance</h2>
+                <p class="about-text">
+                    For generations, ÉLITE NOIR has been synonymous with unparalleled luxury and craftsmanship. Our atelier brings together master artisans who have dedicated their lives to perfecting the art of haute couture.
+                </p>
+                <p class="about-text">
+                    Every stitch, every fabric selection, every design element is a testament to our unwavering commitment to excellence. We don't just create clothing—we craft wearable art that transcends time and trends.
+                </p>
+                <div class="about-values">
+                    <div class="value-item">
+                        <h4>Craftsmanship</h4>
+                        <p>Over 500 hours of meticulous handwork in every signature piece</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Exclusivity</h4>
+                        <p>Limited production ensuring each client owns something truly unique</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Heritage</h4>
+                        <p>Time-honored techniques passed down through generations</p>
+                    </div>
+                </div>
+                <button class="about-btn">
+                    <span>Discover Our Story</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="about-image-grid">
+                <div class="about-image main-image"></div>
+                <div class="about-image secondary-image-1"></div>
+                <div class="about-image secondary-image-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="parallax-section">
+        <div class="parallax-content">
+            <h2 class="parallax-title">Experience the Extraordinary</h2>
+            <p class="parallax-text">Where every thread tells a story of perfection</p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <div class="experience-header">
+            <span class="section-subtitle">Immersive Luxury</span>
+            <h2 class="section-title">The ÉLITE NOIR Experience</h2>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Private Consultation</h3>
+                <p class="experience-description">
+                    Begin your journey with a one-on-one consultation with our master stylists. Discuss your vision, preferences, and lifestyle to create a truly personalized experience.
+                </p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Bespoke Creation</h3>
+                <p class="experience-description">
+                    Watch as our artisans bring your vision to life. From fabric selection to the final stitch, every step is crafted with meticulous attention to detail.
+                </p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Perfect Fitting</h3>
+                <p class="experience-description">
+                    Multiple fittings ensure your garment drapes and fits perfectly. Our master tailors make micro-adjustments for absolute perfection.
+                </p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Lifetime Service</h3>
+                <p class="experience-description">
+                    Your relationship with ÉLITE NOIR extends beyond purchase. Enjoy complimentary alterations, cleaning, and care services for life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <div class="video-content">
+                <h2 class="video-title">Witness Mastery in Motion</h2>
+                <p class="video-description">Step inside our atelier and discover the artistry behind every piece</p>
+                <button class="video-play-btn" id="videoPlayBtn">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.2)"/>
+                        <path d="M25 20L40 30L25 40V20Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <span class="section-subtitle">Client Testimonials</span>
+            <h2 class="section-title">What Our Clients Say</h2>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-track">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "ÉLITE NOIR has completely transformed my wardrobe. The attention to detail and personalized service is unmatched. Every piece feels like it was made exclusively for me—because it was."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">Victoria Sterling</h4>
+                            <p class="author-title">CEO, Sterling Enterprises</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "As someone who attends high-profile events regularly, I need to make a statement. ÉLITE NOIR delivers every single time. The craftsmanship is simply extraordinary."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">Alexander Chen</h4>
+                            <p class="author-title">Film Producer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The bespoke experience at ÉLITE NOIR is worth every penny. From the initial consultation to the final fitting, I felt like royalty. The result? Perfection."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">Isabella Rodriguez</h4>
+                            <p class="author-title">Art Collector</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials-controls">
+                <button class="testimonial-btn prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="testimonial-btn next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boutiques Section -->
+    <section class="boutiques-section" id="boutiques">
+        <div class="section-header">
+            <span class="section-subtitle">Visit Us</span>
+            <h2 class="section-title">Our Boutiques Worldwide</h2>
+        </div>
+        <div class="boutiques-grid">
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="paris"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Paris</h3>
+                    <p class="boutique-address">15 Avenue Montaigne, 75008 Paris</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 8PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="milan"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Milan</h3>
+                    <p class="boutique-address">Via Montenapoleone 12, 20121 Milano</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 8PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="london"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">London</h3>
+                    <p class="boutique-address">173 New Bond Street, London W1S 4RQ</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 7PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="newyork"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">New York</h3>
+                    <p class="boutique-address">693 Fifth Avenue, New York, NY 10022</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 8PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="tokyo"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Tokyo</h3>
+                    <p class="boutique-address">5-7-5 Ginza, Chuo-ku, Tokyo 104-0061</p>
+                    <p class="boutique-hours">Mon-Sun: 11AM - 9PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="dubai"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Dubai</h3>
+                    <p class="boutique-address">Fashion Avenue, Dubai Mall, Dubai</p>
+                    <p class="boutique-hours">Mon-Sun: 10AM - 11PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Join the Elite Circle</h2>
+                <p class="newsletter-description">
+                    Be the first to discover new collections, exclusive events, and personalized style insights
+                </p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn">
+                        <span>Subscribe</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </form>
+                <p class="newsletter-note">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="contact-title">Let's Create Something Extraordinary</h2>
+                <p class="contact-description">
+                    Our concierge team is available 24/7 to assist you with appointments, inquiries, or bespoke requests.
+                </p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>concierge@elitenoir.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="10" r="3"></circle>
+                                <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Headquarters</h4>
+                            <p>15 Avenue Montaigne, 75008 Paris</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Select Service</option>
+                            <option value="consultation">Private Consultation</option>
+                            <option value="bespoke">Bespoke Order</option>
+                            <option value="appointment">Boutique Appointment</option>
+                            <option value="inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-submit-btn">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3 class="footer-logo">ÉLITE NOIR</h3>
+                    <p class="footer-tagline">Where luxury meets artistry</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Collections</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Spring/Summer 2024</a></li>
+                        <li><a href="#">Fall/Winter 2024</a></li>
+                        <li><a href="#">Signature Collection</a></li>
+                        <li><a href="#">Limited Editions</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Bespoke Tailoring</a></li>
+                        <li><a href="#">Private Consultation</a></li>
+                        <li><a href="#">Personal Styling</a></li>
+                        <li><a href="#">Alterations & Care</a></li>
+                        <li><a href="#">Gift Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Craftsmanship</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 ÉLITE NOIR. All rights reserved. Crafted with excellence.</p>
+                <div class="footer-payment">
+                    <span>Secure Payment:</span>
+                    <div class="payment-icons">
+                        <span class="payment-icon">VISA</span>
+                        <span class="payment-icon">MC</span>
+                        <span class="payment-icon">AMEX</span>
+                        <span class="payment-icon">PayPal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

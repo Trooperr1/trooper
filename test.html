@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - ÉLITE NOIR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div style="padding: 50px; text-align: center;">
+        <h1 class="section-title">CSS Test</h1>
+        <p style="color: var(--grey-text); margin: 20px 0;">If you see gold gradient text above, CSS is working!</p>
+
+        <button class="cta-primary" onclick="alert('JavaScript is working!')">
+            <span>Test JavaScript</span>
+        </button>
+
+        <div style="margin-top: 50px;">
+            <h2 style="color: var(--primary-gold);">Connection Status:</h2>
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        // Test if script.js functions work
+        document.getElementById('status').innerHTML = `
+            <p style="color: #4CAF50;">✓ HTML Loaded</p>
+            <p style="color: ${getComputedStyle(document.documentElement).getPropertyValue('--primary-gold') ? '#4CAF50' : '#f44336'}">
+                ${getComputedStyle(document.documentElement).getPropertyValue('--primary-gold') ? '✓' : '✗'} CSS Variables Loaded
+            </p>
+            <p style="color: #4CAF50;">✓ JavaScript Loaded</p>
+        `;
+    </script>
+</body>
+</html>
