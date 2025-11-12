@@ -22,30 +22,34 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: #333;
+            overflow-x: hidden;
         }
 
         [dir="rtl"] {
             font-family: 'Cairo', Tahoma, sans-serif;
         }
 
-        /* Hide all languages except active */
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
 
         /* Header */
         .header {
             background: var(--navy-blue);
             color: white;
-            padding: 1rem 5%;
+            padding: 1.2rem 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(26, 40, 69, 0.98);
+            backdrop-filter: blur(10px);
         }
 
         .header-container {
@@ -55,6 +59,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .logo {
@@ -63,17 +68,30 @@
             gap: 1rem;
             font-size: 1.5rem;
             font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: var(--jaff-orange);
-            border-radius: 8px;
+            background: linear-gradient(135deg, var(--jaff-orange), #ff9a3c);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(5deg);
+            box-shadow: 0 6px 20px rgba(245, 130, 32, 0.6);
         }
 
         .nav-links {
@@ -87,11 +105,29 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--jaff-orange);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--jaff-orange);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .lang-switcher {
@@ -100,22 +136,26 @@
         }
 
         .lang-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            background: rgba(255,255,255,0.2);
+            padding: 0.6rem 1.2rem;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
             color: white;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
         }
 
         .lang-btn.active {
             background: var(--jaff-orange);
-        }
-
-        .lang-btn:hover {
-            background: var(--jaff-orange);
+            border-color: var(--jaff-orange);
+            box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
         }
 
         /* Sections */
@@ -130,12 +170,32 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--navy-blue) 0%, #2a4365 100%);
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #2a4365 50%, #1a2845 100%);
             color: white;
-            padding: 6rem 5%;
+            padding: 8rem 5% 6rem;
             min-height: 90vh;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(245, 130, 32, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 154, 60, 0.08) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .hero-grid {
@@ -143,62 +203,112 @@
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .hero-badge {
             display: inline-block;
             background: rgba(245, 130, 32, 0.2);
             border: 2px solid var(--jaff-orange);
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 30px;
             color: var(--jaff-orange);
             font-weight: bold;
             margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-highlight {
             color: var(--jaff-orange);
+            -webkit-text-fill-color: var(--jaff-orange);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             color: #cbd5e0;
+            line-height: 1.8;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background: var(--jaff-orange);
+            background: linear-gradient(135deg, var(--jaff-orange), #ff9a3c);
             color: white;
+            box-shadow: 0 8px 25px rgba(245, 130, 32, 0.4);
         }
 
         .btn-primary:hover {
-            background: #d66e1a;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(245, 130, 32, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 130, 32, 0.6);
         }
 
         .btn-secondary {
@@ -210,6 +320,7 @@
         .btn-secondary:hover {
             background: white;
             color: var(--navy-blue);
+            transform: translateY(-3px);
         }
 
         .trust-indicators {
@@ -221,12 +332,23 @@
 
         .trust-item {
             text-align: center;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .trust-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
         }
 
         .trust-item h3 {
             color: var(--jaff-orange);
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            font-weight: 800;
         }
 
         .trust-item p {
@@ -237,18 +359,47 @@
         .hero-image {
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            animation: fadeInRight 1s ease;
+            position: relative;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(245, 130, 32, 0.2) 0%, transparent 100%);
+            z-index: 1;
         }
 
         .hero-image img {
             width: 100%;
             height: 500px;
             object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
         }
 
         /* Services Section */
         .services {
-            background: #f7fafc;
+            background: linear-gradient(to bottom, #f7fafc 0%, #ffffff 100%);
         }
 
         .section-title {
@@ -256,6 +407,7 @@
             font-size: 3rem;
             color: var(--navy-blue);
             margin-bottom: 1rem;
+            font-weight: 800;
         }
 
         .section-subtitle {
@@ -276,38 +428,66 @@
 
         .service-card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--jaff-orange), #ff9a3c);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(245, 130, 32, 0.2);
+            border-color: var(--jaff-orange);
         }
 
         .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(245, 130, 32, 0.1);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, rgba(245, 130, 32, 0.1), rgba(255, 154, 60, 0.2));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(360deg) scale(1.1);
+            background: linear-gradient(135deg, var(--jaff-orange), #ff9a3c);
         }
 
         .service-card h3 {
             color: var(--navy-blue);
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .service-card p {
             color: #718096;
             margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         .service-features {
@@ -315,10 +495,20 @@
         }
 
         .service-features li {
-            padding: 0.5rem 0;
+            padding: 0.6rem 0;
             color: #4a5568;
             display: flex;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-features li:hover {
+            color: var(--jaff-orange);
+            transform: translateX(5px);
+        }
+
+        [dir="rtl"] .service-features li:hover {
+            transform: translateX(-5px);
         }
 
         .service-features li:before {
@@ -327,46 +517,84 @@
             font-weight: bold;
             margin-right: 0.5rem;
             margin-left: 0.5rem;
+            font-size: 1.2rem;
         }
 
         /* Why Choose Us Section */
         .why-section {
-            background: var(--navy-blue);
+            background: linear-gradient(135deg, var(--navy-blue) 0%, #2a4365 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(245, 130, 32, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .why-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .why-card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--jaff-orange);
+            transform: translateY(-10px);
         }
 
         .why-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--jaff-orange);
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--jaff-orange), #ff9a3c);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(245, 130, 32, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover .why-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(245, 130, 32, 0.6);
         }
 
         .why-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .why-card p {
             color: #cbd5e0;
+            line-height: 1.7;
         }
 
         /* Testimonials */
@@ -382,9 +610,32 @@
 
         .testimonial-card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 8rem;
+            color: rgba(245, 130, 32, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        [dir="rtl"] .testimonial-card::before {
+            left: auto;
+            right: 30px;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(245, 130, 32, 0.15);
         }
 
         .rating {
@@ -397,6 +648,9 @@
             color: #4a5568;
             font-style: italic;
             margin-bottom: 1.5rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-author {
@@ -406,21 +660,23 @@
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--jaff-orange);
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--jaff-orange), #ff9a3c);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
         }
 
         .author-name {
             font-weight: bold;
             color: var(--navy-blue);
+            font-size: 1.1rem;
         }
 
         .author-role {
@@ -428,105 +684,37 @@
             color: #718096;
         }
 
-        /* Tracking Section */
-        .tracking-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            max-width: 800px;
-            margin: 2rem auto;
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--jaff-orange) 0%, #ff9a3c 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .tracking-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
         }
 
-        .tracking-input:focus {
-            outline: none;
-            border-color: var(--jaff-orange);
-        }
-
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: start;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(245, 130, 32, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--navy-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--jaff-orange);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         /* Footer */
         .footer {
             background: var(--navy-blue);
             color: white;
-            padding: 3rem 5%;
+            padding: 3rem 5% 1rem;
         }
 
         .footer-grid {
@@ -540,11 +728,13 @@
         .footer h3 {
             color: var(--jaff-orange);
             margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
         .footer p {
             color: #cbd5e0;
             margin-bottom: 1rem;
+            line-height: 1.7;
         }
 
         .footer ul {
@@ -552,17 +742,23 @@
         }
 
         .footer ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.7rem;
         }
 
         .footer a {
             color: #cbd5e0;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .footer a:hover {
             color: var(--jaff-orange);
+            padding-left: 5px;
+        }
+
+        [dir="rtl"] .footer a:hover {
+            padding-left: 0;
+            padding-right: 5px;
         }
 
         .footer-bottom {
@@ -579,18 +775,20 @@
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         .social-links a:hover {
             background: var(--jaff-orange);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(245, 130, 32, 0.4);
         }
 
         /* WhatsApp Button */
@@ -598,20 +796,21 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #20ba5a);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 2rem;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
             cursor: pointer;
             z-index: 999;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
+            animation: bounce 2s infinite;
         }
 
         [dir="rtl"] .whatsapp-float {
@@ -620,27 +819,23 @@
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, var(--jaff-orange) 0%, #d66e1a 100%);
-            color: white;
-            text-align: center;
+            transform: scale(1.15);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.7);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .hero-grid,
-            .contact-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
             }
 
+            .hero {
+                padding: 5rem 5% 4rem;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .section-title {
@@ -659,825 +854,279 @@
                 flex-direction: column;
             }
 
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
             .services-grid,
             .why-grid,
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
+
+            .section {
+                padding: 3rem 5%;
+            }
         }
 
-        /* Page visibility */
-        .page {
-            display: none;
+        /* Page fade animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease;
         }
 
-        .page.active {
-            display: block;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="header-container">
-            <div class="logo">
+            <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <div class="logo-icon">⚡</div>
-                <span class="lang-content active" data-lang="ku">جاف ئێکسپرێس</span>
-                <span class="lang-content" data-lang="ar">جاف إكسبريس</span>
-                <span class="lang-content" data-lang="en">JAFF EXPRESS</span>
+                <span id="logoText">جاف ئێکسپرێس</span>
             </div>
 
             <nav class="nav-links">
-                <a href="#" onclick="showPage('home')">
-                    <span class="lang-content active" data-lang="ku">سەرەتا</span>
-                    <span class="lang-content" data-lang="ar">الرئيسية</span>
-                    <span class="lang-content" data-lang="en">Home</span>
+                <a href="#home" onclick="scrollToSection('hero')">
+                    <span id="navHome">سەرەتا</span>
                 </a>
-                <a href="#" onclick="showPage('services')">
-                    <span class="lang-content active" data-lang="ku">خزمەتگوزارییەکان</span>
-                    <span class="lang-content" data-lang="ar">الخدمات</span>
-                    <span class="lang-content" data-lang="en">Services</span>
+                <a href="#services" onclick="scrollToSection('services')">
+                    <span id="navServices">خزمەتگوزارییەکان</span>
                 </a>
-                <a href="#" onclick="showPage('tracking')">
-                    <span class="lang-content active" data-lang="ku">شوێنکەوتن</span>
-                    <span class="lang-content" data-lang="ar">التتبع</span>
-                    <span class="lang-content" data-lang="en">Tracking</span>
+                <a href="#tracking" onclick="scrollToSection('tracking')">
+                    <span id="navTracking">شوێنکەوتن</span>
                 </a>
-                <a href="#" onclick="showPage('contact')">
-                    <span class="lang-content active" data-lang="ku">پەیوەندی</span>
-                    <span class="lang-content" data-lang="ar">اتصل بنا</span>
-                    <span class="lang-content" data-lang="en">Contact</span>
+                <a href="#contact" onclick="scrollToSection('contact')">
+                    <span id="navContact">پەیوەندی</span>
                 </a>
             </nav>
 
             <div class="lang-switcher">
-                <button class="lang-btn active" onclick="changeLanguage('ku')">کوردی</button>
-                <button class="lang-btn" onclick="changeLanguage('ar')">عربي</button>
-                <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+                <button class="lang-btn active" onclick="changeLanguage('ku')" id="btnKu">کوردی</button>
+                <button class="lang-btn" onclick="changeLanguage('ar')" id="btnAr">عربي</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">English</button>
             </div>
         </div>
     </header>
 
-    <!-- Home Page -->
-    <div id="home" class="page active">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div>
-                        <!-- Kurdish -->
-                        <div class="lang-content active" data-lang="ku">
-                            <div class="hero-badge">خزمەتگوزاری گەیاندنی پێویست</div>
-                            <h1>گەیاندنی خێرا و متمانەپێکراو<br><span class="hero-highlight">لە چین بۆ عێراق</span></h1>
-                            <p>جاف ئێکسپرێس متمانەپێکراوترین کۆمپانیای گەیاندنە لە نێوان چین و عێراقدا. بە بنکەیەکی بەهێز لە کوردستان، ئێمە خزمەتگوزاریی کۆمپلیت و خێرای گەیاندن پێشکەش دەکەین.</p>
-                            <div class="hero-buttons">
-                                <a href="#" onclick="showPage('contact')" class="btn btn-primary">داواکردنی نرخ</a>
-                                <a href="#" onclick="showPage('tracking')" class="btn btn-secondary">شوێنکەوتنی بارنامە</a>
-                            </div>
-                            <div class="trust-indicators">
-                                <div class="trust-item">
-                                    <h3>+۱۰ ساڵ</h3>
-                                    <p>ساڵانی ئەزموون</p>
-                                </div>
-                                <div class="trust-item">
-                                    <h3>+۵۰،۰۰۰</h3>
-                                    <p>گەیاندنی سەرکەوتوو</p>
-                                </div>
-                                <div class="trust-item">
-                                    <h3>٪۹۸</h3>
-                                    <p>ڕەزامەندی کڕیار</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Arabic -->
-                        <div class="lang-content" data-lang="ar">
-                            <div class="hero-badge">خدمات الشحن الموثوقة</div>
-                            <h1>شحن سريع وموثوق<br><span class="hero-highlight">من الصين إلى العراق</span></h1>
-                            <p>جاف إكسبريس هي الشركة الأكثر موثوقية للشحن بين الصين والعراق. مع قاعدة قوية في كردستان، نقدم خدمات شحن سريعة وشاملة.</p>
-                            <div class="hero-buttons">
-                                <a href="#" onclick="showPage('contact')" class="btn btn-primary">طلب عرض سعر</a>
-                                <a href="#" onclick="showPage('tracking')" class="btn btn-secondary">تتبع الشحنة</a>
-                            </div>
-                            <div class="trust-indicators">
-                                <div class="trust-item">
-                                    <h3>+١٠ سنوات</h3>
-                                    <p>سنوات من الخبرة</p>
-                                </div>
-                                <div class="trust-item">
-                                    <h3>+٥٠٬٠٠٠</h3>
-                                    <p>عمليات تسليم ناجحة</p>
-                                </div>
-                                <div class="trust-item">
-                                    <h3>٩٨٪</h3>
-                                    <p>رضا العملاء</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- English -->
-                        <div class="lang-content" data-lang="en">
-                            <div class="hero-badge">Reliable Shipping Services</div>
-                            <h1>Fast & Reliable Shipping<br><span class="hero-highlight">From China to Iraq</span></h1>
-                            <p>JAFF EXPRESS is your most trusted shipping partner between China and Iraq. With a strong base in Kurdistan, we deliver comprehensive and fast shipping services that you can rely on.</p>
-                            <div class="hero-buttons">
-                                <a href="#" onclick="showPage('contact')" class="btn btn-primary">Get A Quote</a>
-                                <a href="#" onclick="showPage('tracking')" class="btn btn-secondary">Track Shipment</a>
-                            </div>
-                            <div class="trust-indicators">
-                                <div class="trust-item">
-                                    <h3>10+ Years</h3>
-                                    <p>Years of Experience</p>
-                                </div>
-                                <div class="trust-item">
-                                    <h3>50,000+</h3>
-                                    <p>Successful Deliveries</p>
-                                </div>
-                                <div class="trust-item">
-                                    <h3>98%</h3>
-                                    <p>Customer Satisfaction</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop" alt="Shipping">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section class="section services">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">خزمەتگوزارییەکانمان</h2>
-                    <p class="section-subtitle">چارەسەری تەواوی گەیاندن لە چین بۆ عێراق</p>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">✈️</div>
-                            <h3>بارهەڵگری ئاسمانی</h3>
-                            <p>گەیاندنی خێرا بە فڕۆکە بۆ بارە پەلە و کاتەکان</p>
-                            <ul class="service-features">
-                                <li>گەیاندن لە ماوەی ٣-٥ ڕۆژدا</li>
-                                <li>شوێنکەوتنی ڕاستەوخۆ</li>
-                                <li>پارێزراوی و متمانەپێکراو</li>
-                                <li>نرخی کێبڕکێیانە</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">🚢</div>
-                            <h3>بارهەڵگری دەریایی</h3>
-                            <p>چارەسەری گونجاو بۆ بارە گەورەکان</p>
-                            <ul class="service-features">
-                                <li>نرخی نزمترین</li>
-                                <li>توانای بارگرتنی زۆر</li>
-                                <li>کۆنتەینەری تەواو و بەشکی</li>
-                                <li>خزمەتگوزاری پێویست</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">📋</div>
-                            <h3>پاککردنەوەی کاستم</h3>
-                            <p>کارپێکردنی کاستم بەبێ کێشە</p>
-                            <ul class="service-features">
-                                <li>شارەزایی لە یاساکان</li>
-                                <li>پڕۆسەی خێرا</li>
-                                <li>کاری بەڵگەنامە</li>
-                                <li>وەرگێڕانی فەرمی</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">🚚</div>
-                            <h3>دەرگا بۆ دەرگا</h3>
-                            <p>گەیاندنی تەواو لە چین بۆ ماڵەکەت</p>
-                            <ul class="service-features">
-                                <li>هەڵگرتنی بار لە چین</li>
-                                <li>هەموو گەیاندنەکان</li>
-                                <li>گەیاندن بۆ ماڵ</li>
-                                <li>شوێنکەوتنی بەردەوام</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">خدماتنا</h2>
-                    <p class="section-subtitle">حلول شحن شاملة من الصين إلى العراق</p>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">✈️</div>
-                            <h3>الشحن الجوي</h3>
-                            <p>شحن سريع بالطائرة للبضائع العاجلة والحساسة للوقت</p>
-                            <ul class="service-features">
-                                <li>التسليم في 3-5 أيام</li>
-                                <li>التتبع الفوري</li>
-                                <li>آمن وموثوق</li>
-                                <li>أسعار تنافسية</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">🚢</div>
-                            <h3>الشحن البحري</h3>
-                            <p>حل فعال من حيث التكلفة للشحنات الكبيرة الحجم</p>
-                            <ul class="service-features">
-                                <li>أقل الأسعار</li>
-                                <li>سعة حمولة كبيرة</li>
-                                <li>حاويات كاملة وجزئية</li>
-                                <li>خدمة موثوقة</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">📋</div>
-                            <h3>التخليص الجمركي</h3>
-                            <p>معالجة جمركية سلسة وخالية من المتاعب</p>
-                            <ul class="service-features">
-                                <li>خبرة في التنظيمات</li>
-                                <li>معالجة سريعة</li>
-                                <li>عمل المستندات</li>
-                                <li>الترجمة الرسمية</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">🚚</div>
-                            <h3>من الباب للباب</h3>
-                            <p>خدمة شحن كاملة من الصين إلى عتبة داركم</p>
-                            <ul class="service-features">
-                                <li>استلام البضائع من الصين</li>
-                                <li>جميع عمليات النقل</li>
-                                <li>التوصيل للمنزل</li>
-                                <li>تتبع مستمر</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">Our Services</h2>
-                    <p class="section-subtitle">Comprehensive shipping solutions from China to Iraq</p>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">✈️</div>
-                            <h3>Air Freight</h3>
-                            <p>Fast air shipping for urgent and time-sensitive cargo</p>
-                            <ul class="service-features">
-                                <li>Delivery in 3-5 days</li>
-                                <li>Real-time tracking</li>
-                                <li>Secure and reliable</li>
-                                <li>Competitive pricing</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">🚢</div>
-                            <h3>Sea Freight</h3>
-                            <p>Cost-effective solution for large volume shipments</p>
-                            <ul class="service-features">
-                                <li>Lowest rates</li>
-                                <li>High capacity</li>
-                                <li>Full & partial containers</li>
-                                <li>Reliable service</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">📋</div>
-                            <h3>Customs Clearance</h3>
-                            <p>Smooth and hassle-free customs processing</p>
-                            <ul class="service-features">
-                                <li>Expert in regulations</li>
-                                <li>Fast processing</li>
-                                <li>Documentation work</li>
-                                <li>Official translation</li>
-                            </ul>
-                        </div>
-                        <div class="service-card">
-                            <div class="service-icon">🚚</div>
-                            <h3>Door to Door</h3>
-                            <p>Complete shipping service from China to your doorstep</p>
-                            <ul class="service-features">
-                                <li>Pickup from China</li>
-                                <li>All transportation</li>
-                                <li>Home delivery</li>
-                                <li>Continuous tracking</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Choose Us -->
-        <section class="section why-section">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">بۆچی جاف ئێکسپرێس</h2>
-                    <p class="section-subtitle">هاوبەشی متمانەپێکراوت بۆ هاوردەکانی چین</p>
-                    <div class="why-grid">
-                        <div class="why-card">
-                            <div class="why-icon">⚡</div>
-                            <h3>گەیاندنی خێرا</h3>
-                            <p>ئێمە کاتەکانی گەیاندن لە پیشەسازیدا گونجاوترین دەکەین</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">✓</div>
-                            <h3>متمانەپێکراوی</h3>
-                            <p>هەزاران جار گەیاندنی سەرکەوتوو بە بەڵگەنامەی شوێنکەوتن</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">📍</div>
-                            <h3>بنکە لە کوردستان</h3>
-                            <p>بنکەی ناوخۆیمان خزمەتگوزاری خێراتر و باشتر دڵنیا دەکات</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">📋</div>
-                            <h3>شارەزایی کاستم</h3>
-                            <p>تێگەیشتنی قووڵ لە ڕێنماییەکانی کاستمی عێراق</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">💰</div>
-                            <h3>نرخی کێبڕکێیانە</h3>
-                            <p>نرخی دادپەروەرانە و ڕوون بەبێ تێچووی شاراوە</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">🎧</div>
-                            <h3>پشتگیری ٢٤/٧</h3>
-                            <p>تیمی یارمەتیدەرمان هەمیشە ئامادەیە بۆ یارمەتیدانت</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">لماذا جاف إكسبريس</h2>
-                    <p class="section-subtitle">شريكك الموثوق لواردات الصين</p>
-                    <div class="why-grid">
-                        <div class="why-card">
-                            <div class="why-icon">⚡</div>
-                            <h3>شحن سريع</h3>
-                            <p>نحقق أسرع أوقات التسليم في الصناعة</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">✓</div>
-                            <h3>موثوقية</h3>
-                            <p>آلاف عمليات التسليم الناجحة بسجل تتبع مثبت</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">📍</div>
-                            <h3>قاعدة في كردستان</h3>
-                            <p>قاعدتنا المحلية تضمن خدمة أسرع وأفضل</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">📋</div>
-                            <h3>خبرة جمركية</h3>
-                            <p>فهم عميق للوائح الجمارك العراقية</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">💰</div>
-                            <h3>أسعار تنافسية</h3>
-                            <p>أسعار عادلة وشفافة بدون رسوم مخفية</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">🎧</div>
-                            <h3>دعم 24/7</h3>
-                            <p>فريق الدعم لدينا متاح دائمًا لمساعدتك</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">Why JAFF EXPRESS</h2>
-                    <p class="section-subtitle">Your trusted partner for China imports</p>
-                    <div class="why-grid">
-                        <div class="why-card">
-                            <div class="why-icon">⚡</div>
-                            <h3>Fast Shipping</h3>
-                            <p>We achieve the fastest delivery times in the industry</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">✓</div>
-                            <h3>Reliability</h3>
-                            <p>Thousands of successful deliveries with proven track record</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">📍</div>
-                            <h3>Kurdistan Base</h3>
-                            <p>Our local base ensures faster and better service</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">📋</div>
-                            <h3>Customs Expertise</h3>
-                            <p>Deep understanding of Iraqi customs regulations</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">💰</div>
-                            <h3>Competitive Pricing</h3>
-                            <p>Fair and transparent pricing with no hidden fees</p>
-                        </div>
-                        <div class="why-card">
-                            <div class="why-icon">🎧</div>
-                            <h3>24/7 Support</h3>
-                            <p>Our support team is always available to help you</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="section testimonials">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">کڕیارەکانمان چی دەڵێن</h2>
-                    <p class="section-subtitle">بەشداریکردنەکانی کەسانێک کە جاف ئێکسپرێسیان باوەڕپێکردووە</p>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"جاف ئێکسپرێس زۆر متمانەپێکراوە بۆ هاوردەکانی چینمان. گەیاندنی خێرا و خزمەتگوزاریی نایاب!"</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">AH</div>
-                                <div>
-                                    <div class="author-name">ئەحمەد حوسێن</div>
-                                    <div class="author-role">خاوەنی بازرگانی</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"باشترین کۆمپانیای گەیاندن بۆ ڕێگای چین-عێراق. بنکەیان لە کوردستان هەموو شتێک خێراتر دەکات."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">SM</div>
-                                <div>
-                                    <div class="author-name">سارا محەمەد</div>
-                                    <div class="author-role">فرۆشیاری ئۆنلاین</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"خزمەتگوزاریی پاککردنەوەی کاستمی پرۆفیشناڵ. هەموو شتێک بە نەرمی جێبەجێ دەکەن و بەردەوام زانیاریم پێدەدەن."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">OA</div>
-                                <div>
-                                    <div class="author-name">عومەر عەلی</div>
-                                    <div class="author-role">هاوردەکار</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">ماذا يقول عملاؤنا</h2>
-                    <p class="section-subtitle">قصص من الأشخاص الذين وثقوا بجاف إكسبريس</p>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"جاف إكسبريس موثوق بشكل لا يصدق لواردات الصين لدينا. تسليم سريع وخدمة عملاء ممتازة!"</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">AH</div>
-                                <div>
-                                    <div class="author-name">أحمد حسين</div>
-                                    <div class="author-role">صاحب عمل</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"أفضل شركة شحن لطريق الصين-العراق. قاعدتهم في كردستان تجعل كل شيء أسرع بكثير."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">SM</div>
-                                <div>
-                                    <div class="author-name">سارة محمد</div>
-                                    <div class="author-role">بائع تجزئة عبر الإنترنت</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"خدمة التخليص الجمركي المهنية. يتعاملون مع كل شيء بسلاسة ويبقونني على اطلاع طوال الوقت."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">OA</div>
-                                <div>
-                                    <div class="author-name">عمر علي</div>
-                                    <div class="author-role">مستورد</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">What Our Clients Say</h2>
-                    <p class="section-subtitle">Stories from people who trusted JAFF EXPRESS</p>
-                    <div class="testimonials-grid">
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"JAFF EXPRESS has been incredibly reliable for our China imports. Fast delivery and excellent customer service!"</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">AH</div>
-                                <div>
-                                    <div class="author-name">Ahmed Hussein</div>
-                                    <div class="author-role">Business Owner</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"The best shipping company for China-Iraq route. Their Kurdistan base makes everything much faster."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">SM</div>
-                                <div>
-                                    <div class="author-name">Sara Mohammed</div>
-                                    <div class="author-role">Online Retailer</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="rating">⭐⭐⭐⭐⭐</div>
-                            <p class="testimonial-text">"Professional customs clearance service. They handle everything smoothly and keep me updated throughout."</p>
-                            <div class="testimonial-author">
-                                <div class="author-avatar">OA</div>
-                                <div>
-                                    <div class="author-name">Omar Ali</div>
-                                    <div class="author-role">Importer</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="section cta-section">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">ئامادەیت بۆ گەیاندن لەگەڵ جاف ئێکسپرێس؟</h2>
-                    <p class="section-subtitle">ئەمڕۆ دەست پێبکە و ئەزموونی پێویستترین خزمەتگوزاریی گەیاندن لە چین بۆ عێراق بکە</p>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge" id="heroBadge">خزمەتگوزاری گەیاندنی پێویست</div>
+                    <h1>
+                        <span id="heroTitle1">گەیاندنی خێرا و متمانەپێکراو</span><br>
+                        <span class="hero-highlight" id="heroTitle2">لە چین بۆ عێراق</span>
+                    </h1>
+                    <p id="heroDesc">جاف ئێکسپرێس متمانەپێکراوترین کۆمپانیای گەیاندنە لە نێوان چین و عێراقدا. بە بنکەیەکی بەهێز لە کوردستان، ئێمە خزمەتگوزاریی کۆمپلیت و خێرای گەیاندن پێشکەش دەکەین.</p>
                     <div class="hero-buttons">
-                        <a href="#" onclick="showPage('contact')" class="btn btn-primary">داواکردنی نرخی خۆڕایی</a>
-                        <a href="#" onclick="showPage('contact')" class="btn btn-secondary">پەیوەندیمان پێوە بکە</a>
+                        <a href="#contact" onclick="scrollToSection('contact')" class="btn btn-primary">
+                            <span id="btnQuote">داواکردنی نرخ</span>
+                        </a>
+                        <a href="#tracking" onclick="scrollToSection('tracking')" class="btn btn-secondary">
+                            <span id="btnTrack">شوێنکەوتنی بارنامە</span>
+                        </a>
+                    </div>
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <h3 id="trustYears">+۱۰ ساڵ</h3>
+                            <p id="trustYearsLabel">ساڵانی ئەزموون</p>
+                        </div>
+                        <div class="trust-item">
+                            <h3 id="trustDeliveries">+۵۰،۰۰۰</h3>
+                            <p id="trustDeliveriesLabel">گەیاندنی سەرکەوتوو</p>
+                        </div>
+                        <div class="trust-item">
+                            <h3 id="trustSatisfaction">٪۹۸</h3>
+                            <p id="trustSatisfactionLabel">ڕەزامەندی کڕیار</p>
+                        </div>
                     </div>
                 </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800&h=600&fit=crop" alt="Shipping">
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">هل أنت مستعد للشحن مع جاف إكسبريس؟</h2>
-                    <p class="section-subtitle">ابدأ اليوم واختبر خدمة الشحن الأكثر موثوقية من الصين إلى العراق</p>
-                    <div class="hero-buttons">
-                        <a href="#" onclick="showPage('contact')" class="btn btn-primary">احصل على عرض سعر مجاني</a>
-                        <a href="#" onclick="showPage('contact')" class="btn btn-secondary">اتصل بنا</a>
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title" id="servicesTitle">خزمەتگوزارییەکانمان</h2>
+            <p class="section-subtitle" id="servicesSubtitle">چارەسەری تەواوی گەیاندن لە چین بۆ عێراق</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3 id="service1Title">بارهەڵگری ئاسمانی</h3>
+                    <p id="service1Desc">گەیاندنی خێرا بە فڕۆکە بۆ بارە پەلە و کاتەکان</p>
+                    <ul class="service-features">
+                        <li id="service1Feature1">گەیاندن لە ماوەی ٣-٥ ڕۆژدا</li>
+                        <li id="service1Feature2">شوێنکەوتنی ڕاستەوخۆ</li>
+                        <li id="service1Feature3">پارێزراوی و متمانەپێکراو</li>
+                        <li id="service1Feature4">نرخی کێبڕکێیانە</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚢</div>
+                    <h3 id="service2Title">بارهەڵگری دەریایی</h3>
+                    <p id="service2Desc">چارەسەری گونجاو بۆ بارە گەورەکان</p>
+                    <ul class="service-features">
+                        <li id="service2Feature1">نرخی نزمترین</li>
+                        <li id="service2Feature2">توانای بارگرتنی زۆر</li>
+                        <li id="service2Feature3">کۆنتەینەری تەواو و بەشکی</li>
+                        <li id="service2Feature4">خزمەتگوزاری پێویست</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3 id="service3Title">پاککردنەوەی کاستم</h3>
+                    <p id="service3Desc">کارپێکردنی کاستم بەبێ کێشە</p>
+                    <ul class="service-features">
+                        <li id="service3Feature1">شارەزایی لە یاساکان</li>
+                        <li id="service3Feature2">پڕۆسەی خێرا</li>
+                        <li id="service3Feature3">کاری بەڵگەنامە</li>
+                        <li id="service3Feature4">وەرگێڕانی فەرمی</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚚</div>
+                    <h3 id="service4Title">دەرگا بۆ دەرگا</h3>
+                    <p id="service4Desc">گەیاندنی تەواو لە چین بۆ ماڵەکەت</p>
+                    <ul class="service-features">
+                        <li id="service4Feature1">هەڵگرتنی بار لە چین</li>
+                        <li id="service4Feature2">هەموو گەیاندنەکان</li>
+                        <li id="service4Feature3">گەیاندن بۆ ماڵ</li>
+                        <li id="service4Feature4">شوێنکەوتنی بەردەوام</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why-section">
+        <div class="container">
+            <h2 class="section-title" id="whyTitle">بۆچی جاف ئێکسپرێس</h2>
+            <p class="section-subtitle" id="whySubtitle">هاوبەشی متمانەپێکراوت بۆ هاوردەکانی چین</p>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">⚡</div>
+                    <h3 id="why1Title">گەیاندنی خێرا</h3>
+                    <p id="why1Desc">ئێمە کاتەکانی گەیاندن لە پیشەسازیدا گونجاوترین دەکەین</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">✓</div>
+                    <h3 id="why2Title">متمانەپێکراوی</h3>
+                    <p id="why2Desc">هەزاران جار گەیاندنی سەرکەوتوو بە بەڵگەنامەی شوێنکەوتن</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">📍</div>
+                    <h3 id="why3Title">بنکە لە کوردستان</h3>
+                    <p id="why3Desc">بنکەی ناوخۆیمان خزمەتگوزاری خێراتر و باشتر دڵنیا دەکات</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">📋</div>
+                    <h3 id="why4Title">شارەزایی کاستم</h3>
+                    <p id="why4Desc">تێگەیشتنی قووڵ لە ڕێنماییەکانی کاستمی عێراق</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">💰</div>
+                    <h3 id="why5Title">نرخی کێبڕکێیانە</h3>
+                    <p id="why5Desc">نرخی دادپەروەرانە و ڕوون بەبێ تێچووی شاراوە</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🎧</div>
+                    <h3 id="why6Title">پشتگیری ٢٤/٧</h3>
+                    <p id="why6Desc">تیمی یارمەتیدەرمان هەمیشە ئامادەیە بۆ یارمەتیدانت</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials" id="tracking">
+        <div class="container">
+            <h2 class="section-title" id="testimonialsTitle">کڕیارەکانمان چی دەڵێن</h2>
+            <p class="section-subtitle" id="testimonialsSubtitle">بەشداریکردنەکانی کەسانێک کە جاف ئێکسپرێسیان باوەڕپێکردووە</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text" id="testimonial1">"جاف ئێکسپرێس زۆر متمانەپێکراوە بۆ هاوردەکانی چینمان. گەیاندنی خێرا و خزمەتگوزاریی نایاب!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AH</div>
+                        <div>
+                            <div class="author-name" id="author1Name">ئەحمەد حوسێن</div>
+                            <div class="author-role" id="author1Role">خاوەنی بازرگانی</div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">Ready to Ship with JAFF EXPRESS?</h2>
-                    <p class="section-subtitle">Get started today and experience the most reliable shipping service from China to Iraq</p>
-                    <div class="hero-buttons">
-                        <a href="#" onclick="showPage('contact')" class="btn btn-primary">Get A Free Quote</a>
-                        <a href="#" onclick="showPage('contact')" class="btn btn-secondary">Contact Us</a>
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text" id="testimonial2">"باشترین کۆمپانیای گەیاندن بۆ ڕێگای چین-عێراق. بنکەیان لە کوردستان هەموو شتێک خێراتر دەکات."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div>
+                            <div class="author-name" id="author2Name">سارا محەمەد</div>
+                            <div class="author-role" id="author2Role">فرۆشیاری ئۆنلاین</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text" id="testimonial3">"خزمەتگوزاریی پاککردنەوەی کاستمی پرۆفیشناڵ. هەموو شتێک بە نەرمی جێبەجێ دەکەن و بەردەوام زانیاریم پێدەدەن."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">OA</div>
+                        <div>
+                            <div class="author-name" id="author3Name">عومەر عەلی</div>
+                            <div class="author-role" id="author3Role">هاوردەکار</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <!-- Services Page -->
-    <div id="services" class="page">
-        <section class="section">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">خزمەتگوزارییەکانمان</h2>
-                    <p class="section-subtitle">چارەسەری تەواوی گەیاندن لە چین بۆ عێراق بە نرخی گونجاو</p>
-                </div>
-
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">خدماتنا</h2>
-                    <p class="section-subtitle">حلول شحن شاملة من الصين إلى العراق بأسعار تنافسية</p>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">Our Services</h2>
-                    <p class="section-subtitle">Comprehensive shipping solutions from China to Iraq at competitive prices</p>
-                </div>
-
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" onclick="showPage('home')" class="btn btn-primary">
-                        <span class="lang-content active" data-lang="ku">گەڕانەوە بۆ سەرەتا</span>
-                        <span class="lang-content" data-lang="ar">العودة إلى الرئيسية</span>
-                        <span class="lang-content" data-lang="en">Back to Home</span>
-                    </a>
-                </div>
+    <!-- CTA Section -->
+    <section class="section cta-section" id="contact">
+        <div class="container">
+            <h2 class="section-title" id="ctaTitle">ئامادەیت بۆ گەیاندن لەگەڵ جاف ئێکسپرێس؟</h2>
+            <p class="section-subtitle" id="ctaSubtitle">ئەمڕۆ دەست پێبکە و ئەزموونی پێویستترین خزمەتگوزاریی گەیاندن لە چین بۆ عێراق بکە</p>
+            <div class="hero-buttons" style="justify-content: center;">
+                <a href="https://wa.me/9647501234567" target="_blank" class="btn btn-primary">
+                    <span id="ctaBtn1">داواکردنی نرخی خۆڕایی</span>
+                </a>
+                <a href="tel:+9647501234567" class="btn btn-secondary">
+                    <span id="ctaBtn2">پەیوەندی تەلەفۆنی</span>
+                </a>
             </div>
-        </section>
-    </div>
-
-    <!-- Tracking Page -->
-    <div id="tracking" class="page">
-        <section class="section">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">شوێنکەوتنی بارنامە</h2>
-                    <p class="section-subtitle">ژمارەی شوێنکەوتنەکەت بنووسە بۆ بینینی دۆخی بارەکەت</p>
-                </div>
-
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">تتبع الشحنة</h2>
-                    <p class="section-subtitle">أدخل رقم التتبع الخاص بك لرؤية حالة شحنتك</p>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">Track Your Shipment</h2>
-                    <p class="section-subtitle">Enter your tracking number to see your shipment status</p>
-                </div>
-
-                <div class="tracking-form">
-                    <input type="text" class="tracking-input" placeholder="JE123456789" id="trackingInput">
-                    <button class="btn btn-primary" style="width: 100%;" onclick="trackShipment()">
-                        <span class="lang-content active" data-lang="ku">شوێنکەوتن</span>
-                        <span class="lang-content" data-lang="ar">تتبع</span>
-                        <span class="lang-content" data-lang="en">Track</span>
-                    </button>
-                    <div id="trackingResult" style="margin-top: 2rem;"></div>
-                </div>
-
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" onclick="showPage('home')" class="btn btn-secondary">
-                        <span class="lang-content active" data-lang="ku">گەڕانەوە بۆ سەرەتا</span>
-                        <span class="lang-content" data-lang="ar">العودة إلى الرئيسية</span>
-                        <span class="lang-content" data-lang="en">Back to Home</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Contact Page -->
-    <div id="contact" class="page">
-        <section class="section">
-            <div class="container">
-                <!-- Kurdish -->
-                <div class="lang-content active" data-lang="ku">
-                    <h2 class="section-title">پەیوەندیمان پێوە بکە</h2>
-                    <p class="section-subtitle">ئامادەین بۆ یارمەتیدانت لەگەڵ پێداویستییەکانی گەیاندنت</p>
-                </div>
-
-                <!-- Arabic -->
-                <div class="lang-content" data-lang="ar">
-                    <h2 class="section-title">اتصل بنا</h2>
-                    <p class="section-subtitle">نحن مستعدون لمساعدتك في احتياجات الشحن الخاصة بك</p>
-                </div>
-
-                <!-- English -->
-                <div class="lang-content" data-lang="en">
-                    <h2 class="section-title">Contact Us</h2>
-                    <p class="section-subtitle">We're ready to help you with your shipping needs</p>
-                </div>
-
-                <div class="contact-grid">
-                    <div>
-                        <div class="contact-card">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <h3>
-                                    <span class="lang-content active" data-lang="ku">نووسینگەی سەرەکی</span>
-                                    <span class="lang-content" data-lang="ar">المكتب الرئيسي</span>
-                                    <span class="lang-content" data-lang="en">Main Office</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="ku">کوردستان، عێراق</span>
-                                    <span class="lang-content" data-lang="ar">كردستان، العراق</span>
-                                    <span class="lang-content" data-lang="en">Kurdistan, Iraq</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="contact-card">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <h3>
-                                    <span class="lang-content active" data-lang="ku">نووسینگەی چین</span>
-                                    <span class="lang-content" data-lang="ar">مكتب الصين</span>
-                                    <span class="lang-content" data-lang="en">China Office</span>
-                                </h3>
-                                <p>
-                                    <span class="lang-content active" data-lang="ku">گوانگژو، چین</span>
-                                    <span class="lang-content" data-lang="ar">قوانغتشو، الصين</span>
-                                    <span class="lang-content" data-lang="en">Guangzhou, China</span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="contact-card">
-                            <div class="contact-icon">📞</div>
-                            <div>
-                                <h3>
-                                    <span class="lang-content active" data-lang="ku">تەلەفۆن</span>
-                                    <span class="lang-content" data-lang="ar">الهاتف</span>
-                                    <span class="lang-content" data-lang="en">Phone</span>
-                                </h3>
-                                <p><a href="tel:+9647501234567">+964 750 123 4567</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-card" style="background: #e8f5e9; border: 2px solid #4caf50;">
-                            <div class="contact-icon" style="background: #4caf50; color: white;">💬</div>
-                            <div>
-                                <h3 style="color: #2e7d32;">
-                                    <span class="lang-content active" data-lang="ku">واتساپ</span>
-                                    <span class="lang-content" data-lang="ar">واتساب</span>
-                                    <span class="lang-content" data-lang="en">WhatsApp</span>
-                                </h3>
-                                <p><a href="https://wa.me/9647501234567" style="color: #2e7d32; font-weight: bold;">+964 750 123 4567</a></p>
-                            </div>
-                        </div>
-
-                        <div class="contact-card">
-                            <div class="contact-icon">✉️</div>
-                            <div>
-                                <h3>
-                                    <span class="lang-content active" data-lang="ku">ئیمەیڵ</span>
-                                    <span class="lang-content" data-lang="ar">البريد الإلكتروني</span>
-                                    <span class="lang-content" data-lang="en">Email</span>
-                                </h3>
-                                <p><a href="mailto:info@jaffexpress.com">info@jaffexpress.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-form">
-                        <h3 style="color: var(--navy-blue); margin-bottom: 1.5rem;">
-                            <span class="lang-content active" data-lang="ku">نامەیەکمان بۆ بنێرە</span>
-                            <span class="lang-content" data-lang="ar">أرسل لنا رسالة</span>
-                            <span class="lang-content" data-lang="en">Send Us A Message</span>
-                        </h3>
-                        <form onsubmit="submitContact(event)">
-                            <div class="form-group">
-                                <label>
-                                    <span class="lang-content active" data-lang="ku">ناوت</span>
-                                    <span class="lang-content" data-lang="ar">اسمك</span>
-                                    <span class="lang-content" data-lang="en">Your Name</span>
-                                </label>
-                                <input type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    <span class="lang-content active" data-lang="ku">ئیمەیڵت</span>
-                                    <span class="lang-content" data-lang="ar">بريدك الإلكتروني</span>
-                                    <span class="lang-content" data-lang="en">Your Email</span>
-                                </label>
-                                <input type="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    <span class="lang-content active" data-lang="ku">بابەت</span>
-                                    <span class="lang-content" data-lang="ar">الموضوع</span>
-                                    <span class="lang-content" data-lang="en">Subject</span>
-                                </label>
-                                <input type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    <span class="lang-content active" data-lang="ku">نامە</span>
-                                    <span class="lang-content" data-lang="ar">الرسالة</span>
-                                    <span class="lang-content" data-lang="en">Message</span>
-                                </label>
-                                <textarea required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
-                                <span class="lang-content active" data-lang="ku">ناردنی نامە</span>
-                                <span class="lang-content" data-lang="ar">إرسال الرسالة</span>
-                                <span class="lang-content" data-lang="en">Send Message</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin-top: 3rem;">
-                    <a href="#" onclick="showPage('home')" class="btn btn-secondary">
-                        <span class="lang-content active" data-lang="ku">گەڕانەوە بۆ سەرەتا</span>
-                        <span class="lang-content" data-lang="ar">العودة إلى الرئيسية</span>
-                        <span class="lang-content" data-lang="en">Back to Home</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1485,85 +1134,304 @@
             <div>
                 <div class="logo" style="margin-bottom: 1rem;">
                     <div class="logo-icon">⚡</div>
-                    <span class="lang-content active" data-lang="ku">جاف ئێکسپرێس</span>
-                    <span class="lang-content" data-lang="ar">جاف إكسبريس</span>
-                    <span class="lang-content" data-lang="en">JAFF EXPRESS</span>
+                    <span id="footerLogo">جاف ئێکسپرێس</span>
                 </div>
-                <p>
-                    <span class="lang-content active" data-lang="ku">جاف ئێکسپرێس هاوبەشی متمانەپێکراوتە بۆ هەموو پێداویستییەکانی گەیاندنی چین بۆ عێراق.</span>
-                    <span class="lang-content" data-lang="ar">جاف إكسبريس هو شريكك الموثوق لجميع احتياجات الشحن من الصين إلى العراق.</span>
-                    <span class="lang-content" data-lang="en">JAFF EXPRESS is your trusted partner for all your China to Iraq shipping needs.</span>
-                </p>
+                <p id="footerDesc">جاف ئێکسپرێس هاوبەشی متمانەپێکراوتە بۆ هەموو پێداویستییەکانی گەیاندنی چین بۆ عێراق.</p>
                 <div class="social-links">
-                    <a href="#">📘</a>
-                    <a href="#">📷</a>
-                    <a href="#">🐦</a>
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
                 </div>
             </div>
 
             <div>
-                <h3>
-                    <span class="lang-content active" data-lang="ku">بەستەرە خێراکان</span>
-                    <span class="lang-content" data-lang="ar">روابط سريعة</span>
-                    <span class="lang-content" data-lang="en">Quick Links</span>
-                </h3>
+                <h3 id="footerLinksTitle">بەستەرە خێراکان</h3>
                 <ul>
-                    <li><a href="#" onclick="showPage('home')">
-                        <span class="lang-content active" data-lang="ku">سەرەتا</span>
-                        <span class="lang-content" data-lang="ar">الرئيسية</span>
-                        <span class="lang-content" data-lang="en">Home</span>
-                    </a></li>
-                    <li><a href="#" onclick="showPage('services')">
-                        <span class="lang-content active" data-lang="ku">خزمەتگوزارییەکان</span>
-                        <span class="lang-content" data-lang="ar">الخدمات</span>
-                        <span class="lang-content" data-lang="en">Services</span>
-                    </a></li>
-                    <li><a href="#" onclick="showPage('tracking')">
-                        <span class="lang-content active" data-lang="ku">شوێنکەوتن</span>
-                        <span class="lang-content" data-lang="ar">التتبع</span>
-                        <span class="lang-content" data-lang="en">Tracking</span>
-                    </a></li>
-                    <li><a href="#" onclick="showPage('contact')">
-                        <span class="lang-content active" data-lang="ku">پەیوەندی</span>
-                        <span class="lang-content" data-lang="ar">اتصل بنا</span>
-                        <span class="lang-content" data-lang="en">Contact</span>
-                    </a></li>
+                    <li><a href="#" onclick="scrollToSection('hero')"><span id="footerLink1">سەرەتا</span></a></li>
+                    <li><a href="#" onclick="scrollToSection('services')"><span id="footerLink2">خزمەتگوزارییەکان</span></a></li>
+                    <li><a href="#" onclick="scrollToSection('tracking')"><span id="footerLink3">شوێنکەوتن</span></a></li>
+                    <li><a href="#" onclick="scrollToSection('contact')"><span id="footerLink4">پەیوەندی</span></a></li>
                 </ul>
             </div>
 
             <div>
-                <h3>
-                    <span class="lang-content active" data-lang="ku">پەیوەندی</span>
-                    <span class="lang-content" data-lang="ar">اتصل بنا</span>
-                    <span class="lang-content" data-lang="en">Contact</span>
-                </h3>
+                <h3 id="footerContactTitle">پەیوەندی</h3>
                 <p>📞 +964 750 123 4567</p>
                 <p>✉️ info@jaffexpress.com</p>
-                <p>
-                    <span class="lang-content active" data-lang="ku">📍 کوردستان، عێراق</span>
-                    <span class="lang-content" data-lang="ar">📍 كردستان، العراق</span>
-                    <span class="lang-content" data-lang="en">📍 Kurdistan, Iraq</span>
-                </p>
+                <p id="footerAddress">📍 کوردستان، عێراق</p>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2025
-                <span class="lang-content active" data-lang="ku">جاف ئێکسپرێس. هەموو مافێک پارێزراوە</span>
-                <span class="lang-content" data-lang="ar">جاف إكسبريس. جميع الحقوق محفوظة</span>
-                <span class="lang-content" data-lang="en">JAFF EXPRESS. All Rights Reserved</span>
-            </p>
+            <p>&copy; 2025 <span id="footerCopyright">جاف ئێکسپرێس. هەموو مافێک پارێزراوە</span></p>
         </div>
     </footer>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/9647501234567" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/9647501234567" class="whatsapp-float" target="_blank" aria-label="Contact on WhatsApp">
         💬
     </a>
 
     <script>
+        // Translations
+        const translations = {
+            ku: {
+                logoText: 'جاف ئێکسپرێس',
+                navHome: 'سەرەتا',
+                navServices: 'خزمەتگوزارییەکان',
+                navTracking: 'شوێنکەوتن',
+                navContact: 'پەیوەندی',
+                heroBadge: 'خزمەتگوزاری گەیاندنی پێویست',
+                heroTitle1: 'گەیاندنی خێرا و متمانەپێکراو',
+                heroTitle2: 'لە چین بۆ عێراق',
+                heroDesc: 'جاف ئێکسپرێس متمانەپێکراوترین کۆمپانیای گەیاندنە لە نێوان چین و عێراقدا. بە بنکەیەکی بەهێز لە کوردستان، ئێمە خزمەتگوزاریی کۆمپلیت و خێرای گەیاندن پێشکەش دەکەین.',
+                btnQuote: 'داواکردنی نرخ',
+                btnTrack: 'شوێنکەوتنی بارنامە',
+                trustYears: '+۱۰ ساڵ',
+                trustYearsLabel: 'ساڵانی ئەزموون',
+                trustDeliveries: '+۵۰،۰۰۰',
+                trustDeliveriesLabel: 'گەیاندنی سەرکەوتوو',
+                trustSatisfaction: '٪۹۸',
+                trustSatisfactionLabel: 'ڕەزامەندی کڕیار',
+                servicesTitle: 'خزمەتگوزارییەکانمان',
+                servicesSubtitle: 'چارەسەری تەواوی گەیاندن لە چین بۆ عێراق',
+                service1Title: 'بارهەڵگری ئاسمانی',
+                service1Desc: 'گەیاندنی خێرا بە فڕۆکە بۆ بارە پەلە و کاتەکان',
+                service1Feature1: 'گەیاندن لە ماوەی ٣-٥ ڕۆژدا',
+                service1Feature2: 'شوێنکەوتنی ڕاستەوخۆ',
+                service1Feature3: 'پارێزراوی و متمانەپێکراو',
+                service1Feature4: 'نرخی کێبڕکێیانە',
+                service2Title: 'بارهەڵگری دەریایی',
+                service2Desc: 'چارەسەری گونجاو بۆ بارە گەورەکان',
+                service2Feature1: 'نرخی نزمترین',
+                service2Feature2: 'توانای بارگرتنی زۆر',
+                service2Feature3: 'کۆنتەینەری تەواو و بەشکی',
+                service2Feature4: 'خزمەتگوزاری پێویست',
+                service3Title: 'پاککردنەوەی کاستم',
+                service3Desc: 'کارپێکردنی کاستم بەبێ کێشە',
+                service3Feature1: 'شارەزایی لە یاساکان',
+                service3Feature2: 'پڕۆسەی خێرا',
+                service3Feature3: 'کاری بەڵگەنامە',
+                service3Feature4: 'وەرگێڕانی فەرمی',
+                service4Title: 'دەرگا بۆ دەرگا',
+                service4Desc: 'گەیاندنی تەواو لە چین بۆ ماڵەکەت',
+                service4Feature1: 'هەڵگرتنی بار لە چین',
+                service4Feature2: 'هەموو گەیاندنەکان',
+                service4Feature3: 'گەیاندن بۆ ماڵ',
+                service4Feature4: 'شوێنکەوتنی بەردەوام',
+                whyTitle: 'بۆچی جاف ئێکسپرێس',
+                whySubtitle: 'هاوبەشی متمانەپێکراوت بۆ هاوردەکانی چین',
+                why1Title: 'گەیاندنی خێرا',
+                why1Desc: 'ئێمە کاتەکانی گەیاندن لە پیشەسازیدا گونجاوترین دەکەین',
+                why2Title: 'متمانەپێکراوی',
+                why2Desc: 'هەزاران جار گەیاندنی سەرکەوتوو بە بەڵگەنامەی شوێنکەوتن',
+                why3Title: 'بنکە لە کوردستان',
+                why3Desc: 'بنکەی ناوخۆیمان خزمەتگوزاری خێراتر و باشتر دڵنیا دەکات',
+                why4Title: 'شارەزایی کاستم',
+                why4Desc: 'تێگەیشتنی قووڵ لە ڕێنماییەکانی کاستمی عێراق',
+                why5Title: 'نرخی کێبڕکێیانە',
+                why5Desc: 'نرخی دادپەروەرانە و ڕوون بەبێ تێچووی شاراوە',
+                why6Title: 'پشتگیری ٢٤/٧',
+                why6Desc: 'تیمی یارمەتیدەرمان هەمیشە ئامادەیە بۆ یارمەتیدانت',
+                testimonialsTitle: 'کڕیارەکانمان چی دەڵێن',
+                testimonialsSubtitle: 'بەشداریکردنەکانی کەسانێک کە جاف ئێکسپرێسیان باوەڕپێکردووە',
+                testimonial1: '"جاف ئێکسپرێس زۆر متمانەپێکراوە بۆ هاوردەکانی چینمان. گەیاندنی خێرا و خزمەتگوزاریی نایاب!"',
+                author1Name: 'ئەحمەد حوسێن',
+                author1Role: 'خاوەنی بازرگانی',
+                testimonial2: '"باشترین کۆمپانیای گەیاندن بۆ ڕێگای چین-عێراق. بنکەیان لە کوردستان هەموو شتێک خێراتر دەکات."',
+                author2Name: 'سارا محەمەد',
+                author2Role: 'فرۆشیاری ئۆنلاین',
+                testimonial3: '"خزمەتگوزاریی پاککردنەوەی کاستمی پرۆفیشناڵ. هەموو شتێک بە نەرمی جێبەجێ دەکەن و بەردەوام زانیاریم پێدەدەن."',
+                author3Name: 'عومەر عەلی',
+                author3Role: 'هاوردەکار',
+                ctaTitle: 'ئامادەیت بۆ گەیاندن لەگەڵ جاف ئێکسپرێس؟',
+                ctaSubtitle: 'ئەمڕۆ دەست پێبکە و ئەزموونی پێویستترین خزمەتگوزاریی گەیاندن لە چین بۆ عێراق بکە',
+                ctaBtn1: 'داواکردنی نرخی خۆڕایی',
+                ctaBtn2: 'پەیوەندی تەلەفۆنی',
+                footerLogo: 'جاف ئێکسپرێس',
+                footerDesc: 'جاف ئێکسپرێس هاوبەشی متمانەپێکراوتە بۆ هەموو پێداویستییەکانی گەیاندنی چین بۆ عێراق.',
+                footerLinksTitle: 'بەستەرە خێراکان',
+                footerLink1: 'سەرەتا',
+                footerLink2: 'خزمەتگوزارییەکان',
+                footerLink3: 'شوێنکەوتن',
+                footerLink4: 'پەیوەندی',
+                footerContactTitle: 'پەیوەندی',
+                footerAddress: '📍 کوردستان، عێراق',
+                footerCopyright: 'جاف ئێکسپرێس. هەموو مافێک پارێزراوە'
+            },
+            ar: {
+                logoText: 'جاف إكسبريس',
+                navHome: 'الرئيسية',
+                navServices: 'الخدمات',
+                navTracking: 'التتبع',
+                navContact: 'اتصل بنا',
+                heroBadge: 'خدمات الشحن الموثوقة',
+                heroTitle1: 'شحن سريع وموثوق',
+                heroTitle2: 'من الصين إلى العراق',
+                heroDesc: 'جاف إكسبريس هي الشركة الأكثر موثوقية للشحن بين الصين والعراق. مع قاعدة قوية في كردستان، نقدم خدمات شحن سريعة وشاملة.',
+                btnQuote: 'طلب عرض سعر',
+                btnTrack: 'تتبع الشحنة',
+                trustYears: '+١٠ سنوات',
+                trustYearsLabel: 'سنوات من الخبرة',
+                trustDeliveries: '+٥٠٬٠٠٠',
+                trustDeliveriesLabel: 'عمليات تسليم ناجحة',
+                trustSatisfaction: '٩٨٪',
+                trustSatisfactionLabel: 'رضا العملاء',
+                servicesTitle: 'خدماتنا',
+                servicesSubtitle: 'حلول شحن شاملة من الصين إلى العراق',
+                service1Title: 'الشحن الجوي',
+                service1Desc: 'شحن سريع بالطائرة للبضائع العاجلة والحساسة للوقت',
+                service1Feature1: 'التسليم في 3-5 أيام',
+                service1Feature2: 'التتبع الفوري',
+                service1Feature3: 'آمن وموثوق',
+                service1Feature4: 'أسعار تنافسية',
+                service2Title: 'الشحن البحري',
+                service2Desc: 'حل فعال من حيث التكلفة للشحنات الكبيرة الحجم',
+                service2Feature1: 'أقل الأسعار',
+                service2Feature2: 'سعة حمولة كبيرة',
+                service2Feature3: 'حاويات كاملة وجزئية',
+                service2Feature4: 'خدمة موثوقة',
+                service3Title: 'التخليص الجمركي',
+                service3Desc: 'معالجة جمركية سلسة وخالية من المتاعب',
+                service3Feature1: 'خبرة في التنظيمات',
+                service3Feature2: 'معالجة سريعة',
+                service3Feature3: 'عمل المستندات',
+                service3Feature4: 'الترجمة الرسمية',
+                service4Title: 'من الباب للباب',
+                service4Desc: 'خدمة شحن كاملة من الصين إلى عتبة داركم',
+                service4Feature1: 'استلام البضائع من الصين',
+                service4Feature2: 'جميع عمليات النقل',
+                service4Feature3: 'التوصيل للمنزل',
+                service4Feature4: 'تتبع مستمر',
+                whyTitle: 'لماذا جاف إكسبريس',
+                whySubtitle: 'شريكك الموثوق لواردات الصين',
+                why1Title: 'شحن سريع',
+                why1Desc: 'نحقق أسرع أوقات التسليم في الصناعة',
+                why2Title: 'موثوقية',
+                why2Desc: 'آلاف عمليات التسليم الناجحة بسجل تتبع مثبت',
+                why3Title: 'قاعدة في كردستان',
+                why3Desc: 'قاعدتنا المحلية تضمن خدمة أسرع وأفضل',
+                why4Title: 'خبرة جمركية',
+                why4Desc: 'فهم عميق للوائح الجمارك العراقية',
+                why5Title: 'أسعار تنافسية',
+                why5Desc: 'أسعار عادلة وشفافة بدون رسوم مخفية',
+                why6Title: 'دعم 24/7',
+                why6Desc: 'فريق الدعم لدينا متاح دائمًا لمساعدتك',
+                testimonialsTitle: 'ماذا يقول عملاؤنا',
+                testimonialsSubtitle: 'قصص من الأشخاص الذين وثقوا بجاف إكسبريس',
+                testimonial1: '"جاف إكسبريس موثوق بشكل لا يصدق لواردات الصين لدينا. تسليم سريع وخدمة عملاء ممتازة!"',
+                author1Name: 'أحمد حسين',
+                author1Role: 'صاحب عمل',
+                testimonial2: '"أفضل شركة شحن لطريق الصين-العراق. قاعدتهم في كردستان تجعل كل شيء أسرع بكثير."',
+                author2Name: 'سارة محمد',
+                author2Role: 'بائع تجزئة عبر الإنترنت',
+                testimonial3: '"خدمة التخليص الجمركي المهنية. يتعاملون مع كل شيء بسلاسة ويبقونني على اطلاع طوال الوقت."',
+                author3Name: 'عمر علي',
+                author3Role: 'مستورد',
+                ctaTitle: 'هل أنت مستعد للشحن مع جاف إكسبريس؟',
+                ctaSubtitle: 'ابدأ اليوم واختبر خدمة الشحن الأكثر موثوقية من الصين إلى العراق',
+                ctaBtn1: 'احصل على عرض سعر مجاني',
+                ctaBtn2: 'اتصال هاتفي',
+                footerLogo: 'جاف إكسبريس',
+                footerDesc: 'جاف إكسبريس هو شريكك الموثوق لجميع احتياجات الشحن من الصين إلى العراق.',
+                footerLinksTitle: 'روابط سريعة',
+                footerLink1: 'الرئيسية',
+                footerLink2: 'الخدمات',
+                footerLink3: 'التتبع',
+                footerLink4: 'اتصل بنا',
+                footerContactTitle: 'اتصل بنا',
+                footerAddress: '📍 كردستان، العراق',
+                footerCopyright: 'جاف إكسبريس. جميع الحقوق محفوظة'
+            },
+            en: {
+                logoText: 'JAFF EXPRESS',
+                navHome: 'Home',
+                navServices: 'Services',
+                navTracking: 'Tracking',
+                navContact: 'Contact',
+                heroBadge: 'Reliable Shipping Services',
+                heroTitle1: 'Fast & Reliable Shipping',
+                heroTitle2: 'From China to Iraq',
+                heroDesc: 'JAFF EXPRESS is your most trusted shipping partner between China and Iraq. With a strong base in Kurdistan, we deliver comprehensive and fast shipping services that you can rely on.',
+                btnQuote: 'Get A Quote',
+                btnTrack: 'Track Shipment',
+                trustYears: '10+ Years',
+                trustYearsLabel: 'Years of Experience',
+                trustDeliveries: '50,000+',
+                trustDeliveriesLabel: 'Successful Deliveries',
+                trustSatisfaction: '98%',
+                trustSatisfactionLabel: 'Customer Satisfaction',
+                servicesTitle: 'Our Services',
+                servicesSubtitle: 'Comprehensive shipping solutions from China to Iraq',
+                service1Title: 'Air Freight',
+                service1Desc: 'Fast air shipping for urgent and time-sensitive cargo',
+                service1Feature1: 'Delivery in 3-5 days',
+                service1Feature2: 'Real-time tracking',
+                service1Feature3: 'Secure and reliable',
+                service1Feature4: 'Competitive pricing',
+                service2Title: 'Sea Freight',
+                service2Desc: 'Cost-effective solution for large volume shipments',
+                service2Feature1: 'Lowest rates',
+                service2Feature2: 'High capacity',
+                service2Feature3: 'Full & partial containers',
+                service2Feature4: 'Reliable service',
+                service3Title: 'Customs Clearance',
+                service3Desc: 'Smooth and hassle-free customs processing',
+                service3Feature1: 'Expert in regulations',
+                service3Feature2: 'Fast processing',
+                service3Feature3: 'Documentation work',
+                service3Feature4: 'Official translation',
+                service4Title: 'Door to Door',
+                service4Desc: 'Complete shipping service from China to your doorstep',
+                service4Feature1: 'Pickup from China',
+                service4Feature2: 'All transportation',
+                service4Feature3: 'Home delivery',
+                service4Feature4: 'Continuous tracking',
+                whyTitle: 'Why JAFF EXPRESS',
+                whySubtitle: 'Your trusted partner for China imports',
+                why1Title: 'Fast Shipping',
+                why1Desc: 'We achieve the fastest delivery times in the industry',
+                why2Title: 'Reliability',
+                why2Desc: 'Thousands of successful deliveries with proven track record',
+                why3Title: 'Kurdistan Base',
+                why3Desc: 'Our local base ensures faster and better service',
+                why4Title: 'Customs Expertise',
+                why4Desc: 'Deep understanding of Iraqi customs regulations',
+                why5Title: 'Competitive Pricing',
+                why5Desc: 'Fair and transparent pricing with no hidden fees',
+                why6Title: '24/7 Support',
+                why6Desc: 'Our support team is always available to help you',
+                testimonialsTitle: 'What Our Clients Say',
+                testimonialsSubtitle: 'Stories from people who trusted JAFF EXPRESS',
+                testimonial1: '"JAFF EXPRESS has been incredibly reliable for our China imports. Fast delivery and excellent customer service!"',
+                author1Name: 'Ahmed Hussein',
+                author1Role: 'Business Owner',
+                testimonial2: '"The best shipping company for China-Iraq route. Their Kurdistan base makes everything much faster."',
+                author2Name: 'Sara Mohammed',
+                author2Role: 'Online Retailer',
+                testimonial3: '"Professional customs clearance service. They handle everything smoothly and keep me updated throughout."',
+                author3Name: 'Omar Ali',
+                author3Role: 'Importer',
+                ctaTitle: 'Ready to Ship with JAFF EXPRESS?',
+                ctaSubtitle: 'Get started today and experience the most reliable shipping service from China to Iraq',
+                ctaBtn1: 'Get A Free Quote',
+                ctaBtn2: 'Phone Call',
+                footerLogo: 'JAFF EXPRESS',
+                footerDesc: 'JAFF EXPRESS is your trusted partner for all your China to Iraq shipping needs.',
+                footerLinksTitle: 'Quick Links',
+                footerLink1: 'Home',
+                footerLink2: 'Services',
+                footerLink3: 'Tracking',
+                footerLink4: 'Contact',
+                footerContactTitle: 'Contact',
+                footerAddress: '📍 Kurdistan, Iraq',
+                footerCopyright: 'JAFF EXPRESS. All Rights Reserved'
+            }
+        };
+
         let currentLang = 'ku';
 
+        // Change Language Function
         function changeLanguage(lang) {
             currentLang = lang;
 
@@ -1571,84 +1439,55 @@
             document.documentElement.setAttribute('lang', lang);
             document.documentElement.setAttribute('dir', lang === 'en' ? 'ltr' : 'rtl');
 
-            // Hide all language content
-            const allLangContent = document.querySelectorAll('.lang-content');
-            allLangContent.forEach(el => {
-                el.classList.remove('active');
-            });
-
-            // Show selected language content
-            const selectedLangContent = document.querySelectorAll(`[data-lang="${lang}"]`);
-            selectedLangContent.forEach(el => {
-                el.classList.add('active');
-            });
-
-            // Update language buttons
-            const langBtns = document.querySelectorAll('.lang-btn');
-            langBtns.forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
-
-        function showPage(pageId) {
-            // Hide all pages
-            const allPages = document.querySelectorAll('.page');
-            allPages.forEach(page => {
-                page.classList.remove('active');
-            });
-
-            // Show selected page
-            const selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.classList.add('active');
+            // Update all text content
+            const texts = translations[lang];
+            for (const [key, value] of Object.entries(texts)) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = value;
+                }
             }
 
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('btn' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
 
+            // Smooth transition
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        }
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
             return false;
         }
 
-        function trackShipment() {
-            const trackingInput = document.getElementById('trackingInput');
-            const trackingResult = document.getElementById('trackingResult');
-
-            if (trackingInput.value.trim()) {
-                const messages = {
-                    ku: `<div style="background: #e8f5e9; padding: 2rem; border-radius: 10px; border: 2px solid #4caf50;">
-                        <h3 style="color: #2e7d32; margin-bottom: 1rem;">دۆخی بارنامە: ${trackingInput.value}</h3>
-                        <p style="color: #1b5e20;">✓ بارەکە لە گواستنەوەدایە و بەم زووانە دەگات.</p>
-                    </div>`;
-
-                    ar: `<div style="background: #e8f5e9; padding: 2rem; border-radius: 10px; border: 2px solid #4caf50;">
-                        <h3 style="color: #2e7d32; margin-bottom: 1rem;">حالة الشحنة: ${trackingInput.value}</h3>
-                        <p style="color: #1b5e20;">✓ شحنتك في الطريق وستصل قريباً.</p>
-                    </div>`;
-
-                    en: `<div style="background: #e8f5e9; padding: 2rem; border-radius: 10px; border: 2px solid #4caf50;">
-                        <h3 style="color: #2e7d32; margin-bottom: 1rem;">Shipment Status: ${trackingInput.value}</h3>
-                        <p style="color: #1b5e20;">✓ Your shipment is in transit and will arrive soon.</p>
-                    </div>`;
-                };
-
-                trackingResult.innerHTML = messages[currentLang];
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-        }
+        });
 
-        function submitContact(event) {
-            event.preventDefault();
-            const messages = {
-                ku: 'سوپاس! نامەکەت نێردرا. بەم زووانە پەیوەندیت پێوە دەکەین.',
-                ar: 'شكراً! تم إرسال رسالتك. سنتواصل معك قريباً.',
-                en: 'Thank you! Your message has been sent. We will contact you soon.'
-            };
-            alert(messages[currentLang]);
-            event.target.reset();
-        }
+        // Smooth body transition
+        document.body.style.transition = 'opacity 0.3s ease';
+        document.body.style.opacity = '1';
 
-        // Set initial language direction
-        document.documentElement.setAttribute('dir', 'rtl');
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('ku');
+        });
     </script>
 </body>
 </html>
