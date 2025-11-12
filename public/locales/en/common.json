@@ -1,0 +1,193 @@
+{
+  "companyName": "JAFF EXPRESS",
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "tracking": "Tracking",
+    "pricing": "Pricing",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "languages": {
+    "ku": "کوردی",
+    "ar": "عربي",
+    "en": "English"
+  },
+  "hero": {
+    "badge": "Reliable Shipping Services",
+    "title": "Fast & Reliable Shipping",
+    "subtitle": "From China to Iraq",
+    "description": "JAFF EXPRESS is your most trusted shipping partner between China and Iraq. With a strong base in Kurdistan, we deliver comprehensive and fast shipping services that you can rely on.",
+    "cta": {
+      "quote": "Get A Quote",
+      "track": "Track Shipment"
+    },
+    "trust": {
+      "experience": "Years of Experience",
+      "experienceYears": "10+ Years",
+      "deliveries": "Successful Deliveries",
+      "deliveriesCount": "50,000+",
+      "satisfaction": "Customer Satisfaction",
+      "satisfactionRate": "98%"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive shipping solutions from China to Iraq",
+    "airFreight": {
+      "title": "Air Freight",
+      "description": "Fast air shipping for urgent and time-sensitive cargo",
+      "features": [
+        "Delivery in 3-5 days",
+        "Real-time tracking",
+        "Secure and reliable",
+        "Competitive pricing"
+      ]
+    },
+    "seaFreight": {
+      "title": "Sea Freight",
+      "description": "Cost-effective solution for large volume shipments",
+      "features": [
+        "Lowest rates",
+        "High capacity",
+        "Full & partial containers",
+        "Reliable service"
+      ]
+    },
+    "customs": {
+      "title": "Customs Clearance",
+      "description": "Smooth and hassle-free customs processing",
+      "features": [
+        "Expert in regulations",
+        "Fast processing",
+        "Documentation work",
+        "Official translation"
+      ]
+    },
+    "doorToDoor": {
+      "title": "Door to Door",
+      "description": "Complete shipping service from China to your doorstep",
+      "features": [
+        "Pickup from China",
+        "All transportation",
+        "Home delivery",
+        "Continuous tracking"
+      ]
+    }
+  },
+  "why": {
+    "title": "Why JAFF EXPRESS",
+    "subtitle": "Your trusted partner for China imports",
+    "speed": {
+      "title": "Fast Shipping",
+      "description": "We achieve the fastest delivery times in the industry"
+    },
+    "reliability": {
+      "title": "Reliability",
+      "description": "Thousands of successful deliveries with proven track record"
+    },
+    "kurdistan": {
+      "title": "Kurdistan Base",
+      "description": "Our local base ensures faster and better service"
+    },
+    "customs": {
+      "title": "Customs Expertise",
+      "description": "Deep understanding of Iraqi customs regulations"
+    },
+    "pricing": {
+      "title": "Competitive Pricing",
+      "description": "Fair and transparent pricing with no hidden fees"
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "Our support team is always available to help you"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Stories from people who trusted JAFF EXPRESS"
+  },
+  "tracking": {
+    "title": "Track Your Shipment",
+    "subtitle": "Enter your tracking number to see your shipment status",
+    "placeholder": "Enter tracking number",
+    "button": "Track",
+    "status": {
+      "received": "Received in China",
+      "transit": "In Transit",
+      "customs": "At Customs",
+      "delivery": "Ready for Delivery"
+    }
+  },
+  "quote": {
+    "title": "Request A Quote",
+    "subtitle": "Fill out the form and get a competitive quote",
+    "form": {
+      "name": "Full Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "whatsapp": "WhatsApp Number",
+      "origin": "Origin",
+      "destination": "Destination",
+      "weight": "Weight (kg)",
+      "dimensions": "Dimensions (cm)",
+      "serviceType": "Service Type",
+      "description": "Cargo Description",
+      "submit": "Request Quote"
+    },
+    "serviceTypes": {
+      "air": "Air Freight",
+      "sea": "Sea Freight",
+      "door": "Door to Door"
+    }
+  },
+  "about": {
+    "title": "About JAFF EXPRESS",
+    "subtitle": "Your trusted partner for shipping from China to Iraq",
+    "story": {
+      "title": "Our Story",
+      "description": "JAFF EXPRESS was founded in Kurdistan with the goal of providing reliable and efficient shipping services between China and Iraq. With over 10 years of experience, we have become a trusted name for thousands of merchants and individuals.",
+      "mission": "Our mission is to make shipping from China to Iraq easy, fast, and reliable.",
+      "vision": "Our vision is to become the leading shipping company in the region."
+    },
+    "advantages": {
+      "title": "Kurdistan Base Advantage",
+      "local": "Local Expertise",
+      "localDesc": "Deep understanding of the market and regional needs",
+      "network": "Strong Network",
+      "networkDesc": "Direct connections with Chinese and Iraqi partners",
+      "logistics": "Logistics Infrastructure",
+      "logisticsDesc": "Modern warehouses and facilities in Kurdistan"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We're ready to help you with your shipping needs",
+    "info": {
+      "title": "Contact Information",
+      "office": "Main Office",
+      "officeAddress": "Kurdistan, Iraq",
+      "chinaOffice": "China Office",
+      "chinaAddress": "Guangzhou, China",
+      "phone": "Phone",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "hours": "Business Hours",
+      "hoursValue": "Sunday - Thursday: 8:00 AM - 6:00 PM"
+    },
+    "form": {
+      "title": "Send Us A Message",
+      "name": "Your Name",
+      "email": "Your Email",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  },
+  "footer": {
+    "description": "JAFF EXPRESS is your trusted partner for all your China to Iraq shipping needs.",
+    "quickLinks": "Quick Links",
+    "followUs": "Follow Us",
+    "rights": "All Rights Reserved"
+  }
+}
