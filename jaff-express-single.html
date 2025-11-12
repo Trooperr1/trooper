@@ -77,20 +77,27 @@
         }
 
         .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--jaff-orange), #ff9a3c);
+            width: 55px;
+            height: 55px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
             box-shadow: 0 4px 15px rgba(245, 130, 32, 0.4);
             transition: all 0.3s ease;
+            overflow: hidden;
+            background: white;
+            padding: 4px;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .logo:hover .logo-icon {
-            transform: rotate(5deg);
+            transform: scale(1.05) rotate(2deg);
             box-shadow: 0 6px 20px rgba(245, 130, 32, 0.6);
         }
 
@@ -907,7 +914,9 @@
     <header class="header" id="header">
         <div class="header-container">
             <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="logo-icon">⚡</div>
+                <div class="logo-icon">
+                    <img src="https://media.discordapp.net/attachments/1416407637796589601/1416408012607721492/Energetic_Logo_for_Jaff_Express_with_Speedboat_Icon_1.png" alt="JAFF EXPRESS Logo">
+                </div>
                 <span id="logoText">جاف ئێکسپرێس</span>
             </div>
 
@@ -1132,8 +1141,10 @@
     <footer class="footer">
         <div class="footer-grid">
             <div>
-                <div class="logo" style="margin-bottom: 1rem;">
-                    <div class="logo-icon">⚡</div>
+                <div class="logo" style="margin-bottom: 1rem; cursor: default;">
+                    <div class="logo-icon">
+                        <img src="https://media.discordapp.net/attachments/1416407637796589601/1416408012607721492/Energetic_Logo_for_Jaff_Express_with_Speedboat_Icon_1.png" alt="JAFF EXPRESS Logo">
+                    </div>
                     <span id="footerLogo">جاف ئێکسپرێس</span>
                 </div>
                 <p id="footerDesc">جاف ئێکسپرێس هاوبەشی متمانەپێکراوتە بۆ هەموو پێداویستییەکانی گەیاندنی چین بۆ عێراق.</p>
