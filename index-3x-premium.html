@@ -1,0 +1,4417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ÉLITE NOIR - Ultra Premium Fashion House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <style>
+/* ===================================
+   ÉLITE NOIR - Ultra Premium Fashion House
+   Ultra Luxury Styling with Extensive Animations
+   =================================== */
+
+/* ===================================
+   GLOBAL RESET & BASE STYLES
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gold: #D4AF37;
+    --secondary-gold: #FFD700;
+    --dark-bg: #0A0A0A;
+    --darker-bg: #050505;
+    --light-text: #FFFFFF;
+    --grey-text: #B8B8B8;
+    --accent-bronze: #CD7F32;
+    --luxury-black: #1A1A1A;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-gold: rgba(212, 175, 55, 0.3);
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark-bg);
+    color: var(--light-text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+    animation: ambientGlow 20s ease-in-out infinite;
+}
+
+@keyframes ambientGlow {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ===================================
+   TYPOGRAPHY
+   =================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+.section-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-gold) 50%, var(--accent-bronze) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: shimmerText 3s ease-in-out infinite;
+}
+
+@keyframes shimmerText {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+.section-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+    animation: fadeInUp 1s ease-out;
+}
+
+.section-description {
+    font-size: 1.125rem;
+    color: var(--grey-text);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+}
+
+/* ===================================
+   3D CANVAS BACKGROUND
+   =================================== */
+
+#threejs-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* ===================================
+   LOADING SCREEN
+   =================================== */
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--darker-bg) 0%, var(--luxury-black) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-container {
+    text-align: center;
+}
+
+.luxury-spinner {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 2rem;
+    border: 3px solid rgba(212, 175, 55, 0.2);
+    border-top: 3px solid var(--primary-gold);
+    border-radius: 50%;
+    animation: luxurySpin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    position: relative;
+}
+
+.luxury-spinner::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 3px solid var(--secondary-gold);
+    border-radius: 50%;
+    animation: luxurySpin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite reverse;
+}
+
+@keyframes luxurySpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+
+.loading-brand {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    animation: fadeInScale 1s ease-out;
+}
+
+.loading-tagline {
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: var(--grey-text);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.loading-progress {
+    width: 300px;
+    height: 3px;
+    background: rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-gold), var(--secondary-gold));
+    border-radius: 10px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 20px var(--shadow-gold);
+    animation: progressShimmer 2s ease-in-out infinite;
+}
+
+@keyframes progressShimmer {
+    0%, 100% { box-shadow: 0 0 20px var(--shadow-gold); }
+    50% { box-shadow: 0 0 40px var(--shadow-gold); }
+}
+
+.loading-percentage {
+    font-size: 0.875rem;
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===================================
+   CUSTOM CURSOR
+   =================================== */
+
+.cursor-follower {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--primary-gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.15s ease-out;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease-out;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+/* ===================================
+   NAVIGATION
+   =================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    transition: all 0.3s var(--transition-smooth);
+}
+
+.navbar.scrolled {
+    padding: 1rem 5%;
+    background: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-elite {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-gold);
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.logo-noir {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--light-text);
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover .logo-elite {
+    text-shadow: 0 0 20px var(--shadow-gold);
+    transform: scale(1.05);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+    transform: translateX(-50%);
+    transition: width 0.4s var(--transition-smooth);
+}
+
+.nav-link:hover {
+    color: var(--primary-gold);
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.search-btn,
+.cart-btn {
+    background: transparent;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.search-btn:hover,
+.cart-btn:hover {
+    color: var(--primary-gold);
+    transform: translateY(-2px);
+}
+
+.cart-btn {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.2rem 0.4rem;
+    border-radius: 50%;
+    min-width: 18px;
+    text-align: center;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+/* ===================================
+   HERO SECTION
+   =================================== */
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 5% 4rem;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-image-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%),
+        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920&h=1080&fit=crop') center/cover;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    animation: kenBurns 20s ease-in-out infinite;
+}
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+.hero-slide:nth-child(2) {
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%),
+        url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920&h=1080&fit=crop') center/cover;
+}
+
+.hero-slide:nth-child(3) {
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%),
+        url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=1920&h=1080&fit=crop') center/cover;
+}
+
+@keyframes kenBurns {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    line-height: 1;
+    perspective: 1000px;
+}
+
+.hero-title-line {
+    display: block;
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--secondary-gold) 50%, var(--light-text) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textReveal 1s ease-out forwards;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.hero-title-line:nth-child(1) { animation-delay: 0.2s; }
+.hero-title-line:nth-child(2) { animation-delay: 0.4s; }
+.hero-title-line:nth-child(3) { animation-delay: 0.6s; }
+.hero-title-line:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes textReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title-line::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 0%, var(--primary-gold) 50%, transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: glitchEffect 5s ease-in-out infinite;
+}
+
+@keyframes glitchEffect {
+    0%, 90%, 100% { opacity: 0; transform: translate(0); }
+    91%, 93% { opacity: 0.7; transform: translate(-2px, 2px); }
+    92%, 94% { opacity: 0.7; transform: translate(2px, -2px); }
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--grey-text);
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-cta {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease-out 1.2s both;
+}
+
+.cta-primary,
+.cta-secondary {
+    padding: 1.2rem 3rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.4s var(--transition-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-primary {
+    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-bronze) 100%);
+    color: var(--dark-bg);
+    box-shadow: 0 10px 40px var(--shadow-gold);
+}
+
+.cta-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.cta-primary:hover::before {
+    left: 100%;
+}
+
+.cta-primary:hover {
+    transform: translateY(-8px) scale(1.08) rotateX(5deg);
+    box-shadow: 0 20px 80px var(--shadow-gold);
+    animation: buttonPulse 0.6s ease-in-out infinite alternate;
+}
+
+/* NEW: 3X Enhanced button pulse animation */
+@keyframes buttonPulse {
+    0% { box-shadow: 0 20px 80px var(--shadow-gold); }
+    100% { box-shadow: 0 25px 100px rgba(212, 175, 55, 0.5); }
+}
+
+.cta-secondary {
+    background: transparent;
+    color: var(--light-text);
+    border: 2px solid var(--primary-gold);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.cta-secondary:hover {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 60px var(--shadow-gold);
+}
+
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    animation: fadeInUp 1s ease-out 1.5s both;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(180deg, var(--primary-gold), transparent);
+    margin: 0 auto 1rem;
+    animation: scrollAnimation 2s ease-in-out infinite;
+}
+
+@keyframes scrollAnimation {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(20px);
+        opacity: 0.3;
+    }
+}
+
+.hero-scroll-indicator span {
+    font-size: 0.75rem;
+    color: var(--grey-text);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+/* ===================================
+   STATS SECTION
+   =================================== */
+
+.stats-section {
+    padding: 6rem 5%;
+    background: linear-gradient(180deg, transparent 0%, var(--luxury-black) 50%, transparent 100%);
+    position: relative;
+}
+
+.stats-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    align-items: center;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+}
+
+.stat-number {
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-number::after {
+    content: '+';
+    color: var(--primary-gold);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(180deg, transparent, var(--glass-border), transparent);
+    justify-self: center;
+}
+
+/* ===================================
+   COLLECTIONS SECTION
+   =================================== */
+
+.collections-section {
+    padding: 8rem 5%;
+    background: var(--dark-bg);
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.collections-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.collection-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s var(--transition-smooth);
+    position: relative;
+    perspective: 1000px; /* NEW: 3D perspective for tilt effect */
+    transform-style: preserve-3d; /* NEW: 3D transforms */
+}
+
+.collection-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.collection-card:hover::before {
+    opacity: 1;
+}
+
+.collection-card:hover {
+    transform: translateY(-25px) scale(1.05) rotateY(5deg) rotateX(5deg); /* NEW: Enhanced 3D transform */
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 80px var(--shadow-gold);
+    border-color: var(--primary-gold);
+    animation: cardFloat 2s ease-in-out infinite; /* NEW: Floating animation */
+}
+
+/* NEW: 3X Enhanced card floating animation */
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(-25px) scale(1.05) rotateY(5deg) rotateX(5deg); }
+    50% { transform: translateY(-30px) scale(1.06) rotateY(6deg) rotateX(6deg); }
+}
+
+.collection-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.collection-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s var(--transition-smooth);
+}
+
+.collection-image[data-collection="1"] {
+    background-image: url('https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=600&h=800&fit=crop');
+}
+
+.collection-image[data-collection="2"] {
+    background-image: url('https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=600&h=800&fit=crop');
+}
+
+.collection-image[data-collection="3"] {
+    background-image: url('https://images.unsplash.com/photo-1558769132-cb1aea1f5b46?w=600&h=800&fit=crop');
+}
+
+.collection-image[data-collection="4"] {
+    background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop');
+}
+
+.collection-card:hover .collection-image {
+    transform: scale(1.15) rotate(2deg);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 10, 0.9) 100%);
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+.collection-card:hover .image-overlay {
+    opacity: 0.8;
+}
+
+.collection-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 50px;
+    z-index: 2;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--shadow-gold);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px var(--shadow-gold);
+    }
+}
+
+.collection-badge.exclusive {
+    background: linear-gradient(135deg, var(--accent-bronze), var(--primary-gold));
+}
+
+.collection-badge.limited {
+    background: linear-gradient(135deg, #000, var(--primary-gold));
+    color: var(--light-text);
+}
+
+.collection-info {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.collection-name {
+    font-size: 1.75rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--light-text);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.collection-card:hover .collection-name {
+    color: var(--primary-gold);
+}
+
+.collection-description {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.collection-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.collection-pieces,
+.collection-price {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+}
+
+.collection-price {
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+.collection-btn {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.4s var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.collection-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gold);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+.collection-btn:hover::before {
+    left: 0;
+}
+
+.collection-btn:hover {
+    color: var(--dark-bg);
+    border-color: var(--primary-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--shadow-gold);
+}
+
+/* ===================================
+   3D PRODUCT SHOWCASE
+   =================================== */
+
+.product-3d-section {
+    padding: 8rem 5%;
+    background: linear-gradient(180deg, var(--dark-bg) 0%, var(--luxury-black) 50%, var(--dark-bg) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-3d-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--shadow-gold) 0%, transparent 70%);
+    opacity: 0.1;
+    animation: rotateSlow 30s linear infinite;
+}
+
+@keyframes rotateSlow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.product-3d-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.product-3d-canvas-wrapper {
+    position: relative;
+    height: 600px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+#product-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.canvas-overlay {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    border: 1px solid var(--glass-border);
+}
+
+.canvas-overlay h3 {
+    font-size: 1rem;
+    color: var(--primary-gold);
+    margin-bottom: 0.25rem;
+}
+
+.canvas-overlay p {
+    font-size: 0.75rem;
+    color: var(--grey-text);
+}
+
+.product-category {
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.product-3d-title {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--light-text), var(--primary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.product-3d-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--grey-text);
+    margin-bottom: 2rem;
+}
+
+.product-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    border-color: var(--primary-gold);
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px var(--shadow-gold);
+}
+
+.feature-item svg {
+    color: var(--primary-gold);
+    flex-shrink: 0;
+}
+
+.product-pricing {
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+}
+
+.product-price {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.product-installment {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.product-btn {
+    flex: 1;
+    padding: 1.2rem 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-btn.primary {
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze));
+    color: var(--dark-bg);
+}
+
+.product-btn.primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px var(--shadow-gold);
+}
+
+.product-btn.secondary {
+    background: transparent;
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+}
+
+.product-btn.secondary:hover {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateY(-5px);
+}
+
+/* ===================================
+   ABOUT SECTION
+   =================================== */
+
+.about-section {
+    padding: 8rem 5%;
+    background: var(--dark-bg);
+    position: relative;
+}
+
+.about-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+.about-subtitle {
+    font-size: 0.875rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+.about-title {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.about-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--grey-text);
+    margin-bottom: 1.5rem;
+}
+
+.about-values {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.value-item {
+    padding: 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-left: 3px solid var(--primary-gold);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.value-item:hover {
+    transform: translateX(10px);
+    border-left-width: 6px;
+    box-shadow: 0 10px 30px var(--shadow-gold);
+}
+
+.value-item h4 {
+    font-size: 1.25rem;
+    color: var(--primary-gold);
+    margin-bottom: 0.5rem;
+}
+
+.value-item p {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+    line-height: 1.6;
+}
+
+.about-btn {
+    padding: 1.2rem 3rem;
+    background: transparent;
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.4s ease;
+}
+
+.about-btn:hover {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateX(10px);
+    box-shadow: 0 10px 40px var(--shadow-gold);
+}
+
+.about-image-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    height: 600px;
+}
+
+.about-image {
+    border-radius: 20px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+.about-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.about-image:hover::before {
+    opacity: 1;
+}
+
+.about-image:hover {
+    transform: scale(1.05);
+}
+
+.main-image {
+    grid-row: 1 / 3;
+    background-image: url('https://images.unsplash.com/photo-1558769132-cb1aea1f5b46?w=800&h=1000&fit=crop');
+}
+
+.secondary-image-1 {
+    background-image: url('https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=400&h=300&fit=crop');
+}
+
+.secondary-image-2 {
+    background-image: url('https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=400&h=300&fit=crop');
+}
+
+/* ===================================
+   PARALLAX SECTION
+   =================================== */
+
+.parallax-section {
+    height: 60vh;
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(26, 26, 26, 0.7) 100%),
+        url('https://images.unsplash.com/photo-1558769132-cb1aea1f5b46?w=1920&h=1080&fit=crop') fixed center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--shadow-gold) 0%, transparent 70%);
+    opacity: 0.2;
+    animation: parallaxPulse 5s ease-in-out infinite;
+}
+
+@keyframes parallaxPulse {
+    0%, 100% { transform: scale(1); opacity: 0.2; }
+    50% { transform: scale(1.1); opacity: 0.3; }
+}
+
+.parallax-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.parallax-title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--light-text), var(--primary-gold), var(--light-text));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: parallaxFloat 4s ease-in-out infinite;
+}
+
+@keyframes parallaxFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.parallax-text {
+    font-size: 1.25rem;
+    color: var(--grey-text);
+    letter-spacing: 0.1em;
+}
+
+/* ===================================
+   EXPERIENCE SECTION
+   =================================== */
+
+.experience-section {
+    padding: 8rem 5%;
+    background: var(--luxury-black);
+    position: relative;
+}
+
+.experience-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.experience-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+}
+
+.experience-card {
+    padding: 3rem 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.5s var(--transition-smooth);
+    position: relative;
+}
+
+.experience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(180deg, var(--primary-gold) 0%, transparent 100%);
+    opacity: 0.1;
+    transition: height 0.5s ease;
+}
+
+.experience-card:hover::before {
+    height: 100%;
+}
+
+.experience-card:hover {
+    transform: translateY(-20px) scale(1.05);
+    border-color: var(--primary-gold);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px var(--shadow-gold);
+}
+
+.experience-icon {
+    color: var(--primary-gold);
+    margin-bottom: 2rem;
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.experience-title {
+    font-size: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--light-text);
+    margin-bottom: 1rem;
+}
+
+.experience-description {
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: var(--grey-text);
+}
+
+/* ===================================
+   VIDEO SECTION
+   =================================== */
+
+.video-section {
+    height: 70vh;
+    background:
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%),
+        url('https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=1920&h=1080&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    text-align: center;
+    z-index: 2;
+}
+
+.video-title {
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-family: 'Playfair Display', serif;
+    color: var(--light-text);
+    margin-bottom: 1rem;
+}
+
+.video-description {
+    font-size: 1.125rem;
+    color: var(--grey-text);
+    margin-bottom: 3rem;
+}
+
+.video-play-btn {
+    background: var(--glass-bg);
+    border: 2px solid var(--primary-gold);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.4s var(--transition-bounce);
+    animation: playButtonPulse 2s ease-in-out infinite;
+}
+
+@keyframes playButtonPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 40px var(--shadow-gold);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 80px var(--shadow-gold);
+    }
+}
+
+.video-play-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 100px var(--shadow-gold);
+}
+
+/* ===================================
+   TESTIMONIALS SECTION
+   =================================== */
+
+.testimonials-section {
+    padding: 8rem 5%;
+    background: var(--dark-bg);
+    position: relative;
+}
+
+.testimonials-slider {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.testimonial-track {
+    display: flex;
+    gap: 3rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-gold) var(--luxury-black);
+}
+
+.testimonial-track::-webkit-scrollbar {
+    height: 8px;
+}
+
+.testimonial-track::-webkit-scrollbar-track {
+    background: var(--luxury-black);
+    border-radius: 10px;
+}
+
+.testimonial-track::-webkit-scrollbar-thumb {
+    background: var(--primary-gold);
+    border-radius: 10px;
+}
+
+.testimonial-card {
+    flex: 0 0 400px;
+    padding: 3rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    transition: all 0.4s ease;
+}
+
+.testimonial-card:hover {
+    border-color: var(--primary-gold);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px var(--shadow-gold);
+}
+
+.testimonial-stars {
+    color: var(--primary-gold);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-text {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--grey-text);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze));
+    border: 2px solid var(--primary-gold);
+}
+
+.author-name {
+    font-size: 1rem;
+    color: var(--light-text);
+    margin-bottom: 0.25rem;
+}
+
+.author-title {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+}
+
+.testimonials-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.testimonial-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    color: var(--primary-gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-btn:hover {
+    border-color: var(--primary-gold);
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px var(--shadow-gold);
+}
+
+/* ===================================
+   BOUTIQUES SECTION
+   =================================== */
+
+.boutiques-section {
+    padding: 8rem 5%;
+    background: var(--luxury-black);
+    position: relative;
+}
+
+.boutiques-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.boutique-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.boutique-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 60px var(--shadow-gold);
+    border-color: var(--primary-gold);
+}
+
+.boutique-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+.boutique-card:hover .boutique-image {
+    transform: scale(1.1);
+}
+
+.boutique-image[data-city="paris"] {
+    background-image: url('https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=800&h=600&fit=crop');
+}
+
+.boutique-image[data-city="milan"] {
+    background-image: url('https://images.unsplash.com/photo-1513342791620-b106dc487c94?w=800&h=600&fit=crop');
+}
+
+.boutique-image[data-city="london"] {
+    background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop');
+}
+
+.boutique-image[data-city="newyork"] {
+    background-image: url('https://images.unsplash.com/photo-1485686531765-ba63b07845a7?w=800&h=600&fit=crop');
+}
+
+.boutique-image[data-city="tokyo"] {
+    background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&h=600&fit=crop');
+}
+
+.boutique-image[data-city="dubai"] {
+    background-image: url('https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&h=600&fit=crop');
+}
+
+.boutique-info {
+    padding: 2rem;
+}
+
+.boutique-city {
+    font-size: 1.75rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-gold);
+    margin-bottom: 0.75rem;
+}
+
+.boutique-address,
+.boutique-hours {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+    margin-bottom: 0.5rem;
+}
+
+.boutique-btn {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    background: transparent;
+    border: 2px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.boutique-btn:hover {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow-gold);
+}
+
+/* ===================================
+   NEWSLETTER SECTION
+   =================================== */
+
+.newsletter-section {
+    padding: 6rem 5%;
+    background: linear-gradient(135deg, var(--luxury-black) 0%, var(--dark-bg) 100%);
+    position: relative;
+}
+
+.newsletter-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-title {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--light-text), var(--primary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.newsletter-description {
+    font-size: 1.125rem;
+    color: var(--grey-text);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+}
+
+.newsletter-input {
+    flex: 1;
+    padding: 1.2rem 2rem;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 50px;
+    color: var(--light-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.newsletter-input:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 30px var(--shadow-gold);
+}
+
+.newsletter-btn {
+    padding: 1.2rem 3rem;
+    background: var(--primary-gold);
+    border: none;
+    border-radius: 50px;
+    color: var(--dark-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.4s ease;
+    white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px var(--shadow-gold);
+}
+
+.newsletter-note {
+    font-size: 0.75rem;
+    color: var(--grey-text);
+}
+
+/* ===================================
+   CONTACT SECTION
+   =================================== */
+
+.contact-section {
+    padding: 8rem 5%;
+    background: var(--dark-bg);
+    position: relative;
+}
+
+.contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem;
+}
+
+.contact-description {
+    font-size: 1rem;
+    color: var(--grey-text);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover {
+    border-color: var(--primary-gold);
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px var(--shadow-gold);
+}
+
+.contact-icon {
+    color: var(--primary-gold);
+    flex-shrink: 0;
+}
+
+.contact-method h4 {
+    font-size: 1rem;
+    color: var(--primary-gold);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.contact-method p {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+}
+
+.contact-form-wrapper {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 3rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--light-text);
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 20px var(--shadow-gold);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact-submit-btn {
+    padding: 1.2rem 3rem;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-bronze));
+    border: none;
+    border-radius: 10px;
+    color: var(--dark-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    transition: all 0.4s ease;
+}
+
+.contact-submit-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px var(--shadow-gold);
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+
+.footer {
+    background: var(--luxury-black);
+    border-top: 1px solid var(--glass-border);
+    padding: 5rem 5% 3rem;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.footer-tagline {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+    margin-bottom: 2rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-gold);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px var(--shadow-gold);
+}
+
+.footer-title {
+    font-size: 1rem;
+    color: var(--primary-gold);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--grey-text);
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-gold);
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-copyright {
+    font-size: 0.875rem;
+    color: var(--grey-text);
+}
+
+.footer-payment {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+    color: var(--grey-text);
+}
+
+.payment-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.payment-icon {
+    padding: 0.5rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ===================================
+   BACK TO TOP BUTTON
+   =================================== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-gold);
+    border: none;
+    border-radius: 50%;
+    color: var(--dark-bg);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    z-index: 999;
+    box-shadow: 0 5px 20px var(--shadow-gold);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 10px 40px var(--shadow-gold);
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 1200px) {
+    .product-3d-container,
+    .about-container,
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .hero-section {
+        padding: 6rem 5% 3rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 4rem);
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .collections-grid,
+    .experience-grid,
+    .boutiques-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-primary,
+    .cta-secondary {
+        padding: 1rem 2rem;
+        font-size: 0.75rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .product-3d-canvas-wrapper {
+        height: 400px;
+    }
+}
+
+/* ===================================
+   ANIMATIONS & KEYFRAMES
+   =================================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.luxury-shadow {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--shadow-gold);
+}
+
+.smooth-transition {
+    transition: all 0.3s var(--transition-smooth);
+}
+
+.bounce-transition {
+    transition: all 0.4s var(--transition-bounce);
+}
+    </style>
+</head>
+<body>
+    <!-- Luxury Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="luxury-spinner"></div>
+            <div class="loading-text">
+                <h1 class="loading-brand">ÉLITE NOIR</h1>
+                <p class="loading-tagline">Crafting Excellence Since 2024</p>
+                <div class="loading-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p class="loading-percentage" id="loadingPercentage">0%</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Background Canvas -->
+    <canvas id="threejs-canvas"></canvas>
+
+    <!-- Cursor Follower -->
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home">
+                    <span class="logo-elite">ÉLITE</span>
+                    <span class="logo-noir">NOIR</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#collections" class="nav-link">Collections</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#boutiques" class="nav-link">Boutiques</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-actions">
+                <button class="search-btn" id="searchBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button class="cart-btn" id="cartBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-text-wrapper">
+                <h1 class="hero-title">
+                    <span class="hero-title-line" data-text="WHERE">WHERE</span>
+                    <span class="hero-title-line" data-text="LUXURY">LUXURY</span>
+                    <span class="hero-title-line" data-text="MEETS">MEETS</span>
+                    <span class="hero-title-line" data-text="ARTISTRY">ARTISTRY</span>
+                </h1>
+                <p class="hero-subtitle">Experience the pinnacle of haute couture craftsmanship</p>
+                <div class="hero-cta">
+                    <button class="cta-primary">
+                        <span>Explore Collection</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                    <button class="cta-secondary">
+                        <span>Book Private Viewing</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>Scroll to explore</span>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="hero-image-slider">
+                <div class="hero-slide active"></div>
+                <div class="hero-slide"></div>
+                <div class="hero-slide"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Luxury Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="150">0</h3>
+                <p class="stat-label">Years Combined Experience</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="50">0</h3>
+                <p class="stat-label">Global Boutiques</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="500">0</h3>
+                <p class="stat-label">Artisan Craftsmen</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="1000">0</h3>
+                <p class="stat-label">Exclusive Pieces Yearly</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section class="collections-section" id="collections">
+        <div class="section-header">
+            <span class="section-subtitle">Spring/Summer 2024</span>
+            <h2 class="section-title">Signature Collections</h2>
+            <p class="section-description">Each piece tells a story of unparalleled craftsmanship and timeless elegance</p>
+        </div>
+
+        <div class="collections-grid">
+            <!-- Collection 1 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="1">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge">New Arrival</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Noir Heritage</h3>
+                    <p class="collection-description">Timeless elegance reimagined for the modern connoisseur</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">24 Pieces</span>
+                        <span class="collection-price">From $2,500</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collection 2 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="2">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge exclusive">Exclusive</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Lumière Royale</h3>
+                    <p class="collection-description">Radiant sophistication for those who dare to stand out</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">18 Pieces</span>
+                        <span class="collection-price">From $3,200</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collection 3 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="3">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge limited">Limited Edition</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Avant-Garde Essence</h3>
+                    <p class="collection-description">Bold designs pushing the boundaries of haute couture</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">12 Pieces</span>
+                        <span class="collection-price">From $4,800</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collection 4 -->
+            <div class="collection-card">
+                <div class="collection-image-wrapper">
+                    <div class="collection-image" data-collection="4">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="collection-badge">Signature</div>
+                </div>
+                <div class="collection-info">
+                    <h3 class="collection-name">Éternelle Grace</h3>
+                    <p class="collection-description">Eternal beauty crafted for life's grandest moments</p>
+                    <div class="collection-meta">
+                        <span class="collection-pieces">30 Pieces</span>
+                        <span class="collection-price">From $2,900</span>
+                    </div>
+                    <button class="collection-btn">
+                        <span>View Collection</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3D Product Showcase -->
+    <section class="product-3d-section">
+        <div class="product-3d-container">
+            <div class="product-3d-canvas-wrapper">
+                <canvas id="product-canvas"></canvas>
+                <div class="canvas-overlay">
+                    <h3>Interactive 3D View</h3>
+                    <p>Drag to rotate • Scroll to zoom</p>
+                </div>
+            </div>
+            <div class="product-3d-info">
+                <span class="product-category">Signature Collection</span>
+                <h2 class="product-3d-title">Couture Noir Ensemble</h2>
+                <p class="product-3d-description">
+                    A masterpiece of Italian craftsmanship, featuring hand-stitched details and the finest cashmere blend. Each piece is individually numbered and comes with a certificate of authenticity.
+                </p>
+                <div class="product-features">
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5"></path>
+                            <path d="M2 12l10 5 10-5"></path>
+                        </svg>
+                        <span>Premium Italian Fabric</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Bespoke Tailoring Available</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span>Lifetime Quality Guarantee</span>
+                    </div>
+                </div>
+                <div class="product-pricing">
+                    <span class="product-price">$5,499</span>
+                    <span class="product-installment">or 12 payments of $458.25</span>
+                </div>
+                <div class="product-actions">
+                    <button class="product-btn primary">
+                        <span>Reserve Now</span>
+                    </button>
+                    <button class="product-btn secondary">
+                        <span>Schedule Fitting</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <span class="about-subtitle">Our Heritage</span>
+                <h2 class="about-title">Crafting Timeless Elegance</h2>
+                <p class="about-text">
+                    For generations, ÉLITE NOIR has been synonymous with unparalleled luxury and craftsmanship. Our atelier brings together master artisans who have dedicated their lives to perfecting the art of haute couture.
+                </p>
+                <p class="about-text">
+                    Every stitch, every fabric selection, every design element is a testament to our unwavering commitment to excellence. We don't just create clothing—we craft wearable art that transcends time and trends.
+                </p>
+                <div class="about-values">
+                    <div class="value-item">
+                        <h4>Craftsmanship</h4>
+                        <p>Over 500 hours of meticulous handwork in every signature piece</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Exclusivity</h4>
+                        <p>Limited production ensuring each client owns something truly unique</p>
+                    </div>
+                    <div class="value-item">
+                        <h4>Heritage</h4>
+                        <p>Time-honored techniques passed down through generations</p>
+                    </div>
+                </div>
+                <button class="about-btn">
+                    <span>Discover Our Story</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="about-image-grid">
+                <div class="about-image main-image"></div>
+                <div class="about-image secondary-image-1"></div>
+                <div class="about-image secondary-image-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="parallax-section">
+        <div class="parallax-content">
+            <h2 class="parallax-title">Experience the Extraordinary</h2>
+            <p class="parallax-text">Where every thread tells a story of perfection</p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <div class="experience-header">
+            <span class="section-subtitle">Immersive Luxury</span>
+            <h2 class="section-title">The ÉLITE NOIR Experience</h2>
+        </div>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Private Consultation</h3>
+                <p class="experience-description">
+                    Begin your journey with a one-on-one consultation with our master stylists. Discuss your vision, preferences, and lifestyle to create a truly personalized experience.
+                </p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Bespoke Creation</h3>
+                <p class="experience-description">
+                    Watch as our artisans bring your vision to life. From fabric selection to the final stitch, every step is crafted with meticulous attention to detail.
+                </p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Perfect Fitting</h3>
+                <p class="experience-description">
+                    Multiple fittings ensure your garment drapes and fits perfectly. Our master tailors make micro-adjustments for absolute perfection.
+                </p>
+            </div>
+            <div class="experience-card">
+                <div class="experience-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    </svg>
+                </div>
+                <h3 class="experience-title">Lifetime Service</h3>
+                <p class="experience-description">
+                    Your relationship with ÉLITE NOIR extends beyond purchase. Enjoy complimentary alterations, cleaning, and care services for life.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <div class="video-content">
+                <h2 class="video-title">Witness Mastery in Motion</h2>
+                <p class="video-description">Step inside our atelier and discover the artistry behind every piece</p>
+                <button class="video-play-btn" id="videoPlayBtn">
+                    <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                        <circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.2)"/>
+                        <path d="M25 20L40 30L25 40V20Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="section-header">
+            <span class="section-subtitle">Client Testimonials</span>
+            <h2 class="section-title">What Our Clients Say</h2>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-track">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "ÉLITE NOIR has completely transformed my wardrobe. The attention to detail and personalized service is unmatched. Every piece feels like it was made exclusively for me—because it was."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">Victoria Sterling</h4>
+                            <p class="author-title">CEO, Sterling Enterprises</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "As someone who attends high-profile events regularly, I need to make a statement. ÉLITE NOIR delivers every single time. The craftsmanship is simply extraordinary."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">Alexander Chen</h4>
+                            <p class="author-title">Film Producer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The bespoke experience at ÉLITE NOIR is worth every penny. From the initial consultation to the final fitting, I felt like royalty. The result? Perfection."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-image"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">Isabella Rodriguez</h4>
+                            <p class="author-title">Art Collector</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials-controls">
+                <button class="testimonial-btn prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="testimonial-btn next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Boutiques Section -->
+    <section class="boutiques-section" id="boutiques">
+        <div class="section-header">
+            <span class="section-subtitle">Visit Us</span>
+            <h2 class="section-title">Our Boutiques Worldwide</h2>
+        </div>
+        <div class="boutiques-grid">
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="paris"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Paris</h3>
+                    <p class="boutique-address">15 Avenue Montaigne, 75008 Paris</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 8PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="milan"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Milan</h3>
+                    <p class="boutique-address">Via Montenapoleone 12, 20121 Milano</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 8PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="london"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">London</h3>
+                    <p class="boutique-address">173 New Bond Street, London W1S 4RQ</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 7PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="newyork"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">New York</h3>
+                    <p class="boutique-address">693 Fifth Avenue, New York, NY 10022</p>
+                    <p class="boutique-hours">Mon-Sat: 10AM - 8PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="tokyo"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Tokyo</h3>
+                    <p class="boutique-address">5-7-5 Ginza, Chuo-ku, Tokyo 104-0061</p>
+                    <p class="boutique-hours">Mon-Sun: 11AM - 9PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+            <div class="boutique-card">
+                <div class="boutique-image" data-city="dubai"></div>
+                <div class="boutique-info">
+                    <h3 class="boutique-city">Dubai</h3>
+                    <p class="boutique-address">Fashion Avenue, Dubai Mall, Dubai</p>
+                    <p class="boutique-hours">Mon-Sun: 10AM - 11PM</p>
+                    <button class="boutique-btn">Book Appointment</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Join the Elite Circle</h2>
+                <p class="newsletter-description">
+                    Be the first to discover new collections, exclusive events, and personalized style insights
+                </p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                    <button type="submit" class="newsletter-btn">
+                        <span>Subscribe</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </form>
+                <p class="newsletter-note">We respect your privacy. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="contact-title">Let's Create Something Extraordinary</h2>
+                <p class="contact-description">
+                    Our concierge team is available 24/7 to assist you with appointments, inquiries, or bespoke requests.
+                </p>
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>concierge@elitenoir.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="10" r="3"></circle>
+                                <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Headquarters</h4>
+                            <p>15 Avenue Montaigne, 75008 Paris</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Select Service</option>
+                            <option value="consultation">Private Consultation</option>
+                            <option value="bespoke">Bespoke Order</option>
+                            <option value="appointment">Boutique Appointment</option>
+                            <option value="inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="contact-submit-btn">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h3 class="footer-logo">ÉLITE NOIR</h3>
+                    <p class="footer-tagline">Where luxury meets artistry</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Collections</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Spring/Summer 2024</a></li>
+                        <li><a href="#">Fall/Winter 2024</a></li>
+                        <li><a href="#">Signature Collection</a></li>
+                        <li><a href="#">Limited Editions</a></li>
+                        <li><a href="#">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Bespoke Tailoring</a></li>
+                        <li><a href="#">Private Consultation</a></li>
+                        <li><a href="#">Personal Styling</a></li>
+                        <li><a href="#">Alterations & Care</a></li>
+                        <li><a href="#">Gift Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Craftsmanship</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2024 ÉLITE NOIR. All rights reserved. Crafted with excellence.</p>
+                <div class="footer-payment">
+                    <span>Secure Payment:</span>
+                    <div class="payment-icons">
+                        <span class="payment-icon">VISA</span>
+                        <span class="payment-icon">MC</span>
+                        <span class="payment-icon">AMEX</span>
+                        <span class="payment-icon">PayPal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <script>
+// ===================================
+// ÉLITE NOIR - Ultra Premium Fashion House
+// Advanced JavaScript with Three.js & GSAP
+// ===================================
+
+(function() {
+    'use strict';
+
+    // ===================================
+    // LOADING SCREEN
+    // ===================================
+
+    class LoadingScreen {
+        constructor() {
+            this.loadingScreen = document.getElementById('loadingScreen');
+            this.progressBar = document.getElementById('progressBar');
+            this.percentage = document.getElementById('loadingPercentage');
+            this.progress = 0;
+        }
+
+        init() {
+            this.simulateLoading();
+        }
+
+        simulateLoading() {
+            const interval = setInterval(() => {
+                this.progress += Math.random() * 15;
+                if (this.progress >= 100) {
+                    this.progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => this.hide(), 500);
+                }
+                this.updateProgress();
+            }, 200);
+        }
+
+        updateProgress() {
+            this.progressBar.style.width = `${this.progress}%`;
+            this.percentage.textContent = `${Math.floor(this.progress)}%`;
+        }
+
+        hide() {
+            this.loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                this.loadingScreen.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 500);
+        }
+    }
+
+    // ===================================
+    // THREE.JS BACKGROUND
+    // ===================================
+
+    class ThreeBackground {
+        constructor() {
+            this.canvas = document.getElementById('threejs-canvas');
+            if (!this.canvas) return;
+
+            this.scene = new THREE.Scene();
+            this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            this.renderer = new THREE.WebGLRenderer({
+                canvas: this.canvas,
+                alpha: true,
+                antialias: true
+            });
+
+            this.particles = null;
+            this.particleCount = 3000; // 3X MORE PARTICLES!
+            this.time = 0;
+            this.geometries = [];
+        }
+
+        init() {
+            this.setupRenderer();
+            this.createParticles();
+            this.createLights();
+            this.createGeometry();
+            this.setupCamera();
+            this.animate();
+            this.handleResize();
+        }
+
+        setupRenderer() {
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            this.renderer.setClearColor(0x000000, 0);
+        }
+
+        createParticles() {
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(this.particleCount * 3);
+            const colors = new Float32Array(this.particleCount * 3);
+
+            for (let i = 0; i < this.particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 100;
+                positions[i + 1] = (Math.random() - 0.5) * 100;
+                positions[i + 2] = (Math.random() - 0.5) * 100;
+
+                // Gold color
+                colors[i] = 0.83;
+                colors[i + 1] = 0.69;
+                colors[i + 2] = 0.22;
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            const material = new THREE.PointsMaterial({
+                size: 0.2,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.6,
+                blending: THREE.AdditiveBlending
+            });
+
+            this.particles = new THREE.Points(geometry, material);
+            this.scene.add(this.particles);
+        }
+
+        createLights() {
+            const ambientLight = new THREE.AmbientLight(0xD4AF37, 0.5);
+            this.scene.add(ambientLight);
+
+            const pointLight1 = new THREE.PointLight(0xD4AF37, 1, 100);
+            pointLight1.position.set(20, 20, 20);
+            this.scene.add(pointLight1);
+
+            const pointLight2 = new THREE.PointLight(0xFFD700, 0.8, 100);
+            pointLight2.position.set(-20, -20, -20);
+            this.scene.add(pointLight2);
+        }
+
+        createGeometry() {
+            // 3X MORE GEOMETRIES - Multiple shapes for ultra premium look
+
+            // 1. Floating Torus Knots
+            const torusGeometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+            const torusMaterial = new THREE.MeshPhongMaterial({
+                color: 0xD4AF37,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.1
+            });
+
+            for (let i = 0; i < 5; i++) { // Increased from 3 to 5
+                const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+                torus.position.set(
+                    (Math.random() - 0.5) * 60,
+                    (Math.random() - 0.5) * 60,
+                    (Math.random() - 0.5) * 60
+                );
+                torus.userData = {
+                    rotationSpeed: Math.random() * 0.02,
+                    floatSpeed: Math.random() * 0.5
+                };
+                this.scene.add(torus);
+                this.geometries.push(torus);
+            }
+
+            // 2. Floating Spheres (NEW!)
+            const sphereGeometry = new THREE.SphereGeometry(8, 32, 32);
+            const sphereMaterial = new THREE.MeshPhongMaterial({
+                color: 0xFFD700,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+
+            for (let i = 0; i < 4; i++) {
+                const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+                sphere.position.set(
+                    (Math.random() - 0.5) * 70,
+                    (Math.random() - 0.5) * 70,
+                    (Math.random() - 0.5) * 70
+                );
+                sphere.userData = {
+                    rotationSpeed: Math.random() * 0.015,
+                    floatSpeed: Math.random() * 0.4
+                };
+                this.scene.add(sphere);
+                this.geometries.push(sphere);
+            }
+
+            // 3. Octahedron Crystals (NEW!)
+            const crystalGeometry = new THREE.OctahedronGeometry(6, 0);
+            const crystalMaterial = new THREE.MeshPhongMaterial({
+                color: 0xCD7F32,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.12
+            });
+
+            for (let i = 0; i < 6; i++) {
+                const crystal = new THREE.Mesh(crystalGeometry, crystalMaterial);
+                crystal.position.set(
+                    (Math.random() - 0.5) * 80,
+                    (Math.random() - 0.5) * 80,
+                    (Math.random() - 0.5) * 80
+                );
+                crystal.userData = {
+                    rotationSpeed: Math.random() * 0.025,
+                    floatSpeed: Math.random() * 0.6
+                };
+                this.scene.add(crystal);
+                this.geometries.push(crystal);
+            }
+
+            // 4. Icosahedron Gems (NEW!)
+            const gemGeometry = new THREE.IcosahedronGeometry(5, 0);
+            const gemMaterial = new THREE.MeshPhongMaterial({
+                color: 0xD4AF37,
+                wireframe: false,
+                transparent: true,
+                opacity: 0.08,
+                emissive: 0xD4AF37,
+                emissiveIntensity: 0.2
+            });
+
+            for (let i = 0; i < 8; i++) {
+                const gem = new THREE.Mesh(gemGeometry, gemMaterial);
+                gem.position.set(
+                    (Math.random() - 0.5) * 90,
+                    (Math.random() - 0.5) * 90,
+                    (Math.random() - 0.5) * 90
+                );
+                gem.userData = {
+                    rotationSpeed: Math.random() * 0.03,
+                    floatSpeed: Math.random() * 0.7
+                };
+                this.scene.add(gem);
+                this.geometries.push(gem);
+            }
+        }
+
+        setupCamera() {
+            this.camera.position.z = 50;
+        }
+
+        animate() {
+            requestAnimationFrame(() => this.animate());
+            this.time += 0.001;
+
+            // Animate particles
+            if (this.particles) {
+                this.particles.rotation.y += 0.0005;
+                this.particles.rotation.x += 0.0003;
+
+                const positions = this.particles.geometry.attributes.position.array;
+                for (let i = 0; i < positions.length; i += 3) {
+                    positions[i + 1] += Math.sin(this.time + positions[i]) * 0.01;
+                }
+                this.particles.geometry.attributes.position.needsUpdate = true;
+            }
+
+            // Animate all geometries (3X more complex animations!)
+            this.geometries.forEach((mesh, index) => {
+                // Rotation
+                mesh.rotation.x += mesh.userData.rotationSpeed;
+                mesh.rotation.y += mesh.userData.rotationSpeed * 0.5;
+                mesh.rotation.z += mesh.userData.rotationSpeed * 0.3;
+
+                // Float animation
+                mesh.position.y += Math.sin(this.time * mesh.userData.floatSpeed + index) * 0.02;
+                mesh.position.x += Math.cos(this.time * mesh.userData.floatSpeed * 0.5 + index) * 0.01;
+
+                // Scale pulse effect
+                const scale = 1 + Math.sin(this.time * 2 + index) * 0.05;
+                mesh.scale.set(scale, scale, scale);
+            });
+
+            this.renderer.render(this.scene, this.camera);
+        }
+
+        handleResize() {
+            window.addEventListener('resize', () => {
+                this.camera.aspect = window.innerWidth / window.innerHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    }
+
+    // ===================================
+    // 3D PRODUCT VIEWER
+    // ===================================
+
+    class Product3DViewer {
+        constructor() {
+            this.canvas = document.getElementById('product-canvas');
+            if (!this.canvas) return;
+
+            this.scene = new THREE.Scene();
+            this.camera = new THREE.PerspectiveCamera(50, this.canvas.clientWidth / this.canvas.clientHeight, 0.1, 1000);
+            this.renderer = new THREE.WebGLRenderer({ canvas: this.canvas, alpha: true, antialias: true });
+
+            this.model = null;
+            this.isDragging = false;
+            this.previousMousePosition = { x: 0, y: 0 };
+        }
+
+        init() {
+            this.setupRenderer();
+            this.createProduct();
+            this.createLights();
+            this.setupCamera();
+            this.setupControls();
+            this.animate();
+            this.handleResize();
+        }
+
+        setupRenderer() {
+            this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            this.renderer.setClearColor(0x000000, 0);
+            this.renderer.shadowMap.enabled = true;
+        }
+
+        createProduct() {
+            // Create a luxury clothing representation using geometric shapes
+            const group = new THREE.Group();
+
+            // Main body (jacket/shirt)
+            const bodyGeometry = new THREE.BoxGeometry(4, 6, 2);
+            const bodyMaterial = new THREE.MeshStandardMaterial({
+                color: 0x1a1a1a,
+                roughness: 0.7,
+                metalness: 0.3
+            });
+            const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+            group.add(body);
+
+            // Gold accents
+            const accentGeometry = new THREE.CylinderGeometry(0.1, 0.1, 6, 32);
+            const accentMaterial = new THREE.MeshStandardMaterial({
+                color: 0xD4AF37,
+                roughness: 0.2,
+                metalness: 0.8
+            });
+
+            for (let i = 0; i < 3; i++) {
+                const accent = new THREE.Mesh(accentGeometry, accentMaterial);
+                accent.position.set(-1.5 + i, 0, 1.1);
+                group.add(accent);
+            }
+
+            // Luxury buttons
+            for (let i = 0; i < 5; i++) {
+                const buttonGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+                const button = new THREE.Mesh(buttonGeometry, accentMaterial);
+                button.position.set(0, 2 - i, 1.1);
+                group.add(button);
+            }
+
+            // Collar
+            const collarGeometry = new THREE.BoxGeometry(3, 0.5, 1);
+            const collar = new THREE.Mesh(collarGeometry, bodyMaterial);
+            collar.position.set(0, 3.25, 0.5);
+            collar.rotation.x = -0.2;
+            group.add(collar);
+
+            this.model = group;
+            this.scene.add(this.model);
+        }
+
+        createLights() {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            this.scene.add(ambientLight);
+
+            const spotLight1 = new THREE.SpotLight(0xD4AF37, 1);
+            spotLight1.position.set(10, 10, 10);
+            spotLight1.castShadow = true;
+            this.scene.add(spotLight1);
+
+            const spotLight2 = new THREE.SpotLight(0xFFD700, 0.8);
+            spotLight2.position.set(-10, 10, -10);
+            this.scene.add(spotLight2);
+
+            const rimLight = new THREE.DirectionalLight(0xD4AF37, 0.5);
+            rimLight.position.set(0, 0, -10);
+            this.scene.add(rimLight);
+        }
+
+        setupCamera() {
+            this.camera.position.z = 15;
+            this.camera.position.y = 2;
+        }
+
+        setupControls() {
+            this.canvas.addEventListener('mousedown', (e) => {
+                this.isDragging = true;
+                this.previousMousePosition = { x: e.offsetX, y: e.offsetY };
+            });
+
+            this.canvas.addEventListener('mousemove', (e) => {
+                if (this.isDragging && this.model) {
+                    const deltaX = e.offsetX - this.previousMousePosition.x;
+                    const deltaY = e.offsetY - this.previousMousePosition.y;
+
+                    this.model.rotation.y += deltaX * 0.01;
+                    this.model.rotation.x += deltaY * 0.01;
+
+                    this.previousMousePosition = { x: e.offsetX, y: e.offsetY };
+                }
+            });
+
+            this.canvas.addEventListener('mouseup', () => {
+                this.isDragging = false;
+            });
+
+            this.canvas.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                this.camera.position.z += e.deltaY * 0.01;
+                this.camera.position.z = Math.max(10, Math.min(25, this.camera.position.z));
+            });
+        }
+
+        animate() {
+            requestAnimationFrame(() => this.animate());
+
+            // Auto-rotate when not dragging
+            if (!this.isDragging && this.model) {
+                this.model.rotation.y += 0.005;
+            }
+
+            this.renderer.render(this.scene, this.camera);
+        }
+
+        handleResize() {
+            window.addEventListener('resize', () => {
+                if (this.canvas) {
+                    this.camera.aspect = this.canvas.clientWidth / this.canvas.clientHeight;
+                    this.camera.updateProjectionMatrix();
+                    this.renderer.setSize(this.canvas.clientWidth, this.canvas.clientHeight);
+                }
+            });
+        }
+    }
+
+    // ===================================
+    // CUSTOM CURSOR
+    // ===================================
+
+    class CustomCursor {
+        constructor() {
+            this.follower = document.getElementById('cursorFollower');
+            this.dot = document.getElementById('cursorDot');
+            this.mouseX = 0;
+            this.mouseY = 0;
+            this.followerX = 0;
+            this.followerY = 0;
+            this.trail = []; // NEW: Cursor trail array
+            this.trailLength = 5; // NEW: Number of trail elements
+            this.createTrail(); // NEW: Create trail elements
+        }
+
+        // NEW: Create cursor trail elements
+        createTrail() {
+            for (let i = 0; i < this.trailLength; i++) {
+                const trailDot = document.createElement('div');
+                trailDot.className = 'cursor-trail';
+                trailDot.style.cssText = `
+                    position: fixed;
+                    width: ${20 - i * 3}px;
+                    height: ${20 - i * 3}px;
+                    border-radius: 50%;
+                    background: radial-gradient(circle, rgba(212, 175, 55, ${0.4 - i * 0.08}), transparent);
+                    pointer-events: none;
+                    z-index: 9998;
+                    transition: all 0.1s ease;
+                    opacity: 0;
+                `;
+                document.body.appendChild(trailDot);
+                this.trail.push({
+                    element: trailDot,
+                    x: 0,
+                    y: 0
+                });
+            }
+        }
+
+        init() {
+            if (!this.follower || !this.dot) return;
+
+            document.addEventListener('mousemove', (e) => {
+                this.mouseX = e.clientX;
+                this.mouseY = e.clientY;
+
+                this.dot.style.left = `${this.mouseX}px`;
+                this.dot.style.top = `${this.mouseY}px`;
+                this.dot.style.opacity = '1';
+
+                // NEW: Animate trail
+                this.animateTrail();
+            });
+
+            document.addEventListener('mouseenter', () => {
+                this.follower.style.opacity = '1';
+                this.dot.style.opacity = '1';
+                // NEW: Show trail
+                this.trail.forEach(t => t.element.style.opacity = '1');
+            });
+
+            document.addEventListener('mouseleave', () => {
+                this.follower.style.opacity = '0';
+                this.dot.style.opacity = '0';
+                // NEW: Hide trail
+                this.trail.forEach(t => t.element.style.opacity = '0');
+            });
+
+            // Smooth follower movement
+            this.animateFollower();
+
+            // Scale up on interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea, select');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    this.follower.style.width = '80px';
+                    this.follower.style.height = '80px';
+                });
+                el.addEventListener('mouseleave', () => {
+                    this.follower.style.width = '50px';
+                    this.follower.style.height = '50px';
+                });
+            });
+        }
+
+        // NEW: Animate cursor trail
+        animateTrail() {
+            // Update trail positions with delay effect
+            for (let i = this.trail.length - 1; i > 0; i--) {
+                this.trail[i].x = this.trail[i - 1].x;
+                this.trail[i].y = this.trail[i - 1].y;
+            }
+
+            if (this.trail.length > 0) {
+                this.trail[0].x = this.mouseX;
+                this.trail[0].y = this.mouseY;
+            }
+
+            // Apply positions to trail elements
+            this.trail.forEach((t, i) => {
+                const delay = i * 0.15;
+                t.x += (this.mouseX - t.x) * (0.3 - delay);
+                t.y += (this.mouseY - t.y) * (0.3 - delay);
+
+                t.element.style.left = `${t.x}px`;
+                t.element.style.top = `${t.y}px`;
+            });
+        }
+
+        animateFollower() {
+            this.followerX += (this.mouseX - this.followerX) * 0.1;
+            this.followerY += (this.mouseY - this.followerY) * 0.1;
+
+            this.follower.style.left = `${this.followerX}px`;
+            this.follower.style.top = `${this.followerY}px`;
+
+            // NEW: Continue trail animation
+            this.animateTrail();
+
+            requestAnimationFrame(() => this.animateFollower());
+        }
+    }
+
+    // ===================================
+    // NAVIGATION
+    // ===================================
+
+    class Navigation {
+        constructor() {
+            this.navbar = document.getElementById('navbar');
+            this.menuToggle = document.getElementById('menuToggle');
+            this.navMenu = document.getElementById('navMenu');
+        }
+
+        init() {
+            this.handleScroll();
+            this.setupMobileMenu();
+            this.setupSmoothScroll();
+        }
+
+        handleScroll() {
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll > 100) {
+                    this.navbar.classList.add('scrolled');
+                } else {
+                    this.navbar.classList.remove('scrolled');
+                }
+
+                // Hide/show navbar on scroll
+                if (currentScroll > lastScroll && currentScroll > 500) {
+                    this.navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    this.navbar.style.transform = 'translateY(0)';
+                }
+
+                lastScroll = currentScroll;
+            });
+        }
+
+        setupMobileMenu() {
+            if (this.menuToggle && this.navMenu) {
+                this.menuToggle.addEventListener('click', () => {
+                    this.navMenu.classList.toggle('active');
+                    this.menuToggle.classList.toggle('active');
+                });
+            }
+        }
+
+        setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(anchor.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+    }
+
+    // ===================================
+    // HERO SLIDER
+    // ===================================
+
+    class HeroSlider {
+        constructor() {
+            this.slides = document.querySelectorAll('.hero-slide');
+            this.currentSlide = 0;
+            this.slideInterval = 5000;
+        }
+
+        init() {
+            if (this.slides.length === 0) return;
+            setInterval(() => this.nextSlide(), this.slideInterval);
+        }
+
+        nextSlide() {
+            this.slides[this.currentSlide].classList.remove('active');
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+            this.slides[this.currentSlide].classList.add('active');
+        }
+    }
+
+    // ===================================
+    // STATS COUNTER
+    // ===================================
+
+    class StatsCounter {
+        constructor() {
+            this.stats = document.querySelectorAll('.stat-number');
+        }
+
+        init() {
+            this.observeStats();
+        }
+
+        observeStats() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                        this.animateCounter(entry.target);
+                        entry.target.classList.add('counted');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            this.stats.forEach(stat => observer.observe(stat));
+        }
+
+        animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+    }
+
+    // ===================================
+    // GSAP ANIMATIONS
+    // ===================================
+
+    class GSAPAnimations {
+        init() {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Collection cards
+            gsap.utils.toArray('.collection-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        end: 'top 50%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 100,
+                    rotation: 5,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Experience cards
+            gsap.utils.toArray('.experience-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 0.6,
+                    delay: i * 0.15,
+                    ease: 'back.out(1.7)'
+                });
+            });
+
+            // Boutique cards
+            gsap.utils.toArray('.boutique-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    x: i % 2 === 0 ? -100 : 100,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                });
+            });
+
+            // Section titles
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.from(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Parallax section
+            gsap.to('.parallax-section', {
+                scrollTrigger: {
+                    trigger: '.parallax-section',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                },
+                backgroundPosition: '50% 100%'
+            });
+        }
+    }
+
+    // ===================================
+    // TESTIMONIAL SLIDER
+    // ===================================
+
+    class TestimonialSlider {
+        constructor() {
+            this.track = document.querySelector('.testimonial-track');
+            this.prevBtn = document.querySelector('.testimonial-btn.prev');
+            this.nextBtn = document.querySelector('.testimonial-btn.next');
+        }
+
+        init() {
+            if (!this.track) return;
+
+            this.setupButtons();
+        }
+
+        setupButtons() {
+            if (this.prevBtn) {
+                this.prevBtn.addEventListener('click', () => {
+                    this.track.scrollBy({
+                        left: -420,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            if (this.nextBtn) {
+                this.nextBtn.addEventListener('click', () => {
+                    this.track.scrollBy({
+                        left: 420,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        }
+    }
+
+    // ===================================
+    // FORMS
+    // ===================================
+
+    class Forms {
+        init() {
+            this.setupNewsletterForm();
+            this.setupContactForm();
+            this.setupCartFunctionality();
+        }
+
+        setupNewsletterForm() {
+            const form = document.getElementById('newsletterForm');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = form.querySelector('input[type="email"]').value;
+                    this.showNotification('Thank you for subscribing! Welcome to the Elite Circle.', 'success');
+                    form.reset();
+                });
+            }
+        }
+
+        setupContactForm() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.showNotification('Message sent successfully! Our concierge team will contact you shortly.', 'success');
+                    form.reset();
+                });
+            }
+        }
+
+        setupCartFunctionality() {
+            const cartBtn = document.getElementById('cartBtn');
+            if (cartBtn) {
+                cartBtn.addEventListener('click', () => {
+                    this.showNotification('Cart functionality coming soon!', 'info');
+                });
+            }
+
+            const searchBtn = document.getElementById('searchBtn');
+            if (searchBtn) {
+                searchBtn.addEventListener('click', () => {
+                    this.showNotification('Search functionality coming soon!', 'info');
+                });
+            }
+        }
+
+        showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 2rem;
+                padding: 1.5rem 2rem;
+                background: var(--glass-bg);
+                backdrop-filter: blur(10px);
+                border: 2px solid var(--primary-gold);
+                border-radius: 10px;
+                color: var(--light-text);
+                font-size: 0.875rem;
+                z-index: 10000;
+                animation: slideInRight 0.5s ease;
+                box-shadow: 0 10px 40px var(--shadow-gold);
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+    }
+
+    // ===================================
+    // BACK TO TOP
+    // ===================================
+
+    class BackToTop {
+        constructor() {
+            this.btn = document.getElementById('backToTop');
+        }
+
+        init() {
+            if (!this.btn) return;
+
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    this.btn.classList.add('visible');
+                } else {
+                    this.btn.classList.remove('visible');
+                }
+            });
+
+            this.btn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+
+    // ===================================
+    // VIDEO CONTROLS
+    // ===================================
+
+    class VideoControls {
+        init() {
+            const playBtn = document.getElementById('videoPlayBtn');
+            if (playBtn) {
+                playBtn.addEventListener('click', () => {
+                    this.showNotification('Video player coming soon!', 'info');
+                });
+            }
+        }
+
+        showNotification(message, type) {
+            const forms = new Forms();
+            forms.showNotification(message, type);
+        }
+    }
+
+    // ===================================
+    // COLLECTION BUTTONS
+    // ===================================
+
+    class CollectionButtons {
+        init() {
+            const collectionBtns = document.querySelectorAll('.collection-btn');
+            collectionBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const collectionName = btn.closest('.collection-card').querySelector('.collection-name').textContent;
+                    const forms = new Forms();
+                    forms.showNotification(`Viewing ${collectionName} collection...`, 'info');
+                });
+            });
+
+            const productBtns = document.querySelectorAll('.product-btn');
+            productBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const action = btn.textContent.trim();
+                    const forms = new Forms();
+                    forms.showNotification(`${action} functionality coming soon!`, 'info');
+                });
+            });
+
+            const boutiqueBtns = document.querySelectorAll('.boutique-btn');
+            boutiqueBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const city = btn.closest('.boutique-card').querySelector('.boutique-city').textContent;
+                    const forms = new Forms();
+                    forms.showNotification(`Booking appointment at ${city} boutique...`, 'success');
+                });
+            });
+        }
+    }
+
+    // ===================================
+    // PARALLAX EFFECTS
+    // ===================================
+
+    class ParallaxEffects {
+        init() {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxSections = document.querySelectorAll('.parallax-section');
+
+                parallaxSections.forEach(section => {
+                    const speed = 0.5;
+                    const yPos = -(scrolled * speed);
+                    section.style.backgroundPositionY = `${yPos}px`;
+                });
+            });
+        }
+    }
+
+    // ===================================
+    // INTERSECTION OBSERVER
+    // ===================================
+
+    class IntersectionAnimations {
+        init() {
+            const options = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, options);
+
+            // Observe elements
+            const elements = document.querySelectorAll('.about-content, .product-3d-info, .contact-info, .contact-form-wrapper');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(50px)';
+                el.style.transition = 'all 0.8s ease-out';
+                observer.observe(el);
+            });
+        }
+    }
+
+    // ===================================
+    // CART MANAGEMENT
+    // ===================================
+
+    class CartManager {
+        constructor() {
+            this.cart = [];
+            this.cartCount = document.querySelector('.cart-count');
+        }
+
+        init() {
+            this.updateCartDisplay();
+        }
+
+        addToCart(item) {
+            this.cart.push(item);
+            this.updateCartDisplay();
+        }
+
+        updateCartDisplay() {
+            if (this.cartCount) {
+                this.cartCount.textContent = this.cart.length;
+            }
+        }
+    }
+
+    // ===================================
+    // IMAGE LAZY LOADING
+    // ===================================
+
+    class LazyLoading {
+        init() {
+            const images = document.querySelectorAll('[data-src]');
+
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+    }
+
+    // ===================================
+    // MAGNETIC BUTTONS - 3X ENHANCED!
+    // ===================================
+
+    class MagneticButtons {
+        constructor() {
+            this.buttons = document.querySelectorAll('.cta-primary, .cta-secondary, .collection-btn');
+        }
+
+        init() {
+            this.buttons.forEach(button => {
+                button.addEventListener('mousemove', (e) => {
+                    const rect = button.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+
+                    // Magnetic effect - button follows cursor
+                    const moveX = x * 0.3;
+                    const moveY = y * 0.3;
+
+                    button.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translate(0, 0) scale(1)';
+                });
+            });
+        }
+    }
+
+    // ===================================
+    // 3D CARD TILT EFFECT - 3X ENHANCED!
+    // ===================================
+
+    class Card3DTilt {
+        constructor() {
+            this.cards = document.querySelectorAll('.collection-card');
+        }
+
+        init() {
+            this.cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+
+                    // Apply 3D tilt based on mouse position
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+        }
+    }
+
+    // ===================================
+    // TEXT REVEAL ANIMATION - 3X ENHANCED!
+    // ===================================
+
+    class TextRevealAnimation {
+        constructor() {
+            this.titles = document.querySelectorAll('.section-title, .hero-title-line');
+        }
+
+        init() {
+            this.titles.forEach((title, index) => {
+                // Split text into individual characters
+                const text = title.textContent;
+                title.innerHTML = '';
+
+                text.split('').forEach((char, i) => {
+                    const span = document.createElement('span');
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    span.style.cssText = `
+                        display: inline-block;
+                        opacity: 0;
+                        transform: translateY(50px) rotateX(-90deg);
+                        animation: charReveal 0.6s ease forwards;
+                        animation-delay: ${i * 0.05}s;
+                    `;
+                    title.appendChild(span);
+                });
+            });
+
+            // Add character reveal animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes charReveal {
+                    to {
+                        opacity: 1;
+                        transform: translateY(0) rotateX(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    // ===================================
+    // INITIALIZATION
+    // ===================================
+
+    function init() {
+        // Initialize all components
+        const loadingScreen = new LoadingScreen();
+        loadingScreen.init();
+
+        // Wait for loading to complete before initializing other components
+        setTimeout(() => {
+            const threeBackground = new ThreeBackground();
+            threeBackground.init();
+
+            const product3DViewer = new Product3DViewer();
+            product3DViewer.init();
+
+            const customCursor = new CustomCursor();
+            customCursor.init();
+
+            // NEW: 3X ENHANCED FEATURES!
+            const magneticButtons = new MagneticButtons();
+            magneticButtons.init();
+
+            const card3DTilt = new Card3DTilt();
+            card3DTilt.init();
+
+            const textRevealAnimation = new TextRevealAnimation();
+            textRevealAnimation.init();
+
+            const navigation = new Navigation();
+            navigation.init();
+
+            const heroSlider = new HeroSlider();
+            heroSlider.init();
+
+            const statsCounter = new StatsCounter();
+            statsCounter.init();
+
+            const gsapAnimations = new GSAPAnimations();
+            gsapAnimations.init();
+
+            const testimonialSlider = new TestimonialSlider();
+            testimonialSlider.init();
+
+            const forms = new Forms();
+            forms.init();
+
+            const backToTop = new BackToTop();
+            backToTop.init();
+
+            const videoControls = new VideoControls();
+            videoControls.init();
+
+            const collectionButtons = new CollectionButtons();
+            collectionButtons.init();
+
+            const parallaxEffects = new ParallaxEffects();
+            parallaxEffects.init();
+
+            const intersectionAnimations = new IntersectionAnimations();
+            intersectionAnimations.init();
+
+            const cartManager = new CartManager();
+            cartManager.init();
+
+            const lazyLoading = new LazyLoading();
+            lazyLoading.init();
+
+            console.log('ÉLITE NOIR - All systems initialized');
+        }, 100);
+    }
+
+    // Run initialization when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
+
+// ===================================
+// ADDITIONAL ANIMATIONS
+// ===================================
+
+// Add CSS animations dynamically
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+`;
+document.head.appendChild(style);
+    </script>
+</body>
+</html>
