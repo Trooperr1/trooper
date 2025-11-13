@@ -3,22 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE WEAR - Premium Fashion Collection</title>
+    <title>NOIR - Luxury Fashion Redefined</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;800&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-            background: #000;
-            color: #fff;
+        :root {
+            --gold: #d4af37;
+            --dark: #0a0a0a;
+            --light: #f8f8f8;
         }
 
-        /* 3D Canvas Background */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            background: var(--dark);
+            color: var(--light);
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Loading Screen */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--gold);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 1; text-shadow: 0 0 20px var(--gold); }
+            50% { opacity: 0.8; text-shadow: 0 0 40px var(--gold), 0 0 60px var(--gold); }
+        }
+
+        /* 3D Canvas */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -28,455 +89,629 @@
             z-index: 1;
         }
 
-        /* Content overlay */
         .content {
             position: relative;
             z-index: 2;
         }
 
-        /* Header */
-        .header {
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
             padding: 2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0) 100%);
         }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
         }
 
-        .logo:hover {
-            transform: scale(1.05);
-            filter: brightness(1.2);
-        }
-
-        .nav {
+        .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
         }
 
-        .nav a {
-            color: #fff;
+        .nav-links a {
+            color: var(--light);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 300;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             position: relative;
+            transition: all 0.3s ease;
         }
 
-        .nav a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
             width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
+            height: 1px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
-        .nav a:hover::after {
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::before {
             width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 2rem 5%;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Playfair Display', serif;
+            font-size: 10rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            background: linear-gradient(180deg, #ffffff 0%, var(--gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: fadeInUp 1s ease;
+            animation: fadeInScale 1.5s ease;
+            text-shadow: 0 0 80px rgba(212, 175, 55, 0.3);
         }
 
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .cta-btn {
-            padding: 1rem 3rem;
             font-size: 1.2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 50px;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
-        }
-
-        /* Section Styling */
-        section {
-            padding: 5rem 5%;
-            backdrop-filter: blur(10px);
-            background: rgba(0, 0, 0, 0.2);
-            margin: 2rem 0;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            text-align: center;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 300;
+            animation: fadeIn 1.5s ease 0.3s both;
+            color: rgba(248, 248, 248, 0.7);
         }
 
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+        .cta {
+            padding: 1.5rem 4rem;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
+            transition: all 0.5s ease;
+            animation: fadeIn 1.5s ease 0.6s both;
+            font-weight: 600;
         }
 
-        .product-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-
-        .product-image {
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            transition: all 0.4s ease;
+            height: 100%;
+            background: var(--gold);
+            transition: all 0.5s ease;
+            z-index: -1;
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.1);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-desc {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 1rem;
-        }
-
-        .product-price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            padding: 1rem;
-            margin-top: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .add-to-cart:hover {
+        .cta:hover {
+            color: var(--dark);
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
         }
 
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+        .cta:hover::before {
+            left: 0;
         }
 
-        .feature-card {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            background: rgba(102, 126, 234, 0.1);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-desc {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 3rem 5%;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            font-size: 2rem;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: scale(1.2);
-            filter: brightness(1.5);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            writing-mode: vertical-rl;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: float 2s ease-in-out infinite;
+            color: rgba(248, 248, 248, 0.5);
         }
 
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Collections Section */
+        .collections {
+            min-height: 100vh;
+            padding: 10rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 5rem;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .collection-item {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .collection-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(10,10,10,0.9) 100%);
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+
+        .collection-item:hover {
+            transform: scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .collection-bg {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10rem;
+            transition: all 0.5s ease;
+        }
+
+        .collection-item:hover .collection-bg {
+            transform: scale(1.1);
+        }
+
+        .collection-info {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            z-index: 3;
+        }
+
+        .collection-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .collection-desc {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(248, 248, 248, 0.7);
+        }
+
+        .collection-price {
+            position: absolute;
+            top: 3rem;
+            right: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            z-index: 3;
+        }
+
+        /* Featured Product */
+        .featured {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 5rem;
+            position: relative;
+        }
+
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .featured-3d {
+            height: 600px;
+            position: relative;
+        }
+
+        .featured-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: var(--gold);
+            line-height: 1.2;
+        }
+
+        .featured-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(248, 248, 248, 0.7);
+            font-weight: 300;
+        }
+
+        .price-tag {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 3rem;
+        }
+
+        /* Experience Section */
+        .experience {
+            min-height: 100vh;
+            padding: 10rem 5%;
+            text-align: center;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            padding: 3rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: all 0.7s ease;
+        }
+
+        .experience-card:hover::before {
+            left: 100%;
+        }
+
+        .experience-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .experience-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .experience-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .experience-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(248, 248, 248, 0.6);
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            padding: 5rem 5%;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-links a {
+            color: rgba(248, 248, 248, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .copyright {
+            color: rgba(248, 248, 248, 0.4);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
             }
-            50% {
-                transform: translateY(-20px);
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* Responsive */
+        @media (max-width: 1200px) {
+            .hero h1 { font-size: 6rem; }
+            .section-title { font-size: 3.5rem; }
+            .featured-content { grid-template-columns: 1fr; }
+            .experience-grid { grid-template-columns: 1fr; }
+            .collection-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .nav {
-                gap: 1rem;
-            }
-
-            .nav a {
-                font-size: 0.9rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+            .hero h1 { font-size: 3.5rem; }
+            .nav-links { gap: 1.5rem; }
+            .collection-name { font-size: 2rem; }
+            .featured-text h2 { font-size: 3rem; }
+            .cursor, .cursor-dot { display: none; }
+            body { cursor: auto; }
         }
     </style>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-text">NOIR</div>
+    </div>
+
     <!-- 3D Background Canvas -->
     <canvas id="bg-canvas"></canvas>
 
     <!-- Content -->
     <div class="content">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo">LUXE WEAR</div>
-            <nav class="nav">
+        <!-- Navigation -->
+        <nav>
+            <div class="brand">NOIR</div>
+            <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="#features">Features</a>
-                <a href="#contact">Contact</a>
-            </nav>
-        </header>
+                <a href="#collections">Collections</a>
+                <a href="#featured">Featured</a>
+                <a href="#experience">Experience</a>
+            </div>
+        </nav>
 
         <!-- Hero Section -->
         <section class="hero" id="home">
-            <h1>Premium Fashion</h1>
-            <p>Elevate Your Style with Our Exclusive Collection</p>
-            <a href="#products" class="cta-btn">Explore Collection</a>
+            <h1>LUXURY</h1>
+            <p>Redefined for the Modern Era</p>
+            <button class="cta">Explore Collection</button>
+            <div class="scroll-indicator">Scroll</div>
         </section>
 
-        <!-- Products Section -->
-        <section id="products">
-            <h2 class="section-title">Featured Collection</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">👔</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Designer Suit</h3>
-                        <p class="product-desc">Premium tailored suit for the modern gentleman</p>
-                        <div class="product-price">$599</div>
-                        <button class="add-to-cart">Add to Cart</button>
+        <!-- Collections Section -->
+        <section class="collections" id="collections">
+            <h2 class="section-title">Collections</h2>
+            <div class="collection-grid">
+                <div class="collection-item">
+                    <div class="collection-bg">👔</div>
+                    <div class="collection-price">$2,499</div>
+                    <div class="collection-info">
+                        <h3 class="collection-name">Signature Suit</h3>
+                        <p class="collection-desc">Handcrafted Excellence</p>
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-image">👗</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Evening Dress</h3>
-                        <p class="product-desc">Elegant dress for special occasions</p>
-                        <div class="product-price">$449</div>
-                        <button class="add-to-cart">Add to Cart</button>
+                <div class="collection-item">
+                    <div class="collection-bg">🧥</div>
+                    <div class="collection-price">$3,999</div>
+                    <div class="collection-info">
+                        <h3 class="collection-name">Leather Jacket</h3>
+                        <p class="collection-desc">Italian Craftsmanship</p>
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-image">👕</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Casual T-Shirt</h3>
-                        <p class="product-desc">Comfortable premium cotton blend</p>
-                        <div class="product-price">$89</div>
-                        <button class="add-to-cart">Add to Cart</button>
+                <div class="collection-item">
+                    <div class="collection-bg">👗</div>
+                    <div class="collection-price">$4,500</div>
+                    <div class="collection-info">
+                        <h3 class="collection-name">Evening Gown</h3>
+                        <p class="collection-desc">Haute Couture</p>
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-image">👖</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Designer Jeans</h3>
-                        <p class="product-desc">Perfect fit, premium denim</p>
-                        <div class="product-price">$199</div>
-                        <button class="add-to-cart">Add to Cart</button>
+                <div class="collection-item">
+                    <div class="collection-bg">👞</div>
+                    <div class="collection-price">$1,299</div>
+                    <div class="collection-info">
+                        <h3 class="collection-name">Oxford Shoes</h3>
+                        <p class="collection-desc">Bespoke Design</p>
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-image">🧥</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Leather Jacket</h3>
-                        <p class="product-desc">Genuine leather, timeless style</p>
-                        <div class="product-price">$799</div>
-                        <button class="add-to-cart">Add to Cart</button>
+                <div class="collection-item">
+                    <div class="collection-bg">👜</div>
+                    <div class="collection-price">$5,999</div>
+                    <div class="collection-info">
+                        <h3 class="collection-name">Designer Bag</h3>
+                        <p class="collection-desc">Limited Edition</p>
                     </div>
                 </div>
 
-                <div class="product-card">
-                    <div class="product-image">👟</div>
-                    <div class="product-info">
-                        <h3 class="product-name">Designer Sneakers</h3>
-                        <p class="product-desc">Limited edition, premium comfort</p>
-                        <div class="product-price">$299</div>
-                        <button class="add-to-cart">Add to Cart</button>
+                <div class="collection-item">
+                    <div class="collection-bg">⌚</div>
+                    <div class="collection-price">$12,500</div>
+                    <div class="collection-info">
+                        <h3 class="collection-name">Timepiece</h3>
+                        <p class="collection-desc">Swiss Movement</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
-        <section id="features">
-            <h2 class="section-title">Why Choose Us</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🚚</div>
-                    <h3 class="feature-title">Free Shipping</h3>
-                    <p class="feature-desc">Free worldwide shipping on all orders over $100</p>
+        <!-- Featured Product -->
+        <section class="featured" id="featured">
+            <div class="featured-content">
+                <div class="featured-3d" id="featured-3d-container"></div>
+                <div class="featured-text">
+                    <h2>The<br>Masterpiece</h2>
+                    <p>Crafted from the finest materials sourced globally. Each piece represents months of meticulous work by master artisans. This is not just fashion—it's wearable art that transcends time.</p>
+                    <div class="price-tag">$8,999</div>
+                    <button class="cta">Reserve Now</button>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h3 class="feature-title">Secure Payment</h3>
-                    <p class="feature-desc">100% secure payment processing</p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <h2 class="section-title">The Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-icon">✨</div>
+                    <h3>Exclusive</h3>
+                    <p>Limited production runs ensure you own something truly rare and exceptional.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">↩️</div>
-                    <h3 class="feature-title">Easy Returns</h3>
-                    <p class="feature-desc">30-day hassle-free return policy</p>
+                <div class="experience-card">
+                    <div class="experience-icon">🎨</div>
+                    <h3>Artisan Made</h3>
+                    <p>Every piece handcrafted by master artisans with decades of experience.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⭐</div>
-                    <h3 class="feature-title">Premium Quality</h3>
-                    <p class="feature-desc">Only the finest materials and craftsmanship</p>
+                <div class="experience-card">
+                    <div class="experience-icon">🌍</div>
+                    <h3>Global Delivery</h3>
+                    <p>White-glove service ensuring your luxury arrives in perfect condition.</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="footer" id="contact">
-            <div class="logo" style="margin-bottom: 1rem;">LUXE WEAR</div>
-            <p>Premium Fashion Collection</p>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="Instagram">📷</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-                <a href="#" aria-label="Pinterest">📌</a>
+        <footer>
+            <div class="footer-brand">NOIR</div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+                <a href="#">Instagram</a>
             </div>
-            <p style="margin-top: 2rem; opacity: 0.5;">&copy; 2024 LUXE WEAR. All rights reserved.</p>
+            <p class="copyright">&copy; 2024 NOIR. All Rights Reserved.</p>
         </footer>
     </div>
 
-    <!-- Three.js Library -->
+    <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-    <!-- 3D Background Script -->
     <script>
-        // Three.js Scene Setup
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorDot = document.querySelector('.cursor-dot');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursorDot.style.left = e.clientX + 'px';
+            cursorDot.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .collection-item').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursor.style.background = 'rgba(212, 175, 55, 0.2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.background = 'transparent';
+            });
+        });
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loader').style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
+        // Three.js Background Scene
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({
@@ -487,62 +722,112 @@
 
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        camera.position.z = 30;
+        camera.position.z = 50;
 
-        // Create floating geometric shapes
-        const geometry1 = new THREE.TorusGeometry(10, 3, 16, 100);
-        const geometry2 = new THREE.OctahedronGeometry(8, 0);
-        const geometry3 = new THREE.IcosahedronGeometry(7, 0);
+        // Create luxury geometric shapes
+        const createLuxuryShape = (geometry, position) => {
+            const material = new THREE.MeshPhysicalMaterial({
+                color: 0xd4af37,
+                metalness: 0.9,
+                roughness: 0.1,
+                transparent: true,
+                opacity: 0.6,
+                envMapIntensity: 1,
+                clearcoat: 1,
+                clearcoatRoughness: 0.1
+            });
 
-        const material = new THREE.MeshStandardMaterial({
-            color: 0x667eea,
-            wireframe: false,
-            metalness: 0.5,
-            roughness: 0.5
-        });
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.set(...position);
+            return mesh;
+        };
 
-        const torus = new THREE.Mesh(geometry1, material);
-        const octahedron = new THREE.Mesh(geometry2, material);
-        const icosahedron = new THREE.Mesh(geometry3, material);
+        const torus = createLuxuryShape(
+            new THREE.TorusGeometry(15, 3, 16, 100),
+            [-30, 15, -20]
+        );
 
-        torus.position.set(-15, 10, -5);
-        octahedron.position.set(15, -10, -5);
-        icosahedron.position.set(0, 0, -10);
+        const dodecahedron = createLuxuryShape(
+            new THREE.DodecahedronGeometry(10),
+            [30, -15, -25]
+        );
 
-        scene.add(torus, octahedron, icosahedron);
+        const octahedron = createLuxuryShape(
+            new THREE.OctahedronGeometry(12),
+            [0, 0, -30]
+        );
 
-        // Add particles
+        scene.add(torus, dodecahedron, octahedron);
+
+        // Particle System
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 500;
+        const particlesCount = 1000;
         const posArray = new Float32Array(particlesCount * 3);
 
         for (let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 100;
+            posArray[i] = (Math.random() - 0.5) * 200;
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
         const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.3,
-            color: 0x764ba2,
+            size: 0.2,
+            color: 0xd4af37,
             transparent: true,
-            opacity: 0.8
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
         });
 
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
         // Lighting
-        const pointLight = new THREE.PointLight(0x667eea, 2);
-        pointLight.position.set(20, 20, 20);
-        scene.add(pointLight);
+        const light1 = new THREE.PointLight(0xd4af37, 2, 100);
+        light1.position.set(50, 50, 50);
+        scene.add(light1);
 
-        const ambientLight = new THREE.AmbientLight(0x764ba2, 0.5);
+        const light2 = new THREE.PointLight(0xffffff, 1, 100);
+        light2.position.set(-50, -50, 50);
+        scene.add(light2);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
         scene.add(ambientLight);
 
+        // Featured Product 3D
+        const featuredGeometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const featuredMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xd4af37,
+            metalness: 1,
+            roughness: 0,
+            transparent: true,
+            opacity: 0.8,
+            envMapIntensity: 1,
+            clearcoat: 1
+        });
+        const featuredMesh = new THREE.Mesh(featuredGeometry, featuredMaterial);
+
+        const featuredScene = new THREE.Scene();
+        const featuredCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const featuredRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+        const featuredContainer = document.getElementById('featured-3d-container');
+        if (featuredContainer) {
+            featuredRenderer.setSize(600, 600);
+            featuredContainer.appendChild(featuredRenderer.domElement);
+            featuredScene.add(featuredMesh);
+            featuredScene.add(light1.clone());
+            featuredScene.add(light2.clone());
+            featuredCamera.position.z = 30;
+        }
+
         // Animation
+        let scrollY = window.scrollY;
         let mouseX = 0;
         let mouseY = 0;
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
 
         document.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -552,22 +837,31 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // Rotate shapes
-            torus.rotation.x += 0.005;
-            torus.rotation.y += 0.01;
+            const time = Date.now() * 0.001;
 
-            octahedron.rotation.x += 0.01;
-            octahedron.rotation.y += 0.005;
+            // Rotate shapes elegantly
+            torus.rotation.x = time * 0.2;
+            torus.rotation.y = time * 0.3;
 
-            icosahedron.rotation.x += 0.008;
-            icosahedron.rotation.y += 0.008;
+            dodecahedron.rotation.x = time * 0.15;
+            dodecahedron.rotation.y = time * 0.25;
 
-            // Rotate particles
-            particlesMesh.rotation.y += 0.001;
+            octahedron.rotation.x = time * 0.1;
+            octahedron.rotation.y = time * 0.2;
 
-            // Mouse interaction
-            camera.position.x += (mouseX * 5 - camera.position.x) * 0.05;
-            camera.position.y += (mouseY * 5 - camera.position.y) * 0.05;
+            particlesMesh.rotation.y = time * 0.05;
+
+            // Parallax effect
+            camera.position.x += (mouseX * 10 - camera.position.x) * 0.05;
+            camera.position.y += (mouseY * 10 - camera.position.y) * 0.05;
+            camera.position.z = 50 - scrollY * 0.01;
+
+            // Featured product rotation
+            if (featuredMesh) {
+                featuredMesh.rotation.x = time * 0.3;
+                featuredMesh.rotation.y = time * 0.4;
+                featuredRenderer.render(featuredScene, featuredCamera);
+            }
 
             renderer.render(scene, camera);
         }
@@ -587,22 +881,21 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // Add to cart functionality
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                this.textContent = 'Added! ✓';
-                this.style.background = 'linear-gradient(135deg, #28a745 0%, #20c997 100%)';
+        // Button interactions
+        document.querySelectorAll('.cta').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.textContent = 'Added to Collection ✓';
+                btn.style.borderColor = '#28a745';
+                btn.style.color = '#28a745';
                 setTimeout(() => {
-                    this.textContent = 'Add to Cart';
-                    this.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                    btn.textContent = btn.textContent.includes('Reserve') ? 'Reserve Now' : 'Explore Collection';
+                    btn.style.borderColor = 'var(--gold)';
+                    btn.style.color = 'var(--gold)';
                 }, 2000);
             });
         });
