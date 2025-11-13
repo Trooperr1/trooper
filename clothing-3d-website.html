@@ -27,6 +27,24 @@
             color: var(--primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 3D Canvas Background */
+        #canvas-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Ensure content is above canvas */
+        nav, .hero, .stats, .products, .featured, .features, .newsletter, footer {
+            position: relative;
+            z-index: 1;
         }
 
         /* Navigation */
@@ -574,6 +592,9 @@
     </style>
 </head>
 <body>
+    <!-- 3D Background Canvas -->
+    <canvas id="canvas-3d"></canvas>
+
     <!-- Navigation -->
     <nav>
         <div class="logo">APEX</div>
@@ -852,6 +873,201 @@
                 alert('Thank you for subscribing!');
                 input.value = '';
             }
+        });
+    </script>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- 3D Animation Script -->
+    <script>
+        // Three.js Scene Setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.getElementById('canvas-3d'),
+            alpha: true,
+            antialias: true
+        });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        camera.position.z = 30;
+
+        // Create modern 3D shapes with subtle colors
+        const shapes = [];
+
+        // Torus (ring shape - like fashion accessory)
+        const torusGeometry = new THREE.TorusGeometry(8, 2, 16, 100);
+        const torusMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x3b82f6,
+            metalness: 0.7,
+            roughness: 0.2,
+            transparent: true,
+            opacity: 0.4,
+            clearcoat: 1
+        });
+        const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+        torus.position.set(-20, 10, -15);
+        scene.add(torus);
+        shapes.push(torus);
+
+        // Sphere (button-like)
+        const sphereGeometry = new THREE.SphereGeometry(5, 32, 32);
+        const sphereMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x3b82f6,
+            metalness: 0.5,
+            roughness: 0.3,
+            transparent: true,
+            opacity: 0.3
+        });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.set(20, -10, -20);
+        scene.add(sphere);
+        shapes.push(sphere);
+
+        // Box (fabric fold representation)
+        const boxGeometry = new THREE.BoxGeometry(6, 6, 6);
+        const boxMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x6366f1,
+            metalness: 0.6,
+            roughness: 0.4,
+            transparent: true,
+            opacity: 0.35
+        });
+        const box = new THREE.Mesh(boxGeometry, boxMaterial);
+        box.position.set(0, 15, -25);
+        scene.add(box);
+        shapes.push(box);
+
+        // Cone (fashion-forward shape)
+        const coneGeometry = new THREE.ConeGeometry(4, 8, 32);
+        const coneMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x3b82f6,
+            metalness: 0.8,
+            roughness: 0.1,
+            transparent: true,
+            opacity: 0.4
+        });
+        const cone = new THREE.Mesh(coneGeometry, coneMaterial);
+        cone.position.set(-15, -15, -18);
+        scene.add(cone);
+        shapes.push(cone);
+
+        // Octahedron
+        const octaGeometry = new THREE.OctahedronGeometry(6);
+        const octaMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0x8b5cf6,
+            metalness: 0.7,
+            roughness: 0.2,
+            transparent: true,
+            opacity: 0.35
+        });
+        const octa = new THREE.Mesh(octaGeometry, octaMaterial);
+        octa.position.set(15, 5, -22);
+        scene.add(octa);
+        shapes.push(octa);
+
+        // Particles (subtle background effect)
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 300;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.15,
+            color: 0x3b82f6,
+            transparent: true,
+            opacity: 0.4,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Lighting
+        const light1 = new THREE.PointLight(0x3b82f6, 1.5, 100);
+        light1.position.set(30, 30, 30);
+        scene.add(light1);
+
+        const light2 = new THREE.PointLight(0x8b5cf6, 1, 100);
+        light2.position.set(-30, -30, 30);
+        scene.add(light2);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        // Animation variables
+        let mouseX = 0;
+        let mouseY = 0;
+        let scrollY = 0;
+
+        // Mouse tracking
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Scroll tracking
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = Date.now() * 0.0005;
+
+            // Rotate all shapes smoothly
+            torus.rotation.x = time * 0.3;
+            torus.rotation.y = time * 0.5;
+
+            sphere.rotation.x = time * 0.2;
+            sphere.rotation.y = time * 0.3;
+
+            box.rotation.x = time * 0.4;
+            box.rotation.y = time * 0.2;
+
+            cone.rotation.x = time * 0.25;
+            cone.rotation.z = time * 0.3;
+
+            octa.rotation.x = time * 0.35;
+            octa.rotation.y = time * 0.4;
+
+            // Gentle floating animation
+            torus.position.y = 10 + Math.sin(time * 0.5) * 2;
+            sphere.position.y = -10 + Math.cos(time * 0.7) * 2;
+            box.position.y = 15 + Math.sin(time * 0.6) * 1.5;
+            cone.position.x = -15 + Math.cos(time * 0.4) * 2;
+            octa.position.y = 5 + Math.sin(time * 0.8) * 2;
+
+            // Rotate particles slowly
+            particlesMesh.rotation.y = time * 0.05;
+            particlesMesh.rotation.x = time * 0.03;
+
+            // Subtle parallax effect with mouse
+            camera.position.x += (mouseX * 3 - camera.position.x) * 0.03;
+            camera.position.y += (mouseY * 3 - camera.position.y) * 0.03;
+
+            // Parallax with scroll
+            camera.position.z = 30 - scrollY * 0.005;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
 </body>
