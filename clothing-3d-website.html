@@ -968,6 +968,22 @@
         scene.add(octa);
         shapes.push(octa);
 
+        // Christ the Redeemer Statue (Rio de Janeiro)
+        const textureLoader = new THREE.TextureLoader();
+        const statueTexture = textureLoader.load('https://e7.pngegg.com/pngimages/209/1001/png-clipart-christ-the-redeemer-corcovado-sugarloaf-mountain-lapa-rio-de-janeiro-statue-jesus-christ-miscellaneous-photography.png');
+
+        const statueGeometry = new THREE.PlaneGeometry(12, 18);
+        const statueMaterial = new THREE.MeshBasicMaterial({
+            map: statueTexture,
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide
+        });
+        const statue = new THREE.Mesh(statueGeometry, statueMaterial);
+        statue.position.set(0, 0, -30);
+        scene.add(statue);
+        shapes.push(statue);
+
         // Particles (subtle background effect)
         const particlesGeometry = new THREE.BufferGeometry();
         const particlesCount = 300;
@@ -1040,12 +1056,17 @@
             octa.rotation.x = time * 0.35;
             octa.rotation.y = time * 0.4;
 
+            // Rotate statue slowly
+            statue.rotation.y = time * 0.2;
+
             // Gentle floating animation
             torus.position.y = 10 + Math.sin(time * 0.5) * 2;
             sphere.position.y = -10 + Math.cos(time * 0.7) * 2;
             box.position.y = 15 + Math.sin(time * 0.6) * 1.5;
             cone.position.x = -15 + Math.cos(time * 0.4) * 2;
             octa.position.y = 5 + Math.sin(time * 0.8) * 2;
+            statue.position.y = Math.sin(time * 0.3) * 3;
+            statue.position.x = Math.cos(time * 0.2) * 2;
 
             // Rotate particles slowly
             particlesMesh.rotation.y = time * 0.05;
